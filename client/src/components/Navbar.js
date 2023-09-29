@@ -23,10 +23,10 @@ const Navbar = () => {
             <h1>InternConnect</h1>
             <nav className='menu'>
                 <ul className='inner-nav'>
-                    <li><a href="#hub">About US</a></li>
-                    <li><a href="#mint">Alumni</a></li>
-                    <li><a href="#features">Servies</a></li>
-                    <li><a href="#socials">Contact</a></li>
+                    <li><a href="/">About US</a></li>
+                    <li><a href="/">Alumni</a></li>
+                    <li><a href="/">Servies</a></li>
+                    <li><a href="/">Contact</a></li>
                 </ul>
             </nav>
         </div>
