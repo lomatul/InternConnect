@@ -23,7 +23,7 @@ const Mailfunction = async (Name, email, otp) =>{
                 throw error
             }
             console.log("email send succsesfully inner")
-            console.log(info)
+            // console.log(info)
         })
         console.log("email send succsesfully")
 
