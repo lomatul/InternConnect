@@ -1,14 +1,16 @@
-// In LoginFormComponent.js
+
 import React from 'react';
 import '../components/login.css';
 
-const LoginFormComponent = () => {
+
+const Updatepassword = () => {
   return (
     <div className="logincontainer">
       <form>
-        <p>Welcome</p>
-        <input type="email" placeholder="Enter your Email" required /> <br />
-        <input type="password" placeholder="Enter your password" required /> <br />
+        <p>Update Password</p>
+        <input type="password" placeholder="Enter your new Password" required /> <br />
+        <input type="password" placeholder="Confirm your password" required /> <br />
+        <input type="password" placeholder="Enter your old Password" required /> <br />
         <input type="submit" value="Sign in" /><br />
       </form>
 
@@ -26,4 +28,4 @@ const LoginFormComponent = () => {
   );
 }
 
-export default LoginFormComponent;
+export default Updatepassword;
