@@ -1,9 +1,11 @@
-const express = require('express')
-const fs=require('fs')
-const xlsx = require('xlsx');
-const otpgenerator= require('otp-generator')
-const Mailfunction = require('./mailsender')
+import express from 'express';
+import fs from 'fs';
+import xlsx from 'xlsx';
+import otpgenerator from 'otp-generator';
+import Mailfunction from './mailsender.js';
+import bcrypt from 'bcrypt';
 import Student from '../models/student.model.js';
+
 
 
 const ulpoadfiledata = async (req, res)=>{
@@ -15,33 +17,44 @@ const ulpoadfiledata = async (req, res)=>{
 
     
 
-    res.status(200).send(data)
+    // res.status(200).send(data)
+    console.log(data)
 
-    data.forEach(async element => {
+    const Studnetcreation = data.map(async element => {
         const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
-        console.log("name", element.Name)
+        console.log("name", element)
         console.log("OTP", otp)
+        const salt = await bcrypt.genSalt(10)
+        const hash = await bcrypt.hash(otp, salt)
         try {
           const student = new Student({
-            name: element.name,
-            student_id: element.student_id,
-            email: element.email,
-            password: otp,
+            name: element.Name,
+            student_id: element.Id,
+            email: element.Email,
+            password: hash,
             CGPA: element.CGPA,
             accountActivationStatus: false,
           });
       
           await student.save();
-      
-          res.status(201).json({
-            message: 'Student created successfully!',
-            student,
-          });
+          console.log("Student created", student)
         } catch (error) {
-          next(error);
+          console.error(error);
+          Promise.reject(error)
         }
         Mailfunction(element.Name, element.Email, otp)
     })
+
+    try {
+      await Promise.all(Studnetcreation);
+  
+      // Send the response only when all student records have been processed.
+      res.status(200).json({
+        message: 'Students created successfully!',
+      });
+    } catch (error) {
+      res.status(400).json({ error: error.message });
+    }
 }
 
-module.exports = {ulpoadfiledata}
+export { ulpoadfiledata };

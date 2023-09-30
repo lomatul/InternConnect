@@ -1,10 +1,10 @@
-const mailer= require('nodemailer')
+import nodemailer from 'nodemailer';
 
 
 const Mailfunction = async (Name, email, otp) =>{
     try
     {
-        const transporter = mailer.createTransport({
+        const transporter = nodemailer.createTransport({
             service:'gmail',
             host: "smtp.gmail.com",
             auth: {
@@ -35,4 +35,4 @@ const Mailfunction = async (Name, email, otp) =>{
     }
 }
 
-module.exports = Mailfunction
+export default Mailfunction;

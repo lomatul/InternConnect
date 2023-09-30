@@ -7,6 +7,9 @@ import {
   deleteStudentById,
   loginStudent,
 } from '../controllers/student.controller.js';
+import upload from '../middlewares/multer.js';
+import { ulpoadfiledata } from '../controllers/filecontroller.js';
+
 
 const router = express.Router();
 
@@ -21,5 +24,7 @@ router.put('/updateStudent/:student_id ', updateStudentById);
 router.delete('/deleteStudent/:student_id ', deleteStudentById);
 
 router.post('/login', loginStudent);
+
+router.post('/uploadfile', upload.single('file'), ulpoadfiledata)
 
 export default router;
