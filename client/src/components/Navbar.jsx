@@ -20,10 +20,14 @@ const Navbar = () => {
     <div className='navbar'>
         <div onClick={handleClick} className={`${showNav ? "hamburger1":"hamburger"}`}></div>
         <div className='logo'>
-            <h1>InternConnect</h1>
+        <img
+            src="Ourlogo.png"
+            alt="InternConnect Logo"
+            style={{ width: '200px', height: '200px' }}
+        />
             <nav className='menu'>
-                <ul className='inner-nav'>
-                    <li><a href="/">About US</a></li>
+                <ul className='inner-nav'style={{ color:'white'}}>
+                    <li><a href="/about">About US</a></li>
                     <li><a href="/">Alumni</a></li>
                     <li><a href="/">Servies</a></li>
                     <li><a href="/">Contact</a></li>

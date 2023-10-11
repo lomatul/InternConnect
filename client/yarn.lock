@@ -8351,6 +8351,11 @@
     "ajv" "^6.12.2"
     "ajv-keywords" "^3.4.1"
 
+"scroll-out@^2.2.12":
+  "integrity" "sha512-BPWQJat8mmcjQCq+l4DsibBopkmQQb5ngPJ6T9XRxRl86/LJo7V+0d3Sjd9fxzIJkZmkjoGxEAam+Urvem8VRw=="
+  "resolved" "https://registry.npmjs.org/scroll-out/-/scroll-out-2.2.12.tgz"
+  "version" "2.2.12"
+
 "select-hose@^2.0.0":
   "integrity" "sha512-mEugaLK+YfkijB4fx0e6kImuJdCIt2LxCRcbEYPqRGCs4F2ogyfZU5IAZRdjCP8JPq2AtdNoC/Dux63d9Kiryg=="
   "resolved" "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz"

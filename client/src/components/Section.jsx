@@ -11,7 +11,7 @@ const Section = () => {
                 <div className='button'><a href="/">Explore Now</a></div>
             </div>
             <div className='section-image'>
-                {/* <img src="globe.png" alt="" /> */}
+                <img src="Ourlogo.png" alt="" />
             </div>
         </div>
         <div className='card-section'>

@@ -1,7 +1,4 @@
-import { useState } from "react";
 import './admin.css'
-import {MdCloudUpload,MdDelete} from 'react-icons/md'
-import {AiFillFileImage} from 'react-icons/ai'
 
 
 function FileUpload(){
