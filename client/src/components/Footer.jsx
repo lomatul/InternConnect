@@ -13,7 +13,7 @@ const Footer = () => {
                 <a href="/">Get Started</a>
             </div>
         </div>
-        <div className='newsletter'>
+        {/* <div className='newsletter'>
             <div className='news-left'>
                 <h4>Subscribe</h4>
                 <h1>Subscribe To Get Latest <br />Update From Us</h1>
@@ -26,7 +26,7 @@ const Footer = () => {
                     <button>Subscribe</button>
                 </form>
             </div>
-        </div>
+        </div> */}
         <div className='footer-menu'>
             <h1>InternConnect</h1>
             {/* <ul className='footer-inner-nav'>

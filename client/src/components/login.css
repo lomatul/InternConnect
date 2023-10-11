@@ -1,6 +1,6 @@
 .login
 {
-    background: rgb(158, 191, 158);
+    background: rgb(237, 240, 237);
     font-family: 'Courier New', Courier, monospace; 
     height: 100vh;
 }
@@ -15,7 +15,7 @@ form{
     height: 420px;
     padding: 3em;
     border-radius: 20px;
-    background: rgba(238, 243, 115, 0.3);
+    background: rgb(116, 167, 171);
     backdrop-filter: blur(10px);
     box-shadow: 20px 20px 40px -6px rgba(0,0,0,0.2);
     text-align: center;
@@ -23,7 +23,7 @@ form{
 
 p{
     font-weight: bold;
-    color: #fff;
+    color: #040404;
     opacity: 0.7;
     font-size: 2rem;
     margin-top: 0;
@@ -61,6 +61,7 @@ input[type="submit"]{
     font-size: 1rem;
     cursor: pointer;
     color: black;
+    box-shadow: 2px 2px 40px 5px  rgba(0,0,0,0.2);
 }
 
 input[type="submit"]:hover {

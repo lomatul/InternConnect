@@ -4,7 +4,6 @@ import '../components/style.css'
 import Container from '../components/Container'
 import Section from '../components/Section'
 import Testimonials from '../components/Testimonials'
-import FAQ from '../components/FAQ'
 import Footer from '../components/Footer'
 
 const Home = () => {
@@ -14,7 +13,6 @@ const Home = () => {
         <Container/>
         <Section/>
         <Testimonials/>
-        <FAQ/>
         <Footer/>
     </div>
   )
