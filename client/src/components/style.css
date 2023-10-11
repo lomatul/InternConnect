@@ -54,7 +54,7 @@
     border-radius: 3px;
     color: rgb(25, 14, 14);
     white-space: nowrap;
-    background: #f857a6; /* fallback for older browsers*/
+    background: #fbfbfb; /* fallback for older browsers*/
     background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
     background: linear-gradient(to right, #3dabb3, #ead7e0);
 }

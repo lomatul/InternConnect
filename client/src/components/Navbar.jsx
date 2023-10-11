@@ -34,9 +34,10 @@ const Navbar = () => {
                 </ul>
             </nav>
         </div>
-        <div className='button'>
-            <a href="/login">Login</a>
-        </div>
+        <div className='button' style={{ fontSize: '20px', padding: '30px 40px' , fontWeight: 'bold'}}>
+    <a href="/login">Login</a>
+</div>
+
     </div>
   )
 }
