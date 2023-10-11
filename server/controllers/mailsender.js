@@ -16,7 +16,8 @@ const Mailfunction = async (Name, email, otp) =>{
             from: "zayed.hasan.14@gmail.com",
             to: email,
             subject:  'Email Verification',
-            text:`Hi ${Name}, Please, Click the following link to verify your email. And your OTP is '${otp}'`
+            text:`Hi ${Name}, Please, Click the following link to Login using your OTP. And update the password to activate your account. And your OTP is '${otp}'`,
+            html: `<p>Hi ${Name},</p><p>Please click the following link to login using your OTP. And update the password to activate your account. Your OTP is '${otp}'</p><a href="http://localhost:3000/login">Login</a>`
             
         }, function(error, info){
             if(error){
