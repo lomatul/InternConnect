@@ -37,6 +37,11 @@
     color: wheat;
 }
 
+.inner-nav li a:-webkit-any-link {
+    color: rgb(255, 255, 255); /* Change the color to red */
+    cursor: pointer;
+}
+
 .logo{
     display: flex;
     align-items: center;
@@ -54,7 +59,7 @@
     border-radius: 3px;
     color: rgb(25, 14, 14);
     white-space: nowrap;
-    background: #fbfbfb; /* fallback for older browsers*/
+    background: #000000; /* fallback for older browsers*/
     background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
     background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
@@ -146,6 +151,13 @@
         padding-bottom: 15px;
         color: white;
     }
+
+    .inner-nav a:-webkit-any-link {
+        color: rgb(255, 255, 255); /* Change the color to red */
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    
 }
 
 /* Container */
@@ -190,6 +202,7 @@
 
 .text a{
     padding: 12px 15px;
+    color: wheat;
 }
 
 .text .button{
@@ -335,6 +348,7 @@
 .section-text a{
     padding: 12px 15px;
     white-space: nowrap;
+    color: wheat;
 }
 
 .section-text .button{

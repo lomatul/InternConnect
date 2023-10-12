@@ -1,0 +1,62 @@
+/* styles.css */
+
+.boxWidth {
+    max-width: 1280px;
+    width: 100%;
+  }
+  
+  .heading2 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 66.8px;
+    color: white;
+  }
+  
+  .statparagraph {
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 30.8px;
+    color: White;
+  }
+  
+  .flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .flexStart {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  .paddingX {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .paddingY {
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+  
+  .padding {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 4px;
+  }
+  
+  .marginX {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  
+  .marginY {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+  
