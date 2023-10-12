@@ -1,62 +1,48 @@
-/* styles.css */
+.stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  font-size: 26px;
+  color: #f8f8f8;
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 8px;
+}
 
-.boxWidth {
-    max-width: 1280px;
-    width: 100%;
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px;
+}
+
+.stat span {
+  display: flex;
+  align-items: center;
+}
+
+.stat span:first-child {
+  font-size: 52px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.stat span:last-child {
+  font-size: 24px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .stats {
+    font-size: 24px;
   }
-  
-  .heading2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 66.8px;
-    color: white;
+
+  .stat span:first-child {
+    font-size: 48px;
   }
-  
-  .statparagraph {
-    font-family: 'Poppins', sans-serif;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 30.8px;
-    color: White;
+
+  .stat span:last-child {
+    font-size: 16px;
   }
-  
-  .flexCenter {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .flexStart {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  }
-  
-  .paddingX {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  
-  .paddingY {
-    padding-top: 16px;
-    padding-bottom: 16px;
-  }
-  
-  .padding {
-    padding-left: 16px;
-    padding-right: 16px;
-    padding-top: 12px;
-    padding-bottom: 4px;
-  }
-  
-  .marginX {
-    margin-left: 16px;
-    margin-right: 16px;
-  }
-  
-  .marginY {
-    margin-top: 16px;
-    margin-bottom: 16px;
-  }
-  
+}

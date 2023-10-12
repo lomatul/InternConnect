@@ -1,19 +1,34 @@
 import { stats } from "../index";
-import styles from "./stat.css"; 
+import "./stat.css"
+import CountUp from "react-countup";
 
 const Stats = () => (
-  <section className={`${styles.flexCenter} flex-row flex-wrap mb-20 mb-6`}>
-    {stats.map((stat) => (
-      <div key={stat.id} className={`flex-1 flex justify-start items-center flex-row m-3`}>
-        <h4 className={`${styles.heading2}`}>
-          {stat.value}
-        </h4>
-        <p className={`${styles.statparagraph} text-gradient uppercase ml-3`}>
-          {stat.title}
-        </p>
-      </div>
-    ))}
-  </section>
+  <div className="stats">
+    <div className="stat">
+      <span>
+        <CountUp start={200} end ={300} duration={8}/>
+     <span>+</span>
+     </span>
+      <span>  Students </span>
+    </div>
+
+    <div className="stat">
+      <span>
+        <CountUp start={10} end ={100} duration={8}/>
+     <span>+</span>
+     </span>
+      <span>  Comapanies </span>
+    </div>
+
+
+    <div className="stat">
+      <span>
+        <CountUp start={100} end ={180} duration={8}/>
+     <span>+</span>
+     </span>
+      <span>  Interns </span>
+    </div>
+    </div>
 );
 
 export default Stats;

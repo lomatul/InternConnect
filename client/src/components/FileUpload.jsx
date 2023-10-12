@@ -1,7 +1,6 @@
 import './admin.css'
-import {MdCloudUpload,MdDelete} from 'react-icons/md'
-import {AiFillFileImage} from 'react-icons/ai'
 import axios from "axios";
+import { useState } from 'react';
 
 
 function FileUpload(){
