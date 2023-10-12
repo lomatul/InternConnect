@@ -1,5 +1,6 @@
 import Student from '../models/student.model.js';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
 
 // Create a student
@@ -115,10 +116,12 @@ export const deleteStudentById = async (req, res, next) => {
   }
 };
 
+
 // Creating JSON Web Token
 const createToken = (_id) => {
   return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
 }
+
 
 // Student Login
 export const loginStudent = async (req, res) => {
@@ -135,3 +138,36 @@ export const loginStudent = async (req, res) => {
     res.status(400).json({error: error.message})
   }
 }
+
+
+// Update a student's password by student_id
+export const updatePasswordById = async (req, res, next) => {
+  try {
+    const { student_id } = req.params;
+    const { currentPassword, newPassword } = req.body;
+
+    const student = await Student.findOne({ student_id: student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    // Check if the current password matches
+    const passwordMatch = await bcrypt.compare(currentPassword, student.password);
+
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    // Update the password with the new password
+    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    student.password = hashedNewPassword;
+
+    // Save the updated student with the new password
+    await student.save();
+
+    return res.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
