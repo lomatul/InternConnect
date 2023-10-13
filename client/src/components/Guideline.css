@@ -8,9 +8,53 @@ body {
     max-width: 1350px;
     background: black;
   }
+  .guidecontainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 160px;
+    margin-left: 50px;
+}
+
+.image img{
+    width: 100%;
+    height: auto;
+    animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
+}
+
+.guidetext {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.guidetext h3{
+    font-size: 32px;
+    font-weight: 500px;
+    margin-bottom: 10px;
+    color: wheat;
+}
+
+.guidetext h1{
+    font-size: 48px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: wheat;
+}
+
+.guidetext p {
+    opacity: 0.8;
+    font-size: 18px;
+    margin-bottom: 60px;
+    color: wheat;
+}
+
+.guidetext a{
+    padding: 12px 15px;
+    color: wheat;
+}
 
   
-  .Aboutus section{
+  .Guildeline section{
     position: relative;
     width: 100%;
     margin-top: 100px;
@@ -20,54 +64,50 @@ body {
     background: black;
     color: #fff;
   }
-  /* section {
-    position: relative;
+
+.image img{
     width: 100%;
-    margin-top: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
-    color: #fff;
-  }
-   */
-  section .aboutcontent {
+    height: auto;
+    animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
+}
+
+  section .guidelinecontent {
     max-width: 80%;
   }
   
-  section .aboutcontent h2 {
+  section .guidelinecontent h2 {
     position: relative;
     margin: 0;
     padding: 0;
     display: inline-block;
-    font-size: 3em;
+    font-size: 2em;
     transition: 0.5s;
     transform-origin: right;
     transform: scaleX(0);
   }
   
-  section .aboutcontent h2[data-scroll="in"] {
+  section .guidelinecontent h2[data-scroll="in"] {
     transform: scaleX(1);
   }
   
-  section .aboutcontent h2:before {
+  section .guidelinecontent h2:before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #2bf4ff;
+    background: #d9e8e8;
     transform-origin: left;
     transition: 0.5s;
   }
   
-  section .aboutcontent h2[data-scroll="in"]::before {
+  section .guidelinecontent h2[data-scroll="in"]::before {
     transform: scaleX(0);
     transition-delay: 0.5s;
   }
   
-  section .aboutcontent h3 {
+  section .guidelinecontent h3 {
     position: relative;
     margin: 5px 0 0;
     padding: 0;
@@ -79,12 +119,12 @@ body {
     transform: scaleX(0);
   }
   
-  section .aboutcontent h3[data-scroll="in"] {
+  section .guidelinecontent h3[data-scroll="in"] {
     transform: scaleX(1);
     transition-delay: 1s;
   }
   
-  section .aboutcontent h3:before {
+  section .guidelinecontent h3:before {
     content: '';
     position: absolute;
     top: 0;
@@ -96,24 +136,24 @@ body {
     transition: 0.5s;
   }
   
-  section .aboutcontent h3[data-scroll="in"]::before {
+  section .guidelinecontent h3[data-scroll="in"]::before {
     transform: scaleX(0);
     transition-delay: 1.5s;
   }
   
-  section .aboutcontent p {
+  section .guidelinecontent p {
     font-size: 1.2em;
     transition: 1s;
     opacity: 0;
     color: wheat;
   }
   
-  section .aboutcontent p[data-scroll="in"] {
+  section .guidelinecontent p[data-scroll="in"] {
     opacity: 1;
     transition-delay: 1s;
   }
   
-  section .aboutcontent a {
+  section .guidelinecontent a {
     position: relative;
     background: #fff;
     color: #262626;
@@ -127,7 +167,7 @@ body {
     opacity: 0;
   }
   
-  section .aboutcontent a[data-scroll="in"] {
+  section .guidelinecontent a[data-scroll="in"] {
     opacity: 1;
     transition-delay: 1s;
     transform: translateX(0);
