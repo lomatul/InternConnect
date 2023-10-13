@@ -26,7 +26,7 @@ const Navbar = () => {
             style={{ width: '200px', height: '200px' }}
         />
             <nav className='menu'>
-                <ul className='inner-nav'style={{ color:'white'}}>
+                <ul className='inner-nav'>
                     <li><a href="/about">About US</a></li>
                     <li><a href="/">Alumni</a></li>
                     <li><a href="/">Servies</a></li>
@@ -34,9 +34,10 @@ const Navbar = () => {
                 </ul>
             </nav>
         </div>
-        <div className='button'>
-            <a href="/login">Login</a>
-        </div>
+        <div className='button' style={{ fontSize: '20px', padding: '30px 40px' , fontWeight: 'bold'}}>
+    <a href="/login">Login</a>
+</div>
+
     </div>
   )
 }

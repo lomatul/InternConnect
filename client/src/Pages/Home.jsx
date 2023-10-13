@@ -5,12 +5,14 @@ import Container from '../components/Container'
 import Section from '../components/Section'
 import Testimonials from '../components/Testimonials'
 import Footer from '../components/Footer'
+import Stats from '../components/stat'
 
 const Home = () => {
   return (
     <div className='home'>
         <Navbar/>
         <Container/>
+        <Stats/>
         <Section/>
         <Testimonials/>
         <Footer/>
