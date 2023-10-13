@@ -3,8 +3,10 @@ import React from 'react';
 import '../components/login.css';
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const LoginFormComponent = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -16,6 +18,10 @@ const LoginFormComponent = () => {
             console.log(response)
         }).catch((error)=>{
             if (error.response) {
+              if(error.response.status===308){
+                console.log("status", error.response.data.redirectUrl)
+                navigate(error.response.data.redirectUrl);
+                }
                 console.log(error.response);
                 console.log("server responded");
               } else if (error.request) {

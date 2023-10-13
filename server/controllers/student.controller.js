@@ -1,6 +1,6 @@
 import Student from '../models/student.model.js';
 import jwt from 'jsonwebtoken';
-
+import bcrypt from 'bcrypt';
 
 // Create a student
 export const createStudent = async (req, res, next) => {
@@ -124,14 +124,36 @@ const createToken = (_id) => {
 export const loginStudent = async (req, res) => {
   const {email, password} = req.body
 
+
   try {
-    const student = await Student.login(email, password)
 
-    // create a token
-    const token = createToken(student._id)
+    if (!email || !password) {
+      throw new Error("All fields must be filled");
+    }
+  
+    const student = await Student.findOne({ email })
+    if (!student) {
+      throw new Error('Incorrect email')
+    }
+  
+    const match = await bcrypt.compare(password, student.password)
+    if (!match) {
+      throw new Error('Incorrect password')
+    }
 
-    res.status(200).json({email, token})
+
+    if(!student.accountActivationStatus){
+      console.log("it came here in the condition");
+      res.status(308).json({message:"Please update Your Password to activate your Account", redirectUrl:'/Updatepassword'})
+    }else{
+      // create a token
+      const token = createToken(student._id)
+      res.status(200).json({email, token}) 
+    }
+
+    
   } catch (error) {
+    console.log("Error: ", error)
     res.status(400).json({error: error.message})
   }
 }

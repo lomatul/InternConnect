@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer';
+import dotenv from "dotenv";
 
+dotenv.config();
 
 const Mailfunction = async (Name, email, otp) =>{
     try
@@ -9,7 +11,7 @@ const Mailfunction = async (Name, email, otp) =>{
             host: "smtp.gmail.com",
             auth: {
                 user: "zayed.hasan.14@gmail.com",
-                pass:"bbbbccpqgkcporyk"
+                pass:process.env.mail_pass
             }
         })
         await transporter.sendMail({
