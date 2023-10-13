@@ -20,6 +20,19 @@ const GuildeLine = () => {
             </div>
         </div>
 
+        <section>
+        <div className="guidelinecontent">
+          <h2 data-scroll="out">1. Introduction to Internship</h2>
+          <p data-scroll="out"> An internship is a valuable opportunity for students to gain practical 
+          experience in a real work environment. It is a critical part of your educational journey and can 
+          significantly impact your future career. During an internship, you have the chance to apply what 
+          you've learned in the classroom, develop new skills, and build a professional network. This section
+           provides an overview of the importance of internships in your educational and career development.
+           </p>
+        </div>
+      </section>
+
+
       <section>
         <div className="guidelinecontent">
           <h2 data-scroll="out">2. Purpose of the Guideline Page</h2>
@@ -53,7 +66,10 @@ const GuildeLine = () => {
       <section>
         <div className="guidelinecontent">
           <h2 data-scroll="out">4. Eligibility and Requirements</h2>
-          <p data-scroll="out"> To be eligible for our internship program, you must meet certain criteria. These criteria may include your academic standing, specific skills or qualifications, and more. Please ensure you review the eligibility requirements before applying. Meeting these requirements is crucial to your acceptance into the program.
+          <p data-scroll="out"> To be eligible for our internship program, you must meet certain criteria. 
+          These criteria may include your academic standing, specific skills or qualifications, and more. 
+          Please ensure you review the eligibility requirements before applying. Meeting these requirements 
+          is crucial to your acceptance into the program.
            </p>
         </div>
       </section>
@@ -63,12 +79,12 @@ const GuildeLine = () => {
       <section>
         <div className="guidelinecontent">
           <h2 data-scroll="out">5. How to Apply</h2>
-          <p data-scroll="out"> The application process is straightforward, but it's important to follow the correct steps. To apply for an internship:
-
-Complete the online application form.
-Submit all required documents, such as your resume, cover letter, and transcripts.
-Meet the application deadline.
-Once we receive your application, our team will review it and get in touch with you regarding the next steps.
+          <p data-scroll="out"> The application process is straightforward, but it's important to follow 
+          the correct steps. To apply for an internship:
+            Complete the online application form.
+            Submit all required documents, such as your resume, cover letter, and transcripts.
+            Meet the application deadline.
+            Once we receive your application, our team will review it and get in touch with you regarding the next steps.
            </p>
         </div>
       </section>
