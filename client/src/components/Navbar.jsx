@@ -28,7 +28,7 @@ const Navbar = () => {
             <nav className='menu'>
                 <ul className='inner-nav'>
                     <li><a href="/about">About US</a></li>
-                    <li><a href="/">Alumni</a></li>
+                    <li><a href="/">Guildeline</a></li>
                     <li><a href="/">Servies</a></li>
                     <li><a href="/">Contact</a></li>
                 </ul>

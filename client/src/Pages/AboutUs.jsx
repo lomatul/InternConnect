@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar';
 
 const Aboutus = () => {
     return (
-        <div className="App">
+        <div className="Aboutus">
           <Navbar/>
           <AboutUs />
           <FAQ/>

@@ -18,13 +18,13 @@ const Section = () => {
             <div className='cards'>
                 <div className='card'>
                     <img src="globe.png" alt="" />
-                    <h1>Easy Account Registration</h1>
-                    <p>Global banking made easy and available in 140+ countries</p>
+                    <h1>Reporting + Metrics</h1>
+                    <p>Flexible standard and custom report dropping for intern and more.</p>
                     <a href="/">learn &rarr;</a>
                 </div>
                 <div className='card'>
                     <img src="2.png" alt="" />
-                    <h1>Easy Account Registration</h1>
+                    <h1>Autometic Evaluations</h1>
                     <p>Global banking made easy and available in 140+ countries.</p>
                     <a href="/">learn &rarr;</a>
                 </div>
