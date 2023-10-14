@@ -26,7 +26,7 @@ router.delete('/deleteStudent/:student_id ', deleteStudentById);
 
 router.post('/login', loginStudent);
 
-router.put('/updatePassword/:student_id', updatePasswordById);
+router.post('/updatePassword/:student_id', updatePasswordById);
 
 router.post('/uploadfile', upload.single('file'), ulpoadfiledata)
 

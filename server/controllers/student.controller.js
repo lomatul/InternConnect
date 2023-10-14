@@ -125,16 +125,16 @@ const createToken = (_id) => {
 
 // Student Login
 export const loginStudent = async (req, res) => {
-  const {email, password} = req.body
+  const {student_id, password} = req.body
 
 
   try {
 
-    if (!email || !password) {
+    if (!student_id || !password) {
       throw new Error("All fields must be filled");
     }
   
-    const student = await Student.findOne({ email })
+    const student = await Student.findOne({ student_id })
     if (!student) {
       throw new Error('Incorrect email')
     }
@@ -146,12 +146,12 @@ export const loginStudent = async (req, res) => {
 
 
     if(!student.accountActivationStatus){
-      console.log("it came here in the condition");
-      res.status(308).json({message:"Please update Your Password to activate your Account", redirectUrl:'/Updatepassword'})
+      
+      res.status(308).json({message:"Please update Your Password to activate your Account", redirectUrl:'/Updatepassword', id: student_id})
     }else{
       // create a token
       const token = createToken(student._id)
-      res.status(200).json({email, token}) 
+      res.status(200).json({student_id, token}) 
     }
 
     
@@ -168,6 +168,7 @@ export const updatePasswordById = async (req, res, next) => {
     const { student_id } = req.params;
     const { currentPassword, newPassword } = req.body;
 
+
     const student = await Student.findOne({ student_id: student_id });
 
     if (!student) {
@@ -177,19 +178,24 @@ export const updatePasswordById = async (req, res, next) => {
     // Check if the current password matches
     const passwordMatch = await bcrypt.compare(currentPassword, student.password);
 
+  
+
     if (!passwordMatch) {
       return res.status(400).json({ message: 'Current password is incorrect' });
     }
 
     // Update the password with the new password
-    const hashedNewPassword = await bcrypt.hash(newPassword, 10);
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
     student.password = hashedNewPassword;
+    student.accountActivationStatus=true;
 
     // Save the updated student with the new password
     await student.save();
 
     return res.status(200).json({ message: 'Password updated successfully' });
   } catch (error) {
-    next(error);
+    // next(error);
+    res.status(400).json({error: error.message})
   }
 };
