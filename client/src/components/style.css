@@ -205,11 +205,15 @@
     color: wheat;
 }
 
-.text .button{
-    display: inline-block;
-    color: #000000;
+.text .button a {
+    padding: 6px;
+    border-radius: 3px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
-
 @media (max-width:1080px){
     .text h3{
         font-size: 25px;
@@ -352,8 +356,14 @@
     color: wheat;
 }
 
-.section-text .button{
-    display: inline-block;
+.section-text .button a {
+    padding: 6px;
+    border-radius: 3px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
 
 @media (max-width:1080px){
