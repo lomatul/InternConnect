@@ -10,7 +10,6 @@ const Guildeline = () => {
     <div className='Guildeline'>
         <Navbar/>
         <GuildeLine/>
-        <Footer/>
     </div>
   )
 }

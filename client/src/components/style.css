@@ -2,14 +2,14 @@
     list-style: none;
     text-decoration: none;
 }
+
+
 .home{
 
-    /* background: linear-gradient(135deg, #ffffff 0%, #293D55 30.69%, #263552 68.66%, #ffffff 100%); */
+    background: transparent;
     font-size: 15px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1350px;
+    margin-left: 110px;
+    margin-right: 110px;
 }
 
 @media (max-width:900px){
@@ -699,7 +699,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    background: linear-gradient(135deg, #ffffff 0%, #293D55 30.69%, #263552 68.66%, #ffffff 100%);
+    background: wheat;
     border-radius: 30px;
     padding: 80px 50px;
     position: relative;

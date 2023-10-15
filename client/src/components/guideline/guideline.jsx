@@ -127,8 +127,14 @@ const GuildeLine = () => {
            the internship experience.
            </p>
         </div>
-      </section>
 
+
+ 
+      </section>
+      <hr />
+      <div>
+            <p className='text-center'>&#169; Copyright 2023 | All Right Reserved | InternConnect</p>
+        </div>
 
     </div>
   );
