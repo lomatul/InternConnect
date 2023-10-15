@@ -207,6 +207,7 @@
 
 .text .button{
     display: inline-block;
+    color: #000000;
 }
 
 @media (max-width:1080px){
@@ -395,7 +396,7 @@
 }
 
 .card-section{
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 100px;
 }
 
@@ -403,7 +404,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    height: 500px;
+    gap: 80px;
 }
 
 .card{
@@ -420,6 +422,7 @@
 }
 .card p {
     margin-bottom: 13px;
+    font-size: 14px;
 }
 .card a{
     color: rgb(0, 255, 247);

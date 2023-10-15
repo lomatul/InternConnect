@@ -14,27 +14,60 @@ const Section = () => {
                 <img src="Ourlogo.png" alt="" />
             </div>
         </div>
+        
         <div className='card-section'>
             <div className='cards'>
                 <div className='card'>
                     <img src="globe.png" alt="" />
                     <h1>Reporting + Metrics</h1>
-                    <p>Flexible standard and custom report dropping for intern and more.</p>
+                    <p>Flexible standard and custom report dropping for intern and more.Students will be required to submit reports within a designated time frame ( usually weekly / bi-weekly).</p>
                     <a href="/">learn &rarr;</a>
                 </div>
                 <div className='card'>
                     <img src="2.png" alt="" />
                     <h1>Autometic Evaluations</h1>
-                    <p>Global banking made easy and available in 140+ countries.</p>
+                    <p>The software will offer a feature that provides mentors (supervisors and project managers)  with access to a dedicated link for evaluating interns.</p>
                     <a href="/">learn &rarr;</a>
                 </div>
                 <div className='card'>
                     <img src="3.png" alt="" />
-                    <h1>Easy Account Registration</h1>
-                    <p>Global banking made easy and available in 140+ countries.</p>
+                    <h1>Student account creation</h1>
+                    <p>The "Student Account Creation" feature is a fundamental component of our Internship Management System, allowing students to create their accounts seamlessly with the help of administrative data provided through an Excel sheet.
+</p>
                     <a href="/">learn &rarr;</a>
                 </div>
+
+
+                
             </div>
+
+
+            <div className='cards'>
+                <div className='card'>
+                    <img src="globe.png" alt="" />
+                    <h1>CV Dropping</h1>
+                    <p>The "CV Dropping" feature in the Internship Management System is designed to allow students to submit their curriculum vitae (CV) in PDF format as part of the internship application process.</p>
+                    <a href="/">learn &rarr;</a>
+                </div>
+                <div className='card'>
+                    <img src="2.png" alt="" />
+                    <h1>Student Preference</h1>
+                    <p>The software will include a feature for students to indicate their preferences. This will encompass two types of preferences: ‘Student’s Technical Preference’ and company preferences. 
+</p>
+                    <a href="/">learn &rarr;</a>
+                </div>
+                <div className='card'>
+                    <img src="3.png" alt="" />
+                    <h1>Notification Feature</h1>
+                    <p>The software will include a comprehensive notification system designed to keep users informed about important events, deadlines, and other essential updates.</p>
+                    <a href="/">learn &rarr;</a>
+                </div>
+
+
+                
+            </div>
+
+
         </div>
     </div>
   )
