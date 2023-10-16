@@ -6,6 +6,7 @@ import {
   updateStudentById,
   deleteStudentById,
   loginStudent,
+  updatePasswordById
 } from '../controllers/student.controller.js';
 import upload from '../middlewares/multer.js';
 import { ulpoadfiledata } from '../controllers/filecontroller.js';
@@ -24,6 +25,8 @@ router.put('/updateStudent/:student_id ', updateStudentById);
 router.delete('/deleteStudent/:student_id ', deleteStudentById);
 
 router.post('/login', loginStudent);
+
+router.post('/updatePassword/:student_id', updatePasswordById);
 
 router.post('/uploadfile', upload.single('file'), ulpoadfiledata)
 

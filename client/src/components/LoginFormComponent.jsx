@@ -3,19 +3,28 @@ import React from 'react';
 import '../components/login.css';
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const LoginFormComponent = () => {
-  const [email, setEmail] = useState('')
+  const navigate = useNavigate();
+  const [student_id, setStudent_id] = useState('')
   const [password, setPassword] = useState('')
 
   const handleSubmit = async(event) => {
     event.preventDefault()
     try {
-        await axios.post('http://localhost:3000/InterConnect/student/login', {email, password}
+        await axios.post('http://localhost:3000/InterConnect/student/login', {student_id, password}
         ).then((response)=>{
             console.log(response)
+
+            //temporary saving in local storage
+            // localStorage.setItem('user', JSON.stringify(json))
         }).catch((error)=>{
             if (error.response) {
+              if(error.response.status===308){
+                console.log("status", error.response.data.redirectUrl)
+                navigate(error.response.data.redirectUrl, {state: {Id:error.response.data.id}});
+                }
                 console.log(error.response);
                 console.log("server responded");
               } else if (error.request) {
@@ -38,7 +47,7 @@ const LoginFormComponent = () => {
     <div className="logincontainer">
       <form onSubmit={handleSubmit}>
         <p>Welcome</p>
-        <input type="email" placeholder="Enter your Email" required value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
+        <input type="Text" placeholder="Enter your Student ID" required value={student_id} onChange={(e) => setStudent_id(e.target.value)} /> <br />
         <input type="password" placeholder="Enter your password" required  onChange={(e) => setPassword(e.target.value)} value={password} /> <br />
         <input type="submit" value="Sign in" /> <a href="/"></a><br />
         <a href="/Updatepassword">Forget Password ?</a><br />

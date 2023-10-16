@@ -25,7 +25,7 @@ const studentSchema = new mongoose.Schema({
 
   OTP: { type: String },
 
-  accountActivationStatus: { type: String }, // Account Activated or Deactivated
+  accountActivationStatus: { type: Boolean }, // Account Activated or Deactivated
 
   submissionTimestampCV: { type: Date },
 
@@ -43,22 +43,6 @@ const studentSchema = new mongoose.Schema({
 });
 
 // Static login method
-studentSchema.statics.login = async function (email, password) {
-  if (!email || !password) {
-    throw Error("All fields must be filled");
-  }
 
-  const student = await this.findOne({ email })
-  if (!student) {
-    throw Error('Incorrect email')
-  }
-
-  const match = await bcrypt.compare(password, student.password)
-  if (!match) {
-    throw Error('Incorrect password')
-  }
-
-  return student
-};
 
 export default mongoose.model("Student", studentSchema);

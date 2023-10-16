@@ -1,6 +1,8 @@
 import './admin.css'
+import {MdCloudUpload,MdDelete} from 'react-icons/md'
+import {AiFillFileImage} from 'react-icons/ai'
 import axios from "axios";
-import { useState } from 'react';
+import {useState} from 'react';
 
 
 function FileUpload(){
@@ -43,6 +45,7 @@ function FileUpload(){
           } catch (error) {
             console.error('An error occurred:', error);
           }
+          setSelectedFile([])
     }
 
     return(
