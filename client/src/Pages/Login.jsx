@@ -1,7 +1,7 @@
 // In Login.js
 import React from 'react';
-import '../components/login.css';
-import LoginFormComponent from '../components/LoginFormComponent';
+import '../components/login/login.css';
+import LoginFormComponent from '../components/login/LoginFormComponent';
 
 const Login = () => {
   return (

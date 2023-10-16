@@ -1,0 +1,98 @@
+.add {
+  background: white;
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto Slab', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 1300px;
+}
+.add .addcontainer {
+  /* margin-left: 50px; */
+  width: 700px;
+  padding: 50px 0px;
+}
+.add .addcontainer h1 {
+ 
+  width: max-content;
+  margin-bottom: 30px;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+}
+.add .addcontainer .addsections {
+  display: flex;
+  justify-content: space-between;
+  gap: 100px;
+}
+.add .addcontainer .addsections label {
+  color: gray;
+  font-size: 18px;
+}
+.add .addcontainer .addsections .info,
+.add .addcontainer .addsections .details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: space-between;
+}
+
+
+
+.add .addcontainer .addsections .details .xcellupload {
+  justify-content: space-between;
+  padding: 50px;
+  outline: 2px solid black; /* Corrected outline property with a black outline */
+}
+
+.add .addcontainer .addsections .details .xcellupload  input{
+  padding: 20px;
+  width: 300px;
+}
+
+
+
+.add .addcontainer .addsections .details .xcellupload  button{
+    padding: 16px;
+    margin-left: 100px;
+    border-radius: 10px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
+}
+
+
+
+.add .addcontainer .addsections .details  label {
+  margin-top: 50px;
+  color: blue;
+  font-size: 16px;
+}
+
+
+.add .addcontainer .addsections .info input,
+.add .addcontainer .addsections .info select,
+.add .addcontainer .addsections .info textarea,
+.add .addcontainer .addsections .details input,
+.add .addcontainer .addsections .details select,
+.add .addcontainer .addsections .details textarea {
+  
+  padding: 20px;
+  width: 400px;
+}
+.add .addcontainer .addsections .info button,
+.add .addcontainer .addsections .details button {
+  border: none;
+  padding: 20px;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 10px;
+  color: rgb(25, 14, 14);
+  white-space: nowrap;
+  background: #000000; /* fallback for older browsers*/
+  background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+  background: linear-gradient(to right, #3dabb3, #ead7e0);
+}

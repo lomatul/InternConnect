@@ -29,7 +29,7 @@ const Navbar = () => {
                 <ul className='inner-nav'>
                     <li><a href="/about">About US</a></li>
                     <li><a href="/Guildeline">Guildeline</a></li>
-                    <li><a href="/">Companies</a></li>
+                    <li><a href="/Admin">Admin</a></li>
                     <li><a href="/">Contact</a></li>
                 </ul>
             </nav>

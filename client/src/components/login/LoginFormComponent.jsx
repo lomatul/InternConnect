@@ -1,6 +1,5 @@
 // In LoginFormComponent.js
 import React from 'react';
-import '../components/login.css';
 import axios from "axios";
 import { useState } from "react";
 

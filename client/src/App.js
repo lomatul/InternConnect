@@ -6,6 +6,9 @@ import Fileupload from "./Pages/AdminFileUpload";
 import Aboutus from "./Pages/AboutUs";
 import companies from "./Pages/CompanyList";
 import Guildeline from "./Pages/GuideLine";
+import Admin from "./Pages/Admin";
+import AddCompany from "./Pages/AddCompany";
+
 
 function App() {
   return (
@@ -14,11 +17,12 @@ function App() {
         <Route path="/" element = {<Home/>} />
         <Route path="/login" element = {<Login/>} />
         <Route path="/Updatepassword" element = {<LoginNewPassword/>} />
-        <Route path="/Admin" element = {<Fileupload/>} />
+        {/* <Route path="/Admin" element = {<Fileupload/>} /> */}
         <Route path="/About" element = {<Aboutus/>} />
         <Route path="/CompanyList" element = {<companies/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
-
+        <Route path="/Admin" element = {<Admin/>} />
+        <Route path="/AddCompany" element = {<AddCompany/>} />
       </Routes>
     </BrowserRouter>
   );
