@@ -1,16 +1,31 @@
-body {
+.Aboutus {
     margin: 0;
     padding: 0;
-    font-family: 'Courier New', Courier, monospace;
-    width: 90%;
+    font-family: 'Roboto Slab', serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
-    max-width: 1350px;
-    background: black;
-  }
+  
+    /* background: linear-gradient(135deg, #ffffff 0%, #293D55 30.69%, #263552 68.66%, #ffffff 100%); */
+     background:transparent;
+  } 
+
 
   
-  section {
+  .Aboutus section{
+    max-width: 1350px;
+    position: relative;
+    width: 100%;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:transparent;
+    color: #fff;
+  }
+  /* section {
     position: relative;
     width: 100%;
     margin-top: 100px;
@@ -20,7 +35,7 @@ body {
     background: black;
     color: #fff;
   }
-  
+   */
   section .aboutcontent {
     max-width: 80%;
   }
