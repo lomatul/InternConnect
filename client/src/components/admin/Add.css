@@ -1,6 +1,7 @@
 .add {
   background: white;
   display: flex;
+  margin-left: 60px;
   justify-content: center;
   font-family: 'Roboto Slab', serif;
   -webkit-font-smoothing: antialiased;
@@ -8,7 +9,7 @@
   width: 1300px;
 }
 .add .addcontainer {
-  /* margin-left: 50px; */
+ 
   width: 700px;
   padding: 50px 0px;
 }

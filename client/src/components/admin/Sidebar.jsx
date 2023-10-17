@@ -18,7 +18,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <a href="">
+                <a href="/Admin">
                      Profile
                 </a>
             </li>
@@ -33,17 +33,17 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <a href="/">
                      CV Sending
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <a href="/">
                    Reports
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <a href="/">
                    Setting
                 </a>
             </li>

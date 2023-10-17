@@ -13,10 +13,8 @@ const Add = () => {
             <div className="details">
             <label htmlFor="">Add Companies by Xcell Upload</label>
             <div className="xcellupload">
-            
               <input type="file" />
               <button>Create</button>
-  
             </div>
           
               <label htmlFor="">Company Title<span>*</span></label> 
