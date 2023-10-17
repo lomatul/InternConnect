@@ -25,6 +25,7 @@ function App() {
         <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
+        <Route path="/profile" element = {<profile/>} />
       </Routes>
     </BrowserRouter>
   );

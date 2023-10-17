@@ -11,7 +11,7 @@ const Add = () => {
           </div>  */}
   
             <div className="details">
-            <label htmlFor="">Add Companies</label>
+            <label htmlFor="">Add Companies by Xcell Upload</label>
             <div className="xcellupload">
             
               <input type="file" />
@@ -19,17 +19,20 @@ const Add = () => {
   
             </div>
           
-              <label htmlFor="">Company Title</label>
+              <label htmlFor="">Company Title<span>*</span></label> 
               <input type="text" placeholder="Give Company name" />
   
-              <label htmlFor="">Short Description</label>
+              <label htmlFor="">Short Description<span>*</span></label>
               <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
   
-              <label htmlFor="">Location</label>
+              <label htmlFor="">Location<span>*</span></label>
               <input type="text" />
   
-              <label htmlFor="">Contact Number</label>
-              <input type="number" />
+              <label htmlFor="">Contact Number<span>*</span></label>
+              <input type="number" min="0"/>
+
+              <label htmlFor="">possible Interns</label>
+              <input type="number" min="0" />
              
               <button>Create</button>
             </div>

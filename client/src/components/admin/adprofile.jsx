@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Add.css";
 
-const Addguideline = () => {
+const Adminprofile = () => {
     return (
       <div className="add">
         <div className="addcontainer">
@@ -35,4 +35,4 @@ const Addguideline = () => {
       </div>
     );
   };
-export default Addguideline
+export default Adminprofile

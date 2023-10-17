@@ -80,6 +80,10 @@ input::placeholder{
 }
 
 
+.add .addcontainer .addsections .details  span {
+  color: rgb(228, 26, 7);
+}
+
 .add .addcontainer .addsections .info input,
 .add .addcontainer .addsections .info select,
 .add .addcontainer .addsections .info textarea,
