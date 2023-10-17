@@ -6,6 +6,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
         <div className='sidebar-title'>
             <div className='sidebar-brand'>
+            <img
+            src="Ourlogo.png"
+            alt="InternConnect Logo"
+            style={{ width: '200px', height: '200px' }}
+        />
                  InternConnect
             </div>
             <span className='icon close_icon' onClick={OpenSidebar}>X</span>
@@ -18,12 +23,12 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="/Add">
+                <a href="/AddCompany">
                     Add Companies
                 </a>
             </li>
             <li className='sidebar-list-item'>
-                <a href="">
+                <a href="/AddguideLine">
                      Add Guideline
                 </a>
             </li>

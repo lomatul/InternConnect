@@ -8,6 +8,7 @@ import companies from "./Pages/CompanyList";
 import Guildeline from "./Pages/GuideLine";
 import Admin from "./Pages/Admin";
 import AddCompany from "./Pages/AddCompany";
+import AddguideLine from "./Pages/AddGuideline";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Guildeline" element = {<Guildeline/>} />
         <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
+        <Route path="/Addguideline" element = {<AddguideLine/>} />
       </Routes>
     </BrowserRouter>
   );

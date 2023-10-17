@@ -3,7 +3,9 @@
   padding: 0;
   background-color: #ffffff;
   color: #000000;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto Slab', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .icon {
