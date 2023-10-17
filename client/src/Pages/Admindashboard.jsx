@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import '../components/admin/Dashboard.css'
-import Header from '../components/admin/header'
 import Sidebar from '../components/admin/Sidebar'
 import Dashboard from '../components/admin/Dashboard'
 

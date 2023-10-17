@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Add.css";
 
-const Adminprofile = () => {
+const AdminProfile = () => {
     return (
       <div className="add">
         <div className="addcontainer">
@@ -35,4 +35,4 @@ const Adminprofile = () => {
       </div>
     );
   };
-export default Adminprofile
+export default AdminProfile

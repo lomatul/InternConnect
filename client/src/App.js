@@ -6,9 +6,10 @@ import Fileupload from "./Pages/AdminFileUpload";
 import Aboutus from "./Pages/AboutUs";
 import companies from "./Pages/CompanyList";
 import Guildeline from "./Pages/GuideLine";
-import Admin from "./Pages/Admin";
 import AddCompany from "./Pages/AddCompany";
 import AddguideLine from "./Pages/AddGuideline";
+import Admin from "./Pages/Admindashboard";
+
 
 
 function App() {
@@ -25,7 +26,6 @@ function App() {
         <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
-        <Route path="/profile" element = {<profile/>} />
       </Routes>
     </BrowserRouter>
   );
