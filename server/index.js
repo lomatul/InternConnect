@@ -5,7 +5,9 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 
 import studentRoute from "./routes/student.routes.js";
+import companyRoute from "./routes/company.routes.js";
 
+const port = process.env.PORT || 3000;
 const app = express();
 dotenv.config();
 
@@ -28,6 +30,7 @@ app.use(cors({origin:"http://localhost:3000", credentials: true}));
 
 
 app.use("/InterConnect/student", studentRoute);
+app.use("/InterConnect/company", companyRoute);
 
 
 app.use((err, req, res, next)=>{
@@ -38,7 +41,7 @@ app.use((err, req, res, next)=>{
 });
 
 
-app.listen(3000, function(){
+app.listen(port, function(){
     connection();
-    console.log("Server is running on Port 3000");
+    console.log(`Server is running on Port ${port}`);
 });
