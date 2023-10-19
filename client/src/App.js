@@ -7,6 +7,7 @@ import Guildeline from "./Pages/GuideLine";
 import AddCompany from "./Pages/AddCompany";
 import AddguideLine from "./Pages/AddGuideline";
 import Admin from "./Pages/Admindashboard";
+import Contacts from "./components/contact/contact";
 
 
 
@@ -24,6 +25,7 @@ function App() {
         <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
+        <Route path="/Contacts" element = {<Contacts/>} />
       </Routes>
     </BrowserRouter>
   );
