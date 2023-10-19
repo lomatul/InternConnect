@@ -21,9 +21,9 @@ const Navbar = () => {
         <div onClick={handleClick} className={`${showNav ? "hamburger1":"hamburger"}`}></div>
         <div className='logo'>
         <img
-            src="Ourlogo.png"
+            src="logo.png"
             alt="InternConnect Logo"
-            style={{ width: '200px', height: '200px' }}
+            style={{ width: '150px', height: '150px' }}
         />
             <nav className='menu'>
                 <ul className='inner-nav'>
@@ -34,7 +34,7 @@ const Navbar = () => {
                 </ul>
             </nav>
         </div>
-        <div className='button' style={{ fontSize: '20px', padding: '30px 40px' , fontWeight: 'bold'}}>
+        <div className='button' style={{ fontSize: '20px',  padding: '30px 40px' , fontWeight: 'bold'}}>
     <a href="/login">Login</a>
 </div>
 
