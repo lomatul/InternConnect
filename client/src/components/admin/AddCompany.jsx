@@ -44,9 +44,35 @@ const Add = () => {
               <label htmlFor="">Selected Interns</label>
               <input type="number" min="0" />
              
-              <label htmlFor="">Selected Interns</label>
-              <input type="dropdown" min="0" />
-             
+              <label htmlFor="cats">Domain</label>
+                  <div class="multiselect">
+                    <div class="select-box">
+                      <div class="options-container">
+                        <div class="option">
+                          <input type="checkbox" id="design" value="design" />
+                          <label for="design">Design</label>
+                        </div>
+                        <div class="option">
+                          <input type="checkbox" id="web" value="web" />
+                          <label for="web">Web Development</label>
+                        </div>
+                        <div class="option">
+                          <input type="checkbox" id="animation" value="animation" />
+                          <label for="animation">Animation</label>
+                        </div>
+                        <div class="option">
+                          <input type="checkbox" id="music" value="music" />
+                          <label for="music">Music</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <label htmlFor="">Status </label>
+                      <select >
+                        <option value="running ">Running</option>
+                        <option value="Closed">Closed </option>
+                      </select>
+
               <button>Create</button>
             </div>
             

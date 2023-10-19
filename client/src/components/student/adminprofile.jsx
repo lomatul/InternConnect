@@ -1,6 +1,6 @@
 import React from 'react'
-import "./profile.css";
-import "./Add.css";
+// import "./profile.css";
+// import "./Add.css";
 import { useState, useEffect } from 'react';
 
 
@@ -92,7 +92,7 @@ const AdminProfile = () => {
         </div>
       )}
 
-    <div className="add">
+<div className="add">
         <div className="addcontainer">
           <h1>Student Account Creation from Xcell</h1>
                 <div className="addsections">

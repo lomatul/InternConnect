@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import '../components/admin/Dashboard.css'
+import '../components/admin/Add.css'
 import Sidebar from '../components/admin/Sidebar'
-import Dashboard from '../components/admin/Dashboard'
-import AdminProfile from '../components/student/adminprofile'
+import Addstudent from '../components/admin/StudentCreation'
 
 
-function Admin() {
+
+function AddStudent() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
   const OpenSidebar = () => {
@@ -14,11 +15,10 @@ function Admin() {
 
   return (
     <div className='AdminDashboard'>   
-          {/* <Header OpenSidebar={OpenSidebar}/> */}
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <AdminProfile />
+      <Addstudent/>
     </div>
   )
 }
 
-export default Admin
+export default AddStudent
