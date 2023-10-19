@@ -17,6 +17,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
         </div>
 
         <ul className='sidebar-list'>
+        <li className='sidebar-list-item'>
+                <a href="/">
+                     Home
+                </a>
+            </li>
             <li className='sidebar-list-item'>
                 <a href="/Admin">
                      Profile

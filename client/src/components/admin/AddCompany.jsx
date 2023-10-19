@@ -23,14 +23,29 @@ const Add = () => {
               <label htmlFor="">Short Description<span>*</span></label>
               <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
   
-              <label htmlFor="">Location<span>*</span></label>
+              <label htmlFor="">Address<span>*</span></label>
               <input type="text" />
+
+              <label htmlFor="">Email <span>*</span></label>
+              <input type="text"/>
   
               <label htmlFor="">Contact Number<span>*</span></label>
               <input type="number" min="0"/>
 
-              <label htmlFor="">possible Interns</label>
+              <label htmlFor="">Max Interns</label>
+              <input type="number" min="0"/>
+
+              <label htmlFor="">Min Interns</label>
+              <input type="number" min="0"/>
+
+              <label htmlFor="">Interns Hired</label>
               <input type="number" min="0" />
+
+              <label htmlFor="">Selected Interns</label>
+              <input type="number" min="0" />
+             
+              <label htmlFor="">Selected Interns</label>
+              <input type="dropdown" min="0" />
              
               <button>Create</button>
             </div>

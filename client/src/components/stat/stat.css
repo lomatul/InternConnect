@@ -2,11 +2,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
   font-size: 26px;
-  color: #f8f8f8;
+  color: #000000;
   background-color:transparent;
-  padding: 20px;
   border-radius: 8px;
 }
 

@@ -5,6 +5,7 @@ import Sidebar from '../components/admin/Sidebar'
 import Add from '../components/admin/AddCompany'
 
 
+
 function AddCompany() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
@@ -14,7 +15,6 @@ function AddCompany() {
 
   return (
     <div className='AdminDashboard'>   
-          {/* <Header OpenSidebar={OpenSidebar}/> */}
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
       <Add/>
     </div>

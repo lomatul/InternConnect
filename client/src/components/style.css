@@ -22,6 +22,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
 }
 
 .inner-nav{
@@ -40,6 +41,7 @@
 .inner-nav li a:-webkit-any-link {
     color: rgb(7, 7, 7); /* Change the color to red */
     cursor: pointer;
+
 }
 
 .logo{
@@ -183,21 +185,21 @@
     font-size: 32px;
     font-weight: 500px;
     margin-bottom: 10px;
-    color: wheat;
+    color: rgb(6, 21, 44);
 }
 
 .text h1{
     font-size: 48px;
     font-weight: 500;
     margin-bottom: 20px;
-    color: wheat;
+    color: rgb(15, 67, 82);
 }
 
 .text p {
     opacity: 0.8;
     font-size: 18px;
     margin-bottom: 60px;
-    color: wheat;
+    color: rgb(15, 15, 66);
 }
 
 .text a{
@@ -329,7 +331,7 @@
     font-size: 28px;
     font-weight: 400;
     margin-bottom: 10px;
-    color: rgb(0, 0, 0);
+    color:wheat;
 }
 
 .section-text h5{
@@ -340,20 +342,20 @@
     font-size: 40px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: rgb(0, 0, 0);
+    color:wheat;
     margin-top: 20px;
 }
 .section-text p{
     opacity: 0.8;
     font-size: 16px;
     margin-bottom: 60px;
-    color: rgb(0, 0, 0);
+    color:wheat;
 }
 
 .section-text a{
     padding: 12px 15px;
     white-space: nowrap;
-    color: rgb(0, 0, 0);
+    color: wheat;
 }
 
 .section-text .button a {
@@ -407,30 +409,31 @@
 
 .card-section{
     margin-top: 50px;
-    margin-bottom: 100px;
 }
 
 .cards{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    height: 500px;
     gap: 80px;
+    margin-bottom: 80px;
 }
 
 .card{
+    width: 300px;
+    height: 200px;
     padding: 30px;
-    background-color: white;
+    background-color: rgb(43, 103, 120);
     box-shadow: 2px 4px 20px 2px rgba(0,0,0,0.05);
     border-radius: 10px;
-    display: inline-block;
 }
 .card h1{
+    color: wheat;
     font-size: 17px;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 .card p {
+    color: wheat;
     margin-bottom: 13px;
     font-size: 14px;
 }
