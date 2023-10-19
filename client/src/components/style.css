@@ -604,19 +604,19 @@
 
 .faq{
     margin-top: 100px;
-    color: wheat;
+    color: rgb(0, 0, 0);
 }
 
 .faq > h1{
     font-size: 40px;
     text-align: center;
-    color: wheat;
+    color: rgb(2, 2, 2);
 }
 
 .faq > p {
     font-size: 20px;
     text-align: center;
-    color: wheat;
+    color: rgb(0, 0, 0);
 }
 
 .services{
