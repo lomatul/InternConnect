@@ -67,11 +67,11 @@ const Add = () => {
                       </div>
                     </div>
                   </div>
-                  <label htmlFor="">Status </label>
+                  {/* <label htmlFor="">Status </label>
                       <select >
                         <option value="running ">Running</option>
                         <option value="Closed">Closed </option>
-                      </select>
+                      </select> */}
 
               <button>Create</button>
             </div>
