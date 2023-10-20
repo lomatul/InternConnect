@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     background:transparent;
-    color: #fff;
+    color: #000000;
   }
   /* section {
     position: relative;
@@ -110,7 +110,7 @@
     font-size: 1.2em;
     transition: 1s;
     opacity: 0;
-    color: wheat;
+    color: rgb(17, 34, 77);
   }
   
   section .aboutcontent p[data-scroll="in"] {

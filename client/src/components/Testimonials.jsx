@@ -3,12 +3,7 @@ import React from 'react'
 const Testimonials = () => {
   return (
     <div className='testimonials'>
-        {/* <div className='testimonial-text'>
-            <h3>Testimonials</h3>
-            <h1>User love Netglobe</h1>
-            <p>See what our members are saying. Trusted by 1200+ world class businesses</p>
-            <a href="/">Read all 2,432 reviews</a>
-        </div> */}
+ {/* <h1>Our Features</h1> */}
         <div className='testimonial-cards'>
             <div className='card'>
                 <img src="ui.gif" alt="" />
