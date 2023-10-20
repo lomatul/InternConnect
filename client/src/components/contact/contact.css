@@ -1,0 +1,101 @@
+.contact {
+    margin-bottom: 60px;
+    margin-left: 0px;
+  }
+
+  .contact .contactcontainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .contact-content {
+    max-width: 400px;
+    flex: 1; /* Add this line to make it take up available space */
+  }
+
+  .contact-title { text-align: left; }
+
+  .contact-form {
+    width: 50%;
+    flex: 1; /* Add this line to make it take up available space */
+    display: flex; /* Add this line to make the form and image side by side */
+    flex-direction: column; /* Change flex-direction to column */
+  }
+
+  .contact-content {
+    margin-bottom: 10px;
+  }
+  
+  .contact-title {
+    color: var(--royal-blue-dark);
+    text-align: center;
+    font-size: 35px;
+    font-weight: 500px !important; /* This line is incorrect, it should be just font-weight: 500; */
+  }
+  
+  .contact-banner {
+  margin-right: 20px; /* Adjust the margin as needed */
+}
+  .contact-banner img {
+    margin-right: 400px;
+    width: 700px;
+    height: auto;
+  }
+  
+  .contact-form {
+    margin-left: 300px;
+    margin-right: 160px;
+    margin-bottom: 70px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+  }
+  
+  .contact-form  span {
+    color: red;
+    display: inline;
+  }
+  
+  .contact-form  label {
+    
+    margin-top: 10px;
+    color: blue;
+    font-size: 16px;
+  }
+  
+  .contact-form input {
+    font-size:18px;
+    color: #000000;
+    padding: 10px;
+    width: 400px;
+  }
+  
+  .contact-form .input-field::placeholder {
+    color: gray;
+    font-size: 13px;
+  }
+  
+  .contact-form textarea {
+    height: 100px;
+    resize: vertical;
+    color: #000000;
+    padding: 20px;
+    width: 400px;
+  }
+
+  .contact-form button
+  {
+    width: 200px;
+    padding: 16px;
+    margin-left: 100px;
+    border-radius: 10px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
+}
+  

@@ -11,7 +11,7 @@ const Container = () => {
                 <div className='button'><a href="/about">Explore Now &#8599;</a></div>
             </div>
             <div className='image'>
-                <img src="bk-removed.png" alt="" />
+                <img src="bk.jpg" alt="" />
             </div>
         </div>
         {/* <div className='partners'>

@@ -52,6 +52,7 @@ input::placeholder{
   justify-content: space-between;
   padding: 50px;
   outline: 2px solid black; /* Corrected outline property with a black outline */
+  margin-bottom: 50px;
 }
 
 .add .addcontainer .addsections .details .xcellupload  input{
@@ -75,7 +76,7 @@ input::placeholder{
 
 
 .add .addcontainer .addsections .details  label {
-  margin-top: 50px;
+  margin-top: 10px;
   color: blue;
   font-size: 16px;
 }
@@ -109,3 +110,5 @@ input::placeholder{
   background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
   background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
+
+

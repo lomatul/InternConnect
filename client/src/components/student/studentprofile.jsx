@@ -1,10 +1,10 @@
 import React from 'react'
 import "./profile.css";
-import "./Add.css";
+// import "./Add.css";
 import { useState, useEffect } from 'react';
 
 
-const AdminProfile = () => {
+const StudentProfile = () => {
   // State to manage user data and edit mode
   const [userData, setUserData] = useState({
     name: 'John Doe',
@@ -92,21 +92,6 @@ const AdminProfile = () => {
         </div>
       )}
 
-    <div className="add">
-        <div className="addcontainer">
-          <h1>Student Account Creation from Xcell</h1>
-                <div className="addsections">
-                  <div className="details">
-                  {/* <label htmlFor="">Add Companies by Xcell Upload</label>
-                     */}
-                     <div className="xcellupload">
-                      <input type="file" />
-                      <button>Create</button>
-                    </div>
-                   </div>
-                </div>
-      </div>
-    </div>
 
 </div>
 
@@ -115,4 +100,4 @@ const AdminProfile = () => {
   
 };
 
-export default AdminProfile
+export default StudentProfile

@@ -22,16 +22,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                      Home
                 </a>
             </li>
-            <li className='sidebar-list-item'>
-                <a href="/Admin">
-                     Add Students
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/AddCompany">
-                    Add Companies
-                </a>
-            </li>
+           
             <li className='sidebar-list-item'>
                 <a href="/AddguideLine">
                      Add Guideline

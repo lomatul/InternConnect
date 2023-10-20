@@ -53,8 +53,8 @@ const LoginFormComponent = () => {
         <p>Welcome</p>
         <input type="Text" placeholder="Enter your Student ID" required value={student_id} onChange={(e) => setStudent_id(e.target.value)} /> <br />
         <input type="password" placeholder="Enter your password" required  onChange={(e) => setPassword(e.target.value)} value={password} /> <br />
-        <input type="submit" value="Sign in" /> <a href="/"></a><br />
-        <a href="/Updatepassword">Forget Password ?</a><br />
+        <input type="submit" value="Sign in" /> <a href="/Student"></a><br />
+        <a href="/Forget">Forget Password ?</a><br />
       </form>
 
       <div className="drops">

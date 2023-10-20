@@ -1,7 +1,6 @@
 .login
 {
-    background: rgb(0, 0, 0);
-    font-family: 'Courier New', Courier, monospace; 
+    background: rgb(255, 255, 255);
     height: 100vh;
 }
 
@@ -79,11 +78,11 @@
 
 
 .drop{
-    background:rgba(241, 238, 238, 0.3);
+    background:rgba(14, 110, 159, 0.3);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(20, 119, 136, 0.3);
+    border-top: 1px solid rgba(20, 119, 136, 0.3);
     box-shadow: 10px 10px 60px -8px  rgba(0,0,0,0.2);
     position: absolute;
 }
