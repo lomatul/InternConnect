@@ -13,7 +13,7 @@ const LoginFormComponent = () => {
   const handleSubmit = async(event) => {
     event.preventDefault()
     try {
-        await axios.post('http://localhost:3000/InterConnect/student/postlogin', {student_id, password}
+        await axios.post('http://localhost:4000/InterConnect/student/postlogin', {student_id, password}
         ).then((response)=>{
             console.log(response)
             const json = response.json()
