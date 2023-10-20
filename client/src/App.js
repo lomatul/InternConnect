@@ -10,6 +10,7 @@ import Admin from "./Pages/Admindashboard";
 import Contacts from "./components/contact/contact";
 import Forgets from "./components/contact/forget";
 import Students from "./Pages/Student";
+import Companies from "./Pages/CompanyList";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/Updatepassword" element = {<LoginNewPassword/>} />
         {/* <Route path="/Admin" element = {<Fileupload/>} /> */}
         <Route path="/About" element = {<Aboutus/>} />
-        <Route path="/CompanyList" element = {<companies/>} />
+        <Route path="/CompanyList" element = {<Companies/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
         <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />

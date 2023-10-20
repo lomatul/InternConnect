@@ -1,17 +1,15 @@
 import React from 'react';
 import Table from '../components/company/companylist';
 import '../components/company/company.css';
-import '../components/script';
+import '../components/company/script';
 
-function companies() {
+function Companies() {
   return (
     <div className="companies">
-      <Table />
-      <Table />
       <Table />
       {/* Add more instances of Table component as needed */}
     </div>
   );
 }
 
-export default companies;
+export default Companies;
