@@ -33,7 +33,7 @@ const Navbar = () => {
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About US</a></li>
                     <li><a href="/Guildeline">Guildeline</a></li>
-                    <li><a href="/Admin">Admin</a></li>
+                    <li><a href="/Adminlogin">Admin</a></li>
                     <li><a href="/Contact">Contact</a></li>
                 </ul>
             </nav>

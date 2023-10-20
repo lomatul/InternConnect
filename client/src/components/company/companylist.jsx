@@ -5,10 +5,7 @@ const companylist = () => {
     <main className="table">
       <section className="table__header">
         <h1>Company Details </h1>
-        <div className="input-group">
-          <input type="search" placeholder="Search Data..." />
-          <img src="search.png" alt="" />
-        </div>
+
       </section>
       <section className="table__body">
         <table>

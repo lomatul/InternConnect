@@ -25,12 +25,13 @@ function App() {
         <Route path="/About" element = {<Aboutus/>} />
         <Route path="/CompanyList" element = {<Companies/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
-        <Route path="/Admin" element = {<AdminLogin/>} />
+        <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
         <Route path="/Student" element = {<Students/>} />
+        <Route path="/Adminlogin" element = {<AdminLogin/>} />
         {/* <Route path="/NotFound" element = {<page404/>} /> */}
       </Routes>
     </BrowserRouter>

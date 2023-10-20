@@ -1,7 +1,6 @@
 import React from 'react';
 import Table from '../components/company/companylist';
 import '../components/company/company.css';
-import '../components/company/script';
 
 function Companies() {
   return (

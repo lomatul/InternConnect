@@ -40,7 +40,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             </li>
             <li className='sidebar-list-item'>
                 <a href="/">
-                   Setting
+                   Logout
                 </a>
             </li>
         </ul>
