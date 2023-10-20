@@ -50,7 +50,7 @@ const Add = () => {
                       <div class="options-container">
                         <div class="option">
                           <input type="checkbox" id="design" value="design" />
-                          <label for="design">Design</label>
+                          <label for="design">UI/UX Designer</label>
                         </div>
                         <div class="option">
                           <input type="checkbox" id="web" value="web" />
@@ -58,11 +58,11 @@ const Add = () => {
                         </div>
                         <div class="option">
                           <input type="checkbox" id="animation" value="animation" />
-                          <label for="animation">Animation</label>
+                          <label for="animation">Documentation</label>
                         </div>
                         <div class="option">
                           <input type="checkbox" id="music" value="music" />
-                          <label for="music">Music</label>
+                          <label for="music">DevOps</label>
                         </div>
                       </div>
                     </div>

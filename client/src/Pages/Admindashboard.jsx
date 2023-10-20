@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import '../components/admin/Dashboard.css'
 import Sidebar from '../components/admin/Sidebar'
-import Dashboard from '../components/admin/Dashboard'
-import AdminProfile from '../components/student/adminprofile'
+import Addstudent from '../components/admin/StudentCreation'
+
+
 
 
 function Admin() {
@@ -16,7 +17,7 @@ function Admin() {
     <div className='AdminDashboard'>   
           {/* <Header OpenSidebar={OpenSidebar}/> */}
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <AdminProfile />
+      <Addstudent />
     </div>
   )
 }

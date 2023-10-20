@@ -9,7 +9,7 @@ import AddguideLine from "./Pages/AddGuideline";
 import Admin from "./Pages/Admindashboard";
 import Contacts from "./components/contact/contact";
 import Forgets from "./components/contact/forget";
-import AddStudent from "./Pages/StudentCreation";
+
 
 
 
@@ -29,7 +29,6 @@ function App() {
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
-        <Route path="/Addstudent" element = {<AddStudent/>} />
       </Routes>
     </BrowserRouter>
   );
