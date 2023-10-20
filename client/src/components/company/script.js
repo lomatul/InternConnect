@@ -15,7 +15,7 @@ function searchTable() {
     })
 
     document.querySelectorAll('tbody tr:not(.hide)').forEach((visible_row, i) => {
-        visible_row.style.backgroundColor = (i % 2 == 0) ? 'transparent' : '#0000000b';
+        visible_row.style.backgroundColor = (i % 2 === 0) ? 'transparent' : '#0000000b';
     });
 }
 
