@@ -1,4 +1,3 @@
-import { stats } from "../../index";
 import "./stat.css"
 import CountUp from "react-countup";
 
