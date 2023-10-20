@@ -2,14 +2,14 @@
     list-style: none;
     text-decoration: none;
 }
+
+
 .home{
 
-    color: black;
+    background: transparent;
     font-size: 15px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1350px;
+    margin-left: 110px;
+    margin-right: 110px;
 }
 
 @media (max-width:900px){
@@ -205,10 +205,15 @@
     color: wheat;
 }
 
-.text .button{
-    display: inline-block;
+.text .button a {
+    padding: 6px;
+    border-radius: 3px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
-
 @media (max-width:1080px){
     .text h3{
         font-size: 25px;
@@ -351,8 +356,14 @@
     color: wheat;
 }
 
-.section-text .button{
-    display: inline-block;
+.section-text .button a {
+    padding: 6px;
+    border-radius: 3px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
 
 @media (max-width:1080px){
@@ -395,7 +406,7 @@
 }
 
 .card-section{
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: 100px;
 }
 
@@ -403,7 +414,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 40px;
+    height: 500px;
+    gap: 80px;
 }
 
 .card{
@@ -420,6 +432,7 @@
 }
 .card p {
     margin-bottom: 13px;
+    font-size: 14px;
 }
 .card a{
     color: rgb(0, 255, 247);
@@ -496,7 +509,7 @@
 }
 
 .testimonial-cards > .card {
-    background: #3A495D;
+    background: #ffffff;
     padding: 20px;
     box-shadow: 1px 1px 20px 0px rgba(36,176,255,0.05);
 }
@@ -506,7 +519,7 @@
 }
 
 .testimonial-cards .card p{
-    color: white;
+    color: rgb(17, 8, 75);
     font-size: 12px;
     opacity: 0.8;
 }
@@ -699,7 +712,7 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    background: #ffc23e;
+    background: wheat;
     border-radius: 30px;
     padding: 80px 50px;
     position: relative;
@@ -761,7 +774,7 @@
 }
 .newsletter .news-left h4{
     font-weight: 400;
-    color: #ffae00;
+    color: #136d7d;
     font-size: 18px;
 }
 
@@ -817,7 +830,7 @@
 @media (max-width:860px){
     .newsletter .news-left h4{
         font-weight: 400;
-        color: #ffae00;
+        color: #0a988d;
         font-size: 16px;
     }
     .newsletter .news-left h1{
@@ -836,6 +849,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+
 }
 .footer-menu h1{
     font-size: 24px;
@@ -857,6 +871,8 @@
     opacity: 0.8;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: wheat;
+    
 }
 
 @media (max-width:860px){

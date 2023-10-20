@@ -45,7 +45,7 @@ function FileUpload(){
           } catch (error) {
             console.error('An error occurred:', error);
           }
-          setSelectedFile([])
+          setSelectedFile('')
     }
 
     return(
