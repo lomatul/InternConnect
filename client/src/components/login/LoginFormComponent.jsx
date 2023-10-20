@@ -15,7 +15,7 @@ const LoginFormComponent = () => {
         await axios.post('http://localhost:4000/InterConnect/student/postlogin', {student_id, password}
         ).then((response)=>{
             console.log(response)
-            const json = response.json()
+            // const json = response.json()
 
             //temporary saving in local storage
             // localStorage.setItem('user', JSON.stringify(json))
