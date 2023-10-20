@@ -1,5 +1,5 @@
 import React from 'react'
-// import "./profile.css";
+import "./profile.css";
 // import "./Add.css";
 import { useState, useEffect } from 'react';
 

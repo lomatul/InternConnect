@@ -37,9 +37,9 @@ const LoginFormComponent = () => {
     <div className="logincontainer">
       <form onSubmit={handleSubmit}>
         <p>Welcome</p>
-        <input type="email" placeholder="Enter your Email" required value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
+        <input type="Number" placeholder="Enter your Email" required value={email} onChange={(e) => setEmail(e.target.value)} /> <br />
         <input type="password" placeholder="Enter your password" required  onChange={(e) => setPassword(e.target.value)} value={password} /> <br />
-        <input type="submit" value="Sign in" /> <a href="/"></a><br />
+        <input type="submit" value="Sign in" /> <a href="/Student"></a><br />
         <a href="/Forget">Forget Password ?</a><br />
       </form>
 
