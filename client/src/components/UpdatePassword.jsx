@@ -5,6 +5,8 @@ import axios from "axios";
 import { useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
+// import '../components/login.css';
+
 
 const Updatepassword = () => {
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const Updatepassword = () => {
     event.preventDefault()
     if(newPassword===checkpassword){
       try {
-          await axios.post('http://localhost:3000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
+          await axios.post('http://localhost:4000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
               navigate('/');
