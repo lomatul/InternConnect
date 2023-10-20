@@ -5,6 +5,7 @@ import otpgenerator from 'otp-generator';
 import Mailfunction from './mailsender.js';
 import bcrypt from 'bcrypt';
 import Student from '../models/student.model.js';
+import Company from '../models/company.model.js';
 
 
 
@@ -57,4 +58,54 @@ const ulpoadfiledata = async (req, res)=>{
     }
 }
 
-export { ulpoadfiledata };
+
+//add company properties
+const ulpoadCompanydata = async (req, res)=>{
+  const fileBuffer = req.file.buffer
+  const workbook = xlsx.read(fileBuffer); 
+  const sheetName = workbook.SheetNames[0];
+  const sheet = workbook.Sheets[sheetName];
+  const data = xlsx.utils.sheet_to_json(sheet);
+
+  
+
+  // res.status(200).send(data)
+  console.log(data)
+
+  const Companycreation = data.map(async element => {
+      
+      console.log("name", element)
+      
+      
+      try {
+        const company = new Company({
+          name: element.Name,
+          address: element.Address,
+          email: element.Email,
+          minInterns: element.MinInterns,
+          maxInterns: element.MaxInterns,
+          
+        });
+    
+        await company.save();
+        console.log("Comapany added", company)
+      } catch (error) {
+        console.error(error);
+        Promise.reject(error)
+      }
+      
+  })
+
+  try {
+    await Promise.all(Companycreation);
+
+    // Send the response only when all student records have been processed.
+    res.status(200).json({
+      message: 'Companies added successfully!',
+    });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+export { ulpoadfiledata, ulpoadCompanydata };

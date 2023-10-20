@@ -3,11 +3,13 @@ import React from 'react';
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import {useAuthContext} from "../../context/useAuthcontext"
 
 const LoginFormComponent = () => {
   const navigate = useNavigate();
   const [student_id, setStudent_id] = useState('')
   const [password, setPassword] = useState('')
+  const {dispatch} = useAuthContext();
 
   const handleSubmit = async(event) => {
     event.preventDefault()
@@ -15,10 +17,12 @@ const LoginFormComponent = () => {
         await axios.post('http://localhost:3000/InterConnect/student/postlogin', {student_id, password}
         ).then((response)=>{
             console.log(response)
-            const json = response.json()
-
+            const User = response.data.User
+            console.log(User)
+            dispatch({type: 'LOGINSTUDENT', payload: User})
             //temporary saving in local storage
-            // localStorage.setItem('user', JSON.stringify(json))
+            localStorage.setItem('user', JSON.stringify(User))
+            navigate("/")
         }).catch((error)=>{
             if (error.response) {
               if(error.response.status===308){

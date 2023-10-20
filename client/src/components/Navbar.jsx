@@ -1,7 +1,10 @@
 import React,{useState, useEffect} from 'react'
+import {useAuthContext} from "../context/useAuthcontext"
 
 const Navbar = () => {
     const [showNav, setShowNav] = useState(false)
+    const { userstudent } = useAuthContext()
+    const {useradmin} = useAuthContext()
 
     useEffect (() => {
         const innernav = document.querySelector('.inner-nav')
@@ -35,7 +38,8 @@ const Navbar = () => {
             </nav>
         </div>
         <div className='button' style={{ fontSize: '20px', padding: '30px 40px' , fontWeight: 'bold'}}>
-    <a href="/login">Login</a>
+    {userstudent?<p>{userstudent.name}</p>: <a href="/login">Login</a>}
+    
 </div>
 
     </div>

@@ -9,6 +9,7 @@ import {initializepassport} from "./config/passport.js";
 
 
 import studentRoute from "./routes/student.routes.js";
+import adminRoute from "./routes/admin.routes.js"
 
 const app = express();
 dotenv.config();
@@ -42,6 +43,7 @@ app.use(cors({origin:"http://localhost:3000", credentials: true}));
 
 
 app.use("/InterConnect/student", studentRoute);
+app.use("/InterConnect/admin", adminRoute);
 
 
 app.use((err, req, res, next)=>{
