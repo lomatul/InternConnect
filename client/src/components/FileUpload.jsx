@@ -1,6 +1,8 @@
 import './admin.css'
+import {MdCloudUpload,MdDelete} from 'react-icons/md'
+import {AiFillFileImage} from 'react-icons/ai'
 import axios from "axios";
-import { useState } from 'react';
+import {useState} from 'react';
 
 
 function FileUpload(){
@@ -18,7 +20,7 @@ function FileUpload(){
         formData.append("file", selectedFile);
         console.log(formData)
         try {
-            await axios.post('http://localhost:3000/InterConnect/student/uploadfile', formData, {
+            await axios.post('http://localhost:4000/InterConnect/student/uploadfile', formData, {
               headers: {
                 'Content-Type': 'multipart/form-data', // Set the content type for file upload
               },
@@ -43,6 +45,7 @@ function FileUpload(){
           } catch (error) {
             console.error('An error occurred:', error);
           }
+          setSelectedFile('')
     }
 
     return(

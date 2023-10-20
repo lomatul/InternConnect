@@ -1,5 +1,7 @@
 import Student from '../models/student.model.js';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import passport from 'passport';
 
 
 // Create a student
@@ -115,23 +117,120 @@ export const deleteStudentById = async (req, res, next) => {
   }
 };
 
+
 // Creating JSON Web Token
 const createToken = (_id) => {
   return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
 }
 
+
 // Student Login
 export const loginStudent = async (req, res) => {
-  const {email, password} = req.body
+  const {student_id, password} = req.body
+
 
   try {
-    const student = await Student.login(email, password)
 
-    // create a token
-    const token = createToken(student._id)
+    if (!student_id || !password) {
+      throw new Error("All fields must be filled");
+    }
+  
+    const student = await Student.findOne({ student_id })
+    if (!student) {
+      throw new Error('Incorrect email')
+    }
+  
+    const match = await bcrypt.compare(password, student.password)
+    if (!match) {
+      throw new Error('Incorrect password')
+    }
 
-    res.status(200).json({email, token})
+
+    if(!student.accountActivationStatus){
+      
+      res.status(308).json({message:"Please update Your Password to activate your Account", redirectUrl:'/Updatepassword', id: student_id})
+    }else{
+      // create a token
+      const token = createToken(student._id)
+      res.status(200).json({student_id, token}) 
+    }
+
+    
   } catch (error) {
+    console.log("Error: ", error)
     res.status(400).json({error: error.message})
   }
 }
+
+//login with passport
+export const postlogin= (req, res, next) =>{
+
+  console.log("came in postlogin", req.body)
+
+  
+  
+  passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        console.error('Authentication error:', err);
+        return res.status(500).json({ error: 'Authentication error' });
+      }
+  
+      if (!user) {
+        console.log("it came in user")
+        if(info.status===0){
+          return res.status(308).json({message:"Please update Your Password to activate your Account", redirectUrl:'/Updatepassword', id: info.Id})
+        }
+        console.error('Authentication failed:', info.message);
+        return res.status(401).json({ error: info.message });
+      }
+      user.password=undefined
+      // Authentication succeeded
+      res.status(200).json({ message: 'Logged In' , User:user});
+    })(req, res, next);
+  }
+  
+export const logout = (req, res)=>{
+  req.logout((err) => {
+    if (err) {
+      res.json({ error: err });
+    } else res.status(200).json({message:"Logged out"});
+  });
+}
+
+// Update a student's password by student_id
+export const updatePasswordById = async (req, res, next) => {
+  try {
+    const { student_id } = req.params;
+    const { currentPassword, newPassword } = req.body;
+
+
+    const student = await Student.findOne({ student_id: student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    // Check if the current password matches
+    const passwordMatch = await bcrypt.compare(currentPassword, student.password);
+
+  
+
+    if (!passwordMatch) {
+      return res.status(400).json({ message: 'Current password is incorrect' });
+    }
+
+    // Update the password with the new password
+    const salt = await bcrypt.genSalt(10);
+    const hashedNewPassword = await bcrypt.hash(newPassword, salt);
+    student.password = hashedNewPassword;
+    student.accountActivationStatus=true;
+
+    // Save the updated student with the new password
+    await student.save();
+
+    return res.status(200).json({ message: 'Password updated successfully' });
+  } catch (error) {
+    // next(error);
+    res.status(400).json({error: error.message})
+  }
+};
