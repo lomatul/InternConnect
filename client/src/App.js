@@ -11,6 +11,8 @@ import Contacts from "./components/contact/contact";
 import Forgets from "./components/contact/forget";
 import Students from "./Pages/Student";
 import Companies from "./Pages/CompanyList";
+import AdminLogin from "./components/login/Adminlogin";
+
 
 function App() {
   return (
@@ -23,7 +25,7 @@ function App() {
         <Route path="/About" element = {<Aboutus/>} />
         <Route path="/CompanyList" element = {<Companies/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
-        <Route path="/Admin" element = {<Admin/>} />
+        <Route path="/Admin" element = {<AdminLogin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
