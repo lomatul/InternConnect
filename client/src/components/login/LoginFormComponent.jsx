@@ -10,7 +10,7 @@ const LoginFormComponent = () => {
   const handleSubmit = async(event) => {
     event.preventDefault()
     try {
-        await axios.post('http://localhost:3000/InterConnect/student/login', {email, password}
+        await axios.post('http://localhost:4000/InterConnect/student/login', {email, password}
         ).then((response)=>{
             console.log(response)
         }).catch((error)=>{
