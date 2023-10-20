@@ -33,7 +33,7 @@ const Updatepassword = () => {
     event.preventDefault()
     if(newPassword===checkpassword){
       try {
-          await axios.post('http://localhost:3000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
+          await axios.post('http://localhost:4000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
               navigate('/');
