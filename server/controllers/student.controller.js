@@ -1,6 +1,7 @@
 import Student from '../models/student.model.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
+import passport from 'passport';
 
 
 // Create a student
@@ -161,6 +162,40 @@ export const loginStudent = async (req, res) => {
   }
 }
 
+//login with passport
+export const postlogin= (req, res, next) =>{
+
+  console.log("came in postlogin", req.body)
+
+  
+  
+  passport.authenticate('local', (err, user, info) => {
+      if (err) {
+        console.error('Authentication error:', err);
+        return res.status(500).json({ error: 'Authentication error' });
+      }
+  
+      if (!user) {
+        console.log("it came in user")
+        if(info.status===0){
+          return res.status(308).json({message:"Please update Your Password to activate your Account", redirectUrl:'/Updatepassword', id: info.Id})
+        }
+        console.error('Authentication failed:', info.message);
+        return res.status(401).json({ error: info.message });
+      }
+      user.password=undefined
+      // Authentication succeeded
+      res.status(200).json({ message: 'Logged In' , User:user});
+    })(req, res, next);
+  }
+  
+export const logout = (req, res)=>{
+  req.logout((err) => {
+    if (err) {
+      res.json({ error: err });
+    } else res.status(200).json({message:"Logged out"});
+  });
+}
 
 // Update a student's password by student_id
 export const updatePasswordById = async (req, res, next) => {
