@@ -9,9 +9,10 @@ import {initializepassport} from "./config/passport.js";
 
 
 import studentRoute from "./routes/student.routes.js";
-import adminRoute from "./routes/admin.routes.js"
+import adminRoute from "./routes/admin.routes.js";
+import companyRoute from "./routes/company.routes.js";
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 const app = express();
 dotenv.config();
 
@@ -45,9 +46,11 @@ app.use(cors({origin:"http://localhost:3000", credentials: true}));
 
 app.use("/InterConnect/student", studentRoute);
 app.use("/InterConnect/admin", adminRoute);
+app.use("/InterConnect/company", companyRoute);
 
 
 app.use((err, req, res, next)=>{
+    console.error("Error:", err);
     const errorStatus = err.status || 500;
     const errorMessage = err.message || "Something went wrong!";
   
@@ -55,7 +58,7 @@ app.use((err, req, res, next)=>{
 });
 
 
-app.listen(4000, function(){
+app.listen(port, function(){
     connection();
-    console.log("Server is running on Port 4000");
+    console.log(`Server is running on Port ${port}`);
 });
