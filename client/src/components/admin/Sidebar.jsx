@@ -2,8 +2,10 @@ import React from 'react'
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { useLogout } from '../../hooks/useLogout';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
+    const navigate = useNavigate();
     const { logout } = useLogout()
     const handleClick = () => {
         logout()
