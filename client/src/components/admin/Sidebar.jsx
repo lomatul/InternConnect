@@ -12,7 +12,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             ).then((response)=>{
                 console.log(response)
                 
-                // navigate("/Admin")
+                navigate("/")
             }).catch((error)=>{
                 if (error.response) {
                     console.log(error.response);
