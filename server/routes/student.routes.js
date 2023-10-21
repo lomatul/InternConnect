@@ -8,7 +8,9 @@ import {
   loginStudent,
   updatePasswordById,
   postlogin,
-  logout
+  logout,
+  sendOTPForPasswordReset,
+  resetPasswordWithOTP
 } from '../controllers/student.controller.js';
 import upload from '../middlewares/multer.js';
 import { ulpoadfiledata } from '../controllers/filecontroller.js';
@@ -35,4 +37,8 @@ router.post('/updatePassword/:student_id', updatePasswordById);
 router.post('/uploadfile', upload.single('file'), ulpoadfiledata)
 
 router.get("/logout", logout);
+
+router.post("/forgetPassword", sendOTPForPasswordReset);
+router.post("/resetPassword/:student_id", resetPasswordWithOTP);
+
 export default router;
