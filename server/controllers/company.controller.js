@@ -98,6 +98,30 @@ export const updateCompanyById = async (req, res, next) => {
   }
 };
 
+
+// Update the status of a company based on email
+export const updateCompanyStatusByEmail = async (req, res, next) => {
+  const { email } = req.params; 
+  const { status } = req.body;
+
+  try {
+    const company = await Company.findOne({ email }); 
+
+    if (!company) {
+      return res.status(404).json({ message: 'Company not found' });
+    }
+
+    company.status = status; // Update the status
+
+    await company.save();
+
+    res.status(200).json({ message: 'Company status updated successfully', company });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 // Delete a company by companyID
 export const deleteCompanyById = async (req, res, next) => {
   try {
