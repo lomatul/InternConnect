@@ -1,4 +1,3 @@
-
 import React from 'react';
 import '../components/login/login.css';
 import Updatepassword from '../components/UpdatePassword';

@@ -107,7 +107,7 @@ input::placeholder{
 }
 
 
-.add .addcontainer .addsections .info,
+
 .add .addcontainer .addsections .details {
   flex: 1;
   display: flex;
@@ -156,17 +156,33 @@ input::placeholder{
   color: rgb(228, 26, 7);
 }
 
-.add .addcontainer .addsections .info input,
-.add .addcontainer .addsections .info select,
-.add .addcontainer .addsections .info textarea,
+
 .add .addcontainer .addsections .details input,
 .add .addcontainer .addsections .details select,
 .add .addcontainer .addsections .details textarea {
   color: #000000;
   padding: 20px;
   width: 400px;
+  background-color: #dfe8e8;
+  border-radius: 10px;
 }
-.add .addcontainer .addsections .info button,
+
+/* .add .addcontainer .addsections .details li {
+  color: #000000;
+  height: 30px;
+  width: 400px;
+  background-color: #dfe8e8;
+  border-radius: 10px;
+} */
+
+
+.add .addcontainer .addsections .details input:hover,
+.add .addcontainer .addsections .details select:hover,
+.add .addcontainer .addsections .details textarea:hover {
+  box-shadow: #3dabb3;
+} 
+
+
 .add .addcontainer .addsections .details button {
 
   border: none;
