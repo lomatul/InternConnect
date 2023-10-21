@@ -27,13 +27,13 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             
 
                     <SubMenu label="Comapany" icon={<img src="com.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                        <MenuItem>See Companylist</MenuItem>
-                        <MenuItem>Add Company</MenuItem>
+                        <MenuItem>  <a href="/CompanyList"> See CompanyList</a></MenuItem>
+                        <MenuItem>  <a href="/AddCompany"> Add Company</a></MenuItem>
                     </SubMenu>
 
                     <SubMenu label="Student" icon={<img src="stu.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                        <MenuItem>See Studentlist</MenuItem>
-                        <MenuItem>Add Student</MenuItem>
+                    <MenuItem>  <a href="/CompanyList"> See CompanyList</a></MenuItem>
+                        <MenuItem>  <a href="/AddStudent"> Add Student</a></MenuItem>
                     </SubMenu>
 
                     <MenuItem icon={<img src="guide.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>

@@ -12,7 +12,7 @@ import Forgets from "./components/contact/forget";
 import Students from "./Pages/Student";
 import Companies from "./Pages/CompanyList";
 import AdminLogin from "./components/login/Adminlogin";
-
+import AddStudent from "./Pages/AddStudent";
 
 function App() {
   return (
@@ -32,6 +32,7 @@ function App() {
         <Route path="/Forget" element = {<Forgets/>} />
         <Route path="/Student" element = {<Students/>} />
         <Route path="/Adminlogin" element = {<AdminLogin/>} />
+        <Route path="/AddStudent" element = {<AddStudent/>} />
         {/* <Route path="/NotFound" element = {<page404/>} /> */}
       </Routes>
     </BrowserRouter>
