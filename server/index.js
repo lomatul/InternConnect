@@ -11,6 +11,7 @@ import {initializepassport} from "./config/passport.js";
 import studentRoute from "./routes/student.routes.js";
 import adminRoute from "./routes/admin.routes.js"
 
+const port = process.env.PORT || 3000;
 const app = express();
 dotenv.config();
 

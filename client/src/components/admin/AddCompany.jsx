@@ -49,29 +49,29 @@ const Add = () => {
                     <div class="select-box">
                       <div class="options-container">
                         <div class="option">
-                          <input type="checkbox" id="design" value="design" />
-                          <label for="design">UI/UX Designer</label>
+                          <input type="checkbox" id="UI/UX Designer" value="UI/UX Designer" />
+                          <label for="UI/UX Designer">UI/UX Designer</label>
                         </div>
                         <div class="option">
-                          <input type="checkbox" id="web" value="web" />
-                          <label for="web">Web Development</label>
+                          <input type="checkbox" id="Web Development" value="Web Development" />
+                          <label for="Web Development">Web Development</label>
                         </div>
                         <div class="option">
-                          <input type="checkbox" id="animation" value="animation" />
-                          <label for="animation">Documentation</label>
+                          <input type="checkbox" id="Documentation" value="Documentation" />
+                          <label for="Documentation">Documentation</label>
                         </div>
                         <div class="option">
-                          <input type="checkbox" id="music" value="music" />
-                          <label for="music">DevOps</label>
+                          <input type="checkbox" id="DevOps" value="DevOps" />
+                          <label for="DevOps">DevOps</label>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <label htmlFor="">Status </label>
+                  {/* <label htmlFor="">Status </label>
                       <select >
                         <option value="running ">Running</option>
                         <option value="Closed">Closed </option>
-                      </select>
+                      </select> */}
 
               <button>Create</button>
             </div>

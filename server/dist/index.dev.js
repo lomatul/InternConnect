@@ -12,8 +12,11 @@ var _cors = _interopRequireDefault(require("cors"));
 
 var _studentRoutes = _interopRequireDefault(require("./routes/student.routes.js"));
 
+var _companyRoutes = _interopRequireDefault(require("./routes/company.routes.js"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
+var port = process.env.PORT || 3000;
 var app = (0, _express["default"])();
 
 _dotenv["default"].config();
@@ -56,6 +59,7 @@ app.use((0, _cors["default"])({
   credentials: true
 }));
 app.use("/InterConnect/student", _studentRoutes["default"]);
+app.use("/InterConnect/company", _companyRoutes["default"]);
 app.use(function (err, req, res, next) {
   var errorStatus = err.status || 500;
   var errorMessage = err.message || "Something went wrong!";

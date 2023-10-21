@@ -1,12 +1,11 @@
 .add {
   background: white;
   display: flex;
-  margin-left: 60px;
   justify-content: center;
   font-family: 'Roboto Slab', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  width: 1300px;
+  width: 1200px;
 }
 .add .addcontainer {
  
@@ -98,6 +97,7 @@ input::placeholder{
 }
 .add .addcontainer .addsections .info button,
 .add .addcontainer .addsections .details button {
+
   border: none;
   padding: 20px;
   font-weight: 500;
