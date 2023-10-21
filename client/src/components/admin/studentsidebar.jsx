@@ -29,6 +29,8 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                     <a href=" /Student"> Profile</a></MenuItem>
                     <MenuItem icon={<img src="cvcv.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     <a href=" /AddCV"> CV Upload </a></MenuItem>
+                    <MenuItem icon={<img src="com.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    <a href=" /SeeCompanies"> CompanyList </a></MenuItem>
                     <MenuItem icon={<img src="notifi.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     <a href=" /Addprefer"> Prefernces </a></MenuItem> 
                     <MenuItem icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>

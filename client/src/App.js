@@ -15,7 +15,7 @@ import AdminLogin from "./components/login/Adminlogin";
 import AddStudent from "./Pages/AddStudent";
 import Addcv from "./Pages/AddCV";
 import Addprefer from "./Pages/Addprefenrece";
-
+import SeeCompanies from "./Pages/SeeCompany";
 function App() {
   return (
     <BrowserRouter>
@@ -38,7 +38,7 @@ function App() {
         {/* <Route path="/NotFound" element = {<page404/>} /> */}
         <Route path="/AddCV" element = {<Addcv/>} />
         <Route path="/Addprefer" element = {<Addprefer/>} />
-
+        <Route path="/SeeCompanies" element = {<SeeCompanies/>} />
 
       </Routes>
     </BrowserRouter>
