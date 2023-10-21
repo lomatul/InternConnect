@@ -1,7 +1,32 @@
 import React from 'react'
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { useLogout } from '../../hooks/useLogout';
+import axios from "axios";
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
+    const { logout } = useLogout()
+    const handleClick = () => {
+        logout()
+        try {
+            axios.get('http://localhost:4000/InterConnect/admin/logout'
+            ).then((response)=>{
+                console.log(response)
+                
+                // navigate("/Admin")
+            }).catch((error)=>{
+                if (error.response) {
+                    console.log(error.response);
+                   console.log("server responded");
+                } else if (error.request) {
+                    console.log("network error");
+                } else {
+                    console.log(error);
+                }
+            });
+          } catch (error) {
+            console.error('An error occurred:', error);
+          }
+    }
   return (
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
         <div className='sidebar-title'>
@@ -38,7 +63,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
                 <MenuItem>CV Sending</MenuItem>
                 <MenuItem>Notification</MenuItem>
-                <MenuItem>LogOut</MenuItem>
+                <MenuItem><button onClick={handleClick}>Log out</button></MenuItem>
 
             </Menu>
       
