@@ -21,7 +21,7 @@ const LoginFormComponent = () => {
             dispatch({type: 'LOGINSTUDENT', payload: User})
             //temporary saving in local storage
             localStorage.setItem('user', JSON.stringify(User))
-            navigate("/")
+            navigate("/Student")
         }).catch((error)=>{
             if (error.response) {
               if(error.response.status===308){

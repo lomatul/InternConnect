@@ -10,6 +10,10 @@ import Company from '../models/company.model.js';
 
 
 const ulpoadfiledata = async (req, res)=>{
+  try{
+    if(!req.file){
+      throw new Error('No file is selected')
+    }
     const fileBuffer = req.file.buffer
     const workbook = xlsx.read(fileBuffer); 
     const sheetName = workbook.SheetNames[0];
@@ -56,7 +60,11 @@ const ulpoadfiledata = async (req, res)=>{
     } catch (error) {
       res.status(400).json({ error: error.message });
     }
+} catch (error) {
+  res.status(400).json({ error: error.message });
+  console.error(error)
 }
+} 
 
 
 //add company properties
