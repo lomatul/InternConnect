@@ -19,6 +19,77 @@
   color: rgb(0, 0, 0);
   font-weight: 300;
 }
+.addcontainer .cvguideline {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.addcontainer .cvguideline h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.addcontainer .cvguideline ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding: 0;
+}
+
+.addcontainer .cvguideline li {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.addcontainer .cvguideline a {
+  text-decoration: none;
+  color: #d40b00;
+  font-weight: bold;
+}
+
+.addcontainer .cvguideline a:hover {
+  text-decoration: underline;
+}
+
+
+
+.addcontainer .sample-cvs{
+  display: flex;
+}
+
+.addcontainer .sample-cvs {
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Style for the download links */
+.addcontainer .sample-cvs a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #007BFF; /* Link color, you can change this */
+}
+
+.addcontainer .sample-cvs a:hover {
+  text-decoration: underline;
+}
+
+.addcontainer .sample-cvs a::before {
+  content: '\2193'; /* Unicode arrow character (downwards arrow) */
+  margin-right: 5px;
+}
+
+.addcontainer .sample-cvs a:hover::before {
+  content: '\2193'; /* Display the arrow even more clearly on hover */
+  font-weight: bold;
+}
+
+.addcontainer .sample-cvs a:focus {
+  outline: none; /* Remove the default focus outline on links */
+}
 .add .addcontainer .addsections {
   display: flex;
   justify-content: space-between;
