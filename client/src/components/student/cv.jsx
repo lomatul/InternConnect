@@ -16,7 +16,7 @@ const UploadCV = () => {
                     <li>Highlight your skills, experience, and education.</li>
                     <li>Tailor your CV for the specific job or internship you're applying for.</li>
                 </ul>
-                <p>For more detailed guidelines, please refer to our <a href="/cv-guidelines">CV Guidelines Page</a>.</p>
+                <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
          </div>
 
          <h2 style={{ display: 'flex', alignItems: 'center'  }}>
