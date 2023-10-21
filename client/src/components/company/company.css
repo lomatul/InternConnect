@@ -19,9 +19,8 @@
 .table__header {
     width: 100%;
     height: 10%;
-    background-color: #fff4;
+    background-color: rgba(118, 159, 195, 0.267);
     padding: .8rem 1rem;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -110,7 +109,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #d5d1defe;
+    background-color: #428ca0fe;
     cursor: pointer;
     text-transform: capitalize;
 }
@@ -130,7 +129,7 @@ tbody tr.hide {
 }
 
 tbody tr:hover {
-    background-color: #fff6 !important;
+    background-color: rgba(0, 0, 0, 0.4) ;
 }
 
 tbody tr td,
@@ -183,36 +182,6 @@ tbody tr.hide td img {
     }
 }
 
-thead th span.icon-arrow {
-    display: inline-block;
-    width: 1.3rem;
-    height: 1.3rem;
-    border-radius: 50%;
-    border: 1.4px solid transparent;
-    
-    text-align: center;
-    font-size: 1rem;
-    
-    margin-left: .5rem;
-    transition: .2s ease-in-out;
-}
-
-thead th:hover span.icon-arrow{
-    border: 1.4px solid #6c00bd;
-}
-
-thead th:hover {
-    color: #6c00bd;
-}
-
-thead th.active span.icon-arrow{
-    background-color: #6c00bd;
-    color: #fff;
-}
-
-thead th.asc span.icon-arrow{
-    transform: rotate(180deg);
-}
 
 thead th.active,tbody td.active {
     color: #6c00bd;

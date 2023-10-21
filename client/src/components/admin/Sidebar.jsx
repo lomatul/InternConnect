@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
   return (
@@ -16,43 +16,33 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             <span className='icon close_icon' onClick={OpenSidebar}>X</span>
         </div>
 
-        <ul className='sidebar-list'>
-        <li className='sidebar-list-item'>
-                <a href="/">
-                     Home
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/Admin">
-                     Add Students
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/AddCompany">
-                    Add Companies
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/AddguideLine">
-                     Add Guideline
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/">
-                     CV Sending
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/">
-                   Reports
-                </a>
-            </li>
-            <li className='sidebar-list-item'>
-                <a href="/">
-                   Logout
-                </a>
-            </li>
-        </ul>
+    
+          
+            <Menu >
+         
+                <MenuItem icon={<img src="logo.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    Home</MenuItem>
+            
+
+                    <SubMenu label="Comapany">
+                        <MenuItem>See Companylist</MenuItem>
+                        <MenuItem>Add Company</MenuItem>
+                    </SubMenu>
+
+                    <SubMenu label="Student">
+                        <MenuItem>See Studentlist</MenuItem>
+                        <MenuItem>Add Student</MenuItem>
+                    </SubMenu>
+
+                <MenuItem>Add Guideline</MenuItem>
+
+                <MenuItem>CV Sending</MenuItem>
+                <MenuItem>Notification</MenuItem>
+                <MenuItem>LogOut</MenuItem>
+
+            </Menu>
+      
+          
     </aside>
   )
 }

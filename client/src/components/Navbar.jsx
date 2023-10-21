@@ -20,7 +20,7 @@ const Navbar = () => {
         setShowNav(!showNav)
     }
   return (
-    <div className='navbar'>
+    <div className={`navbar ${showNav ? 'sticky' : ''}`}>
         <div onClick={handleClick} className={`${showNav ? "hamburger1":"hamburger"}`}></div>
         <div className='logo'>
         <img

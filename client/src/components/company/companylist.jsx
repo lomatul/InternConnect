@@ -17,8 +17,8 @@ const companylist = () => {
               <th> Contact Number </th>
               <th> Max Interns </th>
               <th> Min Interns </th>
-              <th> Interns Hired </th>
-              <th> Selected Interns </th>
+              <th> Interns Hired </th>             
+              <th> Status</th>
             </tr>
           </thead>
           <tbody>
@@ -29,18 +29,18 @@ const companylist = () => {
                 <td>(123) 456-7890</td>
                 <td>5</td>
                 <td>2</td>
-                <td>3</td>
-                <td>John, Sarah, Emma</td>
+                <td>3</td>           
+                <td><input type="checkbox" id="runing" value="runing" /></td>
               </tr>
               <tr>
-                <td>StremTech</td>
+                <td>StreamsTech</td>
                 <td>456 Elm St, Town</td>
-                <td>StremTech@email.com</td>
+                <td>StreamsTech@email.com</td>
                 <td>(234) 567-8901</td>
                 <td>8</td>
                 <td>3</td>
                 <td>5</td>
-                <td>Michael, Olivia, Liam, Ava, Ethan</td>
+                <td><input type="checkbox" id="runing" value="runing" /></td>
               </tr>
              
             </tbody>
