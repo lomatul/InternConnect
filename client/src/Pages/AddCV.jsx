@@ -1,10 +1,12 @@
-import React from 'react';
 import { useState } from 'react'
-import Table from '../components/company/companylist';
-import '../components/company/company.css';
-import Sidebar from '../components/admin/Sidebar';
+import '../components/admin/Dashboard.css'
+import Sidebar from '../components/admin/studentsidebar'
+import UploadCV from '../components/student/cv'
 
-function Companies() {
+
+
+
+function Addcv() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
   const OpenSidebar = () => {
@@ -13,12 +15,11 @@ function Companies() {
 
   return (
     <div className='AdminDashboard'>   
+          {/* <Header OpenSidebar={OpenSidebar}/> */}
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <div className="companies">
-      <Table/>
-      </div>
+      <UploadCV />
     </div>
   )
 }
 
-export default Companies;
+export default Addcv

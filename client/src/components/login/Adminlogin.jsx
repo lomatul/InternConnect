@@ -37,11 +37,6 @@ const AdminLogin= () => {
               }
         });
 
-        // if (response.status === 200) {
-        //   console.log('File uploaded successfully');
-        // } else {
-        //   console.error('File upload failed');
-        // }
       } catch (error) {
         console.error('An error occurred:', error);
       }

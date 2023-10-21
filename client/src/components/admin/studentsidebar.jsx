@@ -6,12 +6,12 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
         <div className='sidebar-title'>
             <div className='sidebar-brand'>
-            {/* <img
-            src="logo.png"
+            <img
+            src="Ourlogobk.png"
             alt="InternConnect Logo"
-            style={{ width: '200px', height: '200px' }}
-        /> */}
-                 InternConnect
+            style={{ width: '150px', height: '150px' }}
+        />
+             
             </div>
             <span className='icon close_icon' onClick={OpenSidebar}>X</span>
         </div>
@@ -20,25 +20,19 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
           
             <Menu >
          
-                <MenuItem icon={<img src="logo.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    Home</MenuItem>
-            
-
-                    <SubMenu label="Comapany">
-                        <MenuItem>See Companylist</MenuItem>
-                        <MenuItem>Add Company</MenuItem>
-                    </SubMenu>
-
-                    <SubMenu label="Student">
-                        <MenuItem>See Studentlist</MenuItem>
-                        <MenuItem>Add Student</MenuItem>
-                    </SubMenu>
-
-                <MenuItem>Add Guideline</MenuItem>
-
-                <MenuItem>CV Sending</MenuItem>
-                <MenuItem>Notification</MenuItem>
-                <MenuItem>LogOut</MenuItem>
+                <MenuItem icon={<img src="home.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                <a href="/">
+                     Home
+                </a></MenuItem>
+               
+                    <MenuItem icon={<img src="stu.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    <a href=" /Student"> Profile</a></MenuItem>
+                    <MenuItem icon={<img src="cvcv.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    <a href=" /AddCV"> CV Upload </a></MenuItem>
+                    <MenuItem icon={<img src="notifi.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                        Notification</MenuItem>
+                    <MenuItem icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                        LogOut</MenuItem>
 
             </Menu>
       

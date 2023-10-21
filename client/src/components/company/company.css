@@ -1,4 +1,4 @@
-.companies {
+.AdminDashboard .companies {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,7 +8,7 @@
 }
 
 .companies main.table {
-    width: 132vw;
+    width: 82vw;
     background-color: #fff5;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
