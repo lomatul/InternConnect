@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react'
-import Table from '../components/company/companylist';
+import Companypool from '../components/company/companypool';
 import '../components/company/company.css';
-import Sidebar from '../components/admin/Sidebar';
+import Sidebar from '../components/admin/studentsidebar';
 
-function Companies() {
+function SeeCompanies() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
   const OpenSidebar = () => {
@@ -15,10 +15,10 @@ function Companies() {
     <div className='AdminDashboard'>   
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
       <div className="companies">
-      <Table/>
+      <Companypool/>
       </div>
     </div>
   )
 }
 
-export default Companies;
+export default SeeCompanies;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const companylist = () => {
+const Companypool = () => {
   return (
     <main className="table">
       <section className="table__header">
@@ -18,7 +18,7 @@ const companylist = () => {
               <th> Max Interns </th>
               <th> Min Interns </th>
               <th> Interns Hired </th>             
-              <th> Status</th>
+            
             </tr>
           </thead>
           <tbody>
@@ -30,7 +30,7 @@ const companylist = () => {
                 <td>5</td>
                 <td>2</td>
                 <td>3</td>           
-                <td><input type="checkbox" id="runing" value="runing" /></td>
+               
               </tr>
               <tr>
                 <td>StreamsTech</td>
@@ -40,7 +40,7 @@ const companylist = () => {
                 <td>8</td>
                 <td>3</td>
                 <td>5</td>
-                <td><input type="checkbox" id="runing" value="runing" /></td>
+                
               </tr>
              
             </tbody>
@@ -50,4 +50,4 @@ const companylist = () => {
   );
 };
 
-export default companylist;
+export default Companypool;

@@ -10,6 +10,13 @@ import Admin from "./Pages/Admindashboard";
 import Contacts from "./components/contact/contact";
 import Forgets from "./components/contact/forget";
 import Students from "./Pages/Student";
+import Companies from "./Pages/CompanyList";
+import AdminLogin from "./components/login/Adminlogin";
+import AddStudent from "./Pages/AddStudent";
+import Addcv from "./Pages/AddCV";
+import Addprefer from "./Pages/Addprefenrece";
+import SeeCompanies from "./Pages/SeeCompany";
+import Page404 from "./components/notfound";
 
 function App() {
   return (
@@ -20,7 +27,7 @@ function App() {
         <Route path="/Updatepassword" element = {<LoginNewPassword/>} />
         {/* <Route path="/Admin" element = {<Fileupload/>} /> */}
         <Route path="/About" element = {<Aboutus/>} />
-        <Route path="/CompanyList" element = {<companies/>} />
+        <Route path="/CompanyList" element = {<Companies/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
         <Route path="/Admin" element = {<Admin/>} />
         <Route path="/AddCompany" element = {<AddCompany/>} />
@@ -28,7 +35,13 @@ function App() {
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
         <Route path="/Student" element = {<Students/>} />
-        {/* <Route path="/NotFound" element = {<page404/>} /> */}
+        <Route path="/Adminlogin" element = {<AdminLogin/>} />
+        <Route path="/AddStudent" element = {<AddStudent/>} />
+        <Route path="/NotFound" element = {<Page404/>} />
+        <Route path="/AddCV" element = {<Addcv/>} />
+        <Route path="/Addprefer" element = {<Addprefer/>} />
+        <Route path="/SeeCompanies" element = {<SeeCompanies/>} />
+
       </Routes>
     </BrowserRouter>
   );

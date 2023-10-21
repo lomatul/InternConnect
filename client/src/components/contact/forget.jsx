@@ -8,7 +8,7 @@ function Forgets() {
     <section className="contact" id="contact">
       <div className="contactcontainer">
                 <div className="contact-content">
-                <h2 className="contact-title">Write the Email where you get the otp</h2>
+                <h2 className="contact-title">Write your Student ID, Your OTP will go to your IUT Email </h2>
                 <figure className="contact-banner">
                     <img src="contact.gif" alt="contact banner" />
                 </figure>
@@ -17,8 +17,8 @@ function Forgets() {
             <form action="" className="contact-form">
            
 
-              <label htmlFor="">Email <span>*</span></label>
-              <input type="text"/>
+              <label htmlFor="">Student ID <span>*</span></label>
+              <input type="Number" min={0}/>
   
               
 

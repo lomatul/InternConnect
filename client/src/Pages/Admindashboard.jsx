@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../components/admin/Dashboard.css'
 import Sidebar from '../components/admin/Sidebar'
-import Addstudent from '../components/admin/StudentCreation'
+import Dashboard from '../components/admin/Dashboard'
 
 
 
@@ -17,7 +17,7 @@ function Admin() {
     <div className='AdminDashboard'>   
           {/* <Header OpenSidebar={OpenSidebar}/> */}
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <Addstudent />
+      <Dashboard />
     </div>
   )
 }

@@ -38,7 +38,9 @@ const StudentProfile = () => {
   };
 
   return (
+    
     <div className="admin-profile">
+
       {editMode ? (
         <div className="edit-profile">
           <input
@@ -74,16 +76,16 @@ const StudentProfile = () => {
         </div>
       ) : (
         <div className="view-profile">
-          {/* <img
+          <img
             src={userData.profileImage}
             alt="Profile"
-          /> */}
+          />
 
-        <img
-            src="admin.png"
+        {/* <img
+            src="student.gif"
             alt="InternConnect Logo"
             style={{ width: '100px', height: '100px' }}
-        />
+        /> */}
           <h2>Name : <span>{userData.name}</span></h2>
           <p>ID : <span>{userData.email}</span></p>
           <p>Computer Science and Engineering Department</p>

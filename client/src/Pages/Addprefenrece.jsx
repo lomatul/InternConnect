@@ -1,10 +1,12 @@
-import React from 'react';
 import { useState } from 'react'
-import Table from '../components/company/companylist';
-import '../components/company/company.css';
-import Sidebar from '../components/admin/Sidebar';
+import '../components/admin/Dashboard.css'
+import '../components/admin/Add.css'
+import Sidebar from '../components/admin/studentsidebar'
+import Prefernces from '../components/student/preference'
+import '../components/student/cv'
 
-function Companies() {
+
+function Addprefer() {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
   const OpenSidebar = () => {
@@ -14,11 +16,9 @@ function Companies() {
   return (
     <div className='AdminDashboard'>   
       <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
-      <div className="companies">
-      <Table/>
-      </div>
+      <Prefernces/>
     </div>
   )
 }
 
-export default Companies;
+export default Addprefer
