@@ -188,7 +188,9 @@ export const postlogin= (req, res, next) =>{
       res.status(200).json({ message: 'Logged In' , User:user});
     })(req, res, next);
   }
-  
+
+
+//Logout
 export const logout = (req, res)=>{
   req.logout((err) => {
     if (err) {
@@ -234,3 +236,29 @@ export const updatePasswordById = async (req, res, next) => {
     res.status(400).json({error: error.message})
   }
 };
+
+//Upload a file
+export const uploadcvfile= async (req, res) =>{
+  try{
+    console.log("it came here in uploadcv")
+    const { student_id } = req.params;
+    console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+  
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+  
+    student.CV=req.file.filename;
+
+    await student.save();
+    // console.log("req", req)
+    console.log("filename", req.file.filename)
+    console.log("Filepath", req.file.path)
+    res.status(200).json({message:"Uploaded"})
+  }catch (error) {
+    // next(error);
+    res.status(400).json({error: error.message})
+  }
+  
+}
