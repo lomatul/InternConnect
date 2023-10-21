@@ -10,9 +10,9 @@ function Dashboard() {
       </div>
        
       <img
-           src="admin.png"
+           src="admin.gif"
            alt="InternConnect Logo"
-           style={{ width: '150px', height: '150px' }}
+           style={{ width: '200px', height: '200px' }}
        />
 
     </main>
