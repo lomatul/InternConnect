@@ -32,6 +32,8 @@ This software would significantly streamline the entire internship placement pro
  ```
 
 
+![image](https://github.com/lomatul/InternConnect/assets/90206489/4ae0036d-7d02-46fc-8a87-f790129dde7e)
+
 
  ##  :cherries: System Features : 
  ```
@@ -102,6 +104,8 @@ This software would significantly streamline the entire internship placement pro
      * The system generates grades using an algorithm.
      * Exportable Excel file with student grades.
  ```
+
+![image](https://github.com/lomatul/InternConnect/assets/90206489/6757142d-dd44-424c-bb36-9f45ee4dec6a)
 
 
 
