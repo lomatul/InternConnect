@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
+import download from 'js-file-download';
+
 
 const UploadCV = () => {
   const { userstudent } = useAuthContext();
@@ -9,10 +11,27 @@ const UploadCV = () => {
   const [loading, setLoading] = useState(true);
   const [id, setId] = useState('')
   const [hascv, setHascv]=useState(false)
+  const [cv, setCv]=useState('')
 
   useEffect(() => {
     if (userstudent) {
       setId(userstudent.student_id);
+      // try {
+      //   axios.get('http://localhost:4000/InterConnect/getonestudent/getStudent/'+id).then((response)=>{
+      //     console.log(response.CV)
+      // }).catch((error)=>{
+      //     if (error.response) {
+      //         console.log(error.response);
+      //         console.log("server responded");
+      //       } else if (error.request) {
+      //         console.log("network error");
+      //       } else {
+      //         console.log(error);
+      //       }
+      // });
+      // } catch (error) {
+      //   console.error('An error occurred:', error);
+      // }
       if(userstudent.CV){
         
         setHascv(true);
@@ -65,31 +84,6 @@ const UploadCV = () => {
     setSelectedFile(null)
   }
 
-  const handleview = async(event) => {
-    event.preventDefault()
-    try {
-      await axios.get('http://localhost:4000/InterConnect/student/getcv/'+id ).then((response)=>{
-        console.log(response)
-    }).catch((error)=>{
-        if (error.response) {
-            console.log(error.response);
-            console.log("server responded");
-          } else if (error.request) {
-            console.log("network error");
-          } else {
-            console.log(error);
-          }
-    });
-
-    // if (response.status === 200) {
-    //   console.log('File uploaded successfully');
-    // } else {
-    //   console.error('File upload failed');
-    // }
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
-  }
   
 
   if (loading) {
@@ -121,9 +115,10 @@ const UploadCV = () => {
             <div className="details">                      
             <div className="xcellupload">             
               <input type="file" accept=".pdf" onChange={handleFileSelect}/>
-              <button onClick={handleSubmit}>Upload</button>
+              {hascv?<button onClick={handleSubmit}>Reupload</button>:<button onClick={handleSubmit}>Upload</button>}
             </div>
-            {hascv&&<button onClick={handleview}>View your own submitted CV</button>}       
+            
+            {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>} 
             </div>           
           </div>
 
