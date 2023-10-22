@@ -1,7 +1,95 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react';
 import "../admin/Add.css";
+import {useAuthContext} from "../../context/useAuthcontext"
+import axios from "axios";
+import download from 'js-file-download';
+
 
 const UploadCV = () => {
+  const { userstudent } = useAuthContext();
+  const [selectedFile, setSelectedFile] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [id, setId] = useState('')
+  const [hascv, setHascv]=useState(false)
+  const [cv, setCv]=useState('')
+
+  useEffect(() => {
+    if (userstudent) {
+      setId(userstudent.student_id);
+      // try {
+      //   axios.get('http://localhost:4000/InterConnect/getstudent/getStudent/'+id).then((response)=>{
+      //     console.log(response.CV)
+      // }).catch((error)=>{
+      //     if (error.response) {
+      //         console.log(error.response);
+      //         console.log("server responded");
+      //       } else if (error.request) {
+      //         console.log("network error");
+      //       } else {
+      //         console.log(error);
+      //       }
+      // });
+      // } catch (error) {
+      //   console.error('An error occurred:', error);
+      // }
+      if(userstudent.CV){
+        
+        setHascv(true);
+      }
+      setLoading(false); // Set loading to false when data is available
+    } 
+    // Fetch user data from your API or storage on component mount
+    // Update the 'userData' state with the fetched data
+    // For simplicity, we are using mock data here.
+  }, [userstudent]);
+
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0])
+    console.log("file", selectedFile)
+  }
+
+  
+  const handleSubmit = async(event) => {
+    event.preventDefault()
+
+    const formData = new FormData();
+      formData.append("file", selectedFile);
+      console.log(formData)
+    try {
+      await axios.post('http://localhost:4000/InterConnect/student/uploadCV/'+id, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Set the content type for file upload
+        },
+    }).then((response)=>{
+        console.log(response)
+    }).catch((error)=>{
+        if (error.response) {
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+    });
+
+    // if (response.status === 200) {
+    //   console.log('File uploaded successfully');
+    // } else {
+    //   console.error('File upload failed');
+    // }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+    setSelectedFile(null)
+  }
+
+  
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
     return (
       <div className="add">
         <div className="addcontainer">
@@ -26,9 +114,11 @@ const UploadCV = () => {
           <div className="addsections" >   
             <div className="details">                      
             <div className="xcellupload">             
-              <input type="file" />
-              <button>Upload</button>
-            </div>       
+              <input type="file" accept=".pdf" onChange={handleFileSelect}/>
+              {hascv?<button onClick={handleSubmit}>Reupload</button>:<button onClick={handleSubmit}>Upload</button>}
+            </div>
+            
+            {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>} 
             </div>           
           </div>
 

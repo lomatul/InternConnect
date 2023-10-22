@@ -3,7 +3,13 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
-import sendPasswordResetEmail from "./forget.password.mailsender.js";
+import sendPasswordResetEmail from "./forget.password.mailsender.js";import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+
+
 
 // Create a student
 export const createStudent = async (req, res, next) => {
@@ -65,8 +71,8 @@ export const getStudentById = async (req, res, next) => {
       return;
     }
 
-    res.status(200).json({
-      message: "Student retrieved successfully!",
+    res.status(200).send({
+      message: 'Student retrieved successfully!',
       student,
     });
   } catch (error) {
@@ -75,7 +81,7 @@ export const getStudentById = async (req, res, next) => {
 };
 
 // Update a student by student_id
-export const updateStudentById = async (req, res, next) => {
+export const updateStudentById = async (req, res) => {
   try {
     const { student_id } = req.params;
     const { name, email, bio } = req.body;
@@ -96,7 +102,8 @@ export const updateStudentById = async (req, res, next) => {
 
     return res.status(200).json({ message: "Student updated successfully", student });
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.log("Error: ", error)
+    res.status(400).json({error: error.message})
   }
 };
 
@@ -333,3 +340,61 @@ export const resetPasswordWithOTP = async (req, res, next) => {
     next(error);
   }
 };
+
+
+//Upload a file
+export const uploadcvfile= async (req, res) =>{
+  try{
+    console.log("it came here in uploadcv")
+    const { student_id } = req.params;
+    console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+  
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+  
+    student.CV=req.file.filename;
+
+    await student.save();
+    // console.log("req", req)
+    console.log("filename", req.file.filename)
+    console.log("Filepath", req.file.path)
+    res.status(200).json({message:"Uploaded"})
+  }catch (error) {
+    // next(error);
+    res.status(400).json({error: error.message})
+  }
+  
+}
+
+//GetStudentCV
+
+export const getcvfile= async (req, res) =>{
+  try{
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const tempDir = path.join(__dirname, '../Storage/Cv');
+    console.log("it came here in uploadcv")
+    const { student_id } = req.params;
+    console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+  
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    const cvfile=student.CV;
+    const cvPath = path.join(tempDir, cvfile);
+
+    res.contentType("application/pdf");
+    res.download(cvPath, cvfile, (err)=>{
+      if(err){
+        return res.status(500).send('Error downloading CV');
+      }
+    })
+  }catch (error) {
+      // next(error);
+      res.status(400).json({error: error.message})
+    }
+}
+    

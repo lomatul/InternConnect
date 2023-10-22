@@ -10,10 +10,12 @@ import {
   postlogin,
   logout,
   sendOTPForPasswordReset,
-  resetPasswordWithOTP
+  resetPasswordWithOTP,
+  uploadcvfile,
+  getcvfile
 } from '../controllers/student.controller.js';
-import upload from '../middlewares/multer.js';
-import { ulpoadfiledata } from '../controllers/filecontroller.js';
+import Upload from '../middlewares/multer.Cv.js'; 
+
 
 
 const router = express.Router();
@@ -34,7 +36,11 @@ router.post('/postlogin', postlogin)
 
 router.post('/updatePassword/:student_id', updatePasswordById);
 
-router.post('/uploadfile', upload.single('file'), ulpoadfiledata)
+router.post('/uploadCV/:student_id', Upload.single('file'), uploadcvfile);
+
+router.get('/getcv/:student_id', getcvfile)
+
+
 
 router.get("/logout", logout);
 
