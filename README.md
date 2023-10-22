@@ -2,6 +2,10 @@
 # COURSE CODE: SWE 4504
 ## PROJECT TITLE: InternConnect  (Internship Management System)
 
+
+![Ourlogo](https://github.com/lomatul/InternConnect/assets/90206489/826562a1-3377-422b-acf7-d363a8fd469c)
+
+
 ## Current Phase :
 ```
 In Progress
