@@ -47,7 +47,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
           
             <Menu >
          
-                <MenuItem icon={<img src="home.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                <MenuItem className='side-menu' icon={<img src="home.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                 <a href="/">
                      Home
                 </a></MenuItem>
@@ -59,7 +59,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                     </SubMenu>
 
                     <SubMenu label="Student" icon={<img src="stu.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    <MenuItem>  <a href="/Studentslist"> See StudentList</a></MenuItem>
+                    <MenuItem>  <a href="/SeeStudents"> See StudentList</a></MenuItem>
                         <MenuItem>  <a href="/AddStudent"> Add Student</a></MenuItem>
                     </SubMenu>
 
