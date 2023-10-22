@@ -26,7 +26,7 @@ const LoginFormComponent = () => {
             if (error.response) {
               if(error.response.status===308){
                 console.log("status", error.response.data.redirectUrl)
-                navigate(error.response.data.redirectUrl, {state: {Id:error.response.data.id}});
+                navigate(error.response.data.redirectUrl, {state: {Id:error.response.data.id, from:0}});
                 }
                 console.log(error.response);
                 console.log("server responded");

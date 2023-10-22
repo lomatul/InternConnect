@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
-import sendPasswordResetEmail from "./forget.password.mailsender.js";import path from 'path';
+import sendPasswordResetEmail from "./forget.password.mailsender.js";
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
@@ -260,10 +260,11 @@ const generateOTP = () => {
 };
 
 // Function to send OTP to the user's email and initiate password reset
-export const sendOTPForPasswordReset = async (req, res, next) => {
+export const sendOTPForPasswordReset = async (req, res) => {
   try {
     const { student_id } = req.body;
 
+    console.log(student_id)
     // Check if the student with the provided student_id exists in your database
     const student = await Student.findOne({ student_id });
 
@@ -297,7 +298,9 @@ export const sendOTPForPasswordReset = async (req, res, next) => {
       });
   } catch (error) {
     // Handle any errors that occur during the process
-    next(error);
+    // next(error);
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -305,7 +308,7 @@ export const sendOTPForPasswordReset = async (req, res, next) => {
 export const resetPasswordWithOTP = async (req, res, next) => {
   try {
     const { student_id } = req.params; // Get the student ID from request parameters
-    const { otp, newPassword } = req.body;
+    const { currentPassword, newPassword } = req.body;
 
     // Check if the student with the provided student_id exists in your database
     const student = await Student.findOne({ student_id });
@@ -315,7 +318,7 @@ export const resetPasswordWithOTP = async (req, res, next) => {
     }
 
     // Check if the OTP exists, is valid, and hasn't expired
-    if (!student.OTP || student.OTP.code !== otp) {
+    if (!student.OTP || student.OTP.code !== currentPassword) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 

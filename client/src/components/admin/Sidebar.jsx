@@ -71,8 +71,8 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                         CV Sending</MenuItem>
                     <MenuItem icon={<img src="notifi.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                         Notification</MenuItem>
-                    <MenuItem icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    <button onClick={handleClick}>Log out</button></MenuItem>
+                    <MenuItem onClick={handleClick} icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    Log out</MenuItem>
                 
 
             </Menu>
