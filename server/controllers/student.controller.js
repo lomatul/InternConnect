@@ -2,6 +2,11 @@ import Student from '../models/student.model.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+
 
 
 // Create a student
@@ -262,3 +267,33 @@ export const uploadcvfile= async (req, res) =>{
   }
   
 }
+
+//GetStudentCV
+//Upload a file
+export const getcvfile= async (req, res) =>{
+  try{
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const tempDir = path.join(__dirname, '../Storage/Cv');
+    console.log("it came here in uploadcv")
+    const { student_id } = req.params;
+    console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+  
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    const cvfile=student.CV;
+    const cvPath = path.join(tempDir, cvfile);
+
+    res.download(cvPath, cvfile, (err)=>{
+      if(err){
+        return res.status(500).send('Error downloading CV');
+      }
+    })
+  }catch (error) {
+      // next(error);
+      res.status(400).json({error: error.message})
+    }
+}
+    

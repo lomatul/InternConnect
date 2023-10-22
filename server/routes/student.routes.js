@@ -9,7 +9,8 @@ import {
   updatePasswordById,
   postlogin,
   logout,
-  uploadcvfile
+  uploadcvfile,
+  getcvfile
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 
@@ -34,6 +35,8 @@ router.post('/postlogin', postlogin)
 router.post('/updatePassword/:student_id', updatePasswordById);
 
 router.post('/uploadCV/:student_id', Upload.single('file'), uploadcvfile);
+
+router.get('/getcv/:student_id', getcvfile)
 
 
 
