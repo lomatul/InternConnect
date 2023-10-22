@@ -17,6 +17,13 @@ import Addcv from "./Pages/AddCV";
 import Addprefer from "./Pages/Addprefenrece";
 import SeeCompanies from "./Pages/SeeCompany";
 import Page404 from "./components/notfound";
+import Studentslist from "./Pages/SeeStudent";
+
+
+
+
+
+
 
 function App() {
   return (
@@ -40,6 +47,7 @@ function App() {
         <Route path="/AddCV" element = {<Addcv/>} />
         <Route path="/Addprefer" element = {<Addprefer/>} />
         <Route path="/SeeCompanies" element = {<SeeCompanies/>} />
+        <Route path="/SeeStudents" element = {<Studentslist/>} />
 
       </Routes>
     </BrowserRouter>

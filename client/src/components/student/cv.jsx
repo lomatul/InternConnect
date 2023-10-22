@@ -2,6 +2,8 @@ import React, { useState, useEffect} from 'react';
 import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
+import download from 'js-file-download';
+
 
 const UploadCV = () => {
   const { userstudent } = useAuthContext();
@@ -70,6 +72,9 @@ const UploadCV = () => {
     try {
       await axios.get('http://localhost:4000/InterConnect/student/getcv/'+id ).then((response)=>{
         console.log(response)
+        var fileName=id+".pdf"
+        download(response.data, fileName);
+         
     }).catch((error)=>{
         if (error.response) {
             console.log(error.response);
@@ -123,8 +128,12 @@ const UploadCV = () => {
               <input type="file" accept=".pdf" onChange={handleFileSelect}/>
               <button onClick={handleSubmit}>Upload</button>
             </div>
-            {hascv&&<button onClick={handleview}>View your own submitted CV</button>}       
-            </div>           
+            {/* {hascv&&<button onClick={handleview}>View your own submitted CV</button>}        */}
+
+            {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>}
+          
+          
+          </div>           
           </div>
 
 
