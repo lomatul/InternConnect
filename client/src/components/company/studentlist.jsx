@@ -2,45 +2,61 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 const Studentlist = () => {
-
+  const [search, setSearch] = useState('');
   const [students, setStudents] = useState([]);
+  const [filteredStudents, setFilteredStudents] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
-
       .then((response) => {
-        setStudents(response.data.students);            // Set the retrieved students in the state
+        setStudents(response.data.students);
+        setFilteredStudents(response.data.students); // Initially, both arrays are the same
       })
-
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
       });
-  }, []); // The empty dependency array ensures this effect runs once on component mount
+  }, []);
 
+  useEffect(() => {
+    // Filter students based on search input
+    const filtered = students.filter((student) => {
+      const studentData = `${student.name} ${student.student_id} ${student.email} ${student.currentStatus} ${student.CGPA}`.toLowerCase();
+      return studentData.includes(search.toLowerCase());
+    });
+
+    setFilteredStudents(filtered);
+  }, [search, students]);
 
   return (
     <main className="table">
       <section className="table__header">
-        <h1>Student Details </h1>
+        <h1>Student Details</h1>
+        <div className="input-group">
+          <input
+            type="search"
+            placeholder="Search Data..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
       </section>
 
       <section className="table__body">
         <table>
           <thead>
             <tr>
-              <th> Name </th>
-              <th> Student ID </th>
-              <th> Email </th>
-              <th> Current Status </th>    
-              <th> Account Status </th>                        
-              <th> CGPA </th>
-              <th> CV </th>             
+              <th>Name</th>
+              <th>Student ID</th>
+              <th>Email</th>
+              <th>Current Status</th>
+              <th>Account Status</th>
+              <th>CGPA</th>
+              <th>CV</th>
             </tr>
           </thead>
 
           <tbody>
-
-            {students.map((student, index) => (
+            {filteredStudents.map((student, index) => (
               <tr key={index}>
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
@@ -53,9 +69,8 @@ const Studentlist = () => {
                 <td>{student.CV}</td>
               </tr>
             ))}
-
-            </tbody>
-          </table>
+          </tbody>
+        </table>
       </section>
     </main>
   );
