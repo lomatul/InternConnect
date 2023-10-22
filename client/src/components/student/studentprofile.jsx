@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import {useAuthContext} from "../../context/useAuthcontext"
 
-const user = JSON.parse(localStorage.getItem('user'))
+const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
 const student_id = user.student_id
 
 const StudentProfile = () => {
