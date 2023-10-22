@@ -6,22 +6,22 @@ import {useAuthContext} from "../../context/useAuthcontext"
 
 const AdminLogin= () => {
   const navigate = useNavigate();
-  const [student_id, setStudent_id] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const {dispatch} = useAuthContext();
 
   const handleSubmit = async(event) => {
     event.preventDefault()
     try {
-        await axios.post('http://localhost:4000/InterConnect/student/postlogin', {student_id, password}
+        await axios.post('http://localhost:4000/InterConnect/admin/postlogin', {username, password}
         ).then((response)=>{
             console.log(response)
             const User = response.data.User
             console.log(User)
-            dispatch({type: 'LOGINSTUDENT', payload: User})
+            dispatch({type: 'LOGINADMIN', payload: User})
             //temporary saving in local storage
-            localStorage.setItem('user', JSON.stringify(User))
-            navigate("/")
+            localStorage.setItem('adminuser', JSON.stringify(User))
+            navigate("/Admin")
         }).catch((error)=>{
             if (error.response) {
               if(error.response.status===308){
@@ -45,7 +45,7 @@ const AdminLogin= () => {
     <div className="logincontainer">
       <form onSubmit={handleSubmit}>
         <p>Welcome</p>
-        <input type="Text" placeholder="Enter your Username" required value={student_id} onChange={(e) => setStudent_id(e.target.value)} /> <br />
+        <input type="Text" placeholder="Enter your Username" required value={username} onChange={(e) => setUsername(e.target.value)} /> <br />
         <input type="password" placeholder="Enter your password" required  onChange={(e) => setPassword(e.target.value)} value={password} /> <br />
         <input type="submit" value="Sign in" /> <a href="/Admin"></a><br />
         {/* <a href="/Forget">Forget Password ?</a><br /> */}

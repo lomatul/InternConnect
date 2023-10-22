@@ -1,11 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react';
 import "./Add.css";
+import axios from "axios";
+
 
 const Add = () => {
+
+  const [formData, setFormData] = useState({
+    companyID: "",
+    name: "",
+    address: "",
+    email: "",
+    requiredDomain: "",
+    minInterns: "",
+    maxInterns: "",
+    internsHired: "",
+    contactNumber: "",
+    status: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
+      console.log('Response:', response.data);
+      // Handle success and error cases
+    } catch (error) {
+      console.error('An error occurred:', error);
+      // Handle the error cases
+    }
+  };
+
+
     return (
       <div className="add">
         <div className="addcontainer">
           <h1>Add New Company</h1>
+          <form onSubmit={handleSubmit}>
           <div className="addsections">
           {/* <div className="info">
           </div>  */}
@@ -17,52 +53,52 @@ const Add = () => {
               <button>Create</button>
             </div>
           
-              <label htmlFor="">Company Title<span>*</span></label> 
-              <input type="text" placeholder="Give Company name" />
+              <label htmlFor="name">Company Title<span>*</span></label> 
+              <input type="text" name="name" placeholder="Give Company name" value={formData.name} onChange={handleChange}/>
   
               <label htmlFor="">Short Description<span>*</span></label>
               <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
   
-              <label htmlFor="">Address<span>*</span></label>
-              <input type="text" />
+              <label htmlFor="address">Address<span>*</span></label>
+              <input type="text" name="address" value={formData.address} onChange={handleChange} />
 
-              <label htmlFor="">Email <span>*</span></label>
-              <input type="text"/>
-  
-              <label htmlFor="">Contact Number<span>*</span></label>
-              <input type="number" min="0"/>
+              <label htmlFor="email">Email <span>*</span></label>
+              <input type="text" name="email" value={formData.email} onChange={handleChange} />
 
-              <label htmlFor="">Max Interns</label>
-              <input type="number" min="0"/>
+              <label htmlFor="contactNumber">Contact Number<span>*</span></label>
+              <input type="number" name="contactNumber" min="0" value={formData.contactNumber} onChange={handleChange} />
 
-              <label htmlFor="">Min Interns</label>
-              <input type="number" min="0"/>
+              <label htmlFor="maxInterns">Max Interns</label>
+              <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
 
-              <label htmlFor="">Interns Hired</label>
-              <input type="number" min="0" />
+              <label htmlFor="minInterns">Min Interns</label>
+              <input type="number" name="minInterns" min="0" value={formData.minInterns} onChange={handleChange} />
 
-              <label htmlFor="">Selected Interns</label>
-              <input type="number" min="0" />
+              <label htmlFor="internsHired">Interns Hired</label>
+              <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
+
+              {/* <label htmlFor="selectedInterns">Selected Interns</label>
+              <input type="number" name="selectedInterns" min="0" value={formData.selectedInterns} onChange={handleChange} /> */}
              
-              <label htmlFor="cats">Domain</label>
-                  <div class="multiselect">
-                    <div class="select-box">
-                      <div class="options-container">
-                        <div class="option">
-                          <input type="checkbox" id="UI/UX Designer" value="UI/UX Designer" />
-                          <label for="UI/UX Designer">UI/UX Designer</label>
-                        </div>
-                        <div class="option">
-                          <input type="checkbox" id="Web Development" value="Web Development" />
-                          <label for="Web Development">Web Development</label>
-                        </div>
-                        <div class="option">
-                          <input type="checkbox" id="Documentation" value="Documentation" />
-                          <label for="Documentation">Documentation</label>
-                        </div>
-                        <div class="option">
-                          <input type="checkbox" id="DevOps" value="DevOps" />
-                          <label for="DevOps">DevOps</label>
+              <label htmlFor="requiredDomain">Domain</label>
+              <div className="multiselect">
+                <div className="select-box">
+                  <div className="options-container">
+                    <div className="option">
+                      <input type="checkbox" id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />
+                      <label htmlFor="UI/UX Designer">UI/UX Designer</label>
+                    </div>
+                    <div className="option">
+                      <input type="checkbox" id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />
+                      <label htmlFor="Software Development">Software Development</label>
+                    </div>
+                    <div className="option">
+                      <input type="checkbox" id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />
+                      <label htmlFor="Documentation">Documentation</label>
+                    </div>
+                    <div className="option">
+                      <input type="checkbox" id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />
+                      <label htmlFor="DevOps">DevOps</label>
                         </div>
                       </div>
                     </div>
@@ -73,10 +109,11 @@ const Add = () => {
                         <option value="Closed">Closed </option>
                       </select> */}
 
-              <button>Create</button>
+              <button type="submit">Create</button>
             </div>
             
           </div>
+          </form>
         </div>
       </div>
     );

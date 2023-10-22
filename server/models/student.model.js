@@ -23,7 +23,10 @@ const studentSchema = new mongoose.Schema({
 
   companyStatus: { type: String }, //   Under which Company
 
-  OTP: { type: String },
+  OTP: {
+    code: { type: String }, // Store the OTP code
+    timestamp: { type: Date }, // Store the timestamp when the OTP was generated
+  },
 
   accountActivationStatus: { type: Boolean }, // Account Activated or Deactivated
 
@@ -36,6 +39,8 @@ const studentSchema = new mongoose.Schema({
   presentationMarks: { type: Number },
 
   finalGrade: { type: String },
+
+  bio: { type: String },
 
   createdAt: { type: Date, default: Date.now },
 

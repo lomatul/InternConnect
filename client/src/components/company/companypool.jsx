@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Companypool = () => {
+
+  const [companies, setCompanies] = useState([]);
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/InterConnect/company/companies')
+      .then((response) => {
+        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        setCompanies(hiringCompanies);         // Setting the retrieved companies in the state
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching companies:', error);
+      });
+  }, []); // The empty dependency array ensures this effect runs once on component mount
+
   return (
     <main className="table">
       <section className="table__header">
         <h1>Company Details </h1>
-
       </section>
+
       <section className="table__body">
         <table>
           <thead>
@@ -18,30 +33,22 @@ const Companypool = () => {
               <th> Max Interns </th>
               <th> Min Interns </th>
               <th> Interns Hired </th>             
-            
             </tr>
           </thead>
+
           <tbody>
-              <tr>
-                <td>BrainStation23</td>
-                <td>123 Main St, City</td>
-                <td>BrainStation23@email.com</td>
-                <td>(123) 456-7890</td>
-                <td>5</td>
-                <td>2</td>
-                <td>3</td>           
-               
+
+              {companies.map((company, index) => (
+              <tr key={index}>
+                <td>{company.name}</td>
+                <td>{company.address}</td>
+                <td>{company.email}</td>
+                <td>{company.contactNumber}</td>
+                <td>{company.maxInterns}</td>
+                <td>{company.minInterns}</td>
+                <td>{company.internsHired}</td>
               </tr>
-              <tr>
-                <td>StreamsTech</td>
-                <td>456 Elm St, Town</td>
-                <td>StreamsTech@email.com</td>
-                <td>(234) 567-8901</td>
-                <td>8</td>
-                <td>3</td>
-                <td>5</td>
-                
-              </tr>
+            ))}
              
             </tbody>
           </table>

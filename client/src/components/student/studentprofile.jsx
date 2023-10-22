@@ -2,23 +2,37 @@ import React from 'react'
 import "./profile.css";
 // import "./Add.css";
 import { useState, useEffect } from 'react';
+import {useAuthContext} from "../../context/useAuthcontext"
 
 
 const StudentProfile = () => {
+  const { userstudent } = useAuthContext();
+  const [loading, setLoading] = useState(true);
+  
   // State to manage user data and edit mode
   const [userData, setUserData] = useState({
-    name: 'John Doe',
-    email: 'johndoe@example.com',
-    bio: 'Software Engineer',
+    name: '',
+    Id: '',
+    email: '',
+    bio: '',
   });
   const [editMode, setEditMode] = useState(false);
   const [newImage, setNewImage] = useState(null);
 
   useEffect(() => {
+    if (userstudent) {
+      setUserData({
+        name: userstudent.name,
+        Id: userstudent.student_id,
+        email: userstudent.email,
+        bio: userstudent.bio,
+      });
+      setLoading(false); // Set loading to false when data is available
+    } 
     // Fetch user data from your API or storage on component mount
     // Update the 'userData' state with the fetched data
     // For simplicity, we are using mock data here.
-  }, []);
+  }, [userstudent]);
 
   const handleEditClick = () => {
     // Enable edit mode
@@ -36,7 +50,9 @@ const StudentProfile = () => {
     const file = e.target.files[0];
     setNewImage(file);
   };
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     
     <div className="admin-profile">
@@ -87,7 +103,8 @@ const StudentProfile = () => {
             style={{ width: '100px', height: '100px' }}
         /> */}
           <h2>Name : <span>{userData.name}</span></h2>
-          <p>ID : <span>{userData.email}</span></p>
+          <p>ID : <span>{userData.Id}</span></p>
+          <p>Email : <span>{userData.email}</span></p>
           <p>Computer Science and Engineering Department</p>
           <p>{userData.bio}</p>
           <button onClick={handleEditClick}>Edit</button>
