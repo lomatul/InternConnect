@@ -17,7 +17,6 @@ import {
 import Upload from '../middlewares/multer.Cv.js'; 
 
 
-
 const router = express.Router();
 
 router.post('/createStudent', createStudent);
@@ -30,21 +29,23 @@ router.patch('/updateStudent/:student_id', updateStudentById);
 
 router.delete('/deleteStudent/:student_id ', deleteStudentById);
 
+
 router.post('/login', loginStudent);
 
 router.post('/postlogin', postlogin)
 
 router.post('/updatePassword/:student_id', updatePasswordById);
 
+router.get("/logout", logout);
+
+router.post("/forgetPassword", sendOTPForPasswordReset);
+
+router.post("/resetPassword/:student_id", resetPasswordWithOTP);
+
+
 router.post('/uploadCV/:student_id', Upload.single('file'), uploadcvfile);
 
 router.get('/getcv/:student_id', getcvfile)
 
-
-
-router.get("/logout", logout);
-
-router.post("/forgetPassword", sendOTPForPasswordReset);
-router.post("/resetPassword/:student_id", resetPasswordWithOTP);
 
 export default router;

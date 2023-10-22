@@ -34,15 +34,15 @@ const Navbar = () => {
                     <li><a href="/about">About US</a></li>
                     <li><a href="/Guildeline">Guildeline</a></li>
                     {(!userstudent&&!useradmin)&&<li><a href="/Adminlogin">Admin</a></li>}
-                    {(!userstudent&&useradmin)&&<li><a href="/Admin">Admin</a></li>}
+                    {/* {(!userstudent&&useradmin)&&<li><a href="/Admin">Admin</a></li>} */}
                     <li><a href="/Contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
-        <div className='button' style={{ fontSize: '20px', padding: '30px 40px' , fontWeight: 'bold'}}>
+        <div className='button' style={{ fontSize: '20px', padding: '50px 60px' , fontWeight: 'bold'}}>
     {(!userstudent&&!useradmin)?<a href="/login">Login</a>:null}
-    {(userstudent&&!useradmin)?<p>{userstudent.name}</p>: null}
-    {(!userstudent&&useradmin)?<p>{useradmin.name}</p>: null}
+    {(userstudent&&!useradmin)?<a href="/Student">{userstudent.name}</a>: null}
+    {(!userstudent&&useradmin)?<a href="/Admin">{useradmin.name}</a>: null}
     
 </div>
 

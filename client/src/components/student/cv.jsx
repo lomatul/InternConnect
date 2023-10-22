@@ -84,6 +84,34 @@ const UploadCV = () => {
     setSelectedFile(null)
   }
 
+  const handleview = async(event) => {
+    event.preventDefault()
+    try {
+      await axios.get('http://localhost:4000/InterConnect/student/getcv/'+id ).then((response)=>{
+        console.log(response)
+        var fileName=id+".pdf"
+        download(response.data, fileName);
+         
+    }).catch((error)=>{
+        if (error.response) {
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+    });
+
+    // if (response.status === 200) {
+    //   console.log('File uploaded successfully');
+    // } else {
+    //   console.error('File upload failed');
+    // }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }
   
 
   if (loading) {
@@ -117,9 +145,12 @@ const UploadCV = () => {
               <input type="file" accept=".pdf" onChange={handleFileSelect}/>
               {hascv?<button onClick={handleSubmit}>Reupload</button>:<button onClick={handleSubmit}>Upload</button>}
             </div>
-            
-            {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>} 
-            </div>           
+            {/* {hascv&&<button onClick={handleview}>View your own submitted CV</button>}        */}
+
+            {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>}
+          
+          
+          </div>           
           </div>
 
 
