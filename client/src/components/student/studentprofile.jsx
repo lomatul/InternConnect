@@ -5,8 +5,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import {useAuthContext} from "../../context/useAuthcontext"
 
-const user = JSON.parse(localStorage.getItem('user'))
-const student_id = user.student_id
+
 
 const StudentProfile = () => {
   const { userstudent } = useAuthContext();
@@ -48,7 +47,7 @@ const StudentProfile = () => {
     setEditMode(false);
 
     try {
-      const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${student_id}`, {
+      const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${userData.Id}`, {
         name: userData.name,
         email: userData.email,
         bio: userData.bio,
