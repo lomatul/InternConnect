@@ -4,9 +4,9 @@ import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
 import sendPasswordResetEmail from "./forget.password.mailsender.js";
+import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import path from 'path';
 
 
 
@@ -83,25 +83,24 @@ export const getStudentById = async (req, res, next) => {
 // Update a student by student_id
 export const updateStudentById = async (req, res) => {
   try {
-    const student = await Student.findByIdAndUpdate(
-      req.params.student_id,
-      req.body,
-      {
-        new: true,
-      }
-    );
+    const { student_id } = req.params;
+    const { name, email, bio } = req.body;
+
+    const student = await Student.findOne({ student_id });
 
     if (!student) {
-      res.status(404).json({
-        message: "Student not found!",
-      });
-      return;
+      return res.status(404).json({ message: "Student not found" });
     }
 
-    res.status(200).json({
-      message: "Student updated successfully!",
-      student,
-    });
+    // Update the student's data
+    student.name = name;
+    student.email = email;
+    student.bio = bio;
+
+    // Save the updated student
+    await student.save();
+
+    return res.status(200).json({ message: "Student updated successfully", student });
   } catch (error) {
     console.log("Error: ", error)
     res.status(400).json({error: error.message})
