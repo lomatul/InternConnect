@@ -123,12 +123,12 @@ git clone https://github.com/
 npm install
 ```
 ```sh
+npm install
 npm install --save-dev @babel/plugin-proposal-private-property-in-object
 npm install --save font-awesome
 npm install scroll-out
 npm install axios
 npm install react-countup
-npm install 
 npm install react-pro-sidebar
 
 ```
