@@ -111,7 +111,7 @@ This software would significantly streamline the entire internship placement pro
 ### Step 1: Clone project
 
 ```sh
-git clone https://github.com/
+[git clone https://github.com/](https://github.com/lomatul/InternConnect.git)
 ```
 
 ## Step 2: Open it in VSCode / any other Editor
