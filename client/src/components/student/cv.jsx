@@ -17,7 +17,7 @@ const UploadCV = () => {
     if (userstudent) {
       setId(userstudent.student_id);
       // try {
-      //   axios.get('http://localhost:4000/InterConnect/getonestudent/getStudent/'+id).then((response)=>{
+      //   axios.get('http://localhost:4000/InterConnect/getstudent/getStudent/'+id).then((response)=>{
       //     console.log(response.CV)
       // }).catch((error)=>{
       //     if (error.response) {
