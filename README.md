@@ -1,15 +1,14 @@
 # COURSE TITLE: DESIGN PROJECT -I :computer:
 # COURSE CODE: SWE 4504
-## PROJECT TITLE: InternConnect  (Internship Management System)
+## PROJECT TITLE: InternConnect  (Internship Management System)  :student:
 
 
-![logo](https://github.com/lomatul/InternConnect/assets/90206489/d1961b75-8fd3-45d9-a386-b6aff18cf60d)
 
 
 
 ## Current Phase :
 ```
-In Progress
+In Progress  :hourglass_flowing_sand:
 ```
 
 ## Group Members :
@@ -31,7 +30,7 @@ In Progress
 
 
 
-##  :ear_of_rice: Brief Overview : 
+##  :briefcase: Brief Overview : 
 ```
 This software would significantly streamline the entire internship placement process, alleviating the burdens faced by everyone involved. Our goal is to develop a user-friendly web application that will not only eliminate these issues but also enhance the overall experience of all parties involved, including students, Islamic University of Technology (IUT) administrators, participating companies, supervisors, system administrators, visitors, and authorities.
  ```
@@ -40,7 +39,7 @@ This software would significantly streamline the entire internship placement pro
 ![image](https://github.com/lomatul/InternConnect/assets/90206489/4ae0036d-7d02-46fc-8a87-f790129dde7e)
 
 
- ##  :cherries: System Features : 
+ ##  :high_brightness:  System Features : 
  ```
  1. Student account creation
      * Admin uploads student data via Excel to the system.
@@ -142,8 +141,7 @@ npm install react-pro-sidebar
 
 ```
 
-## Step 4: Run InternConnect in server mode
-
+## :globe_with_meridians: Step 4: Run InternConnect in your local 
 ```sh
 InternConnect/client/npm start
 InternConnect/server/npm start
