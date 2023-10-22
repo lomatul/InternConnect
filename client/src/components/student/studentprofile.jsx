@@ -1,9 +1,12 @@
 import React from 'react'
 import "./profile.css";
+import axios from "axios";
 // import "./Add.css";
 import { useState, useEffect } from 'react';
 import {useAuthContext} from "../../context/useAuthcontext"
 
+const user = JSON.parse(localStorage.getItem('user'))
+const student_id = user.student_id
 
 const StudentProfile = () => {
   const { userstudent } = useAuthContext();
@@ -39,10 +42,24 @@ const StudentProfile = () => {
     setEditMode(true);
   };
 
-  const handleSaveClick = () => {
+  const handleSaveClick = async() => {
     // Save the updated user data to your backend
     // Disable edit mode
     setEditMode(false);
+
+    try {
+      const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${student_id}`, {
+        name: userData.name,
+        email: userData.email,
+        bio: userData.bio,
+      });
+      // Handle the response if needed
+      console.log(response.data); // This is just for demonstration
+    } catch (error) {
+      // Handle errors
+      console.error(error);
+    }
+
   };
 
   const handleImageChange = (e) => {
