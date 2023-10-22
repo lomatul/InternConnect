@@ -92,6 +92,7 @@ const ulpoadCompanydata = async (req, res)=>{
           email: element.Email,
           minInterns: element.MinInterns,
           maxInterns: element.MaxInterns,
+          contactNumber: element.ContactNumber
           
         });
     

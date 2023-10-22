@@ -38,7 +38,7 @@ const Updatepassword = () => {
           await axios.post('http://localhost:4000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
-              navigate('/');
+              navigate('/login');
           }).catch((error)=>{
               if (error.response) {
                 console.log(error.response);
