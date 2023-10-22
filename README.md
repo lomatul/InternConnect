@@ -71,7 +71,7 @@ This software would significantly streamline the entire internship placement pro
      * Varies based on the academic year.
  ```
 ```
- 4. CV Sorting and Sending Functionality
+ 5. CV Sorting and Sending Functionality
      * Automated CV distribution to companies.
      * Admin selects companies for CV submission.
      * Multiple phases allow flexibility.
@@ -80,20 +80,20 @@ This software would significantly streamline the entire internship placement pro
      * Streamlined email distribution with zip files.
  ```
 ```
- 4. Selection Process
+ 6. Selection Process
      * The "Company Pool" section displays company details.
      * Admin manages companies, updated yearly.
      * Varies based on the academic year.
  ```
 ```
-4. Status Page
+7. Status Page
      * The "Company Pool" section displays company details.
      * Admin manages companies, updated yearly.
      * Varies based on the academic year.
  ```
  
 ```
-4. Report Submission and Validation Functionality
+8. Report Submission and Validation Functionality
      * The "Company Pool" section displays company details.
      * Admin manages companies, updated yearly.
      * Varies based on the academic year.
@@ -101,7 +101,7 @@ This software would significantly streamline the entire internship placement pro
 
 
  ```
-4. Evaluation and Grade Generation Functionality:
+9. Evaluation and Grade Generation Functionality:
      * Mentors evaluate interns with predefined questions.
      * Students present offline at IUT for marks.
      * Presentation marks added by admin.
