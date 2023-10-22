@@ -69,7 +69,7 @@ export const getStudentById = async (req, res, next) => {
       return;
     }
 
-    res.status(200).json({
+    res.status(200).send({
       message: 'Student retrieved successfully!',
       student,
     });
@@ -79,7 +79,7 @@ export const getStudentById = async (req, res, next) => {
 };
 
 // Update a student by student_id
-export const updateStudentById = async (req, res, next) => {
+export const updateStudentById = async (req, res) => {
   try {
     const student = await Student.findByIdAndUpdate(req.params.student_id, req.body, {
       new: true,
@@ -97,7 +97,8 @@ export const updateStudentById = async (req, res, next) => {
       student,
     });
   } catch (error) {
-    next(error);
+    console.log("Error: ", error)
+    res.status(400).json({error: error.message})
   }
 };
 
@@ -269,7 +270,7 @@ export const uploadcvfile= async (req, res) =>{
 }
 
 //GetStudentCV
-//Upload a file
+
 export const getcvfile= async (req, res) =>{
   try{
     const __filename = fileURLToPath(import.meta.url);
@@ -286,6 +287,7 @@ export const getcvfile= async (req, res) =>{
     const cvfile=student.CV;
     const cvPath = path.join(tempDir, cvfile);
 
+    res.contentType("application/pdf");
     res.download(cvPath, cvfile, (err)=>{
       if(err){
         return res.status(500).send('Error downloading CV');
