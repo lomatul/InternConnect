@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 import bcrypt from 'bcrypt';
 
 const studentSchema = new mongoose.Schema({
@@ -46,8 +45,5 @@ const studentSchema = new mongoose.Schema({
 
   updatedAt: { type: Date, default: Date.now },
 });
-
-// Static login method
-
 
 export default mongoose.model("Student", studentSchema);
