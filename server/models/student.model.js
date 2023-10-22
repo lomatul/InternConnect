@@ -40,6 +40,8 @@ const studentSchema = new mongoose.Schema({
 
   finalGrade: { type: String },
 
+  bio: { type: String },
+
   createdAt: { type: Date, default: Date.now },
 
   updatedAt: { type: Date, default: Date.now },
