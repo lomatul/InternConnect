@@ -26,7 +26,7 @@ router.get('/students', getAllStudents);
 
 router.get('/getStudent/:student_id ', getStudentById);
 
-router.put('/updateStudent/:student_id ', updateStudentById);
+router.patch('/updateStudent/:student_id', updateStudentById);
 
 router.delete('/deleteStudent/:student_id ', deleteStudentById);
 
