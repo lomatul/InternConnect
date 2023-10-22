@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
-import sendPasswordResetEmail from "./forget.password.mailsender.js";import path from 'path';
+import sendPasswordResetEmail from "./forget.password.mailsender.js";
+import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
-import path from 'path';
 
 
 
