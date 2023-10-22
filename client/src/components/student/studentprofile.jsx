@@ -48,7 +48,7 @@ const StudentProfile = () => {
     setEditMode(false);
 
     try {
-      const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${student_id}`, {
+      const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${userData.Id}`, {
         name: userData.name,
         email: userData.email,
         bio: userData.bio,

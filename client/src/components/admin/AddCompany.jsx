@@ -4,6 +4,14 @@ import axios from "axios";
 
 
 const Add = () => {
+  const [selectedFile, setSelectedFile] = useState([]);
+
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0])
+    console.log("file", selectedFile)
+  }
+
+  
 
   const [formData, setFormData] = useState({
     companyID: "",
@@ -18,6 +26,40 @@ const Add = () => {
     status: "",
   });
 
+  const handlefileSubmit = async(event) => {
+    event.preventDefault()
+  
+    const formDatafile = new FormData();
+    formDatafile.append("file", selectedFile);
+    console.log(formDatafile)
+    try {
+        await axios.post('http://localhost:4000/InterConnect/admin/uploadcompanyfile', formDatafile, {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Set the content type for file upload
+          },
+        }).then((response)=>{
+            console.log(response)
+        }).catch((error)=>{
+            if (error.response) {
+                console.log(error.response);
+                console.log("server responded");
+              } else if (error.request) {
+                console.log("network error");
+              } else {
+                console.log(error);
+              }
+        });
+  
+        // if (response.status === 200) {
+        //   console.log('File uploaded successfully');
+        // } else {
+        //   console.error('File upload failed');
+        // }
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+      setSelectedFile(null)
+  }
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -49,8 +91,8 @@ const Add = () => {
             <div className="details">
             <label htmlFor="">Add Companies by Xcell Upload</label>
             <div className="xcellupload">
-              <input type="file" />
-              <button>Create</button>
+              <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
+              <button onClick={handlefileSubmit}>Create</button>
             </div>
           
               <label htmlFor="name">Company Title<span>*</span></label> 

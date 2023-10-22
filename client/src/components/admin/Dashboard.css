@@ -55,6 +55,20 @@
   -webkit-transition: all 0.5s;
 }
 
+#sidebar a:-webkit-any-link {
+  color: rgb(7, 7, 7); /* Change the color to red */
+  cursor: pointer;
+
+}
+
+#sidebar a:hover
+{
+  color: #852c0b;
+}
+
+
+
+
 .sidebar-title {
   display: flex;
   justify-content: space-between;
@@ -82,11 +96,7 @@
 .sidebar-responsive {
   display: inline !important;
   position: absolute;
-  /*
-    we want the z-index of the sidebar higher so that
-    the charts are not showing over the sidebar 
-    on small screens
-  */
+
   z-index: 12 !important;
 }
 

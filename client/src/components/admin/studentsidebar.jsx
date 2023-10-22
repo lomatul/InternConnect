@@ -53,16 +53,16 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                      Home
                 </a></MenuItem>
                
-                    <MenuItem icon={<img src="stu.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    <a href=" /Student"> Profile</a></MenuItem>
+                    <MenuItem  icon={<img src="stu.png"alt="InternConnect Logo"   style={{width: '20px', height: '20px' }}   />}>
+                    <a  href=" /Student"> Profile</a></MenuItem>
                     <MenuItem icon={<img src="cvcv.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     <a href=" /AddCV"> CV Upload </a></MenuItem>
                     <MenuItem icon={<img src="com.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     <a href=" /SeeCompanies"> CompanyList </a></MenuItem>
-                    <MenuItem icon={<img src="notifi.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    <MenuItem icon={<img src="per.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     <a href=" /Addprefer"> Prefernces </a></MenuItem> 
-                    <MenuItem icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    <button onClick={handleClick}>Log out</button></MenuItem>
+                    <MenuItem onClick={handleClick} icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
+                    Log out</MenuItem>
 
             </Menu>
       
