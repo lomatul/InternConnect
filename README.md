@@ -3,7 +3,8 @@
 ## PROJECT TITLE: InternConnect  (Internship Management System)
 
 
-![Ourlogo](https://github.com/lomatul/InternConnect/assets/90206489/826562a1-3377-422b-acf7-d363a8fd469c)
+![logo](https://github.com/lomatul/InternConnect/assets/90206489/d1961b75-8fd3-45d9-a386-b6aff18cf60d)
+
 
 
 ## Current Phase :
