@@ -9,6 +9,8 @@ import {
   updatePasswordById,
   postlogin,
   logout,
+  sendOTPForPasswordReset,
+  resetPasswordWithOTP,
   uploadcvfile,
   getcvfile
 } from '../controllers/student.controller.js';
@@ -41,4 +43,8 @@ router.get('/getcv/:student_id', getcvfile)
 
 
 router.get("/logout", logout);
+
+router.post("/forgetPassword", sendOTPForPasswordReset);
+router.post("/resetPassword/:student_id", resetPasswordWithOTP);
+
 export default router;

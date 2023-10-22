@@ -4,6 +4,7 @@ import {
   getAllCompanies,
   getCompanyById,
   updateCompanyById,
+  updateCompanyStatusByEmail,
   deleteCompanyById,
 } from '../controllers/company.controller.js';
 
@@ -16,6 +17,8 @@ router.get('/companies', getAllCompanies);
 router.get('/getCompany/:companyID', getCompanyById);
 
 router.put('/updateCompany/:companyID', updateCompanyById);
+
+router.put('/updateCompanyStatus/:email', updateCompanyStatusByEmail); 
 
 router.delete('/deleteCompany/:companyID', deleteCompanyById);
 
