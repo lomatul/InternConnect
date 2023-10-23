@@ -5,13 +5,28 @@ import axios from "axios";
 
 const Add = () => {
   const [selectedFile, setSelectedFile] = useState([]);
+  const [emailError, setEmailError] = useState('');
+  const [contactNumberError, setContactNumberError] = useState('');
+
 
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0])
     console.log("file", selectedFile)
   }
 
-  
+
+  const isEmailValid = (email) => {
+    const emailPattern = /^[a-z0-9._-]+@[a-z0-9.-]+(?:\.[a-z]{2,4}){1,}$/i;
+    return emailPattern.test(email);
+  };
+
+
+  const isContactNumberValid = (contactNumber) => {
+    const contactNumberPattern = /^01\d{9}$/;
+    return contactNumberPattern.test(contactNumber);
+  };
+
+
 
   const [formData, setFormData] = useState({
     companyID: "",
@@ -60,13 +75,40 @@ const Add = () => {
       }
       setSelectedFile(null)
   }
+
+
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === 'contactNumber') {
+      // Use a regular expression to match digits only
+      const numericValue = value.replace(/\D/g, ''); // Remove non-digit characters
+  
+      setFormData({ ...formData, [name]: numericValue });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Check if the email is valid
+    if (!isEmailValid(formData.email)) {
+      setEmailError('Please enter a valid email address');
+      return;
+    } else {
+      setEmailError('');
+    }
+
+    // Check if the contact number is valid
+    if (!isContactNumberValid(formData.contactNumber)) {
+      setContactNumberError('Contact number should start with "01" and have 11 digits');
+      return;
+    } else {
+      setContactNumberError('');
+    }
 
     try {
       const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
@@ -106,9 +148,11 @@ const Add = () => {
 
               <label htmlFor="email">Email <span>*</span></label>
               <input type="text" name="email" value={formData.email} onChange={handleChange} />
+              {emailError && <div class="error-message">{emailError}</div>} 
 
               <label htmlFor="contactNumber">Contact Number<span>*</span></label>
-              <input type="number" name="contactNumber" min="0" value={formData.contactNumber} onChange={handleChange} />
+              <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
+              {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
 
               <label htmlFor="maxInterns">Max Interns</label>
               <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
