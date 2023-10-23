@@ -19,7 +19,7 @@ import SeeCompanies from "./Pages/SeeCompany";
 import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
 import { useAuthContext } from "./context/useAuthcontext";
-
+import SendNotifi from "./Pages/AddNotification";
 
 
 
