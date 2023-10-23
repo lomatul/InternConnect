@@ -1,28 +1,58 @@
 .admin-profile {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
     width: 900px;
-    height: 300px;
-    margin-top: 150px;
+    height: 200px;
+    margin-top: 50px;
     margin-left: 150px;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    outline: 2px solid black;
+  
+  }
+  .view-profile2{
+    margin: 0 ;
+    position: relative;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+  }
+
+  .view-profile2 h3 {
+      margin: 0;
+      margin-right: 30px;
+  }
+
+  .view-profile2 p{
+    margin-left: 30px;
+  }
+
+  .view-profile2 .link{
+    color: #3939c3;
+    text-decoration: underline;
+    cursor: pointer;
   }
   
   .edit-profile {
-    text-align: center;
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .edit-profile label {
+    margin-top: 20px;
+    color: blue;
+    font-size: 16px;
   }
   
   .edit-profile input[type="text"],
     textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
+      color: #000000;
+      padding: 15px;
+      width: 80%;
+      background-color: #dfe8e8;
+      border-radius: 10px;
     }
   
     .edit-profile button {
@@ -47,7 +77,8 @@
   
   
   .view-profile {
-    text-align: center;
+    /* text-align: center; */
+    margin-bottom: 50px;
   }
   
     .view-profile img {
@@ -66,12 +97,14 @@
       margin: 5px 0;
     }
   
-    .view-profile button {
+    .admin-profile button {
         border: none;
-        margin-top: 10px;
+        margin-right: 100px;
+        margin-bottom: 100px;
         padding: 20px;
         font-weight: 500;
         font-size: 18px;
+        height: 50px;
         width: 200px;
         cursor: pointer;
         border-radius: 10px;
