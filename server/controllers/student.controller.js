@@ -176,7 +176,7 @@ export const loginStudent = async (req, res) => {
 
 //login with passport
 export const postlogin = (req, res, next) => {
-  console.log("came in postlogin", req.body);
+  // console.log("came in postlogin", req.body);
 
   passport.authenticate("local", (err, user, info) => {
     if (err) {

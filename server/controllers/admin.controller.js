@@ -6,7 +6,7 @@ import passport from 'passport';
 
 export const postlogin= (req, res, next) =>{
 
-    console.log("came in postlogin", req.body)
+    // console.log("came in postlogin", req.body)
   
     
     
