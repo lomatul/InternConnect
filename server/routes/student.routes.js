@@ -12,7 +12,8 @@ import {
   sendOTPForPasswordReset,
   resetPasswordWithOTP,
   uploadcvfile,
-  getcvfile
+  getcvfile,
+  setpreference
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 
@@ -46,6 +47,8 @@ router.post("/resetPassword/:student_id", resetPasswordWithOTP);
 router.post('/uploadCV/:student_id', Upload.single('file'), uploadcvfile);
 
 router.get('/getcv/:student_id', getcvfile)
+
+router.post('/setprefer/:student_id', setpreference)
 
 
 export default router;

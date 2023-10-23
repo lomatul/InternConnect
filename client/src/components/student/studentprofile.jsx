@@ -10,6 +10,7 @@ import {useAuthContext} from "../../context/useAuthcontext"
 const StudentProfile = () => {
   const { userstudent } = useAuthContext();
   const [loading, setLoading] = useState(true);
+  const [img, setimg] = useState('')
   
   // State to manage user data and edit mode
   const [userData, setUserData] = useState({
@@ -41,11 +42,60 @@ const StudentProfile = () => {
     setEditMode(true);
   };
 
+  const handleimagesave = () => {
+    return new Promise(async (resolve, reject) => {
+      const formData = new FormData();
+      formData.append("file", newImage);
+      formData.append("upload_preset", "Product_image");
+  
+      try {
+        const response = await axios.post(
+          "https://api.cloudinary.com/v1_1/dcpremwwm/image/upload",
+          formData
+        );
+        console.log("Cloudinary", response.data.secure_url);
+        setimg(response.data.secure_url);
+        resolve(response.data.secure_url);
+      } catch (error) {
+        console.log(error);
+        reject(error);
+      }
+    });
+  };
+  
+
   const handleSaveClick = async() => {
+    console.log(userData)
     // Save the updated user data to your backend
     // Disable edit mode
     setEditMode(false);
-
+    if(newImage){
+      try{
+      // handleimagesave()
+      // console.log("image", img)
+      const imgURL =await handleimagesave();
+      console.log("image", imgURL);
+      try {
+        const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${userData.Id}`, {
+          name: userData.name,
+          email: userData.email,
+          bio: userData.bio,
+          image:imgURL
+        });
+        // Handle the response if needed
+        console.log(response.data); // This is just for demonstration
+      } catch (error) {
+        // Handle errors
+        console.error(error);
+      }
+  
+    }catch(error){
+      
+        // Handle errors from handleimagesave
+        console.error(error);
+      }
+    }
+    else{
     try {
       const response = await axios.patch(`http://localhost:4000/InterConnect/student/updateStudent/${userData.Id}`, {
         name: userData.name,
@@ -59,7 +109,7 @@ const StudentProfile = () => {
       console.error(error);
     }
 
-  };
+  }};
 
   const handleImageChange = (e) => {
     // Handle image selection
@@ -109,7 +159,7 @@ const StudentProfile = () => {
       ) : (
         <div className="view-profile">
           <img
-            src={userData.profileImage}
+            src={userstudent.image}
             alt="Profile"
           />
 
