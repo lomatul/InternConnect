@@ -18,8 +18,7 @@ import Addprefer from "./Pages/Addprefenrece";
 import SeeCompanies from "./Pages/SeeCompany";
 import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
-
-
+import SendNotifi from "./Pages/AddNotification";
 
 
 
@@ -48,6 +47,10 @@ function App() {
         <Route path="/Addprefer" element = {<Addprefer/>} />
         <Route path="/SeeCompanies" element = {<SeeCompanies/>} />
         <Route path="/SeeStudents" element = {<Studentslist/>} />
+        <Route path="/SendNotification" element = {<SendNotifi/>} />
+
+
+
 
       </Routes>
     </BrowserRouter>
