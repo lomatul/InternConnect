@@ -72,61 +72,99 @@ const StudentProfile = () => {
   return (
     
     <div className="admin-profile">
-
-      {editMode ? (
-        <div className="edit-profile">
-          <input
-            type="text"
-            name="name"
-            value={userData.name}
-            onChange={(e) =>
-              setUserData({ ...userData, name: e.target.value })
-            }
-          />
-          <input
-            type="text"
-            name="email"
-            value={userData.email}
-            onChange={(e) =>
-              setUserData({ ...userData, email: e.target.value })
-            }
-          />
-          <textarea
-            name="bio"
-            value={userData.bio}
-            onChange={(e) =>
-              setUserData({ ...userData, bio: e.target.value })
-            }
-          />
-          <input
-            type="file"
-            name="profileImage"
-            accept="image/*"
-            onChange={handleImageChange}
-          />
-          <button onClick={handleSaveClick}>Save</button>
-        </div>
-      ) : (
         <div className="view-profile">
           <img
             src={userData.profileImage}
             alt="Profile"
           />
-
-        {/* <img
-            src="student.gif"
-            alt="InternConnect Logo"
-            style={{ width: '100px', height: '100px' }}
-        /> */}
           <h2>Name : <span>{userData.name}</span></h2>
           <p>ID : <span>{userData.Id}</span></p>
           <p>Email : <span>{userData.email}</span></p>
           <p>Computer Science and Engineering Department</p>
           <p>{userData.bio}</p>
-          <button onClick={handleEditClick}>Edit</button>
+        </div>
+
+        <button onClick={handleEditClick}>Edit Profile</button>
+        <button onClick={handleEditClick}>Update Password</button>
+        <button onClick={handleEditClick}>Edit</button>
+
+{editMode ? (
+        <div className="edit-profile">
+          <label htmlFor=""> Hobby</label>
+          <input
+            type="text"
+            name="Hobby"
+            value={userData.name}
+            onChange={(e) =>
+              setUserData({ ...userData, name: e.target.value })
+            }
+          />
+           <label htmlFor=""> Skills</label>
+          <input
+            type="text"
+            name="Skills"
+            value={userData.email}
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
+          />
+           <label htmlFor=""> Language Prefernce</label>
+          <input
+            type="text"
+            name="Language Prefernce"
+            value={userData.email}
+            onChange={(e) =>
+              setUserData({ ...userData, email: e.target.value })
+            }
+          />
+           <label htmlFor=""> Experience</label>
+
+          <textarea
+            name="Experience"
+            value={userData.bio}
+            onChange={(e) =>
+              setUserData({ ...userData, bio: e.target.value })
+            }
+          />
+          <label htmlFor="" >Upload your Profile Picture</label>
+          <input  
+           style={{ marginTop: '20px' }}
+            type="file"
+            name="profileImage"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          <button style={{ marginTop: '40px' }} onClick={handleSaveClick}>Save</button>
+        </div>
+      ) : (
+        <div className="view-profile">
+
+         <div className="view-profile2">
+          <h3>Hobby :</h3>
+          <p><span>{userData.Id}</span></p>
+          </div>
+          <div className="view-profile2">
+          <h3>Skills :</h3>
+          <p> <span>{userData.email}</span></p>
+          </div>
+          <div className="view-profile2">
+          <h3>Language Efficiency  :</h3>
+          <p><span>{userData.email}</span></p>
+          </div>
+          <div className="view-profile2">
+          <h3>Past Experiences  :</h3>
+          <p><span>{userData.bio}</span></p>
+
+          </div>
+          <div className="view-profile2">
+          <h2>Projects</h2>
+
+        
+          </div>
+          <div className="view-profile2">
+        </div>
         </div>
       )}
-
 
 </div>
 

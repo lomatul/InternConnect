@@ -167,19 +167,12 @@ input::placeholder{
   border-radius: 10px;
 }
 
-/* .add .addcontainer .addsections .details li {
-  color: #000000;
-  height: 30px;
-  width: 400px;
-  background-color: #dfe8e8;
-  border-radius: 10px;
-} */
 
 
 .add .addcontainer .addsections .details input:hover,
 .add .addcontainer .addsections .details select:hover,
 .add .addcontainer .addsections .details textarea:hover {
-  box-shadow: #3dabb3;
+  box-shadow: 0 0 5px rgba(18, 37, 74, 0.2);
 } 
 
 
