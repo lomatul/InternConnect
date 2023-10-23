@@ -38,6 +38,9 @@ const SendNotification = () => {
             <div className="details">
               <label htmlFor="">Short Description<span>*</span></label>
               <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
+              <label htmlFor="">Subject<span>*</span></label>
+              <input type="text"/>
+                
               <label htmlFor="">Select Recipient<span>*</span></label>
               <select onChange={handleRecipientTypeChange} value={recipientType}>
                 <option value="All">All Students</option>
