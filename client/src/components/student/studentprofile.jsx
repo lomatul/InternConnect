@@ -118,7 +118,6 @@ const StudentProfile = () => {
             }
           />
            <label htmlFor=""> Experience</label>
-
           <textarea
             name="Experience"
             value={userData.bio}
@@ -126,6 +125,16 @@ const StudentProfile = () => {
               setUserData({ ...userData, bio: e.target.value })
             }
           />
+
+          <label htmlFor=""> link </label>
+          <textarea
+            name="link"
+            value={userData.bio}
+            onChange={(e) =>
+              setUserData({ ...userData, bio: e.target.value })
+            }
+          />
+
           <label htmlFor="" >Upload your Profile Picture</label>
           <input  
            style={{ marginTop: '20px' }}
@@ -134,6 +143,9 @@ const StudentProfile = () => {
             accept="image/*"
             onChange={handleImageChange}
           />
+
+
+
           <button style={{ marginTop: '40px' }} onClick={handleSaveClick}>Save</button>
         </div>
       ) : (
@@ -143,24 +155,33 @@ const StudentProfile = () => {
           <h3>Hobby :</h3>
           <p><span>{userData.Id}</span></p>
           </div>
+
+
           <div className="view-profile2">
           <h3>Skills :</h3>
           <p> <span>{userData.email}</span></p>
           </div>
+
+
           <div className="view-profile2">
           <h3>Language Efficiency  :</h3>
           <p><span>{userData.email}</span></p>
           </div>
+
+
           <div className="view-profile2">
           <h3>Past Experiences  :</h3>
           <p><span>{userData.bio}</span></p>
-
           </div>
+
           <div className="view-profile2">
-          <h2>Projects</h2>
-
-        
+          <h3>Externel Link :</h3>
+          <p className='link'><span>{userData.bio}</span></p>
           </div>
+
+
+
+
           <div className="view-profile2">
         </div>
         </div>

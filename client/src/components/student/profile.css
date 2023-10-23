@@ -28,6 +28,12 @@
   .view-profile2 p{
     margin-left: 30px;
   }
+
+  .view-profile2 .link{
+    color: #3939c3;
+    text-decoration: underline;
+    cursor: pointer;
+  }
   
   .edit-profile {
     display: flex; 
