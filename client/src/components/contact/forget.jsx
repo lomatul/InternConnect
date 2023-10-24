@@ -30,7 +30,7 @@ function Forgets() {
         await axios.post('http://localhost:4000/InterConnect/student/forgetPassword', { student_id })
           .then((response) => {
             console.log(response);
-
+            navigate("/Updatepassword", {state: {Id:student_id, from:1}});
             // // Open the modal
             // <div className="openModalBtn" onClick={() => {
             //   setModalOpen(true); }} > Open  </div> 

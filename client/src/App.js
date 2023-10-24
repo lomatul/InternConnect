@@ -36,22 +36,22 @@ function App() {
         <Route path="/login" element = {<Login/>} />
         <Route path="/Updatepassword" element = {<LoginNewPassword/>} />
         <Route path="/About" element = {<Aboutus/>} />
-        <Route path="/CompanyList" element = {useradmin&&<Companies/>} />
+        <Route path="/CompanyList" element = {useradmin?<Companies/>:<Page404/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
-        <Route path="/Admin" element = {useradmin&&<Admin/>} />
-        <Route path="/AddCompany" element = {useradmin&&<AddCompany/>} />
+        <Route path="/Admin" element = {useradmin?<Admin/>:<Page404/>} />
+        <Route path="/AddCompany" element = {useradmin?<AddCompany/>:<Page404/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
-        <Route path="/Student" element = {userstudent&&<Students/>} />
+        <Route path="/Student" element = {userstudent?<Students/>:<Page404/>} />
         <Route path="/Adminlogin" element = {<AdminLogin/>} />
-        <Route path="/AddStudent" element = {useradmin&&<AddStudent/>} />
+        <Route path="/AddStudent" element = {useradmin?<AddStudent/>:<Page404/>} />
         <Route path="/NotFound" element = {<Page404/>} />
-        <Route path="/AddCV" element = {userstudent&&<Addcv/>} />
-        <Route path="/Addprefer" element = {userstudent&&<Addprefer/>} />
-        <Route path="/SeeCompanies" element = {userstudent&&<SeeCompanies/>} />
-        <Route path="/SeeStudents" element = {useradmin&&<Studentslist/>} />
-        <Route path="/SendNotifi" element = {useradmin&&<SendNotifi/>} />
+        <Route path="/AddCV" element = {userstudent?<Addcv/>:<Page404/>} />
+        <Route path="/Addprefer" element = {userstudent?<Addprefer/>:<Page404/>} />
+        <Route path="/SeeCompanies" element = {userstudent?<SeeCompanies/>:<Page404/>} />
+        <Route path="/SeeStudents" element = {useradmin?<Studentslist/>:<Page404/>} />
+        <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
 
       </Routes>
     </BrowserRouter>

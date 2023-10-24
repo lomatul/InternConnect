@@ -4,14 +4,17 @@ import axios from "axios";
 // import "./Add.css";
 import { useState, useEffect } from 'react';
 import {useAuthContext} from "../../context/useAuthcontext"
+import { useNavigate } from 'react-router-dom';
 
-const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
-const student_id = user.student_id
+// const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
+// const student_id = user.student_id
 
 const StudentProfile = () => {
+  const navigate = useNavigate();
   const { userstudent } = useAuthContext();
   const [loading, setLoading] = useState(true);
   const [img, setimg] = useState('')
+  const [user, setUser] = useState('')
   
   // State to manage user data and edit mode
   const [userData, setUserData] = useState({
@@ -37,6 +40,34 @@ const StudentProfile = () => {
     // Update the 'userData' state with the fetched data
     // For simplicity, we are using mock data here.
   }, [userstudent]);
+
+  useEffect(()=>{
+    if(userData){
+    try {
+        console.log("came here",userData.Id)
+        axios.get('http://localhost:4000/InterConnect/student/getOnestudent/'+userData.Id).then((response)=>{
+          setUserData({
+        name: response.data.students.name,
+        Id: userstudent.data.students.student_id,
+        email: userstudent.data.students.email,
+        bio: userstudent.data.students.bio,
+      });
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }
+  })
+
 
   const handleEditClick = () => {
     // Enable edit mode
@@ -117,6 +148,10 @@ const StudentProfile = () => {
     const file = e.target.files[0];
     setNewImage(file);
   };
+
+  const navigateto =() => {
+    navigate("/Updatepassword", {state: {Id:userData.Id, from:1}});
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -143,7 +178,7 @@ const StudentProfile = () => {
         <div className="profile-info">
          
           <button onClick={handleEditClick}>Edit Profile</button>
-        <button ><a href="/Updatepassword"> Update Password</a></button>
+        <button onClick={navigateto}> Update Password</button>
       
         </div>
       
