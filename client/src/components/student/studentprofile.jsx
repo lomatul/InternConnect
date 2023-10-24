@@ -26,6 +26,7 @@ const StudentProfile = () => {
     languageEfficiency: '',
     pastExperiences: '',
     externalLinks: '',
+    image: ''
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -59,6 +60,7 @@ const StudentProfile = () => {
             languageEfficiency: response.data.student.languageEfficiency,
             pastExperiences: response.data.student.pastExperiences,
             externalLinks: response.data.student.externalLinks,
+            image: response.data.student.image
           });
       }).catch((error)=>{
           if (error.response) {
