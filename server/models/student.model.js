@@ -12,9 +12,9 @@ const studentSchema = new mongoose.Schema({
 
   CV: { type: String },
 
-  companyPreferences: [{ type: String }],
+  companyPreferences: [{key:{type:Number}, value:{type:String}}],
 
-  domainPreferences: [{ type: String }],
+  domainPreferences: [{key:{type:Number}, value:{type:String}}],
 
   CGPA: { type: Number },
 
@@ -44,6 +44,8 @@ const studentSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
 
   updatedAt: { type: Date, default: Date.now },
+
+  image: {type:String}
 });
 
 export default mongoose.model("Student", studentSchema);

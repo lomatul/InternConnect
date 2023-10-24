@@ -84,7 +84,8 @@ export const getStudentById = async (req, res, next) => {
 export const updateStudentById = async (req, res) => {
   try {
     const { student_id } = req.params;
-    const { name, email, bio } = req.body;
+    const { name, email, bio, image} = req.body;
+    console.log("Image", image)
 
     const student = await Student.findOne({ student_id });
 
@@ -96,6 +97,9 @@ export const updateStudentById = async (req, res) => {
     student.name = name;
     student.email = email;
     student.bio = bio;
+    if(image){
+      student.image=image
+    }
 
     // Save the updated student
     await student.save();
@@ -172,7 +176,7 @@ export const loginStudent = async (req, res) => {
 
 //login with passport
 export const postlogin = (req, res, next) => {
-  console.log("came in postlogin", req.body);
+  // console.log("came in postlogin", req.body);
 
   passport.authenticate("local", (err, user, info) => {
     if (err) {
@@ -399,5 +403,58 @@ export const getcvfile= async (req, res) =>{
       // next(error);
       res.status(400).json({error: error.message})
     }
+}
+
+///setStudent preference
+export const setpreference = async (req, res) =>{
+  try{
+    const {firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain} = req.body;
+    // console.log(firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain)
+    const {student_id} = req.params;
+    // console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    const preferences = [
+      { key: 1, value: firstchoicecompany },
+      { key: 2, value: secondchoicecompany },
+      { key: 3, value: thirdchoicecompany }
+    ];
+
+    // Update or add preferences to the student's companyPreferences
+    for (const preference of preferences) {
+      const existingPreference = student.companyPreferences.find(p => p.key === preference.key);
+      if (existingPreference) {
+        existingPreference.value = preference.value;
+      } else {
+        student.companyPreferences.push(preference);
+      }
+    }
+
+    const preferencesdomain = [
+      { key: 1, value: firstchoicedomain },
+      { key: 2, value: secondchoicedomain },
+      { key: 3, value: thirdchoicedomain }
+    ];
+
+    for (const domainpreference of preferencesdomain) {
+      const existingPreference = student.domainPreferences.find(p => p.key === domainpreference.key); //const existingPreference = Student.find({student_id: student_id, "domainPreferences.key" : domainpreference.key});
+      if (existingPreference) {
+        existingPreference.value = domainpreference.value;
+      } else {
+        student.domainPreferences.push(domainpreference);
+      }
+    }
+
+    await student.save();
+    // console.log(student.companyPreferences[0].key) 
+    res.status(200).json({ message: 'Preferences updated successfully' });   
+  }catch (error) {
+    console.error(error);
+    res.status(400).json({ message: error.message });
+  }
+  
+
 }
     

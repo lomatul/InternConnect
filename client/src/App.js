@@ -18,6 +18,7 @@ import Addprefer from "./Pages/Addprefenrece";
 import SeeCompanies from "./Pages/SeeCompany";
 import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
+import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
 
 
@@ -25,6 +26,9 @@ import SendNotifi from "./Pages/AddNotification";
 
 
 function App() {
+  const { userstudent } = useAuthContext()
+  const {useradmin} = useAuthContext()
+  
   return (
     <BrowserRouter>
       <Routes>
@@ -32,25 +36,21 @@ function App() {
         <Route path="/login" element = {<Login/>} />
         <Route path="/Updatepassword" element = {<LoginNewPassword/>} />
         <Route path="/About" element = {<Aboutus/>} />
-        <Route path="/CompanyList" element = {<Companies/>} />
+        <Route path="/CompanyList" element = {useradmin&&<Companies/>} />
         <Route path="/Guildeline" element = {<Guildeline/>} />
-        <Route path="/Admin" element = {<Admin/>} />
-        <Route path="/AddCompany" element = {<AddCompany/>} />
+        <Route path="/Admin" element = {useradmin&&<Admin/>} />
+        <Route path="/AddCompany" element = {useradmin&&<AddCompany/>} />
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
-        <Route path="/Student" element = {<Students/>} />
+        <Route path="/Student" element = {userstudent&&<Students/>} />
         <Route path="/Adminlogin" element = {<AdminLogin/>} />
-        <Route path="/AddStudent" element = {<AddStudent/>} />
+        <Route path="/AddStudent" element = {useradmin&&<AddStudent/>} />
         <Route path="/NotFound" element = {<Page404/>} />
-        <Route path="/AddCV" element = {<Addcv/>} />
-        <Route path="/Addprefer" element = {<Addprefer/>} />
-        <Route path="/SeeCompanies" element = {<SeeCompanies/>} />
-        <Route path="/SeeStudents" element = {<Studentslist/>} />
-        <Route path="/SendNotification" element = {<SendNotifi/>} />
-
-
-
+        <Route path="/AddCV" element = {userstudent&&<Addcv/>} />
+        <Route path="/Addprefer" element = {userstudent&&<Addprefer/>} />
+        <Route path="/SeeCompanies" element = {userstudent&&<SeeCompanies/>} />
+        <Route path="/SeeStudents" element = {useradmin&&<Studentslist/>} />
 
       </Routes>
     </BrowserRouter>
