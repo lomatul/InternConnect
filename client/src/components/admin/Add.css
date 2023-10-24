@@ -192,3 +192,6 @@ input::placeholder{
 }
 
 
+.error-message {
+  color: red;
+}
