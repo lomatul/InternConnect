@@ -25,7 +25,7 @@ router.post('/createStudent', createStudent);
 
 router.get('/students', getAllStudents);
 
-router.get('/getStudent/:student_id ', getStudentById);
+router.get('/getStudent/:student_id', getStudentById);
 
 router.patch('/updateStudent/:student_id', updateStudentById);
 
