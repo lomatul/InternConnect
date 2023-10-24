@@ -39,6 +39,7 @@ const Add = () => {
     internsHired: "",
     contactNumber: "",
     status: "",
+    description: ""
   });
 
   const handlefileSubmit = async(event) => {
@@ -118,6 +119,19 @@ const Add = () => {
       console.error('An error occurred:', error);
       // Handle the error cases
     }
+    setFormData({
+      companyID: "",
+      name: "",
+      address: "",
+      email: "",
+      requiredDomain: "",
+      minInterns: "",
+      maxInterns: "",
+      internsHired: "",
+      contactNumber: "",
+      status: "",
+      description: ""
+    })
   };
 
 
@@ -141,7 +155,7 @@ const Add = () => {
               <input type="text" name="name" placeholder="Give Company name" value={formData.name} onChange={handleChange}/>
   
               <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
+              <textarea name="description" id="" placeholder="Short description of the company" cols="30" rows="10" value={formData.description} onChange={handleChange}></textarea>
   
               <label htmlFor="address">Address<span>*</span></label>
               <input type="text" name="address" value={formData.address} onChange={handleChange} />
