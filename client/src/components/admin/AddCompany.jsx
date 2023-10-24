@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import "./Add.css";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Add = () => {
@@ -55,10 +58,12 @@ const Add = () => {
           },
         }).then((response)=>{
             console.log(response)
+            toast.success('File uploaded successfully', { position: "top-right" });
         }).catch((error)=>{
             if (error.response) {
                 console.log(error.response);
                 console.log("server responded");
+                toast.error('File upload failed', { position: "top-right" });
               } else if (error.request) {
                 console.log("network error");
               } else {
@@ -114,9 +119,11 @@ const Add = () => {
     try {
       const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
       console.log('Response:', response.data);
+      toast.success('Company created successfully', { position: "top-right" });
       // Handle success and error cases
     } catch (error) {
       console.error('An error occurred:', error);
+      toast.error('Failed to create the company', { position: "top-right" });
       // Handle the error cases
     }
     setFormData({
@@ -145,7 +152,7 @@ const Add = () => {
           </div>  */}
   
             <div className="details">
-            <label htmlFor="">Add Companies by Xcell Upload</label>
+            <label htmlFor="">Add Companies by Excel Upload</label>
             <div className="xcellupload">
               <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
               <button onClick={handlefileSubmit}>Create</button>
@@ -215,7 +222,9 @@ const Add = () => {
           </div>
           </form>
         </div>
+        
       </div>
+      
     );
   };
 export default Add
