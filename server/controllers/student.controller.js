@@ -193,7 +193,7 @@ export const loginStudent = async (req, res) => {
 export const postlogin = (req, res, next) => {
   // console.log("came in postlogin", req.body);
 
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("student", (err, user, info) => {
     if (err) {
       console.error("Authentication error:", err);
       return res.status(500).json({ error: "Authentication error" });

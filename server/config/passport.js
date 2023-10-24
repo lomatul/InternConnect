@@ -49,7 +49,7 @@ const authadmin= async (username, password, done) => {
   return done(null, user);
 }
 
-passport.use(
+passport.use('student',
     new LocalStrategy({usernameField: 'student_id', passwordField: 'password'},authstudent)
 );
 

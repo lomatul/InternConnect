@@ -2,8 +2,9 @@ import "./contact.css";
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import Modal from "../modal/modal";
 import "../modal/Modal.css"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Forgets() {
   const navigate = useNavigate();
@@ -30,16 +31,15 @@ function Forgets() {
         await axios.post('http://localhost:4000/InterConnect/student/forgetPassword', { student_id })
           .then((response) => {
             console.log(response);
+            toast.success('OTP Sent successfully', { position: "top-right" });
             navigate("/Updatepassword", {state: {Id:student_id, from:1}});
-            // // Open the modal
-            // <div className="openModalBtn" onClick={() => {
-            //   setModalOpen(true); }} > Open  </div> 
-            //    {modalOpen && <Modal setOpenModal={setModalOpen} />}
+          
           })
           .catch((error) => {
             if (error.response) {
               console.log(error.response);
               console.log("server responded");
+              toast.error('OTP Send failed', { position: "top-right" });
             } else if (error.request) {
               console.log("network error");
             } else {
@@ -71,20 +71,11 @@ function Forgets() {
               </figure>
             </div>
 
-                          
-            <div className="openModalBtn" onClick={() => {
-                          setModalOpen(true); }} > Open  </div> 
-                           {modalOpen && <Modal setOpenModal={setModalOpen} />}
-
+        
             <form action="" className="contact-form">
               <label htmlFor="">Student ID <span>*</span></label>
               <input type="text" min={0} value={student_id} onChange={handleStudentIdChange} />
               <span >{idError}</span>
-
-
-              <button className="openModalBtn" onClick={() => {
-                          setModalOpen(true); }} > Open  </button> 
-                 
 
 
               <button onClick={handleSubmit} style={{ cursor: 'pointer' }}>
@@ -100,7 +91,7 @@ function Forgets() {
         </section>
       </article>
 
-      {modalOpen && <Modal handleClose={handleCloseModal} />}
+    
     </main>
   );
 }
