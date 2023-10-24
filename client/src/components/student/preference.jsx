@@ -72,17 +72,15 @@ const Prefernces = () => {
               <label htmlFor="">Name<span>*</span></label> 
               <input type="text" placeholder="Give name" />
 
-              <label htmlFor="">ID<span>*</span></label>
-              <input type="number" placeholder="Give Student ID" min={0}/>
-
-              <label htmlFor="">Email <span>*</span></label>
+            
+              <label htmlFor=""> Preferable Location (if any) </label>
               <input type="email"/>
   
               <label htmlFor="">Contact Number<span>*</span></label>
               <input type="number" min="0"/>
 
 
-                <h2>Give Company Prefernces</h2>
+                <h2>Give Company Preferences</h2>
               <label htmlFor="">Choice 1<span>*</span> </label>
                      <select value={firstchoicecompany} onChange={(e) => setFirstchoicecompany(e.target.value)}>
                      {companies.map((company) => (
@@ -113,7 +111,7 @@ const Prefernces = () => {
           
             <div className="details">
 
-            <h2>Give Domain Prefernces</h2>
+            <h2>Give Domain Preferences</h2>
               <label htmlFor="">Choice 1 <span>*</span></label>
                       <select onChange={(e) => setFirstchoicedomain(e.target.value)}>
                         <option value="Software Engineer ">Software Engineer </option>
