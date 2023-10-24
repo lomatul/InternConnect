@@ -3,6 +3,10 @@ import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 const UploadCV = () => {
@@ -21,6 +25,7 @@ const UploadCV = () => {
           axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
           if(response.data.student.CV){
             setHascv(true);
+
           }
           }).catch((error)=>{
               if (error.response) {
@@ -87,10 +92,12 @@ const UploadCV = () => {
         },
     }).then((response)=>{
         console.log(response)
+        toast.success('CV uploaded successfully', { position: "top-right" });
     }).catch((error)=>{
         if (error.response) {
             console.log(error.response);
             console.log("server responded");
+            toast.error('Failed to upload', { position: "top-right" });
           } else if (error.request) {
             console.log("network error");
           } else {
@@ -116,11 +123,13 @@ const UploadCV = () => {
         console.log(response)
         var fileName=id+".pdf"
         download(response.data, fileName);
+        
          
     }).catch((error)=>{
         if (error.response) {
             console.log(error.response);
             console.log("server responded");
+            toast.error('Failed to upload', { position: "top-right" });
           } else if (error.request) {
             console.log("network error");
           } else {
