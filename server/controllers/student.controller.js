@@ -407,7 +407,7 @@ export const getcvfile= async (req, res) =>{
     const Preferences = student.domainPreferences.map((item) => item.value).join('-');
     const cvfile = `${Preferences}-${student.CV}`;
     console.log(cvfile)
-    const cvPath = path.join(tempDir, cvfile);
+    const cvPath = path.join(tempDir, student.CV);
 
     res.contentType("application/pdf");
     res.download(cvPath, cvfile, (err)=>{
