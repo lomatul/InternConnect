@@ -20,7 +20,6 @@ import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
 import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
-import ToastMsg from "./components/modal/toast";
 import { Toaster } from 'react-hot-toast';
 
 
