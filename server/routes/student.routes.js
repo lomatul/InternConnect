@@ -13,7 +13,8 @@ import {
   resetPasswordWithOTP,
   uploadcvfile,
   getcvfile,
-  setpreference
+  setpreference,
+  getOneStudentbyId
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 
@@ -49,6 +50,8 @@ router.post('/uploadCV/:student_id', Upload.single('file'), uploadcvfile);
 router.get('/getcv/:student_id', getcvfile)
 
 router.post('/setprefer/:student_id', setpreference)
+
+router.get('/getOnestudent/:student_id', getOneStudentbyId)
 
 
 export default router;
