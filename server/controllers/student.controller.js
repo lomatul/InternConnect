@@ -7,6 +7,7 @@ import sendPasswordResetEmail from "./forget.password.mailsender.js";
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import validator from "validator";
 
 
 
@@ -246,6 +247,9 @@ export const updatePasswordById = async (req, res, next) => {
 
     if (!passwordMatch) {
       return res.status(400).json({ message: "Current password is incorrect" });
+    }
+    if(!validator.isStrongPassword(newPassword)){
+      return res.status(400).json({ message: "New password is not Strong enough" });
     }
 
     // Update the password with the new password

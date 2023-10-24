@@ -72,6 +72,8 @@ const SendNotification = () => {
       console.error('An error occurred:', error);
     }
     }
+    setText('')
+    setSub('')
   };
 
   return (

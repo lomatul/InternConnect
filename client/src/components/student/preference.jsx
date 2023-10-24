@@ -60,6 +60,14 @@ const Prefernces = () => {
     } catch (error) {
       console.error('An error occurred:', error);
     }
+
+    setFirstchoicecompany('');
+    setSecondchoicecompany('');
+    setThirdchoicecompany('');
+    setFirstchoicedomain('');
+    setSecondchoicedomain('');
+    setThirdchoicedomain('')
+
     
   }
   
