@@ -33,49 +33,33 @@ const StudentProfile = () => {
 
   useEffect(() => {
 
-    const fetchUserData = async () => {
-      try {
-        // Fetch user data from your server
-        const response = await axios.get(`http://localhost:4000/InterConnect/student/getStudent/${user.student_id}`);
-        const userData = response.data; 
-        console.log("Response Data:", userData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    // const fetchUserData = async () => {
+    //   console.log("fetch function invocked")
+    //   try {
+    //     // Fetch user data from your server
+    //     const response = await axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userData.Id}`);
+    //     const studentData = response.data; 
+    //     console.log("Response Data:", studentData);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
     
     if (userstudent) {
-      setUserData({
-        name: userstudent.name,
-        Id: userstudent.student_id,
-        email: userstudent.email,
-        bio: userstudent.bio,
-        hobbies: userstudent.hobbies,
-        skills: userstudent.skills,
-        languageEfficiency: userstudent.languageEfficiency,
-        pastExperiences: userstudent.pastExperiences,
-        externalLinks: userstudent.externalLinks,
-      });
-      setLoading(false); // Set loading to false when data is available
-      console.log(userData);
-    } 
-    else {
-      fetchUserData(); // Fetch user data from the server on component mount
-    }
-
-  }, [userstudent]);
-
-  useEffect(()=>{
-    if(userData){
-    try {
-        console.log("came here",userData.Id)
-        axios.get('http://localhost:4000/InterConnect/student/getOnestudent/'+userData.Id).then((response)=>{
+      console.log("came here",userstudent.student_id)
+        axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
+          console.log(response.data.student)
           setUserData({
-        name: response.data.students.name,
-        Id: userstudent.data.students.student_id,
-        email: userstudent.data.students.email,
-        bio: userstudent.data.students.bio,
-      });
+            name: response.data.student.name,
+            Id: userstudent.student_id,
+            email: response.data.student.email,
+            bio: response.data.student.bio,
+            hobbies: response.data.student.hobbies,
+            skills: response.data.student.skills,
+            languageEfficiency: response.data.student.languageEfficiency,
+            pastExperiences: response.data.student.pastExperiences,
+            externalLinks: response.data.student.externalLinks,
+          });
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);
@@ -86,11 +70,59 @@ const StudentProfile = () => {
               console.log(error);
             }
       });
-      } catch (error) {
-        console.error('An error occurred:', error);
-      }
-    }
-  })
+
+      // setUserData({
+      //   name: userstudent.name,
+      //   Id: userstudent.student_id,
+      //   email: userstudent.email,
+      //   bio: userstudent.bio,
+      //   hobbies: userstudent.hobbies,
+      //   skills: userstudent.skills,
+      //   languageEfficiency: userstudent.languageEfficiency,
+      //   pastExperiences: userstudent.pastExperiences,
+      //   externalLinks: userstudent.externalLinks,
+      // });
+      setLoading(false); // Set loading to false when data is available
+      console.log(userData);
+      // fetchUserData();
+    } 
+    // else {
+    //   fetchUserData(); // Fetch user data from the server on component mount
+    // }
+
+  }, [userstudent]);
+
+  // useEffect(()=>{
+  //   // const fetchUserData = async () => {
+  //     
+  //   // };
+  //   if(userData.Id){
+  //   try {
+  //       console.log("came here",userData.Id)
+  //       axios.get('http://localhost:4000/InterConnect/student/getStudent/'+userData.Id).then((response)=>{
+  //         console.log(response.data.student)
+  //         setUserData({
+  //       name: response.data.student.name,
+  //       Id: userData.Id,
+  //       email: response.data.student.email,
+  //       bio: response.data.student.bio,
+  //       hobbies:response.data.student.hobbies
+  //     });
+  //     }).catch((error)=>{
+  //         if (error.response) {
+  //             console.log(error.response);
+  //             console.log("server responded");
+  //           } else if (error.request) {
+  //             console.log("network error");
+  //           } else {
+  //             console.log(error);
+  //           }
+  //     });
+  //     } catch (error) {
+  //       console.error('An error occurred:', error);
+  //     }
+  //   }
+  //  })
 
 
   const handleEditClick = () => {
@@ -176,7 +208,8 @@ const StudentProfile = () => {
       console.error(error);
     }
 
-  }};
+  }
+};
 
   const handleImageChange = (e) => {
     // Handle image selection
