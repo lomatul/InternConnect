@@ -70,7 +70,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                     <MenuItem icon={<img src="cvcv.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                         CV Sending</MenuItem>
                     <MenuItem icon={<img src="notifi.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    <a href="/SendNotification">
+                    <a href="/SendNotifi">
                      Notification
                 </a></MenuItem>
                     <MenuItem onClick={handleClick} icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>

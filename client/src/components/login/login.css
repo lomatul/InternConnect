@@ -25,7 +25,9 @@
     color: rgb(221, 29, 29); /* Change the color to red */
     cursor: pointer;
     font-weight: bold;
+    margin-top: 30px;
 }
+
 
 
 .logincontainer p{
@@ -34,8 +36,15 @@
     opacity: 0.7;
     font-size: 2rem;
     margin-top: 0;
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+.logincontainer span{
+    justify-content: center;
+    height: 20px;
+    color: red;
+    font-size:13px ;
+
 }
 
 .logincontainer input{
@@ -44,7 +53,8 @@
     font-size: 0.9em;
     color: #fff;
     padding: 1em;
-    margin-bottom: 2em;
+    /* margin-bottom: 2em; */
+    margin-top: 2em;
     font-weight:500;
     border: none;
     border-radius: 50px;
@@ -63,7 +73,8 @@
 }
 
 .logincontainer input[type="submit"]{
-    margin-top: 10px;
+    margin-top: 50px;
+    margin-bottom: 2em;
     width: 150px;
     font-size: 1rem;
     cursor: pointer;

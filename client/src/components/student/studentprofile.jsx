@@ -123,21 +123,33 @@ const StudentProfile = () => {
   return (
     
     <div className="admin-profile">
-        <div className="view-profile">
+        <div className="profile">
           <img
             src={userstudent.image}
             alt="Profile"
           />
+        
+          <div className="profile-info">
           <h2>Name : <span>{userData.name}</span></h2>
           <p>ID : <span>{userData.Id}</span></p>
           <p>Email : <span>{userData.email}</span></p>
           <p>Computer Science and Engineering Department</p>
           <p>{userData.bio}</p>
+
+          {/* <button onClick={handleEditClick}>Edit Profile</button>
+        <button ><a href="/Updatepassword"> Update Password</a></button>
+       */}
+        </div>
+        <div className="profile-info">
+         
+          <button onClick={handleEditClick}>Edit Profile</button>
+        <button ><a href="/Updatepassword"> Update Password</a></button>
+      
+        </div>
+      
         </div>
 
-        <button onClick={handleEditClick}>Edit Profile</button>
-        <button onClick={handleEditClick}>Update Password</button>
-        <button onClick={handleEditClick}>Edit</button>
+       
 
 {editMode ? (
         <div className="edit-profile">
