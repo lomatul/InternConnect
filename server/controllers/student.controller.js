@@ -471,4 +471,21 @@ export const setpreference = async (req, res) =>{
   
 
 }
+
+
+//test
+export const getOneStudentbyId = async (req, res) =>{
+  const { student_id } = req.params;
+  // console.log("It worked", student_id)
+  try{
+    const student = await Student.findOne({ student_id });
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }res.status(200).json({message:"It worked", students:student})
+  }catch(error){
+    console.error(error)
+    res.status(400).json({message: error.message})
+  }
+  
+}
     

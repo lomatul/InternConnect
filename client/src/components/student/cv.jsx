@@ -16,24 +16,27 @@ const UploadCV = () => {
   useEffect(() => {
     if (userstudent) {
       setId(userstudent.student_id);
-      // try {
-      //   axios.get(`http://localhost:4000/InterConnect/student/getStudent/${id}`).then((response)=>{
-      //     console.log(response.CV)
-      // }).catch((error)=>{
-      //     if (error.response) {
-      //         console.log(error.response);
-      //         console.log("server responded");
-      //       } else if (error.request) {
-      //         console.log("network error");
-      //       } else {
-      //         console.log(error);
-      //       }
-      // });
-      // } catch (error) {
-      //   console.error('An error occurred:', error);
-      // }
+      if(userstudent.student_id){
+        try{
+          axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
+          if(response.data.student.CV){
+            setHascv(true);
+          }
+          }).catch((error)=>{
+              if (error.response) {
+                  console.log(error.response);
+                  console.log("server responded");
+                } else if (error.request) {
+                  console.log("network error");
+                } else {
+                  console.log(error);
+                }
+          });
+          }catch (error) {
+            console.error('An error occurred:', error);
+          }
+      }
       if(userstudent.CV){
-        
         setHascv(true);
       }
       setLoading(false); // Set loading to false when data is available
@@ -42,6 +45,28 @@ const UploadCV = () => {
     // Update the 'userData' state with the fetched data
     // For simplicity, we are using mock data here.
   }, [userstudent]);
+  
+  useEffect(()=>{
+    if(id){
+    try {
+        console.log("came here")
+        axios.get('http://localhost:4000/InterConnect/student/getOnestudent/'+id).then((response)=>{
+          setCv(response.data.students.CV)
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }
+  })
 
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0])

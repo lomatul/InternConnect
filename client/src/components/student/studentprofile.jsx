@@ -3,14 +3,17 @@ import "./profile.css";
 import axios from "axios";
 // import "./Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
+import { useNavigate } from 'react-router-dom';
 
-const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
-const student_id = user.student_id
+// const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
+// const student_id = user.student_id
 
 const StudentProfile = () => {
+  const navigate = useNavigate();
   const { userstudent } = useAuthContext();
   const [loading, setLoading] = useState(true);
   const [img, setimg] = useState('')
+  const [user, setUser] = useState('')
   
   // State to manage user data and edit mode
   const [userData, setUserData] = useState({
@@ -23,6 +26,7 @@ const StudentProfile = () => {
     languageEfficiency: '',
     pastExperiences: '',
     externalLinks: '',
+    image: ''
   });
 
   const [editMode, setEditMode] = useState(false);
@@ -30,19 +34,37 @@ const StudentProfile = () => {
 
   useEffect(() => {
 
-    const fetchUserData = async () => {
-      try {
-        // Fetch user data from your server
-        const response = await axios.get(`http://localhost:4000/InterConnect/student/getStudent/${user.student_id}`);
-        const userData = response.data; 
-        console.log("Response Data:", userData);
-      } catch (error) {
-        console.error(error);
-      }
-    };
     
     if (userstudent) {
-      setUserData({
+      try{
+      console.log("came here",userstudent.student_id)
+        axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
+          console.log(response.data.student)
+          setUserData({
+            name: response.data.student.name,
+            Id: userstudent.student_id,
+            email: response.data.student.email,
+            bio: response.data.student.bio,
+            hobbies: response.data.student.hobbies,
+            skills: response.data.student.skills,
+            languageEfficiency: response.data.student.languageEfficiency,
+            pastExperiences: response.data.student.pastExperiences,
+            externalLinks: response.data.student.externalLinks,
+            image: response.data.student.image
+          });
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      }catch (error) {
+        console.error('An error occurred:', error);
+        setUserData({
         name: userstudent.name,
         Id: userstudent.student_id,
         email: userstudent.email,
@@ -53,14 +75,20 @@ const StudentProfile = () => {
         pastExperiences: userstudent.pastExperiences,
         externalLinks: userstudent.externalLinks,
       });
+      }
+
+   
       setLoading(false); // Set loading to false when data is available
       console.log(userData);
+      
     } 
-    else {
-      fetchUserData(); // Fetch user data from the server on component mount
-    }
+   
 
   }, [userstudent]);
+
+  
+
+
 
   const handleEditClick = () => {
     // Enable edit mode
@@ -145,7 +173,8 @@ const StudentProfile = () => {
       console.error(error);
     }
 
-  }};
+  }
+};
 
   const handleImageChange = (e) => {
     // Handle image selection
@@ -153,6 +182,9 @@ const StudentProfile = () => {
     setNewImage(file);
   };
 
+  const navigateto =() => {
+    navigate("/Updatepassword", {state: {Id:userData.Id, from:1}});
+  }
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -181,7 +213,7 @@ const StudentProfile = () => {
         <div className="profile-info">
          
           <button onClick={handleEditClick}>Edit Profile</button>
-        <button ><a href="/Updatepassword"> Update Password</a></button>
+        <button onClick={navigateto}> Update Password</button>
       
         </div>
       
