@@ -143,7 +143,7 @@ const UploadCV = () => {
             <div className="details">                      
             <div className="xcellupload">             
               <input type="file" accept=".pdf" onChange={handleFileSelect}/>
-              {hascv?<button onClick={handleSubmit}>Reupload</button>:<button onClick={handleSubmit}>Upload</button>}
+              {hascv?<button onClick={handleSubmit}>Upload</button>:<button onClick={handleSubmit}>Upload</button>}
             </div>
             {/* {hascv&&<button onClick={handleview}>View your own submitted CV</button>}        */}
 

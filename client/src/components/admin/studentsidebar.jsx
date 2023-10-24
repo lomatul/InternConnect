@@ -60,7 +60,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                     <MenuItem icon={<img src="com.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     <a href=" /SeeCompanies"> CompanyList </a></MenuItem>
                     <MenuItem icon={<img src="per.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
-                    <a href=" /Addprefer"> Prefernces </a></MenuItem> 
+                    <a href=" /Addprefer"> Preferences </a></MenuItem> 
                     <MenuItem onClick={handleClick} icon={<img src="logout.png"alt="InternConnect Logo"   style={{ width: '20px', height: '20px' }}   />}>
                     Log out</MenuItem>
 

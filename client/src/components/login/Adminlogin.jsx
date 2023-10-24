@@ -35,7 +35,7 @@ const AdminLogin= () => {
               }
             else if (error.response.status === 401) {
                 // Handle incorrect username or password
-                setLoginError('Incorrect username or password. Please try again.');
+                setLoginError('Incorrect username or password.');
               }
               console.log(error.response);
               console.log("server responded");
