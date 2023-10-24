@@ -45,7 +45,20 @@ const studentSchema = new mongoose.Schema({
 
   updatedAt: { type: Date, default: Date.now },
 
-  image: {type:String}
+  image: {type:String},
+
+  hobbies: { type: [String] }, 
+
+  skills: { type: [String] },
+
+  languageEfficiency: { type: [String] }, 
+
+  pastExperiences: { type: String }, 
+
+  externalLinks: { type: [String] }, 
+
+  projects: [{ type: String }], 
+
 });
 
 export default mongoose.model("Student", studentSchema);

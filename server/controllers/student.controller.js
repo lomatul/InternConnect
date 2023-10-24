@@ -32,6 +32,12 @@ export const createStudent = async (req, res, next) => {
       internshipReport: req.body.internshipReport,
       presentationMarks: req.body.presentationMarks,
       finalGrade: req.body.finalGrade,
+      hobbies: req.body.hobbies, 
+      skills: req.body.skills, 
+      languageEfficiency: req.body.languageEfficiency, 
+      pastExperiences: req.body.pastExperiences, 
+      externalLinks: req.body.externalLinks, 
+      projects: req.body.projects, 
     });
 
     await student.save();
@@ -62,7 +68,7 @@ export const getAllStudents = async (req, res, next) => {
 // Get a single Student by student_id
 export const getStudentById = async (req, res, next) => {
   try {
-    const student = await Student.findById(req.params.student_id);
+    const student = await Student.findOne({ student_id: req.params.student_id });
 
     if (!student) {
       res.status(404).json({
@@ -84,7 +90,8 @@ export const getStudentById = async (req, res, next) => {
 export const updateStudentById = async (req, res) => {
   try {
     const { student_id } = req.params;
-    const { name, email, bio, image} = req.body;
+    const { name, email, bio, image, hobbies, skills, languageEfficiency, pastExperiences, externalLinks} = req.body;
+
     console.log("Image", image)
 
     const student = await Student.findOne({ student_id });
@@ -93,13 +100,20 @@ export const updateStudentById = async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    // Update the student's data
+    // Updating the student's data
     student.name = name;
     student.email = email;
     student.bio = bio;
     if(image){
       student.image=image
     }
+    
+    // Updating the student profile fields
+    student.hobbies = hobbies;
+    student.skills = skills;
+    student.languageEfficiency = languageEfficiency;
+    student.pastExperiences = pastExperiences;
+    student.externalLinks = externalLinks;
 
     // Save the updated student
     await student.save();

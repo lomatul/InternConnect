@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import "./profile.css";
 import axios from "axios";
 // import "./Add.css";
-import { useState, useEffect } from 'react';
 import {useAuthContext} from "../../context/useAuthcontext"
 
 const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
@@ -19,23 +18,48 @@ const StudentProfile = () => {
     Id: '',
     email: '',
     bio: '',
+    hobbies: '',
+    skills: '',
+    languageEfficiency: '',
+    pastExperiences: '',
+    externalLinks: '',
   });
+
   const [editMode, setEditMode] = useState(false);
   const [newImage, setNewImage] = useState(null);
 
   useEffect(() => {
+
+    const fetchUserData = async () => {
+      try {
+        // Fetch user data from your server
+        const response = await axios.get(`http://localhost:4000/InterConnect/student/getStudent/${user.student_id}`);
+        const userData = response.data; 
+        console.log("Response Data:", userData);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    
     if (userstudent) {
       setUserData({
         name: userstudent.name,
         Id: userstudent.student_id,
         email: userstudent.email,
         bio: userstudent.bio,
+        hobbies: userstudent.hobbies,
+        skills: userstudent.skills,
+        languageEfficiency: userstudent.languageEfficiency,
+        pastExperiences: userstudent.pastExperiences,
+        externalLinks: userstudent.externalLinks,
       });
       setLoading(false); // Set loading to false when data is available
+      console.log(userData);
     } 
-    // Fetch user data from your API or storage on component mount
-    // Update the 'userData' state with the fetched data
-    // For simplicity, we are using mock data here.
+    else {
+      fetchUserData(); // Fetch user data from the server on component mount
+    }
+
   }, [userstudent]);
 
   const handleEditClick = () => {
@@ -61,6 +85,7 @@ const StudentProfile = () => {
         console.log(error);
         reject(error);
       }
+      
     });
   };
   
@@ -81,6 +106,11 @@ const StudentProfile = () => {
           name: userData.name,
           email: userData.email,
           bio: userData.bio,
+          hobbies: userData.hobbies,
+          skills: userData.skills,
+          languageEfficiency: userData.languageEfficiency,
+          pastExperiences: userData.pastExperiences,
+          externalLinks: userData.externalLinks,
           image:imgURL
         });
         // Handle the response if needed
@@ -102,6 +132,11 @@ const StudentProfile = () => {
         name: userData.name,
         email: userData.email,
         bio: userData.bio,
+        hobbies: userData.hobbies,
+        skills: userData.skills,
+        languageEfficiency: userData.languageEfficiency,
+        pastExperiences: userData.pastExperiences,
+        externalLinks: userData.externalLinks,
       });
       // Handle the response if needed
       console.log(response.data); // This is just for demonstration
@@ -117,9 +152,12 @@ const StudentProfile = () => {
     const file = e.target.files[0];
     setNewImage(file);
   };
+
   if (loading) {
     return <div>Loading...</div>;
   }
+
+
   return (
     
     <div className="admin-profile">
@@ -132,12 +170,13 @@ const StudentProfile = () => {
           <p>ID : <span>{userData.Id}</span></p>
           <p>Email : <span>{userData.email}</span></p>
           <p>Computer Science and Engineering Department</p>
-          <p>{userData.bio}</p>
+          <p><span>{userData.bio}</span></p>
+
         </div>
 
         <button onClick={handleEditClick}>Edit Profile</button>
-        <button onClick={handleEditClick}>Update Password</button>
-        <button onClick={handleEditClick}>Edit</button>
+        {/* <button onClick={handleEditClick}>Update Password</button>
+        <button onClick={handleEditClick}>Edit</button> */}
 
 {editMode ? (
         <div className="edit-profile">
@@ -145,44 +184,44 @@ const StudentProfile = () => {
           <input
             type="text"
             name="Hobby"
-            value={userData.name}
+            value={userData.hobbies}
             onChange={(e) =>
-              setUserData({ ...userData, name: e.target.value })
+              setUserData({ ...userData, hobbies: e.target.value })
             }
           />
            <label htmlFor=""> Skills</label>
           <input
             type="text"
             name="Skills"
-            value={userData.email}
+            value={userData.skills}
             onChange={(e) =>
-              setUserData({ ...userData, email: e.target.value })
+              setUserData({ ...userData, skills: e.target.value })
             }
           />
            <label htmlFor=""> Language Prefernce</label>
           <input
             type="text"
             name="Language Prefernce"
-            value={userData.email}
+            value={userData.languageEfficiency}
             onChange={(e) =>
-              setUserData({ ...userData, email: e.target.value })
+              setUserData({ ...userData, languageEfficiency: e.target.value })
             }
           />
            <label htmlFor=""> Experience</label>
           <textarea
             name="Experience"
-            value={userData.bio}
+            value={userData.pastExperiences}
             onChange={(e) =>
-              setUserData({ ...userData, bio: e.target.value })
+              setUserData({ ...userData, pastExperiences: e.target.value })
             }
           />
 
           <label htmlFor=""> link </label>
           <textarea
             name="link"
-            value={userData.bio}
+            value={userData.externalLinks}
             onChange={(e) =>
-              setUserData({ ...userData, bio: e.target.value })
+              setUserData({ ...userData, externalLinks: e.target.value })
             }
           />
 
@@ -195,42 +234,38 @@ const StudentProfile = () => {
             onChange={handleImageChange}
           />
 
-
-
           <button style={{ marginTop: '40px' }} onClick={handleSaveClick}>Save</button>
         </div>
       ) : (
         <div className="view-profile">
 
          <div className="view-profile2">
-          <h3>Hobby :</h3>
-          <p><span>{userData.Id}</span></p>
+          <h3>Hobby (s) :</h3>
+          <p><span>{userData.hobbies}</span></p>
           </div>
 
 
           <div className="view-profile2">
           <h3>Skills :</h3>
-          <p> <span>{userData.email}</span></p>
+          <p> <span>{userData.skills}</span></p>
           </div>
 
 
           <div className="view-profile2">
-          <h3>Language Efficiency  :</h3>
-          <p><span>{userData.email}</span></p>
+          <h3>Language Efficiency (s) :</h3>
+          <p><span>{userData.languageEfficiency}</span></p>
           </div>
 
 
           <div className="view-profile2">
           <h3>Past Experiences  :</h3>
-          <p><span>{userData.bio}</span></p>
+          <p><span>{userData.pastExperiences}</span></p>
           </div>
 
           <div className="view-profile2">
-          <h3>Externel Link :</h3>
-          <p className='link'><span>{userData.bio}</span></p>
+          <h3>Externel Link (s) :</h3>
+          <p className='link'><span>{userData.externalLinks}</span></p>
           </div>
-
-
 
 
           <div className="view-profile2">
