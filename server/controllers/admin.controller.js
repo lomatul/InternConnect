@@ -2,7 +2,8 @@ import Admin from '../models/admin.model.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
-
+import Student from "../models/student.model.js";
+import Mailfunction from "./custom.mailsender.js"
 
 export const postlogin= (req, res, next) =>{
 
@@ -60,4 +61,36 @@ export const register = async (req, res) => {
       res.json({error: error.message});
        
     }
+}
+
+export const sendmailtoall = async (req, res) => {
+  try {
+    const {text, sub} = req.body
+    console.log(req.body)
+    const students = await Student.find();
+    students.map(async element =>{
+      console.log(element)
+      await Mailfunction(sub, element.email, text);
+    })
+    res.status(200).json({
+      message: "Message sent successfully!",
+    });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+}
+
+export const sendmailtoindividual = async (req, res) => {
+  try {
+    const {text, sub, recipientEmail} = req.body
+    console.log(req.body)
+    await Mailfunction(sub, recipientEmail, text);
+    res.status(200).json({
+      message: "Message sent successfully!",
+    });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
 }

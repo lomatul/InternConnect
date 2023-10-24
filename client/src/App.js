@@ -51,7 +51,7 @@ function App() {
         <Route path="/Addprefer" element = {userstudent&&<Addprefer/>} />
         <Route path="/SeeCompanies" element = {userstudent&&<SeeCompanies/>} />
         <Route path="/SeeStudents" element = {useradmin&&<Studentslist/>} />
-
+        <Route path="/SendNotification" element = {<SendNotifi/>} />
       </Routes>
     </BrowserRouter>
   );
