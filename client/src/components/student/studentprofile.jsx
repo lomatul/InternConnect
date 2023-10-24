@@ -34,19 +34,9 @@ const StudentProfile = () => {
 
   useEffect(() => {
 
-    // const fetchUserData = async () => {
-    //   console.log("fetch function invocked")
-    //   try {
-    //     // Fetch user data from your server
-    //     const response = await axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userData.Id}`);
-    //     const studentData = response.data; 
-    //     console.log("Response Data:", studentData);
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
     
     if (userstudent) {
+      try{
       console.log("came here",userstudent.student_id)
         axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
           console.log(response.data.student)
@@ -72,59 +62,32 @@ const StudentProfile = () => {
               console.log(error);
             }
       });
+      }catch (error) {
+        console.error('An error occurred:', error);
+        setUserData({
+        name: userstudent.name,
+        Id: userstudent.student_id,
+        email: userstudent.email,
+        bio: userstudent.bio,
+        hobbies: userstudent.hobbies,
+        skills: userstudent.skills,
+        languageEfficiency: userstudent.languageEfficiency,
+        pastExperiences: userstudent.pastExperiences,
+        externalLinks: userstudent.externalLinks,
+      });
+      }
 
-      // setUserData({
-      //   name: userstudent.name,
-      //   Id: userstudent.student_id,
-      //   email: userstudent.email,
-      //   bio: userstudent.bio,
-      //   hobbies: userstudent.hobbies,
-      //   skills: userstudent.skills,
-      //   languageEfficiency: userstudent.languageEfficiency,
-      //   pastExperiences: userstudent.pastExperiences,
-      //   externalLinks: userstudent.externalLinks,
-      // });
+   
       setLoading(false); // Set loading to false when data is available
       console.log(userData);
-      // fetchUserData();
+      
     } 
-    // else {
-    //   fetchUserData(); // Fetch user data from the server on component mount
-    // }
+   
 
   }, [userstudent]);
 
-  // useEffect(()=>{
-  //   // const fetchUserData = async () => {
-  //     
-  //   // };
-  //   if(userData.Id){
-  //   try {
-  //       console.log("came here",userData.Id)
-  //       axios.get('http://localhost:4000/InterConnect/student/getStudent/'+userData.Id).then((response)=>{
-  //         console.log(response.data.student)
-  //         setUserData({
-  //       name: response.data.student.name,
-  //       Id: userData.Id,
-  //       email: response.data.student.email,
-  //       bio: response.data.student.bio,
-  //       hobbies:response.data.student.hobbies
-  //     });
-  //     }).catch((error)=>{
-  //         if (error.response) {
-  //             console.log(error.response);
-  //             console.log("server responded");
-  //           } else if (error.request) {
-  //             console.log("network error");
-  //           } else {
-  //             console.log(error);
-  //           }
-  //     });
-  //     } catch (error) {
-  //       console.error('An error occurred:', error);
-  //     }
-  //   }
-  //  })
+  
+
 
 
   const handleEditClick = () => {

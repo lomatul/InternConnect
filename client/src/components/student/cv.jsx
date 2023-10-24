@@ -16,8 +16,27 @@ const UploadCV = () => {
   useEffect(() => {
     if (userstudent) {
       setId(userstudent.student_id);
-      if(cv){
-        
+      if(userstudent.student_id){
+        try{
+          axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
+          if(response.data.student.CV){
+            setHascv(true);
+          }
+          }).catch((error)=>{
+              if (error.response) {
+                  console.log(error.response);
+                  console.log("server responded");
+                } else if (error.request) {
+                  console.log("network error");
+                } else {
+                  console.log(error);
+                }
+          });
+          }catch (error) {
+            console.error('An error occurred:', error);
+          }
+      }
+      if(userstudent.CV){
         setHascv(true);
       }
       setLoading(false); // Set loading to false when data is available
