@@ -5,12 +5,26 @@ const Companylist = () => {
   const [search, setSearch] = useState('');
   const [companies, setCompanies] = useState([]);
   const [filteredCompanies, setFilteredCompanies] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [companyData, setCompanyData] = useState({
+    Title: '',
+    Address: '',
+    Email:' ',
+    Contact:' ',
+    MaxInterns:' ',
+    MinInterns:' ',
+    InternsHired:' ',
 
+   
+  });
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
         setCompanies(response.data.companies);
-        setFilteredCompanies(response.data.companies); // Initially, both arrays are the same
+        setFilteredCompanies(response.data.companies);
+        setCompanyData({
+          
+        })
       })
       .catch((error) => {
         console.error('An error occurred while fetching companies:', error);
@@ -18,7 +32,6 @@ const Companylist = () => {
   }, []);
 
   useEffect(() => {
-    // Filter companies based on search input
     const filtered = companies.filter((company) => {
       const companyData = `${company.name} ${company.address} ${company.email} ${company.contactNumber}`.toLowerCase();
       return companyData.includes(search.toLowerCase());
@@ -41,11 +54,23 @@ const Companylist = () => {
     }
   };
 
+  const [editRow, setEditRow] = useState(null);
+
+  const handleEditClick = (index) => {
+    setEditRow(index);
+    setEditMode(true);
+  };
+
+  const handleSaveClick = (index) => {
+    // Save the edited company data here, and then exit edit mode.
+    setEditRow(null);
+    setEditMode(false);
+  };
+
   return (
     <main className="table">
       <section className="table__header">
         <h1>Company Details</h1>
-
         <div className="input-group">
           <input
             type="search"
@@ -68,13 +93,28 @@ const Companylist = () => {
               <th>Min Interns</th>
               <th>Interns Hired</th>
               <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
             {filteredCompanies.map((company, index) => (
               <tr key={index}>
-                <td>{company.name}</td>
+                <td>
+                  {editRow === index ? (
+                    <input
+                      type="text"
+                      value={company.name}
+                      onChange={(e) => {
+                        // Update the company's name here
+                      }}
+                    />
+                  ) : (
+                    company.name
+                  )}
+
+                  
+                </td>
                 <td>{company.address}</td>
                 <td>{company.email}</td>
                 <td>{company.contactNumber}</td>
@@ -93,6 +133,15 @@ const Companylist = () => {
                       window.location.reload();
                     }}
                   />
+                </td>
+                <td>
+                  {editRow === index ? (
+                    <button onClick={() => handleSaveClick(index)}>Save</button>
+                  ) : (
+                    <button onClick={() => handleEditClick(index)}>
+                      {editRow === index ? 'Save' : 'Edit'}
+                    </button>
+                  )}
                 </td>
               </tr>
             ))}
