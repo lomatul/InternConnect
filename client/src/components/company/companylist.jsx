@@ -93,7 +93,7 @@ const Companylist = () => {
               <th>Min Interns</th>
               <th>Interns Hired</th>
               <th>Status</th>
-              <th>Action</th>
+              {/* <th>Action</th> */}
             </tr>
           </thead>
 
@@ -101,17 +101,21 @@ const Companylist = () => {
             {filteredCompanies.map((company, index) => (
               <tr key={index}>
                 <td>
-                  {editRow === index ? (
+
+                {company.name}
+
+                
+                  {/* {editRow === index ? (
                     <input
                       type="text"
-                      value={company.name}
+                      value=
                       onChange={(e) => {
                         // Update the company's name here
                       }}
                     />
                   ) : (
                     company.name
-                  )}
+                  )} */}
 
                   
                 </td>
@@ -134,7 +138,7 @@ const Companylist = () => {
                     }}
                   />
                 </td>
-                <td>
+                {/* <td>
                   {editRow === index ? (
                     <button onClick={() => handleSaveClick(index)}>Save</button>
                   ) : (
@@ -142,7 +146,7 @@ const Companylist = () => {
                       {editRow === index ? 'Save' : 'Edit'}
                     </button>
                   )}
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

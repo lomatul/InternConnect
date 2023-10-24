@@ -72,19 +72,19 @@ function Forgets() {
             </div>
 
                           
-            <div className="openModalBtn" onClick={() => {
+            {/* <div className="openModalBtn" onClick={() => {
                           setModalOpen(true); }} > Open  </div> 
-                           {modalOpen && <Modal setOpenModal={setModalOpen} />}
+                           {modalOpen && <Modal setOpenModal={setModalOpen} />} */}
 
             <form action="" className="contact-form">
               <label htmlFor="">Student ID <span>*</span></label>
               <input type="text" min={0} value={student_id} onChange={handleStudentIdChange} />
               <span >{idError}</span>
 
-
+{/* 
               <button className="openModalBtn" onClick={() => {
                           setModalOpen(true); }} > Open  </button> 
-                 
+                  */}
 
 
               <button onClick={handleSubmit} style={{ cursor: 'pointer' }}>
@@ -100,7 +100,7 @@ function Forgets() {
         </section>
       </article>
 
-      {modalOpen && <Modal handleClose={handleCloseModal} />}
+      {/* {modalOpen && <Modal handleClose={handleCloseModal} />} */}
     </main>
   );
 }

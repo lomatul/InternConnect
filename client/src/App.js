@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route } from "react-router-dom"
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
 import LoginNewPassword from "./Pages/UpdatePassword";
@@ -20,8 +20,8 @@ import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
 import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
-
-
+import ToastMsg from "./components/modal/toast";
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -31,7 +31,9 @@ function App() {
   
   return (
     <BrowserRouter>
+      <Toaster  position="top-right" reverseOrder={false} />
       <Routes>
+    
         <Route path="/" element = {<Home/>} />
         <Route path="/login" element = {<Login/>} />
         <Route path="/Updatepassword" element = {<LoginNewPassword/>} />
@@ -52,7 +54,6 @@ function App() {
         <Route path="/SeeCompanies" element = {userstudent?<SeeCompanies/>:<Page404/>} />
         <Route path="/SeeStudents" element = {useradmin?<Studentslist/>:<Page404/>} />
         <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
-
       </Routes>
     </BrowserRouter>
   );
