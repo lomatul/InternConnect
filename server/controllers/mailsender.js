@@ -10,12 +10,12 @@ const Mailfunction = async (Name, email, otp) =>{
             service:'gmail',
             host: "smtp.gmail.com",
             auth: {
-                user: "zayed.hasan.14@gmail.com",
+                user: "internconnect.swe@gmail.com",
                 pass:process.env.mail_pass
             }
         })
         await transporter.sendMail({
-            from: "zayed.hasan.14@gmail.com",
+            from: "internconnect.swe@gmail.com",
             to: email,
             subject:  'Email Verification',
             text:`Hi ${Name}, Please, Click the following link to Login using your OTP. And update the password to activate your account. And your OTP is '${otp}'`,
