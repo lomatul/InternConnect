@@ -172,13 +172,22 @@ const StudentProfile = () => {
           <p>ID : <span>{userData.Id}</span></p>
           <p>Email : <span>{userData.email}</span></p>
           <p>Computer Science and Engineering Department</p>
-          <p><span>{userData.bio}</span></p>
+          <p>{userData.bio}</p>
 
+          {/* <button onClick={handleEditClick}>Edit Profile</button>
+        <button ><a href="/Updatepassword"> Update Password</a></button>
+       */}
+        </div>
+        <div className="profile-info">
+         
+          <button onClick={handleEditClick}>Edit Profile</button>
+        <button ><a href="/Updatepassword"> Update Password</a></button>
+      
+        </div>
+      
         </div>
 
-        <button onClick={handleEditClick}>Edit Profile</button>
-        {/* <button onClick={handleEditClick}>Update Password</button>
-        <button onClick={handleEditClick}>Edit</button> */}
+       
 
 {editMode ? (
         <div className="edit-profile">
