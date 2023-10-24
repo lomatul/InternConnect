@@ -404,7 +404,9 @@ export const getcvfile= async (req, res) =>{
     if (!student) {
       return res.status(404).json({ message: 'Student not found' });
     }
-    const cvfile=student.CV;
+    const Preferences = student.domainPreferences.map((item) => item.value).join('-');
+    const cvfile = `${Preferences}-${student.CV}`;
+    console.log(cvfile)
     const cvPath = path.join(tempDir, cvfile);
 
     res.contentType("application/pdf");
