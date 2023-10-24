@@ -145,7 +145,7 @@ const Add = () => {
           </div>  */}
   
             <div className="details">
-            <label htmlFor="">Add Companies by Xcell Upload</label>
+            <label htmlFor="">Add Companies by Excel Upload</label>
             <div className="xcellupload">
               <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
               <button onClick={handlefileSubmit}>Create</button>
