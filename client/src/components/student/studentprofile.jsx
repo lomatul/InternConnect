@@ -161,11 +161,13 @@ const StudentProfile = () => {
   return (
     
     <div className="admin-profile">
-        <div className="view-profile">
+        <div className="profile">
           <img
             src={userstudent.image}
             alt="Profile"
           />
+        
+          <div className="profile-info">
           <h2>Name : <span>{userData.name}</span></h2>
           <p>ID : <span>{userData.Id}</span></p>
           <p>Email : <span>{userData.email}</span></p>

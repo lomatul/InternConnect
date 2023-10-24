@@ -45,7 +45,7 @@ const LoginFormComponent = () => {
                   navigate(error.response.data.redirectUrl, {state: {Id:error.response.data.id, from:0}});
                   }
                   else if (error.response.status === 401) {
-                    setPasswordError('Incorrect username or password. Please try again.');
+                    setPasswordError('Incorrect username or password.');
                   }
                   console.log(error.response);
                   console.log("server responded");
@@ -76,9 +76,11 @@ const LoginFormComponent = () => {
       <form onSubmit={handleSubmit}>
         <p>Welcome</p>
         <input type="Text" placeholder="Enter your Student ID" required value={student_id} onChange={handleStudentIdChange} /> <br />
-        <span style={{ color: 'red' }}>{idError}</span> 
+      
+        <span >{idError}</span> 
         <input type="password" placeholder="Enter your password" required  onChange={(e) => setPassword(e.target.value)} value={password} /> <br />
-        <span style={{ color: 'red' }}>{passwordError}</span> 
+       
+        <span >{passwordError}</span> 
         <input type="submit" value="Sign in" /> <a href="/Student"></a><br />
         <a href="/Forget">Forgot Password ?</a><br />
       </form>
