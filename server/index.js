@@ -30,7 +30,7 @@ const connection = async () => {
 };
 app.use(session({
   secret: "secret",
-  resave: false ,
+  resave: true ,
   saveUninitialized: true ,
 }))
 

@@ -3,6 +3,8 @@ import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const UploadCV = () => {
@@ -38,6 +40,7 @@ const UploadCV = () => {
       }
       if(userstudent.CV){
         setHascv(true);
+        
       }
       setLoading(false); // Set loading to false when data is available
     } 
@@ -87,8 +90,11 @@ const UploadCV = () => {
         },
     }).then((response)=>{
         console.log(response)
+        toast.success('Cv has been uploaded.')
         window.location.reload();
+
     }).catch((error)=>{
+        toast.error("Error occured, try again")
         if (error.response) {
             console.log(error.response);
             console.log("server responded");
