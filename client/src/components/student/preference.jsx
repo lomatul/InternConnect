@@ -46,6 +46,7 @@ const Prefernces = () => {
       await axios.post('http://localhost:4000/InterConnect/student/setprefer/'+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
     }).then((response)=>{
         console.log(response)
+        window.location.reload();
     }).catch((error)=>{
         if (error.response) {
             console.log(error.response);
