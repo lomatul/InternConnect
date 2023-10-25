@@ -48,8 +48,7 @@ const Prefernces = () => {
       await axios.post('http://localhost:4000/InterConnect/student/setprefer/'+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
     }).then((response)=>{
         console.log(response)
-        toast.success('Your Preferences have been submitted.')
-        window.location.reload();
+        toast.success('Your Preferences have been submitted!')
 
     }).catch((error)=>{
       toast.error("Error occured, please try again")

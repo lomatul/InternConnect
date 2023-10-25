@@ -91,7 +91,9 @@ const UploadCV = () => {
     }).then((response)=>{
         console.log(response)
         toast.success('Cv has been uploaded.')
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
 
     }).catch((error)=>{
         toast.error("Error occured, try again")
