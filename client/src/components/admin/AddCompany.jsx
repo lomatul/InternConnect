@@ -85,6 +85,7 @@ const Add = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     if (name === 'contactNumber') {
       // Use a regular expression to match digits only
       const numericValue = value.replace(/\D/g, ''); // Remove non-digit characters
@@ -93,6 +94,7 @@ const Add = () => {
     } else {
       setFormData({ ...formData, [name]: value });
     }
+    
   };
 
 
@@ -152,7 +154,7 @@ const Add = () => {
           </div>  */}
   
             <div className="details">
-            <label htmlFor="">Add Companies by Xcell Upload</label>
+            <label htmlFor="">Add Companies by Excel Upload</label>
             <div className="xcellupload">
               <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
               <button onClick={handlefileSubmit}>Create</button>

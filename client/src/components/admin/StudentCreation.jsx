@@ -24,6 +24,7 @@ const handleSubmit = async(event) => {
         },
       }).then((response)=>{
           console.log(response)
+          window.location.reload();
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);
@@ -48,7 +49,7 @@ const handleSubmit = async(event) => {
     return (
       <div className="add">
         <div className="addcontainer">
-          <h1>Add Student by Xcell Upload</h1>
+          <h1>Add Student by Excel Upload</h1>
           <div className="addsections">
           {/* <div className="info">
           </div>  */}
