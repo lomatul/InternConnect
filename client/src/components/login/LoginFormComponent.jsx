@@ -3,6 +3,9 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import {useAuthContext} from "../../context/useAuthcontext"
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const LoginFormComponent = () => {
   const navigate = useNavigate();
@@ -21,6 +24,8 @@ const LoginFormComponent = () => {
     }
   }
   
+  const notify = () => toast.success('Here is your toast.');
+
   const handleSubmit = async(event) => {
     event.preventDefault()
 
@@ -37,11 +42,13 @@ const LoginFormComponent = () => {
               dispatch({type: 'LOGINSTUDENT', payload: User})
               //temporary saving in local storage
               localStorage.setItem('user', JSON.stringify(User))
+              toast.success(response.data.message)
               navigate("/Student")
           }).catch((error)=>{
               if (error.response) {
                 if(error.response.status===308){
                   console.log("status", error.response.data.redirectUrl)
+                  toast.success("Please update your password")
                   navigate(error.response.data.redirectUrl, {state: {Id:error.response.data.id, from:0}});
                   }
                   else if (error.response.status === 401) {

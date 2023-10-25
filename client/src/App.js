@@ -20,9 +20,8 @@ import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
 import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
-import { Toaster } from 'react-hot-toast';
-
-
+import ToastTest from "./components/modal/toast";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const { userstudent } = useAuthContext()
@@ -53,6 +52,8 @@ function App() {
         <Route path="/SeeCompanies" element = {userstudent?<SeeCompanies/>:<Page404/>} />
         <Route path="/SeeStudents" element = {useradmin?<Studentslist/>:<Page404/>} />
         <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
+        <Route path="/ToastTest" element = {<ToastTest/>} />
+
       </Routes>
     </BrowserRouter>
   );
