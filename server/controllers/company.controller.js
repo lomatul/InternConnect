@@ -4,7 +4,7 @@ import Company from '../models/company.model.js';
 export const createCompany = async (req, res, next) => {
   try {
     const company = new Company({
-      companyID: req.body.companyID,
+      //companyID: req.body.companyID,
       name: req.body.name,
       address: req.body.address,
       email: req.body.email,
