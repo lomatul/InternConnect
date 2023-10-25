@@ -143,6 +143,7 @@ const StudentProfile = () => {
         });
         // Handle the response if needed
         console.log(response.data); // This is just for demonstration
+        window.location.reload();
       } catch (error) {
         // Handle errors
         console.error(error);
