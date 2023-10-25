@@ -195,7 +195,7 @@ const StudentProfile = () => {
     <div className="admin-profile">
         <div className="profile">
           <img
-            src={userstudent.image}
+            src={userData.image}
             alt="Profile"
           />
         

@@ -91,6 +91,8 @@ const UploadCV = () => {
     }).then((response)=>{
         console.log(response)
         toast.success('Cv has been uploaded.')
+        window.location.reload();
+
     }).catch((error)=>{
         toast.error("Error occured, try again")
         if (error.response) {
@@ -175,6 +177,7 @@ const UploadCV = () => {
               <input type="file" accept=".pdf" onChange={handleFileSelect}/>
               {hascv?<button onClick={handleSubmit}>Upload</button>:<button onClick={handleSubmit}>Upload</button>}
             </div>
+            
             {/* {hascv&&<button onClick={handleview}>View your own submitted CV</button>}        */}
 
             {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>}

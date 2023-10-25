@@ -49,6 +49,8 @@ const Prefernces = () => {
     }).then((response)=>{
         console.log(response)
         toast.success('Your Preferences have been submitted.')
+        window.location.reload();
+
     }).catch((error)=>{
       toast.error("Error occured, please try again")
         if (error.response) {
