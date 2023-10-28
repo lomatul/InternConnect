@@ -1,0 +1,120 @@
+*{
+    list-style: none;
+    text-decoration: none;
+}
+
+.newAdmin{
+    height: 200vh;
+}
+
+.admincontainer{
+
+    align-items: center;
+    display: grid;
+    margin-left: 110px;
+    margin-right: 110px;
+    /* grid-template-columns: 1fr 1fr; */
+}
+
+.image img{
+    width: 800px;
+    height: auto;
+    animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
+}
+
+.admincontainer text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.admincard{
+    background-color: rgb(198, 220, 230);
+    margin-top: 50px;
+    margin-left: 110px;
+    margin-right: 110px;
+    padding: 50px;
+    height: 600px;
+    border-radius: 10px;
+    outline: 2px solid brown;
+}
+
+.cards{
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 80px;
+    justify-content: center;
+}
+
+.card {
+    width: 500px;
+    height: 200px;
+    padding: 30px;
+    background-color: rgba(50, 50, 50, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    border-radius: 10px;
+    display: flex; /* Set the display property to flex */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.card:hover {
+    transition: transform 0.3s ease;
+    transform: scale(1.2);
+}
+
+
+.card .adbuttons button {
+    /* display: flex; */
+    align-items: center;
+  /* Add margin to create space between buttons */
+    color: rgb(37, 16, 104);
+    background-color: rgb(207, 201, 223);
+    height: 40px;
+    width: 100px;
+    justify-content: space-around;
+    border-radius: 5px;
+}
+
+.adbuttons .add-button {
+    margin-right: 20px; /* Add a right margin of 10px to create space */
+}
+
+
+.card h1{
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.card p {
+    color: rgb(0, 0, 0);
+    margin-bottom: 13px;
+    font-size: 14px;
+}
+.card a{
+    color: rgb(0, 0, 0);
+}
+
+.card img{
+    /* animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite; */
+    max-width: 250px;
+    max-height: 250px;
+}
+
+@media (max-width:765px){
+    .cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width:450px){
+    .cards{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
