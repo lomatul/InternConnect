@@ -8,15 +8,16 @@
 }
 
 .admincontainer{
-
     align-items: center;
     display: grid;
     margin-left: 110px;
     margin-right: 110px;
-    /* grid-template-columns: 1fr 1fr; */
+    grid-template-columns: 1fr 1fr;
 }
 
-.image img{
+
+
+.admincard .image img{
     width: 800px;
     height: auto;
     animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
@@ -41,7 +42,7 @@
     outline: 2px solid brown;
 }
 
-.cards{
+.admincard .cards{
     display: flex;
     align-items: center;
     gap: 80px;
@@ -49,7 +50,7 @@
     justify-content: center;
 }
 
-.card {
+.admincard .card {
     width: 500px;
     height: 200px;
     padding: 30px;
@@ -62,13 +63,13 @@
     align-items: center;
 }
 
-.card:hover {
+.admincard .card:hover {
     transition: transform 0.3s ease;
     transform: scale(1.2);
 }
 
 
-.card .adbuttons button {
+.admincard .card .adbuttons button {
     /* display: flex; */
     align-items: center;
   /* Add margin to create space between buttons */
@@ -80,27 +81,27 @@
     border-radius: 5px;
 }
 
-.adbuttons .add-button {
+.admincard .adbuttons .add-button {
     margin-right: 20px; /* Add a right margin of 10px to create space */
 }
 
 
-.card h1{
+.admincard .card h1{
     color: rgb(0, 0, 0);
     font-size: 17px;
     margin-top: 8px;
     margin-bottom: 8px;
 }
-.card p {
+.admincard .card p {
     color: rgb(0, 0, 0);
     margin-bottom: 13px;
     font-size: 14px;
 }
-.card a{
+.admincard .card a{
     color: rgb(0, 0, 0);
 }
 
-.card img{
+.admincard .card img{
     /* animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite; */
     max-width: 250px;
     max-height: 250px;
@@ -118,3 +119,88 @@
         grid-template-columns: 1fr;
     }
 }
+
+.admincontainer  .adminimage img{
+    margin-left: 100px;
+    height: 500px;
+    width: 500px;
+}
+.admincontainer .studenttext h3{
+font-size: 18px;
+}
+.admincontainer .studenttext h1{
+    font-size: 45px;
+    }
+
+ .studentguideline {
+    margin-left: 110px;
+    margin-right: 110px;
+    background-color: rgb(198, 220, 230);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+ .studentguideline h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .studentguideline ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 20px 20px;
+  }
+  
+ .studentguideline li {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+   .studentguideline a {
+    text-decoration: none;
+    color: #d40b00;
+    font-weight: bold;
+  }
+  
+ .studentguideline a:hover {
+    text-decoration: underline;
+  }
+  
+
+  
+.xcellupload {
+    background-color: rgba(50, 50, 50, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    margin-top: 100px;
+    border-radius: 20px;
+    margin-left: 210px;
+    margin-right: 210px;
+    justify-content: space-between;
+    padding: 50px;
+    outline: 2px dashed black;
+    margin-bottom: 50px;
+  }
+  
+  .xcellupload  input{
+    padding: 20px;
+    width: 300px;
+  }
+  
+  
+  
+ .xcellupload  button{
+      padding: 16px;
+      width: 200px;
+      margin-left: 100px;
+      border-radius: 10px;
+      color: rgb(255, 255, 255);
+      white-space: nowrap;
+      background: #000000; /* fallback for older browsers*/
+      /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+      background: linear-gradient(to right, #3dabb3, #ead7e0); */
+  }
+  
+  

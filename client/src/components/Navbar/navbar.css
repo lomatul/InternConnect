@@ -1,5 +1,5 @@
 
-.navbar{
+.adminnavbar{
     height: 100px;
     border-radius: 15px;
     margin-top: 30px;
@@ -15,7 +15,7 @@
 
 }
 
-.inner-nav{
+.adminnavbar .inner-nav{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,19 +23,19 @@
     color: rgb(0, 0, 0);
 }
 
-.inner-nav li{
+.adminnavbar .inner-nav li{
     margin-left: 30px;
     color: rgb(0, 0, 0);
     padding: 5px;
 }
 
-.inner-nav li a:-webkit-any-link {
+.adminnavbar .inner-nav li a:-webkit-any-link {
     color: rgb(255, 255, 255); /* Change the color to red */
     cursor: pointer;
 
 }
 
-.inner-nav li:hover {
+.adminnavbar .inner-nav li:hover {
     transform: scale(1.2); 
     transition: transform 0.3s; 
     color: rgb(7, 7, 7); 
@@ -45,19 +45,19 @@
   }
 
 
-.logo{
+  .adminnavbar .logo{
     display: flex;
     align-items: center;
 }
 
-.logo h1{
+.adminnavbar .logo h1{
     font-size: 28px;
     background: -webkit-linear-gradient(#FF0099, #E650FF, #2DCFDA);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
-.button a {
+.adminnavbar .button a {
 
     padding: 16px;
     border-radius: 3px;
@@ -68,7 +68,7 @@
     background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
 
-.hamburger{
+.adminnavbar .hamburger{
     width: 25px;
     height: 2px;
     background-color: rgb(40,40,40);
@@ -76,7 +76,7 @@
     display: none;
 }
 
-.hamburger::before{
+.adminnavbar .hamburger::before{
     content: "";
     position: absolute;
     top: 8px;
@@ -84,7 +84,7 @@
     height: 2px;
     background-color: rgb(40,40,40);
 }
-.hamburger::after{
+.adminnavbar .hamburger::after{
     content: "";
     position: absolute;
     bottom: 8px;
@@ -93,7 +93,7 @@
     background-color: rgb(40,40,40);
 }
 
-.hamburger1{
+.adminnavbar .hamburger1{
     width: 20px;
     height: 2px;
     background-color: rgb(40,40,40);
@@ -101,7 +101,7 @@
     display: none;
 }
 
-.hamburger1::before{
+.adminnavbar .hamburger1::before{
     content: "";
     position: absolute;
     transform: rotate(45deg);
@@ -110,7 +110,7 @@
     background-color: rgb(40,40,40);
     transition: ease-in 0.3s;
 }
-.hamburger1::after{
+.adminnavbar .hamburger1::after{
     content: "";
     position: absolute;
     transform: rotate(-45deg);

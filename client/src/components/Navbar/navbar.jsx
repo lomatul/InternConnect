@@ -20,7 +20,7 @@ const Navbar = () => {
         setShowNav(!showNav)
     }
   return (
-    <div className={`navbar ${showNav ? 'sticky' : ''}`}>
+    <div className={`adminnavbar ${showNav ? 'sticky' : ''}`}>
         <div onClick={handleClick} className={`${showNav ? "hamburger1":"hamburger"}`}></div>
         <div className='logo'>
         <img
@@ -31,11 +31,9 @@ const Navbar = () => {
             <nav className='menu'>
                 <ul className='inner-nav'>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About US</a></li>
-                    <li><a href="/Guildeline">Guildeline</a></li>
-                    {(!userstudent&&!useradmin)&&<li><a href="/Adminlogin">Admin</a></li>}
-                    {/* {(!userstudent&&useradmin)&&<li><a href="/Admin">Admin</a></li>} */}
-                    <li><a href="/Contact">Contact</a></li>
+                    <li><a href="/Admin">Dashboard</a></li>
+                    <li><a href="/SeeStudents">Student List</a></li>
+                    <li><a href="/CompanyList">Company List </a></li>
                 </ul>
             </nav>
         </div>
