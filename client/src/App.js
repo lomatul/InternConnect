@@ -22,7 +22,7 @@ import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
 import { Toaster } from 'react-hot-toast';
 import Test from "./components/test";
-
+import Dropdown from "./components/modal/select";
 
 function App() {
   const { userstudent } = useAuthContext()
@@ -44,6 +44,7 @@ function App() {
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
+        <Route path="/Select" element = {<Dropdown/>} />
         <Route path="/Student" element = {userstudent?<Students/>:<Page404/>} />
         <Route path="/Adminlogin" element = {<AdminLogin/>} />
         <Route path="/AddStudent" element = {useradmin?<AddStudent/>:<Page404/>} />

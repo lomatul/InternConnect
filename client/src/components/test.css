@@ -202,5 +202,137 @@ font-size: 18px;
       /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
       background: linear-gradient(to right, #3dabb3, #ead7e0); */
   }
+  .adminContact{
+    justify-content: center;
+    display: flex;
+    /* background-color:brown ; */
+  }
+  .adminContact form{
+    margin-top: 50px;
+    background-color: rgba(28, 37, 96, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    width: 400px;
+    height: 550px;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 10px 10px 8px #888888;
+    padding: 20px;
+  }
+
+  .form-group textarea{
+    border: none;
+    height: 150px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
   
+ 
+
+  .form-group input[type="text"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
   
+  .form-group input[type="email"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  
+
+  .form-group input[type="text"]:focus {
+    border-color: #f1f1f1;
+  }
+
+  .form-group input[type="text"]:focus::placeholder,
+  .form-group input[type="text"]:not(:placeholder-shown)::placeholder {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  .form-group input[type="text"]:focus + label,
+  .form-group input[type="text"]:not(:placeholder-shown) + label {
+    transform: translateY(-20px);
+    font-size: 14px;
+  }
+
+  .adminnotification{
+    height: 800px;
+    align-items: center;
+    display: grid;
+    margin-left: 110px;
+    margin-right: 110px;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(255, 255, 255);
+    margin-top: 30px;
+    border-radius: 10px;
+    outline: 4px solid black;
+
+}
+
+.adminnotification .text{
+    margin-left: 100px;
+}
+
+.adminnotification .text .adimage img{
+    height: 450px;
+    width: 600px;
+}
+
+/* .adminnotification select */
+
+.adminContact .form-group {
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: 0%;
+    margin-right: 0%;
+    width: 100%;
+}
+
+.adminContact .form-group label{
+    font-size: 13px;
+    font-weight: bold;
+    color: #181141;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.adminContact button
+{
+  margin-left: 100px;
+  height: 50px;
+  width: 200px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+}
+
+.adminContact .adselect select{
+  height: 200px;
+}

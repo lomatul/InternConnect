@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import "../admin/Add.css";
+// import "../admin/Add.css";
 import axios from "axios";
+import  { useEffect } from 'react';
+import Select from 'react-select';
 
 const SendNotification = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -8,19 +10,21 @@ const SendNotification = () => {
   const [recipientEmail, setRecipientEmail] = useState("");
   const [text, setText]= useState('')
   const [sub, setSub]= useState('')
-  
+  const options=[
+    {value:"All",label:"All"},
+    {value:"Individual", label:"Individual"},
+  ]
 
 
-  const handleRecipientTypeChange = (event) => {
-    setRecipientType(event.target.value);
+  const handleRecipientTypeChange = (selectedOption) => {
+    setRecipientType(selectedOption.value);
   };
+  
 
   const handleRecipientEmailChange = (event) => {
     setRecipientEmail(event.target.value);
     console.log(recipientEmail)
   };
-
-
 
 
   const handleSubmit = async (event) => {
@@ -77,26 +81,40 @@ const SendNotification = () => {
   };
 
   return (
-    <div className="add">
-      <div className="addcontainer">
-        <h1>You are here to Send Notification</h1>
+    <div >
+      <div className="adminnotification">
+      <div className='text'>
+            <h3>Sending Notifications:</h3>
+            <h1> Stay Connected!</h1>
+          
+            <div className='adimage'>
+            <img src="ad-con.gif" alt="" />
+        </div> </div>
+
+        <div className="adminContact">
         <form onSubmit={handleSubmit}>
-          <div className="addsections">
-            <div className="details">
+         
+            <div className="form-group">
               <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"value={text} onChange={(e) => setText(e.target.value)}></textarea>
+              <textarea name="" id="" cols="30" rows="10"value={text} onChange={(e) => setText(e.target.value)}></textarea>
+            </div>
+
+            <div className="form-group">
               <label htmlFor="">Subject<span>*</span></label>
               <input type="text" value={sub} onChange={(e) => setSub(e.target.value)}/>
+                </div>
                 
-              <label htmlFor="">Select Recipient<span>*</span></label>
-              <select onChange={handleRecipientTypeChange} value={recipientType}>
-                <option value="All">All Students</option>
-                <option value="Individual">Individual</option>
-              </select>
-              {recipientType === "Individual" && (
 
+            <div className="form-group">
+              <label htmlFor="">Select Recipient<span>*</span></label>
+
+              <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                  <Select className='adselect' options={options} onChange={handleRecipientTypeChange} value={options.find((option) => option.value === recipientType)}/>
+             </div>
+         
+              {recipientType === "Individual" && (
                 
-                <div className="details">
+                <div>
                   <label htmlFor="">Recipient Email Address<span>*</span></label>
                   <input
                     type="email"
@@ -106,10 +124,12 @@ const SendNotification = () => {
                   />
                 </div>
               )}
+
+</div>
               <button type="submit">Send</button>
-            </div>
-          </div>
+        
         </form>
+      </div>
       </div>
     </div>
   );
