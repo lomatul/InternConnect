@@ -3,7 +3,8 @@ import "./Add.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Checkbox from 'rc-checkbox';
+import 'rc-checkbox/assets/index.css';
 
 
 const Add = () => {
@@ -143,87 +144,110 @@ const Add = () => {
 
 
     return (
-      <div className="add">
-        <div className="addcontainer">
-          <h1>Add New Company</h1>
+      <div >
+          <div className='admincontainer'>
+          <div className='studenttext'>
+              <h3>Streamline Student Enrollment </h3>
+              <h1>Add Students with Excel Upload</h1>
+              <div className='button'><a href="/about">Explore Now &#8599;</a></div>
+          </div>
+          <div className='adminimage'>
+              <img src="adcompany.gif" alt="" />
+          </div>
+      </div>
+      <div className="studentguideline">           
+                  <ul>
+                      <li>The "Student Account Creation" feature is a fundamental component of our Internship Management System, allowing students to create their accounts seamlessly with the help of administrative data provided through an Excel sheet.</li>
+                      <li>The admin uploads the Excel sheet containing the student data to the Internship Management System. The system automatically generates student accounts based on the data provided in the Excel sheet.</li>
+                      <li>Each student is assigned a unique account associated with their email address. Once the accounts are created, the system generates a One-Time Password (OTP) for each student. The OTP is a temporary, secure code that will be used for account verification and activation. When they first get started, they will have to change their initial passwords.</li>
+                      <li>The system sends automatic email notifications to each student's provided email address. Students receive the email with their OTP and follow the instructions to activate their accounts</li>
+                      <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                  </ul>
+                 
+             <div className='xcellupload'>         
+                   <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
+                    <button onClick={handleSubmit}>Create</button>          
+              </div>
+       </div>
+       <div className='admincontainer'>
+          <div className='studenttext'>
+              <h3>Streamline Student Enrollment </h3>
+              <h1>Add Students with Excel Upload</h1>
+              <div className='button'><a href="/about">Explore Now &#8599;</a></div>
+          </div>
+          <div className='adminimage'>
+              <img src="comform.gif" alt="" />
+          </div>
+      </div>
+
+       <div className="adminCompany">
           <form onSubmit={handleSubmit}>
-          <div className="addsections">
-          {/* <div className="info">
-          </div>  */}
-  
-            <div className="details">
-            <label htmlFor="">Add Companies by Excel Upload</label>
-            <div className="xcellupload">
-              <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
-              <button onClick={handlefileSubmit}>Create</button>
-            </div>
-          
+
+          <div className="form-columns">
+          <div className="form-group">
               <label htmlFor="name">Company Title<span>*</span></label> 
               <input type="text" name="name" placeholder="Give Company name" value={formData.name} onChange={handleChange}/>
-  
-              <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="description" id="" placeholder="Short description of the company" cols="30" rows="10" value={formData.description} onChange={handleChange}></textarea>
-  
+          </div>
+
+      
+          <div className="form-group">
               <label htmlFor="address">Address<span>*</span></label>
               <input type="text" name="address" value={formData.address} onChange={handleChange} />
+            </div>
 
+          <div className="form-group">
               <label htmlFor="email">Email <span>*</span></label>
-              <input type="text" name="email" value={formData.email} onChange={handleChange} />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} />
               {emailError && <div class="error-message">{emailError}</div>} 
-
-              <label htmlFor="contactNumber">Contact Number<span>*</span></label>
-              <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
-              {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
-
-              <label htmlFor="maxInterns">Max Interns</label>
-              <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
-
+              </div>
+              <div className="form-group">
               <label htmlFor="minInterns">Min Interns</label>
               <input type="number" name="minInterns" min="0" value={formData.minInterns} onChange={handleChange} />
+              </div>
 
+          <div className="form-group">
+              <label htmlFor="contactNumber">Contact Number<span>*</span></label>
+              <input type="number" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
+              {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
+              </div>
+
+
+          <div className="form-group">
+              <label htmlFor="maxInterns">Max Interns</label>
+              <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
+              </div>
+
+         
+
+          <div className="form-group">
               <label htmlFor="internsHired">Interns Hired</label>
               <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
+              </div>
 
-              {/* <label htmlFor="selectedInterns">Selected Interns</label>
-              <input type="number" name="selectedInterns" min="0" value={formData.selectedInterns} onChange={handleChange} /> */}
-             
+          <div className="form-group">
               <label htmlFor="requiredDomain">Domain</label>
               <div className="multiselect">
                 <div className="select-box">
                   <div className="options-container">
-                    <div className="option">
-                      <input type="checkbox" id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />
-                      <label htmlFor="UI/UX Designer">UI/UX Designer</label>
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />
-                      <label htmlFor="Software Development">Software Development</label>
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />
-                      <label htmlFor="Documentation">Documentation</label>
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />
-                      <label htmlFor="DevOps">DevOps</label>
-                        </div>
+
+                  <label> <Checkbox id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />  &nbsp; UI/UX Designer </label> 
+                  <label> <Checkbox id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />  &nbsp; Software Development </label> 
+                  <label> <Checkbox id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />  &nbsp; Documentation </label> 
+                  <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />  &nbsp; DevOps </label> 
+
                       </div>
                     </div>
                   </div>
-                  {/* <label htmlFor="">Status </label>
-                      <select >
-                        <option value="running ">Running</option>
-                        <option value="Closed">Closed </option>
-                      </select> */}
-
-              <button type="submit">Create</button>
-            </div>
-            
-          </div>
-          </form>
-        </div>
+              </div>
+              </div>
         
-      </div>
+          <button type="submit">Create</button>
+            
+            
+          </form>
+          </div>
+            </div>
+
       
     );
   };
