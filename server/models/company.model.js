@@ -2,15 +2,15 @@ import mongoose from 'mongoose';
 
 const companySchema = new mongoose.Schema({
 
-  companyID: { type: String, required: true, unique: true },
-
   name: { type: String, required: true },
   
   address: { type: String, },
   
-  email: { type: String, required: true, unique: true },
+  email: { type: String, required: true, },
+
+  year: { type: String, required: true, },
   
-  requiredDomain: [{ type: String }],       // Array of required domains
+  requiredDomain: [ {domain: { type: String }, internsNeeded: {type: Number, default: 0} } ],       // Array of required domains
   
   minInterns: { type: Number, },
   
@@ -25,5 +25,7 @@ const companySchema = new mongoose.Schema({
   status: { type: String, enum: ['Hiring', 'Closed'],  },       // Status (Hiring or Closed etc)
 
 });
+
+companySchema.index({ email: 1, year: 1 }, { unique: true });     // Compound index in ascending order
 
 export default mongoose.model('Company', companySchema);
