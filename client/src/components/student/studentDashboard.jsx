@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Dashboard() {
+function StudentDashboard() {
 
   return (
    
@@ -8,11 +8,9 @@ function Dashboard() {
     <div className='admincontainer'>
         <div className='text'>
             <h3>Welcome to  </h3>
-            <h1>Admin Dashboard</h1>
+            <h1>Student Dashboard</h1>
         </div>
-        {/* <div className='image'>
-            <img src="adminadmin.gif" alt="" />
-        </div> */}
+
     </div>
 
     <div className='admincard'>
@@ -20,27 +18,27 @@ function Dashboard() {
             <div className='cards'>
                 
                 <div className='card'>
-                    <img src="ad-stu.png" alt=""  />
-                    <a href="/AddStudent">Add Students &rarr;</a>
+                    <img src="stu-profile.png" alt=""  />
+                    <a href="/AddStudent">Profile &rarr;</a>
                 </div>
 
                 <div className='card'>
                     <img src="ad-com.png" alt=""  />
-                    <a href="/AddCompany">Add Companies &rarr;</a>
+                    <a href="/AddCompany">Company list  &rarr;</a>
                 </div>
 
 
                 <div className='card'>
-                    <img src="ad-guide.png" alt=""  />
-                    <a href="/Addguideline">Add Guideline &rarr;</a>
+                    <img src="stu-prefer.png" alt=""  />
+                    <a href="/Addguideline">Add Preferences &rarr;</a>
                 </div> 
             </div>
 
             <div className='cards'>
                 
                 <div className='card'>
-                    <img src="ad-cv.png" alt=""  />
-                    <a href="/">Send CV &rarr;</a>
+                    <img src="cv-up.png" alt=""  />
+                    <a href="/">CV Upload &rarr;</a>
                 </div>
 
                 <div className='card'>
@@ -62,4 +60,4 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default StudentDashboard
