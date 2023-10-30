@@ -110,7 +110,7 @@ export const updateCompanyByEmailAndYear  = async (req, res, next) => {
 export const updateCompanyStatusByEmail = async (req, res, next) => {
   const { email } = req.params; 
   const { status } = req.body;
-
+  
   try {
     const company = await Company.findOne({ email }); 
 

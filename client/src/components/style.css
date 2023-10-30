@@ -2,14 +2,14 @@
     list-style: none;
     text-decoration: none;
 }
+
+
 .home{
 
-    color: #323232;
+    background: transparent;
     font-size: 15px;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1280px;
+    margin-left: 110px;
+    margin-right: 110px;
 }
 
 @media (max-width:900px){
@@ -19,10 +19,14 @@
 }
 
 .navbar{
-    margin-top: 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
 }
 
 .inner-nav{
@@ -30,11 +34,30 @@
     align-items: center;
     justify-content: space-between;
     margin: 0;
+    color: rgb(0, 0, 0);
 }
 
 .inner-nav li{
     margin-left: 30px;
+    color: rgb(0, 0, 0);
+    padding: 5px;
 }
+
+.inner-nav li a:-webkit-any-link {
+    color: rgb(7, 7, 7); /* Change the color to red */
+    cursor: pointer;
+
+}
+
+.inner-nav li:hover {
+    transform: scale(1.2); 
+    transition: transform 0.3s; 
+    color: rgb(7, 7, 7); 
+    background: rgba(181, 224, 241, 0.5);
+    
+    border-radius: 10px;
+  }
+
 
 .logo{
     display: flex;
@@ -49,13 +72,14 @@
 }
 
 .button a {
-    padding: 6px;
+
+    padding: 16px;
     border-radius: 3px;
-    color: white;
+    color: rgb(25, 14, 14);
     white-space: nowrap;
-    background: #f857a6; /* fallback for older browsers*/
-    background: -webkit-linear-gradient(to right, #ff5858, #f857a6);
-    background: linear-gradient(to right, #ff5858, #f857a6);
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
 
 .hamburger{
@@ -84,7 +108,7 @@
 }
 
 .hamburger1{
-    width: 25px;
+    width: 20px;
     height: 2px;
     background-color: rgb(40,40,40);
     position: relative;
@@ -120,7 +144,7 @@
     .inner-nav{
         display: block;
         position: absolute;
-        background: #9559d1;
+        background: #e6e6e6;
         left: 0;
         z-index: 10;
         margin-top: 40px;
@@ -133,17 +157,25 @@
         margin-bottom: 25px;
         margin-left: 0;
         font-size: 16px;
-        width: 100%;
+        width: 80%;
+        background: #e6e6e6;
     }
 
     .inner-nav li a{
-        width: 100%;
+        width: 80%;
         padding-left: 50px;
         padding-right: 100px;
         padding-top: 15px;
         padding-bottom: 15px;
-        color: white;
+        color: rgb(0, 0, 0);
     }
+
+    .inner-nav a:-webkit-any-link {
+        color: rgb(0, 0, 0); /* Change the color to red */
+        cursor: pointer;
+        text-decoration: underline;
+    }
+    
 }
 
 /* Container */
@@ -151,7 +183,6 @@
 .homecontainer{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 70px;
 }
 
 .image img{
@@ -170,28 +201,37 @@
     font-size: 32px;
     font-weight: 500px;
     margin-bottom: 10px;
+    color: rgb(6, 21, 44);
 }
 
 .text h1{
     font-size: 48px;
     font-weight: 500;
     margin-bottom: 20px;
+    color: rgb(15, 67, 82);
 }
 
 .text p {
     opacity: 0.8;
     font-size: 18px;
     margin-bottom: 60px;
+    color: rgb(15, 15, 66);
 }
 
 .text a{
     padding: 12px 15px;
+    color: wheat;
 }
 
-.text .button{
-    display: inline-block;
+.text .button a {
+    padding: 6px;
+    border-radius: 3px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
-
 @media (max-width:1080px){
     .text h3{
         font-size: 25px;
@@ -279,8 +319,9 @@
 /* Section */
 
 .section{
-    margin-top: 160px;
+    margin-top: 80px;
     margin-bottom: 100px;
+    text-align: center; /* Horizontally center the content */
 }
 .inner-section{
     display: flex;
@@ -289,6 +330,14 @@
     padding: 0px 50px;
     background: linear-gradient(135deg, #2D435A 0%, #293D55 30.69%, #263552 68.66%, #253557 100%);
     border-radius: 20px;
+}
+
+.section h1 {
+    position: center ;
+    display: inline-block;
+    font-size: 3em;
+    margin-top: 150px;
+
 }
 
 .inner-section .section-image img{
@@ -307,7 +356,7 @@
     font-size: 28px;
     font-weight: 400;
     margin-bottom: 10px;
-    color: white;
+    color:wheat;
 }
 
 .section-text h5{
@@ -318,23 +367,30 @@
     font-size: 40px;
     font-weight: 400;
     margin-bottom: 20px;
-    color: white;
+    color:wheat;
     margin-top: 20px;
 }
 .section-text p{
     opacity: 0.8;
     font-size: 16px;
     margin-bottom: 60px;
-    color: white;
+    color:wheat;
 }
 
 .section-text a{
     padding: 12px 15px;
     white-space: nowrap;
+    color: wheat;
 }
 
-.section-text .button{
-    display: inline-block;
+.section-text .button a {
+    padding: 6px;
+    border-radius: 3px;
+    color: rgb(25, 14, 14);
+    white-space: nowrap;
+    background: #000000; /* fallback for older browsers*/
+    background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+    background: linear-gradient(to right, #3dabb3, #ead7e0);
 }
 
 @media (max-width:1080px){
@@ -377,34 +433,38 @@
 }
 
 .card-section{
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
 }
 
 .cards{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
+    gap: 80px;
+    margin-bottom: 80px;
 }
 
 .card{
+    width: 500px;
+    height: 200px;
     padding: 30px;
-    background-color: white;
+    justify-content: space-between;
+    background-color: rgb(43, 103, 120);
     box-shadow: 2px 4px 20px 2px rgba(0,0,0,0.05);
     border-radius: 10px;
-    display: inline-block;
 }
 .card h1{
+    color: wheat;
     font-size: 17px;
     margin-top: 8px;
     margin-bottom: 8px;
 }
 .card p {
+    color: wheat;
     margin-bottom: 13px;
+    font-size: 14px;
 }
 .card a{
-    color: rgb(255,47,0);
+    color: rgb(0, 255, 247);
 }
 
 .card img{
@@ -448,20 +508,20 @@
 }
 
 .testimonial-text h1{
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 42px;
     font-weight: 400;
     margin-bottom: 20px;
 }
 .testimonial-text p{
-    color: white;
+    color: rgb(1, 0, 0);
     font-size: 16px;
     width: 80%;
     padding-bottom: 10px;
     margin-bottom: 40px;
 }
 .testimonial-text a{
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 15px;
     width: 80%;
     background: #f857a6; /* fallback for older browsers*/
@@ -478,7 +538,7 @@
 }
 
 .testimonial-cards > .card {
-    background: #3A495D;
+    background: #ffffff;
     padding: 20px;
     box-shadow: 1px 1px 20px 0px rgba(36,176,255,0.05);
 }
@@ -488,7 +548,7 @@
 }
 
 .testimonial-cards .card p{
-    color: white;
+    color: rgb(17, 8, 75);
     font-size: 12px;
     opacity: 0.8;
 }
@@ -550,16 +610,19 @@
 
 .faq{
     margin-top: 100px;
+    color: rgb(0, 0, 0);
 }
 
 .faq > h1{
     font-size: 40px;
     text-align: center;
+    color: rgb(2, 2, 2);
 }
 
 .faq > p {
     font-size: 20px;
     text-align: center;
+    color: rgb(0, 0, 0);
 }
 
 .services{
@@ -580,6 +643,7 @@
     margin: 10px 0;
     border: 0.5px solid #d8d8d8;
     border-radius: 10px;
+    font-size: 10px;
 }
 
 .service-right label{
@@ -593,6 +657,7 @@
 }
 .service-right input {
     display: none;
+    font-size: 10px;
 }
 
 .service-right label::after{
@@ -608,6 +673,7 @@
 
 .service-right input:checked + label::after{
     transform: rotate(45deg);
+    font-size: 10px;
 }
 
 .collapsible-text-1,
@@ -619,8 +685,9 @@
     max-height: 1px;
     overflow: hidden;
     border-radius: 4px;
-    line-height: 1.4;
+    line-height: 0.9;
     position: relative;
+    font-size: 10px;
     top: -20%;
     opacity: 0.5;
     transition: all 0.5s ease;
@@ -637,9 +704,11 @@
     padding-bottom: 25px;
     opacity: 1;
     top: 0;
+    font-size: 18px;
 }
 .service-right > p{
     margin: 1.2rem 0;
+    font-size: 5px;
 }
 
 
@@ -664,6 +733,8 @@
 /* Footer */
 
 .footer{
+    margin-right: 100px;
+    margin-left: 100px;
     margin-top: 120px;
     margin-bottom: 100px;
 }
@@ -672,9 +743,9 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    background: #ffc23e;
+    background: wheat;
     border-radius: 30px;
-    padding: 80px 50px;
+    padding: 50px 30px;
     position: relative;
 }
 
@@ -692,6 +763,7 @@
     margin-top: 10px;
 }
 .footer-text p{
+    color: #000000;
     font-size: 16px;
     margin-bottom: 40px;
 }
@@ -706,7 +778,7 @@
 .pic img{
     position: absolute;
     max-width: 300px;
-    top: -70px;
+    /* top: -70px; */
     left: -150px;
 }
 
@@ -718,69 +790,6 @@
     }
 }
 
-.newsletter {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    gap: 20px;
-}
-
-.news-left{
-    width: 100%;
-    margin-top: -10px;
-    position: relative;
-}
-.newsletter .news-left h4{
-    font-weight: 400;
-    color: #ffae00;
-    font-size: 18px;
-}
-
-.newsletter .news-left h1{
-    font-size: 40px;
-    margin-top: 10px;
-}
-
-.curve{
-    position: absolute;
-    top: 40px;
-    right: 0;
-}
-
-.curve img{
-    max-width: 250px;
-    opacity: 0.6;
-    transform: rotate(-150deg);
-}
-.newsletter .news-right p {
-    font-weight: 400;
-    margin-bottom: 50px;
-}
-.newsletter form{
-    border: 1px solid #eaeaea;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    box-shadow: 2px 4px 20px 0px #f0f1fe;
-}
-
-.newsletter input{
-    outline: none;
-    padding: 10px;
-    font-size: 20px;
-    border: none;
-    width: 100%;
-}
-.newsletter button{
-    outline: none;
-    border: none;
-    font-size: 22px;
-    background: #ffbc2d;
-    color: white;
-    padding: 10px;
-}
 
 @media (max-width:1060px){
     .curve{
@@ -790,7 +799,7 @@
 @media (max-width:860px){
     .newsletter .news-left h4{
         font-weight: 400;
-        color: #ffae00;
+        color: #0a988d;
         font-size: 16px;
     }
     .newsletter .news-left h1{
@@ -809,6 +818,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+
 }
 .footer-menu h1{
     font-size: 24px;
@@ -830,6 +840,8 @@
     opacity: 0.8;
     margin-top: 20px;
     margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+    
 }
 
 @media (max-width:860px){
@@ -845,3 +857,4 @@
         display: block;
     }
 }
+

@@ -22,7 +22,7 @@ const companySchema = new mongoose.Schema({
   
   selectedInterns: [{ type: mongoose.Schema.Types.ObjectId, ref: 'students' }],   // Array of selected interns (references to Student model)  The collection that's being referenced: students
   
-  status: { type: String, enum: ['Hiring', 'Closed'],  },       // Status (Hiring or Closed etc)
+  status: { type: String },       // Status (Hiring or Closed etc)
 
 });
 

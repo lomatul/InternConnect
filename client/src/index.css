@@ -4,10 +4,7 @@ body {
   font-family: 'Roboto Slab', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
-}
-
-*{
-  margin: 0;
-  padding: 0;
+  background-color:black;
+  /* background: linear-gradient(135deg, #293D55 15%, #000000 30.69%, #16152d 68.66%, #263552 100%); */
+  background: rgb(255, 255, 255);
 }
