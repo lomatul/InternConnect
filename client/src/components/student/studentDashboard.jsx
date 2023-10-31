@@ -19,7 +19,7 @@ function StudentDashboard() {
                 
                 <div className='card'>
                     <img src="stu-profile.png" alt=""  />
-                    <a href="/AddStudent">Profile &rarr;</a>
+                    <a href="/Proflie">Profile &rarr;</a>
                 </div>
 
                 <div className='card'>

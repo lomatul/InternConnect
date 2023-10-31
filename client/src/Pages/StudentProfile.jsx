@@ -1,16 +1,18 @@
 import '../components/test.css'
 import Navbar from "../components/Navbar/stunavbar"
 import '../components/Navbar/navbar.css'
-import StudentDashboard from '../components/student/studentDashboard'
+import StudentProfile from '../components/student/studentprofile'
+import Project from '../components/student/project'
 
-function Students() {
+function Proflie() {
  
   return (
     <div className='newAdmin'>   
    <Navbar/>
-   <StudentDashboard/>
+   <StudentProfile/>
+   <Project/>
     </div>
   )
 }
 
-export default Students
+export default Proflie

@@ -1,42 +1,89 @@
-import React from 'react'
-import './test.css'
+import React, { useState } from 'react';
 
-function Test() {
+const Test = () => {
+  const [projects, setProjects] = useState([]);
+  const [newProject, setNewProject] = useState({
+    name: '',
+    year: '',
+    description: '',
+    technologies: '',
+  });
+
+  const handleAddProject = () => {
+    setProjects([...projects, newProject]);
+    setNewProject({
+      name: '',
+      year: '',
+      description: '',
+      technologies: '',
+    });
+  };
+
+  const handleEditProject = (index) => {
+    const updatedProjects = [...projects];
+    updatedProjects[index] = newProject;
+    setProjects(updatedProjects);
+    setNewProject({
+      name: '',
+      year: '',
+      description: '',
+      technologies: '',
+    });
+  };
+
+  const handleDeleteProject = (index) => {
+    const updatedProjects = [...projects];
+    updatedProjects.splice(index, 1);
+    setProjects(updatedProjects);
+  };
 
   return (
-    <div >
-    <div className='admincontainer'>
-        <div className='text'>
-            <h3>Sending Notifications:</h3>
-            <h1> Stay Connected!</h1>
-          
-            <div className='image'>
-            <img src="ad-con.gif" alt="" />
-        </div> </div>
-      
-    
-    <div className="adminContact">
-    <form >         
-      
-              <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
-              <label htmlFor="">Subject<span>*</span></label>
-              <input type="text" />
-                
-              <label htmlFor="">Select Recipient<span>*</span></label>
-              <select>
-                <option value="All">All Students</option>
-                <option value="Individual">Individual</option>
-              </select>
-
-              <button type="submit">Send</button>
-           
-    
-        </form>
+    <div className="view-profile2">
+      <div className="projects">
+        <h2>Projects</h2>
+        <ul>
+          {projects.map((project, index) => (
+            <li key={index}>
+              <h3>{project.name}</h3>
+              <p>Year: {project.year}</p>
+              <p>Description: {project.description}</p>
+              <p>Technologies: {project.technologies}</p>
+              <button onClick={() => handleEditProject(index)}>Edit</button>
+              <button onClick={() => handleDeleteProject(index)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+        <div>
+          <h3>Add a Project</h3>
+          <input
+            type="text"
+            placeholder="Name"
+            value={newProject.name}
+            onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Year"
+            value={newProject.year}
+            onChange={(e) => setNewProject({ ...newProject, year: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Description"
+            value={newProject.description}
+            onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
+          />
+          <input
+            type="text"
+            placeholder="Technologies"
+            value={newProject.technologies}
+            onChange={(e) => setNewProject({ ...newProject, technologies: e.target.value })}
+          />
+          <button onClick={handleAddProject}>Add</button>
         </div>
-        </div>
-</div>
-  )
-}
+      </div>
+    </div>
+  );
+};
 
-export default Test
+export default Test;

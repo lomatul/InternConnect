@@ -23,6 +23,7 @@ import SendNotifi from "./Pages/AddNotification";
 import { Toaster } from 'react-hot-toast';
 import Test from "./components/test";
 import Dropdown from "./components/modal/select";
+import Proflie from "./Pages/StudentProfile";
 
 function App() {
   const { userstudent } = useAuthContext()
@@ -53,6 +54,7 @@ function App() {
         <Route path="/Addprefer" element = {userstudent?<Addprefer/>:<Page404/>} />
         <Route path="/SeeCompanies" element = {userstudent?<SeeCompanies/>:<Page404/>} />
         <Route path="/SeeStudents" element = {useradmin?<Studentslist/>:<Page404/>} />
+        <Route path="/Proflie" element = {userstudent?<Proflie/>:<Page404/>} />
         <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
         <Route path="/Test" element = {<Test/>} />
 
