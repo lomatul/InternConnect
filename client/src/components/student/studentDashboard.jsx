@@ -30,7 +30,7 @@ function StudentDashboard() {
 
                 <div className='card'>
                     <img src="stu-prefer.png" alt=""  />
-                    <a href="/Addguideline">Add Preferences &rarr;</a>
+                    <a href="/Addprefer">Add Preferences &rarr;</a>
                 </div> 
             </div>
 

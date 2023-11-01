@@ -1,89 +1,79 @@
-import React, { useState } from 'react';
+import React from 'react'
+import './test.css'
 
-const Test = () => {
-  const [projects, setProjects] = useState([]);
-  const [newProject, setNewProject] = useState({
-    name: '',
-    year: '',
-    description: '',
-    technologies: '',
-  });
-
-  const handleAddProject = () => {
-    setProjects([...projects, newProject]);
-    setNewProject({
-      name: '',
-      year: '',
-      description: '',
-      technologies: '',
-    });
-  };
-
-  const handleEditProject = (index) => {
-    const updatedProjects = [...projects];
-    updatedProjects[index] = newProject;
-    setProjects(updatedProjects);
-    setNewProject({
-      name: '',
-      year: '',
-      description: '',
-      technologies: '',
-    });
-  };
-
-  const handleDeleteProject = (index) => {
-    const updatedProjects = [...projects];
-    updatedProjects.splice(index, 1);
-    setProjects(updatedProjects);
-  };
+function Test() {
 
   return (
-    <div className="view-profile2">
-      <div className="projects">
-        <h2>Projects</h2>
-        <ul>
-          {projects.map((project, index) => (
-            <li key={index}>
-              <h3>{project.name}</h3>
-              <p>Year: {project.year}</p>
-              <p>Description: {project.description}</p>
-              <p>Technologies: {project.technologies}</p>
-              <button onClick={() => handleEditProject(index)}>Edit</button>
-              <button onClick={() => handleDeleteProject(index)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-        <div>
-          <h3>Add a Project</h3>
-          <input
-            type="text"
-            placeholder="Name"
-            value={newProject.name}
-            onChange={(e) => setNewProject({ ...newProject, name: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Year"
-            value={newProject.year}
-            onChange={(e) => setNewProject({ ...newProject, year: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Description"
-            value={newProject.description}
-            onChange={(e) => setNewProject({ ...newProject, description: e.target.value })}
-          />
-          <input
-            type="text"
-            placeholder="Technologies"
-            value={newProject.technologies}
-            onChange={(e) => setNewProject({ ...newProject, technologies: e.target.value })}
-          />
-          <button onClick={handleAddProject}>Add</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+    <div >
+    <div className="adminCompany">
+          <form >
 
-export default Test;
+          <div className="form-columns">
+          <div className="form-group">
+              <label htmlFor="name">Company Title<span>*</span></label> 
+              <input type="text" name="name" placeholder="Give Company name" />
+          </div>
+
+      
+          <div className="form-group">
+              <label htmlFor="address">Address<span>*</span></label>
+              <input type="text" name="address"  />
+            </div>
+
+          <div className="form-group">
+              <label htmlFor="email">Email <span>*</span></label>
+              <input type="email" name="email"  />
+           </div>
+
+          <div className="form-group">
+              <label htmlFor="minInterns">Min Interns</label>
+              <input type="number" name="minInterns" min="0"  />
+            </div>
+
+          <div className="form-group">
+              <label htmlFor="contactNumber">Contact Number<span>*</span></label>
+              <input type="number" name="contactNumber"  />
+             
+              </div>
+
+
+          <div className="form-group">
+              <label htmlFor="maxInterns">Max Interns</label>
+              <input type="number" name="maxInterns" min="0" />
+              </div>
+
+         
+
+          <div className="form-group">
+              <label htmlFor="internsHired">Interns Hired</label>
+              <input type="number" name="internsHired" min="0"  />
+              </div>
+
+          <div className="form-group">
+              <label htmlFor="requiredDomain">Domain</label>
+              <div className="multiselect">
+                <div className="select-box">
+                  <div className="options-container">
+
+                  {/* <label> <Checkbox id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" />  &nbsp; UI/UX Designer </label> 
+                  <label> <Checkbox id="Software Development" name="requiredDomain" value="Software Development"  />  &nbsp; Software Development </label> 
+                  <label> <Checkbox id="Documentation" name="requiredDomain" value="Documentation"  />  &nbsp; Documentation </label> 
+                  <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps"  />  &nbsp; DevOps </label>  */}
+
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+        
+          <button type="submit">Create</button>
+            
+            
+          </form>
+          </div>
+            </div>
+
+  )
+}
+
+export default Test

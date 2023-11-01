@@ -83,16 +83,18 @@
   
 
 .project-button {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex; /* Use flex display */
+  justify-content: space-between; /* Place items at each end of the container */
+  margin-left: 300px;
+  margin-right: 300px;
 
 }
 
-  .projects button {
-    
-    height: 50px;
-    width: 200px;
+  .projects   button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    width: 180px;
     background-color: #000000;
     color: wheat;
     border-radius: 10px;

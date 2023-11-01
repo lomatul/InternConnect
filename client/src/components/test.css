@@ -381,6 +381,28 @@ font-size: 18px;
   margin-bottom: 100px;
 }
 
+
+
+.studentpreference{
+  justify-content: center;
+  display: flex;
+  /* background-color:brown ; */
+}
+.studentpreference form{
+
+  margin-top: 50px;
+  background-color: rgb(198, 220, 230);
+  box-shadow: 10px 10px 8px #888888;
+  width: 1000px;
+  height: 900px;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 10px 10px 8px #888888;
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+
 .form-columns {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Two equal columns */
@@ -388,7 +410,7 @@ font-size: 18px;
 }
 
 
-.adminCompany .form-group label{
+.adminCompany, .studentpreference .form-group label{
   margin-top: 20px;
   margin-bottom: 2px;
   font-size: 13px;
@@ -404,7 +426,7 @@ font-size: 18px;
   color: #d40b00;
 }
 
-.adminCompany button
+.adminCompany, .studentpreference button
 {
   margin-top: 50px;
   margin-left: 400px;

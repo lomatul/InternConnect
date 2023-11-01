@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import "../admin/Add.css";
 import axios from "axios";
 import  { useEffect } from 'react';
 import Select from 'react-select';

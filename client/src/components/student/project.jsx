@@ -46,6 +46,18 @@ const Project = () => {
         };
       
         return (
+          <div>
+                 {/* <div className='admincontainer'>
+          <div className='studenttext'>
+              <h3>Streamline Your Internship Program</h3>
+              <h1>Effortlessly Add Companies with Excel Upload!</h1>
+            
+          </div>
+          <div className='adminimage'>
+              <img src="adcompany.gif" alt="" />
+          </div>
+     
+          </div> */}
           <div className="view-project">
             <div className="projects">
               <h2>Projects</h2>
@@ -98,6 +110,7 @@ const Project = () => {
                 </button>
               </div>
             </div>
+          </div>
           </div>
         );
       };
