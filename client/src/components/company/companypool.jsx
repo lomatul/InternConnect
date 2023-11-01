@@ -49,8 +49,6 @@ const Companypool = () => {
               <th> Address </th>
               <th> Email </th>
               <th> Contact Number </th>
-              <th> Max Interns </th>
-              <th> Min Interns </th>
               <th> Interns Hired </th>
             </tr>
           </thead>
@@ -61,8 +59,6 @@ const Companypool = () => {
                 <td>{company.address}</td>
                 <td>{company.email}</td>
                 <td>{company.contactNumber}</td>
-                <td>{company.maxInterns}</td>
-                <td>{company.minInterns}</td>
                 <td>{company.internsHired}</td>
               </tr>
             ))}

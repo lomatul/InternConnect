@@ -38,7 +38,7 @@ function StudentDashboard() {
                 
                 <div className='card'>
                     <img src="cv-up.png" alt=""  />
-                    <a href="/">CV Upload &rarr;</a>
+                    <a href="/AddCv">CV Upload &rarr;</a>
                 </div>
 
                 <div className='card'>

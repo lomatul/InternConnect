@@ -436,3 +436,58 @@ font-size: 18px;
   color: wheat;
   border-radius: 10px;
 }
+.studentguideline button
+{
+  margin-top: 50px;
+  margin-left: 500px;
+  height: 50px;
+  width: 200px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+}
+
+
+
+
+
+ .sample-cvs{
+  display: flex; /* Use flex display */
+  justify-content: space-between; /* Place items at each end of the container */
+  margin-left: 200px;
+  margin-right: 200px;
+  
+}
+.studentguideline h2{
+text-align: center;
+}
+ .sample-cvs {
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Style for the download links */
+ .sample-cvs a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #007BFF; /* Link color, you can change this */
+}
+
+ .sample-cvs a:hover {
+  text-decoration: underline;
+}
+
+ .sample-cvs a::before {
+  content: '\2193'; /* Unicode arrow character (downwards arrow) */
+  margin-right: 5px;
+}
+
+ .sample-cvs a:hover::before {
+  content: '\2193'; /* Display the arrow even more clearly on hover */
+  font-weight: bold;
+}
+
+ .sample-cvs a:focus {
+  outline: none; /* Remove the default focus outline on links */
+}

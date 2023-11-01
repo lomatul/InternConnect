@@ -10,7 +10,7 @@
 
 .companies main.table {
     width: 102vw;
-    background-color: #d5dddffe;
+    background-color: #b9cfd7;
     backdrop-filter: blur(7px);
     box-shadow: 0 .4rem .8rem #0005;
     border-radius: .8rem;
@@ -109,7 +109,8 @@
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #76abc4fe;
+    background-color: rgb(49, 36, 92);
+    color: white;
     cursor: pointer;
     text-transform: capitalize;
 }
@@ -133,7 +134,7 @@ tbody tr:hover {
   
     border-radius: 30px;
     background-color: #b9cfd7;
-      box-shadow: 10px 10px 8px  #888888;
+    box-shadow: 10px 10px 8px  #888888;
 }
 
 tbody tr td,
