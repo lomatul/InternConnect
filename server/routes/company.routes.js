@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   createCompany,
+  createHistoricalDataByEmail,
   getAllCompanies,
   getCompanyByEmailAndYear,
   updateCompanyByEmailAndYear ,
@@ -12,6 +13,8 @@ import {
 const router = express.Router();
 
 router.post('/createCompany', createCompany);
+
+router.post('/createHistoricalData/:email', createHistoricalDataByEmail);
 
 router.get('/companies', getAllCompanies);
 
