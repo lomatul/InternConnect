@@ -2,6 +2,8 @@ import React, { useEffect, useState }  from 'react'
 import {useAuthContext} from "../../context/useAuthcontext";
 import axios from "axios";
 import Select from 'react-select';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Prefernces = () => {
