@@ -28,7 +28,14 @@ export const postlogin= (req, res, next) =>{
         // console.log(user.role)
         // console.log(user)
         // Authentication succeeded
-            res.status(200).json({ message: 'Logged In' , User:user}); //, role:"admin"},
+        req.logIn(user , (err) => {
+          if(err){
+            console.error(err)
+            return res.status(500).json({ error: "Session is not set" });
+          }
+        }
+        )
+        res.status(200).json({ message: 'Logged In' , User:user}); //, role:"admin"},
       })(req, res, next);
     }
     

@@ -214,6 +214,14 @@ export const postlogin = (req, res, next) => {
       return res.status(401).json({ error: info.message });
     }
     user.password = undefined;
+    req.logIn(user , (err) => {
+      if(err){
+        console.error(err)
+        return res.status(500).json({ error: "Session is not set" });
+      }
+    }
+    )
+    // console.log("if session is set", req.user)
     // Authentication succeeded
     res.status(200).json({ message: "Logged In", User: user });
   })(req, res, next);
