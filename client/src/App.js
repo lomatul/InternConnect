@@ -25,13 +25,16 @@ import Test from "./components/test";
 import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
 
+import { ToastContainer, toast } from 'react-toastify';
+
+
 function App() {
   const { userstudent } = useAuthContext()
   const {useradmin} = useAuthContext()
   
   return (
     <BrowserRouter>
-      <Toaster  position="top-right" reverseOrder={false} />
+       <ToastContainer />
       <Routes>
     
         <Route path="/" element = {<Home/>} />

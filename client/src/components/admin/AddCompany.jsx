@@ -176,7 +176,7 @@ const Add = () => {
           </div>
       </div>
 
-       <div className="adminCompany">
+       <div className="studentpreference">
           <form onSubmit={handleSubmit}>
 
           <div className="form-columns">
