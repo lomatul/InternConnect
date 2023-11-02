@@ -30,7 +30,7 @@ const Studentlist = () => {
   return (
     <main className="table">
       <section className="table__header">
-        <h1>Student Details</h1>
+      
         <div className="input-group">
           <input
             type="search"
@@ -48,7 +48,6 @@ const Studentlist = () => {
               <th>Name</th>
               <th>Student ID</th>
               <th>Email</th>
-              <th>Current Status</th>
               <th>Account Status</th>
               <th>CGPA</th>
               <th>CV</th>
@@ -61,7 +60,6 @@ const Studentlist = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.email}</td>
-                <td>{student.currentStatus}</td>
                 <td style={{ color: student.accountActivationStatus ? 'green' : 'red' }}>
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>

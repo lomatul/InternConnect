@@ -7,6 +7,60 @@
   -moz-osx-font-smoothing: grayscale;
   width: 1200px;
 }
+
+
+.add .homecontainer{
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+}
+
+.image img{
+  width: 100%;
+  height: auto;
+  animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text h3{
+  font-size: 32px;
+  font-weight: 500px;
+  margin-bottom: 10px;
+  color: rgb(6, 21, 44);
+}
+
+.text h1{
+  font-size: 48px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: rgb(15, 67, 82);
+}
+
+.text p {
+  opacity: 0.8;
+  font-size: 18px;
+  margin-bottom: 60px;
+  color: rgb(15, 15, 66);
+}
+
+.text a{
+  padding: 12px 15px;
+  color: wheat;
+}
+
+.text .button a {
+  padding: 6px;
+  border-radius: 3px;
+  color: rgb(25, 14, 14);
+  white-space: nowrap;
+  background: #000000; /* fallback for older browsers*/
+  background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+  background: linear-gradient(to right, #3dabb3, #ead7e0);
+}
 .add .addcontainer {
 margin-right: 150px;
   width: 700px;

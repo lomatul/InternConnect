@@ -1,22 +1,16 @@
-import { useState } from 'react'
-import '../components/admin/Dashboard.css'
-import Sidebar from '../components/admin/Sidebar'
+import '../components/test.css'
 import Addstudent from '../components/admin/StudentCreation'
-
+import Navbar from "../components/Navbar/navbar"
+import '../components/Navbar/navbar.css'
 
 
 
 function AddStudent() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
-
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
+ 
 
   return (
-    <div className='AdminDashboard'>   
-          {/* <Header OpenSidebar={OpenSidebar}/> */}
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+    <div className='newAdmin'>   
+          <Navbar/>
       <Addstudent />
     </div>
   )

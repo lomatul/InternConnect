@@ -153,57 +153,45 @@ const UploadCV = () => {
   }
 
     return (
-      <div className="add">
-        <div className="addcontainer">
-        <h2 style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="guide.gif" alt="Icon" style={{ width: '60px', height: '60px', marginRight: '10px' }} />
-            CV Guidelines  </h2>
-
-          <div className="cvguideline">           
-                <ul>
-                    <li>Use a clear and professional format for your CV (preferable in Latex).</li>
-                    <li>Include your contact information at the top of the CV.</li>
-                    <li>Highlight your skills, experience, and education.</li>
-                    <li>Tailor your CV for the specific job or internship you're applying for.</li>
-                </ul>
-                <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
-         </div>
-
-         <h2 style={{ display: 'flex', alignItems: 'center'  }}>
-            <img src="cv.gif" alt="Icon" style={{ width: '60px', height: '60px', marginRight: '10px' }} />
-            Upload Your CV  </h2>
-       
-          <div className="addsections" >   
-            <div className="details">                      
-            <div className="xcellupload">             
-              <input type="file" accept=".pdf" onChange={handleFileSelect}/>
-              {hascv?<button onClick={handleSubmit}>Upload</button>:<button onClick={handleSubmit}>Upload</button>}
-            </div>
-            {/* {hascv&&<button onClick={handleview}>View your own submitted CV</button>}        */}
-
-            {hascv&&<button><a href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download PDF</a></button>}
-          
-          
-          </div>           
-          </div>
-
-
-          <h2 style={{ display: 'flex', alignItems: 'center' }}>
-            <img src="samplecv.gif" alt="Icon" style={{ width: '60px', height: '60px', marginRight: '10px' }} />
-            Sample CV's  </h2>
-
-
-                <div className="sample-cvs">
-                        <a href="cvsample1.pdf" download>Download Sample CV 1</a>  
-                    </div>
-                <div className="sample-cvs">
-                        <a href="cvsample2.pdf" download>Download Sample CV 2</a>
-                    </div>
-                <div className="sample-cvs">
-                        <a href="cvsample3.pdf" download>Download Sample CV 3</a>
+      <div >
+            <div className='admincontainer'>
+                <div className='studenttext'>
+                    <h3>Empower Your Journey</h3>
+                    <h1> Unleash Your Potential with Your CV</h1>
+                  
                 </div>
+                  <div className='adminimage'>
+                      <img src="cv-up.gif" alt="" />
+                  </div>
+            </div>
+      
+            <div className="studentguideline">           
+                     <ul>
+                        <li>Use a clear and professional format for your CV (preferable in Latex).</li>
+                          <li>Include your contact information at the top of the CV.</li>
+                          <li>Highlight your skills, experience, and education.</li>
+                          <li>Tailor your CV for the specific job or internship you're applying for.</li>
+                          <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                       </ul>
+
+                
+
+
+                  <div className="sample-cvs">
+                          <a href="cvsample1.pdf" download>Download Sample CV 1</a>  
+                          <a href="cvsample2.pdf" download>Download Sample CV 2</a>
+                          <a href="cvsample3.pdf" download>Download Sample CV 3</a>
+                  </div>
+
+                <div className="xcellupload">             
+                  <input type="file" accept=".pdf" onChange={handleFileSelect}/>
+                  {hascv?<button onClick={handleSubmit}>Upload</button>:<button onClick={handleSubmit}>Upload</button>}
+                </div>
+                   {hascv&&<button><a style={{color:'white'}} href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download your CV </a></button>}
+             </div>
+          
         </div>
-      </div>
+  
     );
   };
 export default UploadCV

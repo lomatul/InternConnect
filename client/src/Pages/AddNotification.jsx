@@ -1,21 +1,16 @@
-import { useState } from 'react'
-import '../components/admin/Dashboard.css'
-import '../components/admin/Add.css'
-import Sidebar from '../components/admin/Sidebar'
+import '../components/test.css'
+import Navbar from "../components/Navbar/navbar"
+import '../components/Navbar/navbar.css'
 import SendNotification from '../components/notification/notifications'
 
 
 
 function SendNotifi() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
-
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
+ 
 
   return (
-    <div className='AdminDashboard'>   
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+    <div className='newAdmin'>   
+     <Navbar/>
       <SendNotification/>
     </div>
   )
