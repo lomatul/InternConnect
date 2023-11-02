@@ -26,6 +26,7 @@ const handleSubmit = async(event) => {
         },
       }).then((response)=>{
           console.log(response)
+          window.location.reload();
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);

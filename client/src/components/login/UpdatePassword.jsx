@@ -18,9 +18,14 @@ const Updatepassword = () => {
   const [checkpassword, setCheckPassword] = useState('')
   const [confirmpassword, setConfirmpassword] = useState('')
 
+  const [passwordStrengthMessage, setPasswordStrengthMessage] = useState('');
 
- 
-
+// Function to clear the password strength message after 3 seconds
+const clearPasswordStrengthMessage = () => {
+  setTimeout(() => {
+    setPasswordStrengthMessage('');
+  }, 2000); // 3 seconds
+};
 
   useEffect(() => {
     if(newPassword!==checkpassword){
@@ -39,9 +44,12 @@ const Updatepassword = () => {
           ).then((response)=>{
               console.log(response)
               navigate('/login');
+              
           }).catch((error)=>{
               if (error.response) {
                 console.log(error.response);
+                setPasswordStrengthMessage('Password is not strong enough');
+                clearPasswordStrengthMessage();
                 console.log("server responded");
               } else if (error.request) {
                 console.log("network error");
@@ -79,12 +87,13 @@ const Updatepassword = () => {
     <div className="logincontainer">
       <form onSubmit={handleSubmit}>
         <p>Update Password</p>
-        <input type="password" placeholder="Enter your new Password" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} /> <br />
+        <input type="password" placeholder="Enter your new Password" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} /> {' '} <br />
+        {passwordStrengthMessage && <div>{passwordStrengthMessage}</div>}
         <input type="password" placeholder="Confirm your password" required value={checkpassword} onChange={(e) =>setCheckPassword(e.target.value)}/> <br />
         {confirmpassword && <div>{confirmpassword}</div>}
         <input type="password" placeholder="Enter your old Password" required value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)}/> <br />
         <input type="submit" value="Sign in" /><br />
-      </form>
+      </form> 
 
       <div className="drops">
         <div className="drop drop-1"></div>

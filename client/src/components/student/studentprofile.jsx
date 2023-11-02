@@ -143,6 +143,7 @@ const StudentProfile = () => {
         });
         // Handle the response if needed
         console.log(response.data); // This is just for demonstration
+        window.location.reload();
       } catch (error) {
         // Handle errors
         console.error(error);
@@ -195,7 +196,7 @@ const StudentProfile = () => {
     <div className="admin-profile">
         <div className="profile">
           <img
-            src={userstudent.image}
+            src={userData.image}
             alt="Profile"
           />
         

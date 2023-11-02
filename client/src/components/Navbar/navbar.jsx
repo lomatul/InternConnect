@@ -1,10 +1,37 @@
 import React,{useState, useEffect} from 'react'
 import { useAuthContext } from '../../context/useAuthcontext'
+import { useLogout } from '../../hooks/useLogout';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [showNav, setShowNav] = useState(false)
     const { userstudent } = useAuthContext()
     const {useradmin} = useAuthContext()
+    const navigate = useNavigate();
+    const { logout } = useLogout()
+    const handleClick = () => {
+        logout()
+        try {
+            axios.get('http://localhost:4000/InterConnect/admin/logout'
+            ).then((response)=>{
+                console.log(response)
+                
+                navigate("/")
+            }).catch((error)=>{
+                if (error.response) {
+                    console.log(error.response);
+                   console.log("server responded");
+                } else if (error.request) {
+                    console.log("network error");
+                } else {
+                    console.log(error);
+                }
+            });
+          } catch (error) {
+            console.error('An error occurred:', error);
+          }
+    }
 
     useEffect (() => {
         const innernav = document.querySelector('.inner-nav')
@@ -16,12 +43,10 @@ const Navbar = () => {
         }
     }, [showNav])
 
-    const handleClick = () => {
-        setShowNav(!showNav)
-    }
+
   return (
     <div className={`adminnavbar ${showNav ? 'sticky' : ''}`}>
-        <div onClick={handleClick} className={`${showNav ? "hamburger1":"hamburger"}`}></div>
+        <div className={`${showNav ? "hamburger1":"hamburger"}`}></div>
         <div className='logo'>
         <img
             src="Ourlogo.png"
@@ -34,6 +59,7 @@ const Navbar = () => {
                     <li><a href="/Admin">Dashboard</a></li>
                     <li><a href="/SeeStudents">Student List</a></li>
                     <li><a href="/CompanyList">Company List </a></li>
+                    <li><a onClick={handleClick}  href="/">LogOut </a></li>
                 </ul>
             </nav>
         </div>

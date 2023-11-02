@@ -43,6 +43,7 @@ const UploadCV = () => {
       }
       if(userstudent.CV){
         setHascv(true);
+        
       }
       setLoading(false); // Set loading to false when data is available
     } 
@@ -92,8 +93,13 @@ const UploadCV = () => {
         },
     }).then((response)=>{
         console.log(response)
-        toast.success('CV uploaded successfully', { position: "top-right" });
+        toast.success('Cv has been uploaded.')
+        setTimeout(() => {
+          window.location.reload();
+        }, 1500);
+
     }).catch((error)=>{
+        toast.error("Error occured, try again")
         if (error.response) {
             console.log(error.response);
             console.log("server responded");

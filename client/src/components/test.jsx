@@ -1,54 +1,85 @@
-import React from 'react'
-import './test.css'
+import React from 'react';
 
-function Test() {
+import { useState } from "react";
+  function Test(){
 
-  return (
-      <div >
-          <div className='admincontainer'>
-          <div className='studenttext'>
-              <h3>Streamline Your Internship Program</h3>
-              <h1>Effortlessly Add Companies with Excel Upload!</h1>
-            
-          </div>
-          <div className='adminimage'>
-              <img src="adcompany.gif" alt="" />
-          </div>
-      </div>
-      <div className="studentguideline">           
-                  <ul>
-                  <li>Use a clear and professional format for your CV (preferable in Latex).</li>
-                    <li>Include your contact information at the top of the CV.</li>
-                    <li>Highlight your skills, experience, and education.</li>
-                    <li>Tailor your CV for the specific job or internship you're applying for.</li>
-                      <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
-                  </ul>
+    const [isAdminMode, setIsAdminMode] = useState(false);
 
-                  <h2 style={{ display: 'flex', alignItems: 'center' }}>
-            Sample CV's  </h2>
+    const handleSignUpClick = () => {
+      setIsAdminMode(true);
+    };
+  
+    const handleSignInClick = () => {
+      setIsAdminMode(false);
+    };
 
 
-                <div className="sample-cvs">
-                        <a href="cvsample1.pdf" download>Download Sample CV 1</a>  
-                    </div>
-                <div className="sample-cvs">
-                        <a href="cvsample2.pdf" download>Download Sample CV 2</a>
-                    </div>
-                <div className="sample-cvs">
-                        <a href="cvsample3.pdf" download>Download Sample CV 3</a>
+
+return (
+<div className={`logincontainer ${isAdminMode ? 'admin-mode' : ''}`}>
+      <div className="forms-logincontainer">
+            <div className="signin-signup">
+              <form action="#" className="admin-form">
+                <h2 className="title">Sign in</h2>
+                <div className="input-field">
+                  <i className="fas fa-user"></i>
+                  <input type="text" placeholder="Username" />
+                </div>
+                <div className="input-field">
+                  <i className="fas fa-lock"></i>
+                  <input type="password" placeholder="Password" />
                 </div>
 
-             <div className='xcellupload'>         
-                   <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
-                    <button >Create</button>          
-              </div>
-       </div>
+              </form>
+              <form action="#" className="student-form">
+                <h2 className="title">Sign up</h2>
+                <div className="input-field">
+                  <i className="fas fa-user"></i>
+                  <input type="text" placeholder="Username" />
+                </div>
+                <div className="input-field">
+                  <i className="fas fa-envelope"></i>
+                  <input type="email" placeholder="Email" />
+                </div>
+                <div className="input-field">
+                  <i className="fas fa-lock"></i>
+                  <input type="password" placeholder="Password" />
+                </div>
 
-
-      
+              </form>
             </div>
+          </div>
+    
+          <div className="panels-logincontainer">
+            <div className="panel left-panel">
+              <div className="logincontent">
+                <h3>New here ?</h3>
+                <p>
+                  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis,
+                  ex ratione. Aliquid!
+                </p>
+                <button className="btn transparent" id="sign-up-btn" onClick={handleSignUpClick}>
+                  Sign up
+                </button>
+              </div>
+              <img src="img/log.svg" className="image" alt="" />
+            </div>
+            <div className="panel right-panel">
+              <div className="logincontent">
+                <h3>One of us ?</h3>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+                  laboriosam ad deleniti.
+                </p>
+                <button className="btn transparent" id="sign-in-btn" onClick={handleSignInClick}>
+                  Sign in
+                </button>
+              </div>
+              <img src="img/register.svg" className="image" alt="" />
+            </div>
+          </div>
+        </div>
+      );
+    };
 
-      
-    );
-  };
-export default Test
+  export default Test

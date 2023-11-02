@@ -2,6 +2,8 @@ import React, { useEffect, useState }  from 'react'
 import {useAuthContext} from "../../context/useAuthcontext";
 import axios from "axios";
 import Select from 'react-select';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Prefernces = () => {
@@ -63,7 +65,10 @@ const Prefernces = () => {
       await axios.post('http://localhost:4000/InterConnect/student/setprefer/'+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
     }).then((response)=>{
         console.log(response)
+        toast.success('Your Preferences have been submitted!')
+
     }).catch((error)=>{
+      toast.error("Error occured, please try again")
         if (error.response) {
             console.log(error.response);
             console.log("server responded");
