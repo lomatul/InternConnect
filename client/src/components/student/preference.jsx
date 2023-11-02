@@ -1,9 +1,8 @@
 import React, { useEffect, useState }  from 'react'
-import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext";
 import axios from "axios";
-import toast, { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
+import Select from 'react-select';
+
 
 const Prefernces = () => {
   const { userstudent } = useAuthContext();
@@ -17,6 +16,22 @@ const Prefernces = () => {
   const [secondchoicedomain, setSecondchoicedomain]=useState('')
   const [thirdchoicedomain, setThirdchoicedomain]=useState('')
   // const [filteredCompanies, setFilteredCompanies] = useState([]);
+
+
+  const domains=[
+    {value:"Frontend",label:"Frontend Developer"},
+    {value:"Backend", label:"Backend Developer"},
+    {value:"UI/UX", label:"UI/UX"},
+    {value:"Software Engineer", label:"Software Engineer"},
+    {value:"DevOps", label:"DevOps"},
+    {value:"Project Manager", label:"Project Manager"},
+  ]
+
+ 
+
+
+
+
   useEffect(() => {
     if (userstudent) {
       setId(userstudent.student_id);
@@ -77,91 +92,82 @@ const Prefernces = () => {
   }
   
     return (
-      <div className="add">
-        <div className="addcontainer">
-          <h1>Add Your Preferences</h1>
-          <div className="addsections">
-          <div className="details">
-              <label htmlFor="">Name<span>*</span></label> 
-              <input type="text" placeholder="Give name" />
+      <div >
+          <div className='admincontainer'>
+              <div className='studenttext'>
+                <h3>Express Your Desires:</h3>
+                <h1> Customize Your Preferences For Your Dream Internship</h1>
+              
+             </div>
+          <div className='adminimage'>
+               <img src="comform.gif" alt="" />
+           </div>
+       </div>
 
-            
-              <label htmlFor=""> Preferable Location (if any) </label>
-              <input type="email"/>
-  
-              <label htmlFor="">Contact Number<span>*</span></label>
-              <input type="number" min="0"/>
+          <div className="studentpreference">
+
+               <form onSubmit={handleSubmit}>
+
+             <div className="form-columns">
+                      <div className="form-group">
+                          <label htmlFor="">Name<span>*</span></label> 
+                          <input type="text" placeholder="Give name" />
+                      </div>
 
 
-                <h2>Give Company Preferences</h2>
-              <label htmlFor="">Choice 1<span>*</span> </label>
-                     <select value={firstchoicecompany} onChange={(e) => setFirstchoicecompany(e.target.value)}>
-                     {companies.map((company) => (
-                        <option key={company._id} value={company._id}>
-                        {company.name}
-                        </option>
-                      ))}
-                    
-                      </select> 
-              <label htmlFor="">Choice 2 </label>
-                      <select value={secondchoicecompany} onChange={(e) => setSecondchoicecompany(e.target.value)}>
-                      {companies.map((company) => (
-                        <option key={company._id} value={company._id}>
-                        {company.name}
-                        </option>
-                      ))}
-                      </select> 
-              <label htmlFor="">Choice 3 </label>
-                      <select value={thirdchoicecompany} onChange={(e) => setThirdchoicecompany(e.target.value)}>
-                      {companies.map((company) => (
-                        <option key={company._id} value={company._id}>
-                        {company.name}
-                        </option>
-                      ))}
-                      </select>
-                     
-          </div> 
-          
-            <div className="details">
+                   
 
-            <h2>Give Domain Preferences</h2>
-              <label htmlFor="">Choice 1 <span>*</span></label>
-                      <select onChange={(e) => setFirstchoicedomain(e.target.value)}>
-                        <option value="Software Engineer ">Software Engineer </option>
-                        <option value="Frontend Developer">Frontend Developer </option>
-                        <option value="Backend Developer">Backend Developer </option>
-                        <option value="Project Manager">Project Manager </option>
-                        <option value="Dev Ops">Dev Ops </option>
-                     </select>
-              <label htmlFor="">Choice 2 </label>
-                      <select onChange={(e) => setSecondchoicedomain(e.target.value)}>
-                        <option value="Software Engineer ">Software Engineer </option>
-                        <option value="Frontend Developer">Frontend Developer </option>
-                        <option value="Backend Developer">Backend Developer </option>
-                        <option value="Project Manager">Project Manager </option>
-                        <option value="Dev Ops">Dev Ops </option>
-                      </select> 
-              <label htmlFor="">Choice 3 </label>
-                      <select onChange={(e) => setThirdchoicedomain(e.target.value)}>
-                        <option value="Software Engineer ">Software Engineer </option>
-                        <option value="Frontend Developer">Frontend Developer </option>
-                        <option value="Backend Developer">Backend Developer </option>
-                        <option value="Project Manager">Project Manager </option>
-                        <option value="Dev Ops">Dev Ops </option>
-                      </select>
-          
-              <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="" id="" placeholder="Short description of the company" cols="30" rows="10"></textarea>
-  
+                    <div className="form-group">
+                        <label htmlFor="">Contact Number<span>*</span></label>
+                        <input type="number" min="0"/>
+                    </div>
+
+                <div className="form-group">
+                      <h2>Give Company Preferences</h2>
+                    <label htmlFor="">Choice 1<span>*</span> </label>
+                        <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                            <Select className='adselect' value={firstchoicecompany} options={companies} onChange={(e) => setFirstchoicecompany(e.target.value)} />        
+                        </div>
+                    <label htmlFor="">Choice 2 </label>
+                        <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                            <Select className='adselect' value={secondchoicecompany} options={domains} onChange={(e) => setSecondchoicecompany(e.target.value)} />
+                        </div>                      
+                    <label htmlFor="">Choice 3 </label>
+                        <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                              <Select className='adselect' value={thirdchoicecompany} options={domains}onChange={(e) => setThirdchoicecompany(e.target.value)}/>              
+                        </div>                        
+                  </div>
+
+
+                  <div className="form-group">
+                      <h2>Give Domain Preferences</h2>
+                    <label htmlFor="">Choice 1<span>*</span> </label>
+                        <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                            <Select className='adselect' value={firstchoicecompany} options={domains}  onChange={(e) => setFirstchoicedomain(e.target.value)} />        
+                        </div>
+                    <label htmlFor="">Choice 2 </label>
+                        <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                            <Select className='adselect' value={secondchoicecompany} options={domains} onChange={(e) => setSecondchoicedomain(e.target.value)}/>
+                        </div>                      
+                    <label htmlFor="">Choice 3 </label>
+                        <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                              <Select className='adselect' value={thirdchoicecompany} options={domains}onChange={(e) => setThirdchoicedomain(e.target.value)}/>              
+                        </div>                        
+                  </div>
+
+                  <div className="form-group">
+                          <label htmlFor=""> Your Location  </label>
+                          <input type="text" placeholder="Give location"/>
+                      </div>
+            </div>
+
               <button onClick={handleSubmit}>Send</button>
               
-
-           
-            </div>
+              </form>
+              </div>
+              
           </div>
-        </div>
-      </div>
-      
+        
     );
   };
 export default Prefernces

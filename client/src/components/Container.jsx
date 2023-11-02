@@ -14,13 +14,7 @@ const Container = () => {
                 <img src="bk.jpg" alt="" />
             </div>
         </div>
-        {/* <div className='partners'>
-            <span><img src="BS.svg" alt="" /></span>
-            <span><img src="mparticle.png" alt="" /></span>
-            <span><img src="chargebee.png" alt="" /></span>
-            <span><img src="corsair.svg" alt="" /></span>
-            <span><img src="emachines.png" alt="" /></span>
-        </div> */}
+       
     </div>
   )
 }

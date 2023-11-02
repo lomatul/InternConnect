@@ -202,28 +202,22 @@ const StudentProfile = () => {
         
           <div className="profile-info">
           <h2>Name : <span>{userData.name}</span></h2>
-          <p>ID : <span>{userData.Id}</span></p>
-          <p>Email : <span>{userData.email}</span></p>
-          <p>Computer Science and Engineering Department</p>
-          <p>{userData.bio}</p>
+          <p><img src="id.png"  alt="InternConnect Logo" style={{ width: '23px', height: '20px' , marginTop:'10px'}}/>ID : <span>{userData.Id}</span></p>
+          <p><img src="mail.png"  alt="InternConnect Logo" style={{ width: '23px', height: '18px' , marginTop:'10px'}}/>
+           Email: <span>{userData.email}</span> </p>
+           <button  onClick={handleEditClick}>Edit Profile</button>
 
           {/* <button onClick={handleEditClick}>Edit Profile</button>
         <button ><a href="/Updatepassword"> Update Password</a></button>
        */}
-        </div>
-        <div className="profile-info">
-         
-          <button onClick={handleEditClick}>Edit Profile</button>
-        <button onClick={navigateto}> Update Password</button>
-      
         </div>
       
         </div>
 
        
 
-{editMode ? (
-        <div className="edit-profile">
+{editMode  ? (
+        <div className="edit-profile" >
           <label htmlFor=""> Hobby</label>
           <input
             type="text"
@@ -252,7 +246,8 @@ const StudentProfile = () => {
             }
           />
            <label htmlFor=""> Experience</label>
-          <textarea
+          <input
+            type="text"
             name="Experience"
             value={userData.pastExperiences}
             onChange={(e) =>
@@ -261,7 +256,8 @@ const StudentProfile = () => {
           />
 
           <label htmlFor=""> link </label>
-          <textarea
+          <input
+            type="text"
             name="link"
             value={userData.externalLinks}
             onChange={(e) =>
@@ -310,10 +306,6 @@ const StudentProfile = () => {
           <h3>Externel Link (s) :</h3>
           <p className='link'><span>{userData.externalLinks}</span></p>
           </div>
-
-
-          <div className="view-profile2">
-        </div>
         </div>
       )}
 

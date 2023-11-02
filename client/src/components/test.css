@@ -1,0 +1,493 @@
+*{
+    list-style: none;
+    text-decoration: none;
+}
+
+.newAdmin{
+    height: 200vh;
+}
+
+.admincontainer{
+    align-items: center;
+    display: grid;
+    margin-left: 110px;
+    margin-right: 110px;
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+.admincard .image img{
+    width: 800px;
+    height: auto;
+    animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
+}
+
+.admincontainer text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+}
+
+.admincard{
+    background-color: rgb(198, 220, 230);
+    margin-top: 50px;
+    margin-left: 110px;
+    margin-right: 110px;
+    padding: 50px;
+    height: 600px;
+    border-radius: 10px;
+    outline: 2px solid brown;
+}
+
+.admincard .cards{
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    margin-bottom: 80px;
+    justify-content: center;
+}
+
+.admincard .card {
+    width: 500px;
+    height: 200px;
+    padding: 30px;
+    background-color: rgba(50, 50, 50, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    border-radius: 10px;
+    display: flex; /* Set the display property to flex */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center;
+    align-items: center;
+}
+
+.admincard .card:hover {
+    transition: transform 0.3s ease;
+    transform: scale(1.2);
+}
+
+
+.admincard .card .adbuttons button {
+    /* display: flex; */
+    align-items: center;
+  /* Add margin to create space between buttons */
+    color: rgb(37, 16, 104);
+    background-color: rgb(207, 201, 223);
+    height: 40px;
+    width: 100px;
+    justify-content: space-around;
+    border-radius: 5px;
+}
+
+.admincard .adbuttons .add-button {
+    margin-right: 20px; /* Add a right margin of 10px to create space */
+}
+
+
+.admincard .card h1{
+    color: rgb(0, 0, 0);
+    font-size: 17px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.admincard .card p {
+    color: rgb(0, 0, 0);
+    margin-bottom: 13px;
+    font-size: 14px;
+}
+.admincard .card a{
+    color: rgb(0, 0, 0);
+}
+
+.admincard .card img{
+    /* animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite; */
+    max-width: 250px;
+    max-height: 250px;
+}
+
+@media (max-width:765px){
+    .cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (max-width:450px){
+    .cards{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+.admincontainer  .adminimage img{
+    margin-left: 100px;
+    height: 500px;
+    width: 500px;
+}
+.admincontainer .studenttext h3{
+font-size: 18px;
+}
+.admincontainer .studenttext h1{
+    font-size: 45px;
+    }
+
+ .studentguideline {
+    margin-left: 110px;
+    margin-right: 110px;
+    background-color: rgb(198, 220, 230);
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+ .studentguideline h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .studentguideline ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding: 20px 20px;
+  }
+  
+ .studentguideline li {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+   .studentguideline a {
+    text-decoration: none;
+    color: #d40b00;
+    font-weight: bold;
+  }
+  
+ .studentguideline a:hover {
+    text-decoration: underline;
+  }
+  
+
+  
+.xcellupload {
+    background-color: rgba(50, 50, 50, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    margin-top: 100px;
+    border-radius: 20px;
+    margin-left: 210px;
+    margin-right: 210px;
+    justify-content: space-between;
+    padding: 50px;
+    outline: 2px dashed black;
+    margin-bottom: 50px;
+  }
+  
+  .xcellupload  input{
+    padding: 20px;
+    width: 300px;
+  }
+  
+  
+  
+ .xcellupload  button{
+      padding: 16px;
+      width: 200px;
+      margin-left: 100px;
+      border-radius: 10px;
+      color: rgb(255, 255, 255);
+      white-space: nowrap;
+      background: #000000; /* fallback for older browsers*/
+      /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+      background: linear-gradient(to right, #3dabb3, #ead7e0); */
+  }
+  .adminContact{
+    justify-content: center;
+    display: flex;
+    /* background-color:brown ; */
+  }
+  .adminContact form{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 50px;
+    background-color: rgba(28, 37, 96, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    width: 400px;
+    height: 550px;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 10px 10px 8px #888888;
+    padding: 20px;
+  }
+
+  .form-group textarea{
+    border: none;
+    height: 150px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  
+ 
+
+  .form-group input[type="text"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  
+  .form-group input[type="email"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .form-group input[type="number"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  
+
+  .form-group input[type="text"]:focus, 
+  .form-group input[type="number"] :focus,
+  .form-group input[type="email"]:focus {
+      border-color: #f1f1f1;
+  }
+  
+  .form-group input[type="text"]:focus::placeholder,
+  .form-group input[type="text"]:not(:placeholder-shown)::placeholder,
+  .form-group input[type="number"]:focus::placeholder,
+  .form-group input[type="number"]:not(:placeholder-shown)::placeholder,
+  .form-group input[type="email"]:focus::placeholder,
+  .form-group input[type="email"]:not(:placeholder-shown)::placeholder {
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  .form-group input[type="text"]:focus + label,
+  .form-group input[type="text"]:not(:placeholder-shown) + label,
+  .form-group input[type="number"]:focus + label,
+  .form-group input[type="number"]:not(:placeholder-shown) + label,
+  .form-group input[type="email"]:focus + label,
+  .form-group input[type="email"]:not(:placeholder-shown) + label {
+      transform: translateY(-20px);
+      font-size: 14px;
+  }
+  
+  .adminnotification{
+    height: 800px;
+    align-items: center;
+    display: grid;
+    margin-left: 110px;
+    margin-right: 110px;
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(255, 255, 255);
+    margin-top: 30px;
+    border-radius: 10px;
+    outline: 4px solid black;
+
+}
+
+.adminnotification .text{
+    margin-left: 100px;
+}
+
+.adminnotification .text .adimage img{
+    height: 450px;
+    width: 600px;
+}
+
+/* .adminnotification select */
+
+.adminContact .form-group {
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: 0%;
+    margin-right: 0%;
+    width: 100%;
+}
+
+.adminContact .form-group label{
+    font-size: 13px;
+    font-weight: bold;
+    color: #181141;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.adminContact button
+{
+  margin-left: 100px;
+  height: 50px;
+  width: 200px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.adminContact .adselect select{
+  height: 200px;
+}
+
+.adminCompany{
+  justify-content: center;
+  display: flex;
+  /* background-color:brown ; */
+}
+.adminCompany form{
+
+  margin-top: 50px;
+  background-color: rgb(198, 220, 230);
+  box-shadow: 10px 10px 8px #888888;
+  width: 1000px;
+  height: 600px;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 10px 10px 8px #888888;
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+
+
+.studentpreference{
+  justify-content: center;
+  display: flex;
+  /* background-color:brown ; */
+}
+.studentpreference form{
+
+  margin-top: 50px;
+  background-color: rgb(198, 220, 230);
+  box-shadow: 10px 10px 8px #888888;
+  width: 1000px;
+  height: 900px;
+  display: block;
+  border-radius: 20px;
+  box-shadow: 10px 10px 8px #888888;
+  padding: 20px;
+  margin-bottom: 100px;
+}
+
+
+.form-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 20px; /* Adjust the gap between columns */
+}
+
+
+.adminCompany, .studentpreference .form-group label{
+  margin-top: 20px;
+  margin-bottom: 2px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #181141;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.form-group span{
+  color: #d40b00;
+}
+
+.adminCompany, .studentpreference button
+{
+  margin-top: 50px;
+  margin-left: 400px;
+  height: 50px;
+  width: 200px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+}
+.studentguideline button
+{
+  margin-top: 50px;
+  margin-left: 500px;
+  height: 50px;
+  width: 200px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+}
+
+
+
+
+
+ .sample-cvs{
+  display: flex; /* Use flex display */
+  justify-content: space-between; /* Place items at each end of the container */
+  margin-left: 200px;
+  margin-right: 200px;
+  
+}
+.studentguideline h2{
+text-align: center;
+}
+ .sample-cvs {
+  margin-top: 20px;
+  text-align: left;
+}
+
+/* Style for the download links */
+ .sample-cvs a {
+  display: block;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: #007BFF; /* Link color, you can change this */
+}
+
+ .sample-cvs a:hover {
+  text-decoration: underline;
+}
+
+ .sample-cvs a::before {
+  content: '\2193'; /* Unicode arrow character (downwards arrow) */
+  margin-right: 5px;
+}
+
+ .sample-cvs a:hover::before {
+  content: '\2193'; /* Display the arrow even more clearly on hover */
+  font-weight: bold;
+}
+
+ .sample-cvs a:focus {
+  outline: none; /* Remove the default focus outline on links */
+}

@@ -1,19 +1,13 @@
 import React from 'react';
-import { useState } from 'react'
 import Table from '../components/company/companylist';
 import '../components/company/company.css';
-import Sidebar from '../components/admin/Sidebar';
+import Navbar from '../components/Navbar/navbar';
 
 function Companies() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
-
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
 
   return (
-    <div className='AdminDashboard'>   
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+    <div className='newAdmin'>   
+    <Navbar/>
       <div className="companies">
       <Table/>
       </div>
