@@ -49,7 +49,7 @@ const authadmin= async (username, password, done) => {
   return done(null, user);
 }
 
-passport.use(
+passport.use('student',
     new LocalStrategy({usernameField: 'student_id', passwordField: 'password'},authstudent)
 );
 
@@ -57,29 +57,34 @@ passport.use('admin',
   new LocalStrategy({usernameField: 'username', passwordField: 'password'},authadmin)
 );
 
-passport.serializeUser( (user, done) => {    done(null, user)})
+passport.serializeUser( (user, done) => {    done(null, user._id)})
 
-passport.deserializeUser( async (student_id, done) => {
-  try{
-    const user = await Student.findOne({ student_id })
-    console.log(user)
-    done(null, user)
-  }catch(err){
+passport.deserializeUser(async (id, done) => {
+  try {
+    const student = await Student.findById(id);
+    if (student) {
+      console.log(student);
+      done(null, student);
+    } else {
+      const admin = await Admin.findById(id);
+      console.log(admin);
+      done(null, admin);
+    }
+  } catch (err) {
     done(err, null);
   }
-  
-})
+});
 
-passport.deserializeUser( async (username, done) => {
-  try{
-    const user = await Admin.findOne({ username })
-    console.log(user)
-    done(null, user)
-  }catch(err){
-    done(err, null);
-  }
+// passport.deserializeUser( async (username, done) => {
+//   try{
+//     const user = await Admin.findOne({ username })
+//     console.log(user)
+//     done(null, user)
+//   }catch(err){
+//     done(err, null);
+//   }
   
-})
+// })
 }
 
 

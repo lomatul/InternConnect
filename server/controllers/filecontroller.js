@@ -69,6 +69,10 @@ const ulpoadfiledata = async (req, res)=>{
 
 //add company properties
 const ulpoadCompanydata = async (req, res)=>{
+  try{
+  if(!req.file){
+    throw new Error('No file is selected')
+  }
   const fileBuffer = req.file.buffer
   const workbook = xlsx.read(fileBuffer); 
   const sheetName = workbook.SheetNames[0];
@@ -92,6 +96,7 @@ const ulpoadCompanydata = async (req, res)=>{
           email: element.Email,
           minInterns: element.MinInterns,
           maxInterns: element.MaxInterns,
+          contactNumber: element.ContactNumber
           
         });
     
@@ -114,6 +119,10 @@ const ulpoadCompanydata = async (req, res)=>{
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
+} catch (error) {
+  res.status(400).json({ error: error.message });
+  console.error(error)
+}
 }
 
 export { ulpoadfiledata, ulpoadCompanydata };

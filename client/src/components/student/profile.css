@@ -1,28 +1,60 @@
 .admin-profile {
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 900px;
-    height: 300px;
-    margin-top: 150px;
+    justify-content: space-between;
+    width: 1100px;
+    height: 140px;
+    margin-top: 50px;
+    margin-right: 150px;
     margin-left: 150px;
     padding: 20px;
-    border: 1px solid #ccc;
+    /* background-color: #84a8c6;
+    border: 1px solid #ccc; */
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    outline: 2px solid black;
+    /* box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); */
+  
+  }
+  .view-profile2{
+    margin: 0 ;
+    position: relative;
+      display: flex;
+      flex-direction: row;
+      text-align: center;
+  }
+
+  .view-profile2 h3 {
+      margin: 0;
+      margin-right: 30px;
+  }
+
+  .view-profile2 p{
+    margin-left: 30px;
+  }
+
+  .view-profile2 .link{
+    color: #3939c3;
+    text-decoration: underline;
+    cursor: pointer;
   }
   
   .edit-profile {
-    text-align: center;
+    margin-bottom: 100px;
+    display: flex; 
+    flex-direction: column;
+  }
+
+  .edit-profile label {
+    margin-top: 20px;
+    color: blue;
+    font-size: 16px;
   }
   
   .edit-profile input[type="text"],
     textarea {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
+      color: #000000;
+      padding: 15px;
+      width: 80%;
+      background-color: #dfe8e8;
+      border-radius: 10px;
     }
   
     .edit-profile button {
@@ -36,8 +68,8 @@
         color: rgb(25, 14, 14);
         white-space: nowrap;
         background: #000000; /* fallback for older browsers*/
-        background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
-        background: linear-gradient(to right, #3dabb3, #ead7e0);
+        /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+        background: linear-gradient(to right, #3dabb3, #ead7e0); */
         
     }
 
@@ -47,16 +79,96 @@
   
   
   .view-profile {
-    text-align: center;
+    /* text-align: center; */
+    margin-bottom: 50px;
+    
+  }
+
+
+  .profile{
+    margin: 0;
+    display: flex;
+    margin-bottom: 50px;
   }
   
-    .view-profile img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
+  .profile .profile-info{
+    /* text-align: center; */
+    margin-top: 100px ;
+    margin-left: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+  }
+
+  .profile .profile-info h2{
+    color: #000000;
+    margin: 0px 0;
+    margin-left: 0px;
+    
+  }
+  .profile .profile-info p{
+    color: #000000;
+    margin: 5px 0;
+  }
+
+    .profile img {
+      outline: 3px solid #0a0738;
+      /* background-color: rgb(255, 255, 255); */
+      padding: 20px;
+      width: 180px;
+      height: 250px;
+      border-radius: 10%;
       margin: 10px 0;
+      
     }
+
+    
+    .projects input[type="file"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .projects input[type="file"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+
+    
+  .projects input[type="link"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 80%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .projects input[type="link"]:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+
   
+    .profile-info img{
+     
+      outline: none;
+      padding: 0;
+      margin: 0;
+      margin-right: 10px;
+    }
     .view-profile h2 {
       margin: 5px 0;
     }
@@ -64,22 +176,30 @@
     .view-profile p {
       color: #777;
       margin: 5px 0;
+   
     }
   
-    .view-profile button {
+    .admin-profile button {
+      text-align: center;
+        margin-top: 30px;
         border: none;
-        margin-top: 10px;
-        padding: 20px;
+        margin-right: 100px;
+        padding: 15px;
         font-weight: 500;
-        font-size: 18px;
-        width: 200px;
+        font-size: 12px;
+        height: 50px;
+        width: 140px;
         cursor: pointer;
         border-radius: 10px;
-        color: rgb(25, 14, 14);
+        color: rgb(255, 255, 255);
         white-space: nowrap;
-        background: #000000; /* fallback for older browsers*/
-        background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
-        background: linear-gradient(to right, #3dabb3, #ead7e0);
+        background: #0a0738; /* fallback for older browsers*/
+        /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
+        background: linear-gradient(to right, #3dabb3, #ead7e0); */
   }
   
-  
+  .admin-profile a:-webkit-any-link {
+    color: rgb(255, 255, 255); /* Change the color to red */
+    cursor: pointer;
+
+}

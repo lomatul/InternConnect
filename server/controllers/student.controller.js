@@ -4,6 +4,13 @@ import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
 import sendPasswordResetEmail from "./forget.password.mailsender.js";
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import validator from "validator";
+
+
+
 
 // Create a student
 export const createStudent = async (req, res, next) => {
@@ -26,6 +33,12 @@ export const createStudent = async (req, res, next) => {
       internshipReport: req.body.internshipReport,
       presentationMarks: req.body.presentationMarks,
       finalGrade: req.body.finalGrade,
+      hobbies: req.body.hobbies, 
+      skills: req.body.skills, 
+      languageEfficiency: req.body.languageEfficiency, 
+      pastExperiences: req.body.pastExperiences, 
+      externalLinks: req.body.externalLinks, 
+      projects: req.body.projects, 
     });
 
     await student.save();
@@ -56,7 +69,7 @@ export const getAllStudents = async (req, res, next) => {
 // Get a single Student by student_id
 export const getStudentById = async (req, res, next) => {
   try {
-    const student = await Student.findById(req.params.student_id);
+    const student = await Student.findOne({ student_id: req.params.student_id });
 
     if (!student) {
       res.status(404).json({
@@ -65,8 +78,8 @@ export const getStudentById = async (req, res, next) => {
       return;
     }
 
-    res.status(200).json({
-      message: "Student retrieved successfully!",
+    res.status(200).send({
+      message: 'Student retrieved successfully!',
       student,
     });
   } catch (error) {
@@ -75,29 +88,41 @@ export const getStudentById = async (req, res, next) => {
 };
 
 // Update a student by student_id
-export const updateStudentById = async (req, res, next) => {
+export const updateStudentById = async (req, res) => {
   try {
-    const student = await Student.findByIdAndUpdate(
-      req.params.student_id,
-      req.body,
-      {
-        new: true,
-      }
-    );
+    const { student_id } = req.params;
+    const { name, email, bio, image, hobbies, skills, languageEfficiency, pastExperiences, externalLinks} = req.body;
+
+    console.log("Image", image)
+
+    const student = await Student.findOne({ student_id });
 
     if (!student) {
-      res.status(404).json({
-        message: "Student not found!",
-      });
-      return;
+      return res.status(404).json({ message: "Student not found" });
     }
 
-    res.status(200).json({
-      message: "Student updated successfully!",
-      student,
-    });
+    // Updating the student's data
+    student.name = name;
+    student.email = email;
+    student.bio = bio;
+    if(image){
+      student.image=image
+    }
+    
+    // Updating the student profile fields
+    student.hobbies = hobbies;
+    student.skills = skills;
+    student.languageEfficiency = languageEfficiency;
+    student.pastExperiences = pastExperiences;
+    student.externalLinks = externalLinks;
+
+    // Save the updated student
+    await student.save();
+
+    return res.status(200).json({ message: "Student updated successfully", student });
   } catch (error) {
-    next(error);
+    console.log("Error: ", error)
+    res.status(400).json({error: error.message})
   }
 };
 
@@ -166,9 +191,9 @@ export const loginStudent = async (req, res) => {
 
 //login with passport
 export const postlogin = (req, res, next) => {
-  console.log("came in postlogin", req.body);
+  // console.log("came in postlogin", req.body);
 
-  passport.authenticate("local", (err, user, info) => {
+  passport.authenticate("student", (err, user, info) => {
     if (err) {
       console.error("Authentication error:", err);
       return res.status(500).json({ error: "Authentication error" });
@@ -223,6 +248,9 @@ export const updatePasswordById = async (req, res, next) => {
     if (!passwordMatch) {
       return res.status(400).json({ message: "Current password is incorrect" });
     }
+    if(!validator.isStrongPassword(newPassword)){
+      return res.status(400).json({ message: "New password is not Strong enough" });
+    }
 
     // Update the password with the new password
     const salt = await bcrypt.genSalt(10);
@@ -253,10 +281,11 @@ const generateOTP = () => {
 };
 
 // Function to send OTP to the user's email and initiate password reset
-export const sendOTPForPasswordReset = async (req, res, next) => {
+export const sendOTPForPasswordReset = async (req, res) => {
   try {
     const { student_id } = req.body;
 
+    console.log(student_id)
     // Check if the student with the provided student_id exists in your database
     const student = await Student.findOne({ student_id });
 
@@ -290,7 +319,9 @@ export const sendOTPForPasswordReset = async (req, res, next) => {
       });
   } catch (error) {
     // Handle any errors that occur during the process
-    next(error);
+    // next(error);
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -298,7 +329,7 @@ export const sendOTPForPasswordReset = async (req, res, next) => {
 export const resetPasswordWithOTP = async (req, res, next) => {
   try {
     const { student_id } = req.params; // Get the student ID from request parameters
-    const { otp, newPassword } = req.body;
+    const { currentPassword, newPassword } = req.body;
 
     // Check if the student with the provided student_id exists in your database
     const student = await Student.findOne({ student_id });
@@ -308,7 +339,7 @@ export const resetPasswordWithOTP = async (req, res, next) => {
     }
 
     // Check if the OTP exists, is valid, and hasn't expired
-    if (!student.OTP || student.OTP.code !== otp) {
+    if (!student.OTP || student.OTP.code !== currentPassword) {
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
 
@@ -334,3 +365,133 @@ export const resetPasswordWithOTP = async (req, res, next) => {
     next(error);
   }
 };
+
+
+//Upload a file
+export const uploadcvfile= async (req, res) =>{
+  try{
+    console.log("it came here in uploadcv")
+    const { student_id } = req.params;
+    console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+  
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+  
+    student.CV=req.file.filename;
+
+    await student.save();
+    // console.log("req", req)
+    console.log("filename", req.file.filename)
+    console.log("Filepath", req.file.path)
+    res.status(200).json({message:"Uploaded"})
+  }catch (error) {
+    // next(error);
+    res.status(400).json({error: error.message})
+  }
+  
+}
+
+//GetStudentCV
+
+export const getcvfile= async (req, res) =>{
+  try{
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const tempDir = path.join(__dirname, '../Storage/Cv');
+    console.log("it came here in uploadcv")
+    const { student_id } = req.params;
+    console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+  
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    const Preferences = student.domainPreferences.map((item) => item.value).join('-');
+    const cvfile = `${Preferences}-${student.CV}`;
+    console.log(cvfile)
+    const cvPath = path.join(tempDir, student.CV);
+
+    res.contentType("application/pdf");
+    res.download(cvPath, cvfile, (err)=>{
+      if(err){
+        return res.status(500).send('Error downloading CV');
+      }
+    })
+  }catch (error) {
+      // next(error);
+      res.status(400).json({error: error.message})
+    }
+}
+
+///setStudent preference
+export const setpreference = async (req, res) =>{
+  try{
+    const {firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain} = req.body;
+    // console.log(firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain)
+    const {student_id} = req.params;
+    // console.log(student_id)
+    const student = await Student.findOne({ student_id: student_id });
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+    const preferences = [
+      { key: 1, value: firstchoicecompany },
+      { key: 2, value: secondchoicecompany },
+      { key: 3, value: thirdchoicecompany }
+    ];
+
+    // Update or add preferences to the student's companyPreferences
+    for (const preference of preferences) {
+      const existingPreference = student.companyPreferences.find(p => p.key === preference.key);
+      if (existingPreference) {
+        existingPreference.value = preference.value;
+      } else {
+        student.companyPreferences.push(preference);
+      }
+    }
+
+    const preferencesdomain = [
+      { key: 1, value: firstchoicedomain },
+      { key: 2, value: secondchoicedomain },
+      { key: 3, value: thirdchoicedomain }
+    ];
+
+    for (const domainpreference of preferencesdomain) {
+      const existingPreference = student.domainPreferences.find(p => p.key === domainpreference.key); //const existingPreference = Student.find({student_id: student_id, "domainPreferences.key" : domainpreference.key});
+      if (existingPreference) {
+        existingPreference.value = domainpreference.value;
+      } else {
+        student.domainPreferences.push(domainpreference);
+      }
+    }
+
+    await student.save();
+    // console.log(student.companyPreferences[0].key) 
+    res.status(200).json({ message: 'Preferences updated successfully' });   
+  }catch (error) {
+    console.error(error);
+    res.status(400).json({ message: error.message });
+  }
+  
+
+}
+
+
+//test
+export const getOneStudentbyId = async (req, res) =>{
+  const { student_id } = req.params;
+  // console.log("It worked", student_id)
+  try{
+    const student = await Student.findOne({ student_id });
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }res.status(200).json({message:"It worked", students:student})
+  }catch(error){
+    console.error(error)
+    res.status(400).json({message: error.message})
+  }
+  
+}
+    

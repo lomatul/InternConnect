@@ -86,7 +86,7 @@ const Add = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
-    
+
   };
 
 
@@ -156,7 +156,7 @@ const Add = () => {
               <img src="adcompany.gif" alt="" />
           </div>
       </div>
-      
+
       <div className="studentguideline">           
                   <ul>
                      
@@ -168,6 +168,7 @@ const Add = () => {
                     <button onClick={handlefileSubmit}>Create</button>          
              </div>
        </div>
+
 
        <div className='admincontainer'>
           <div className='studenttext'>
@@ -195,6 +196,7 @@ const Add = () => {
           </div>
 
 
+
           <div className="form-group">
               <label htmlFor="email">Email <span>*</span></label>
               <input type="email" name="email" value={formData.email} onChange={handleChange} />
@@ -213,6 +215,7 @@ const Add = () => {
           </div>
 
 
+
           <div className="form-group">
               <label htmlFor="maxInterns">Max Interns</label>
               <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
@@ -224,6 +227,7 @@ const Add = () => {
               <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
           </div>
           
+
 
           <div className="form-group">
               <label htmlFor="requiredDomain">Domain</label>
@@ -241,6 +245,7 @@ const Add = () => {
                   </div>
               </div>
             </div>
+
         
           <button type="submit">Create</button>
             

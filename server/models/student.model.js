@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 import bcrypt from 'bcrypt';
 
 const studentSchema = new mongoose.Schema({
@@ -13,9 +12,9 @@ const studentSchema = new mongoose.Schema({
 
   CV: { type: String },
 
-  companyPreferences: [{ type: String }],
+  companyPreferences: [{key:{type:Number}, value:{type:String}}],
 
-  domainPreferences: [{ type: String }],
+  domainPreferences: [{key:{type:Number}, value:{type:String}}],
 
   CGPA: { type: Number },
 
@@ -40,12 +39,26 @@ const studentSchema = new mongoose.Schema({
 
   finalGrade: { type: String },
 
+  bio: { type: String },
+
   createdAt: { type: Date, default: Date.now },
 
   updatedAt: { type: Date, default: Date.now },
+
+  image: {type:String},
+
+  hobbies: { type: [String] }, 
+
+  skills: { type: [String] },
+
+  languageEfficiency: { type: [String] }, 
+
+  pastExperiences: { type: String }, 
+
+  externalLinks: { type: [String] }, 
+
+  projects: [{ type: String }], 
+
 });
-
-// Static login method
-
 
 export default mongoose.model("Student", studentSchema);

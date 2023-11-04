@@ -10,7 +10,7 @@ function Page404() {
                 <div className="contact-content">
                 
                 <figure className="contact-banner">
-                    <img src="404.jpg" alt="contact banner" />
+                    <img src="404.gif" alt="contact banner" />
                 </figure>
                 </div>
 

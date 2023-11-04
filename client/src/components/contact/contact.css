@@ -57,6 +57,7 @@
   
   .contact-form  span {
     color: red;
+    font-size: 14px;
     display: inline;
   }
   
@@ -89,6 +90,7 @@
 
   .contact-form button
   {
+    margin-top: 30px;
     width: 200px;
     padding: 16px;
     margin-left: 100px;
