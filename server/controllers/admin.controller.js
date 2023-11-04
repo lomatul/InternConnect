@@ -4,6 +4,8 @@ import bcrypt from 'bcrypt';
 import passport from 'passport';
 import Student from "../models/student.model.js";
 import Mailfunction from "./custom.mailsender.js"
+import sendCVsEmail from "./cv.mailsender.js";
+import Company from '../models/company.model.js';
 
 export const postlogin= (req, res, next) =>{
 
@@ -88,6 +90,37 @@ export const sendmailtoindividual = async (req, res) => {
     await Mailfunction(sub, recipientEmail, text);
     res.status(200).json({
       message: "Message sent successfully!",
+    });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+}
+
+
+export const sendCvsToCompany = async (req, res) => {
+  try {
+    const { cvFileNames, companyName } = req.body;
+
+    if (!cvFileNames || !companyName || cvFileNames.length === 0) {
+      return res.status(400).json({ error: 'Please provide CV file names, company name, and ensure the array is not empty.' });
+    }
+
+    // Find the company based on the provided name
+    const company = await Company.findOne({ name: companyName });
+
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found.' });
+    }
+
+    // Get the company's email from the database
+    const recipientEmail = company.email;
+
+    // Send the CVs to the company email using the new function
+    await sendCVsEmail(cvFileNames, recipientEmail);
+
+    res.status(200).json({
+      message: "CVs sent to the company successfully!",
     });
   } catch (error) {
     console.log("Error: ", error);
