@@ -210,11 +210,11 @@ font-size: 18px;
   .adminContact form{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+    margin-top: 0px;
     background-color: rgba(28, 37, 96, 0.1);
     box-shadow: 10px 10px 8px #888888;
     width: 400px;
-    height: 550px;
+    height: 650px;
     display: block;
     border-radius: 20px;
     box-shadow: 10px 10px 8px #888888;

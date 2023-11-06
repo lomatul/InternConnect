@@ -14,6 +14,12 @@ const SendNotification = () => {
     {value:"Individual", label:"Individual"},
   ]
 
+  const receiver=[
+    {value:"Company",label:"Company"},
+    {value:"Student", label:"Student"},
+  ]
+
+
 
   const handleRecipientTypeChange = (selectedOption) => {
     setRecipientType(selectedOption.value);
@@ -103,16 +109,24 @@ const SendNotification = () => {
               <input type="text" value={sub} onChange={(e) => setSub(e.target.value)}/>
                 </div>
                 
+                
+            <div className="form-group">
+              <label htmlFor="">Select Recipient<span>*</span></label>
+
+              <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                  <Select className='adselect' options={receiver} onChange={handleRecipientTypeChange} value={receiver.find((option) => option.value === recipientType)}/>
+             </div>      
+
+        </div>
+
 
             <div className="form-group">
               <label htmlFor="">Select Recipient<span>*</span></label>
 
               <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
                   <Select className='adselect' options={options} onChange={handleRecipientTypeChange} value={options.find((option) => option.value === recipientType)}/>
-             </div>
-         
-              {recipientType === "Individual" && (
-                
+             </div>      
+              {recipientType === "Individual" && (             
                 <div>
                   <label htmlFor="">Recipient Email Address<span>*</span></label>
                   <input
@@ -123,8 +137,7 @@ const SendNotification = () => {
                   />
                 </div>
               )}
-
-</div>
+        </div>
               <button type="submit">Send</button>
         
         </form>
