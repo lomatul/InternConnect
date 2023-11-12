@@ -94,7 +94,6 @@ const StudentProfile = () => {
 
   const handleEditClick = () => {
     setEditMode(true);              // Enable edit mode
-    toast.info('Editing profile', { position: "top-right" });
   };
 
   const handleimagesave = () => {
@@ -174,6 +173,7 @@ const StudentProfile = () => {
       });
       // Handle the response if needed
       console.log(response.data); // This is just for demonstration
+      toast.success('Profile saved successfully', { position: "top-right" });
     } catch (error) {
       // Handle errors
       console.error(error);
