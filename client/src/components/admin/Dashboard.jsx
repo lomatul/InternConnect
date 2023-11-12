@@ -40,7 +40,7 @@ function Dashboard() {
                 
                 <div className='card'>
                     <img src="ad-cv.png" alt=""  />
-                    <a href="/">Send CV &rarr;</a>
+                    <a href="/Cvsend">Send CV &rarr;</a>
                 </div>
 
                 <div className='card'>

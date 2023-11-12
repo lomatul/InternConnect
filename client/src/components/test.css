@@ -4,7 +4,7 @@
 }
 
 .newAdmin{
-    height: 200vh;
+    height: 300vh;
 }
 
 .admincontainer{
@@ -458,6 +458,33 @@ font-size: 18px;
   margin-right: 200px;
   
 }
+
+
+.sending-cvs{
+  display: flex; /* Use flex display */
+  justify-content: center; /* Place items at each end of the container */
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
+  text-align: left;
+}
+.sending-cvs .form-group{
+  padding: 20px;
+  width: 300px;
+}
+
+.sending-cvs .form-group  input[type="number"] {
+  border: none;
+  height: 65px;
+  border-bottom: 3px solid rgb(31, 16, 110);
+  padding: 8px 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
 .studentguideline h2{
 text-align: center;
 }

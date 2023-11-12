@@ -23,6 +23,10 @@ import { Toaster } from 'react-hot-toast';
 import Test from "./components/test";
 import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
+import CvSend from "./Pages/Cvsend";
+
+
+
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -58,6 +62,7 @@ function App() {
         <Route path="/Proflie" element = {userstudent?<Proflie/>:<Page404/>} />
         <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
         <Route path="/Test" element = {<Test/>} />
+        <Route path="/Cvsend" element = {<CvSend/>} />
 
       </Routes>
     </BrowserRouter>
