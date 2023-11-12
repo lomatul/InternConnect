@@ -33,8 +33,6 @@ const Navbar = () => {
                     <li><a href="/">Home</a></li>
                     <li><a href="/about">About US</a></li>
                     <li><a href="/Guildeline">Guildeline</a></li>
-                    {(!userstudent&&!useradmin)&&<li><a href="/Adminlogin">Admin</a></li>}
-                    {/* {(!userstudent&&useradmin)&&<li><a href="/Admin">Admin</a></li>} */}
                     <li><a href="/Contact">Contact</a></li>
                 </ul>
             </nav>

@@ -1,21 +1,14 @@
-import { useState } from 'react'
-import '../components/admin/Dashboard.css'
-import '../components/admin/Add.css'
-import Sidebar from '../components/admin/studentsidebar'
 import Prefernces from '../components/student/preference'
-import '../components/student/cv'
-
+import '../components/test.css'
+import Navbar from "../components/Navbar/stunavbar"
+import '../components/Navbar/navbar.css'
 
 function Addprefer() {
-  const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
-  const OpenSidebar = () => {
-    setOpenSidebarToggle(!openSidebarToggle)
-  }
 
   return (
-    <div className='AdminDashboard'>   
-      <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar}/>
+    <div className='newAdmin'>   
+      <Navbar/>
       <Prefernces/>
     </div>
   )

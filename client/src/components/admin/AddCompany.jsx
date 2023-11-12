@@ -3,7 +3,8 @@ import "./Add.css";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Checkbox from 'rc-checkbox';
+import 'rc-checkbox/assets/index.css';
 
 
 const Add = () => {
@@ -24,26 +25,25 @@ const Add = () => {
   };
 
 
-  const isContactNumberValid = (contactNumber) => {
-    const contactNumberPattern = /^01\d{9}$/;
-    return contactNumberPattern.test(contactNumber);
-  };
-
-
-
   const [formData, setFormData] = useState({
-    companyID: "",
     name: "",
     address: "",
-    email: "",
-    requiredDomain: "",
+    historicalData: [
+      {
+        year: new Date().getFullYear(),
+        address: "",
+        requiredDomain: [],
+        internsHired: 0,
+        contactNumber: "",
+        selectedInterns: [],
+      },
+    ],
     minInterns: "",
     maxInterns: "",
-    internsHired: "",
-    contactNumber: "",
     status: "",
     description: ""
   });
+
 
   const handlefileSubmit = async(event) => {
     event.preventDefault()
@@ -58,7 +58,7 @@ const Add = () => {
           },
         }).then((response)=>{
             console.log(response)
-            toast.success('File uploaded successfully', { position: "top-right" });
+         
         }).catch((error)=>{
             if (error.response) {
                 console.log(error.response);
@@ -85,16 +85,8 @@ const Add = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
 
-    if (name === 'contactNumber') {
-      // Use a regular expression to match digits only
-      const numericValue = value.replace(/\D/g, ''); // Remove non-digit characters
-  
-      setFormData({ ...formData, [name]: numericValue });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-    
   };
 
 
@@ -111,12 +103,14 @@ const Add = () => {
     }
 
     // Check if the contact number is valid
-    if (!isContactNumberValid(formData.contactNumber)) {
-      setContactNumberError('Contact number should start with "01" and have 11 digits');
+    const contactNumberPattern = /^01\d{9}$/; // Pattern for contact number starting with "01" and having 11 digits
+    if (!contactNumberPattern.test(formData.contactNumber)) {
+      setContactNumberError('Contact number should start with "01" and have 11 digits in total');
       return;
     } else {
       setContactNumberError('');
     }
+
 
     try {
       const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
@@ -128,16 +122,22 @@ const Add = () => {
       toast.error('Failed to create the company', { position: "top-right" });
       // Handle the error cases
     }
+
     setFormData({
       companyID: "",
       name: "",
-      address: "",
-      email: "",
-      requiredDomain: "",
+      historicalData: [
+        {
+          year: new Date().getFullYear(),
+          address: "",
+          requiredDomain: [],
+          internsHired: 0,
+          contactNumber: "",
+          selectedInterns: [],
+        },
+      ],
       minInterns: "",
       maxInterns: "",
-      internsHired: "",
-      contactNumber: "",
       status: "",
       description: ""
     })
@@ -145,87 +145,115 @@ const Add = () => {
 
 
     return (
-      <div className="add">
-        <div className="addcontainer">
-          <h1>Add New Company</h1>
+      <div >
+          <div className='admincontainer'>
+          <div className='studenttext'>
+              <h3>Streamline Your Internship Program</h3>
+              <h1>Effortlessly Add Companies with Excel Upload!</h1>
+            
+          </div>
+          <div className='adminimage'>
+              <img src="adcompany.gif" alt="" />
+          </div>
+      </div>
+
+      <div className="studentguideline">           
+                  <ul>
+                     
+                      <p> Administrators play a crucial role in creating, updating, and managing the company pool to facilitate student access to internship opportunities and align the system with the changing needs of both students and companies.For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                  </ul>
+                 
+             <div className='xcellupload'>         
+                   <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
+                    <button onClick={handlefileSubmit}>Create</button>          
+             </div>
+       </div>
+
+
+       <div className='admincontainer'>
+          <div className='studenttext'>
+              <h1>Seamless Company Addition: Step by Step </h1>
+             
+          </div>
+          <div className='adminimage'>
+              <img src="comform.gif" alt="" />
+          </div>
+      </div>
+
+       <div className="studentpreference">
           <form onSubmit={handleSubmit}>
-          <div className="addsections">
-          {/* <div className="info">
-          </div>  */}
-  
-            <div className="details">
-            <label htmlFor="">Add Companies by Excel Upload</label>
-            <div className="xcellupload">
-              <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
-              <button onClick={handlefileSubmit}>Create</button>
-            </div>
-          
+
+          <div className="form-columns">
+          <div className="form-group">
               <label htmlFor="name">Company Title<span>*</span></label> 
               <input type="text" name="name" placeholder="Give Company name" value={formData.name} onChange={handleChange}/>
-  
-              <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="description" id="" placeholder="Short description of the company" cols="30" rows="10" value={formData.description} onChange={handleChange}></textarea>
-  
+          </div>
+
+      
+          <div className="form-group">
               <label htmlFor="address">Address<span>*</span></label>
               <input type="text" name="address" value={formData.address} onChange={handleChange} />
+          </div>
 
+
+
+          <div className="form-group">
               <label htmlFor="email">Email <span>*</span></label>
-              <input type="text" name="email" value={formData.email} onChange={handleChange} />
+              <input type="email" name="email" value={formData.email} onChange={handleChange} />
               {emailError && <div class="error-message">{emailError}</div>} 
+              </div>
+              <div className="form-group">
+              <label htmlFor="minInterns">Min Interns</label>
+              <input type="number" name="minInterns" min="0" value={formData.minInterns} onChange={handleChange} />
+          </div>
 
+
+          <div className="form-group">
               <label htmlFor="contactNumber">Contact Number<span>*</span></label>
               <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
               {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
+          </div>
 
+
+
+          <div className="form-group">
               <label htmlFor="maxInterns">Max Interns</label>
               <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
+          </div>
 
-              <label htmlFor="minInterns">Min Interns</label>
-              <input type="number" name="minInterns" min="0" value={formData.minInterns} onChange={handleChange} />
 
+          <div className="form-group">
               <label htmlFor="internsHired">Interns Hired</label>
               <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
+          </div>
+          
 
-              {/* <label htmlFor="selectedInterns">Selected Interns</label>
-              <input type="number" name="selectedInterns" min="0" value={formData.selectedInterns} onChange={handleChange} /> */}
-             
+
+          <div className="form-group">
               <label htmlFor="requiredDomain">Domain</label>
               <div className="multiselect">
                 <div className="select-box">
                   <div className="options-container">
-                    <div className="option">
-                      <input type="checkbox" id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />
-                      <label htmlFor="UI/UX Designer">UI/UX Designer</label>
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />
-                      <label htmlFor="Software Development">Software Development</label>
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />
-                      <label htmlFor="Documentation">Documentation</label>
-                    </div>
-                    <div className="option">
-                      <input type="checkbox" id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />
-                      <label htmlFor="DevOps">DevOps</label>
-                        </div>
+
+                  <label> <Checkbox id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />  &nbsp; UI/UX Designer </label> 
+                  <label> <Checkbox id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />  &nbsp; Software Development </label> 
+                  <label> <Checkbox id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />  &nbsp; Documentation </label> 
+                  <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />  &nbsp; DevOps </label> 
+
                       </div>
                     </div>
                   </div>
-                  {/* <label htmlFor="">Status </label>
-                      <select >
-                        <option value="running ">Running</option>
-                        <option value="Closed">Closed </option>
-                      </select> */}
-
-              <button type="submit">Create</button>
+              </div>
             </div>
-            
-          </div>
-          </form>
-        </div>
+
         
-      </div>
+          <button type="submit">Create</button>
+            
+            
+          </form>
+          </div>
+            </div>
+
       
     );
   };

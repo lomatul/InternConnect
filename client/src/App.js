@@ -11,7 +11,6 @@ import Contacts from "./components/contact/contact";
 import Forgets from "./components/contact/forget";
 import Students from "./Pages/Student";
 import Companies from "./Pages/CompanyList";
-import AdminLogin from "./components/login/Adminlogin";
 import AddStudent from "./Pages/AddStudent";
 import Addcv from "./Pages/AddCV";
 import Addprefer from "./Pages/Addprefenrece";
@@ -20,8 +19,13 @@ import Page404 from "./components/notfound";
 import Studentslist from "./Pages/SeeStudent";
 import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
-import ToastTest from "./components/modal/toast";
-import { Toaster } from "react-hot-toast";
+import { Toaster } from 'react-hot-toast';
+import Test from "./components/test";
+import Dropdown from "./components/modal/select";
+import Proflie from "./Pages/StudentProfile";
+
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function App() {
   const { userstudent } = useAuthContext()
@@ -29,7 +33,7 @@ function App() {
   
   return (
     <BrowserRouter>
-      <Toaster  position="top-right" reverseOrder={false} />
+       <ToastContainer />
       <Routes>
     
         <Route path="/" element = {<Home/>} />
@@ -43,16 +47,17 @@ function App() {
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
+        <Route path="/Select" element = {<Dropdown/>} />
         <Route path="/Student" element = {userstudent?<Students/>:<Page404/>} />
-        <Route path="/Adminlogin" element = {<AdminLogin/>} />
         <Route path="/AddStudent" element = {useradmin?<AddStudent/>:<Page404/>} />
         <Route path="/NotFound" element = {<Page404/>} />
         <Route path="/AddCV" element = {userstudent?<Addcv/>:<Page404/>} />
         <Route path="/Addprefer" element = {userstudent?<Addprefer/>:<Page404/>} />
         <Route path="/SeeCompanies" element = {userstudent?<SeeCompanies/>:<Page404/>} />
         <Route path="/SeeStudents" element = {useradmin?<Studentslist/>:<Page404/>} />
+        <Route path="/Proflie" element = {userstudent?<Proflie/>:<Page404/>} />
         <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
-        <Route path="/ToastTest" element = {<ToastTest/>} />
+        <Route path="/Test" element = {<Test/>} />
 
       </Routes>
     </BrowserRouter>
