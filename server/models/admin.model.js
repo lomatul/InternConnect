@@ -9,6 +9,7 @@ const adminSchema = new mongoose.Schema({
   password: { type: String, required: true },
 
   guideline: {
+    year: { type: Number },
     courseCode: { type: String },
     courseName: { type: String },
     shortDescription: { type: String },
