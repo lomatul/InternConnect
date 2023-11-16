@@ -3,7 +3,8 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 import Student from "../models/student.model.js";
-import Mailfunction from "./custom.mailsender.js"
+import Mailfunction from "./custom.mailsender.js";
+import {MatchStudentByCGPA, MatchStudentByAlgorithm } from './service.controller.js'
 
 export const postlogin= (req, res, next) =>{
 
@@ -97,6 +98,31 @@ export const sendmailtoindividual = async (req, res) => {
       message: "Message sent successfully!",
     });
   } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+}
+
+export const getMatchedStudentForCompany = async (req, res) =>{
+  try{
+    const {company, number, type}=req.body;
+    var returnedMAtches;
+    var returnStudent;
+    if(type==1){
+      returnedMAtches=await MatchStudentByAlgorithm(company, number);
+      console.log("returnedMAtches",returnedMAtches[company])
+      returnStudent=returnedMAtches[company].map((Element)=>{return Element.student});
+    }else{
+      returnedMAtches=await MatchStudentByCGPA(company, number);
+      returnStudent=returnedMAtches[company];
+    }
+    
+
+
+    console.log("in admin", returnedMAtches);
+    console.log("in admin", returnStudent);
+    res.status(200).json({returnStudent})
+  }catch(error){
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
   }
