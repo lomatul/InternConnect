@@ -4,9 +4,9 @@ const mentorSchema = new mongoose.Schema({
 
   name: { type: String, required: true },
 
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   
-  assignedStudents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
+  assignedStudents: [{ type: String, ref: 'Student', unique: true }],
 
 });
 
