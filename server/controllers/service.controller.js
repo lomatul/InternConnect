@@ -124,7 +124,7 @@ export const MatchStudentByAlgorithm = async (company, number)=>{
                 // console.log("End of logic one");
                 break;
             }else{
-                var StudentScore=companyPreferences[preferedCompany.value].find(element=>element.student==currentStudent._id);
+                var StudentScore=companyPreferences[preferedCompany.value].find(element=>element.student.equals(currentStudent._id));
                 matches[preferedCompany.value].sort((a,b)=>b.score-a.score);
                 var minScoreStudent=matches[preferedCompany.value].pop();
                 if(minScoreStudent.score<StudentScore.score){
