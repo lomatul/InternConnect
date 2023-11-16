@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const reportSchema = new mongoose.Schema({
 
-  student_id : {   type: mongoose.Schema.Types.ObjectId, ref: 'Student', required: true, unique: true },
+  student_id : {  type: String,  ref: 'Student', required: true, unique: true },
   
   weeklyReport: {  type: String,  },
   
