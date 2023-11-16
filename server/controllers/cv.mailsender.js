@@ -34,8 +34,8 @@ const sendCVsEmail = async (cvFileNames, recipientEmail) => {
     await transporter.sendMail({
       from: 'internconnect.swe@gmail.com',
       to: recipientEmail,
-      subject: 'CVs as Attachments',
-      text: 'Please find the CVs attached.',
+      subject: 'CVs for internship',
+      text: "Please find the CVs attached for this year's internship.",
       attachments: [
         {
           filename: 'cv.zip',
