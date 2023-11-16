@@ -20,30 +20,8 @@ const GuildeLine = () => {
             </div>
         </div>
 
-        <section>
-        <div className="guidelinecontent">
-          <h2 data-scroll="out">1. Introduction to Internship</h2>
-          <p data-scroll="out"> An internship is a valuable opportunity for students to gain practical 
-          experience in a real work environment. It is a critical part of your educational journey and can 
-          significantly impact your future career. During an internship, you have the chance to apply what 
-          you've learned in the classroom, develop new skills, and build a professional network. This section
-           provides an overview of the importance of internships in your educational and career development.
-           </p>
-        </div>
-      </section>
+ 
 
-
-      <section>
-        <div className="guidelinecontent">
-          <h2 data-scroll="out">2. Purpose of the Guideline Page</h2>
-          <p data-scroll="out"> The purpose of this Guideline Page is to guide you through the entire 
-          internship process. We aim to provide you with all the information you need to successfully a
-          pply for and complete your internship. Whether you are a student, employer, or any other user, 
-          this page serves as a comprehensive resource to answer your questions and assist you in navigating
-           the internship experience.
-           </p>
-        </div>
-      </section>
 
 
       

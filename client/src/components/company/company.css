@@ -8,6 +8,22 @@
     align-items: center;
 }
 
+.companies  .edit button {
+    height: 30px;
+    width: 100px;
+    background-color: #070707;
+    color: wheat;
+    border-radius: 10px;
+}
+
+.companies  .save button {
+    height: 30px;
+    width: 100px;
+    background-color: #2b8d57;
+    color: wheat;
+    border-radius: 10px;
+}
+
 .companies  button {
     height: 30px;
     width: 100px;
