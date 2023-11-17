@@ -62,7 +62,7 @@ const studentSchema = new mongoose.Schema({
       name: { type: String },
       year: { type: Number },
       description: { type: String },
-      technologies: { type: [String] },
+      technologies: { type: String },
     },
   ],
 });
