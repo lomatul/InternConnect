@@ -14,7 +14,11 @@ import {
   uploadcvfile,
   getcvfile,
   setpreference,
-  getOneStudentbyId
+  getOneStudentbyId,
+  addProject,
+  getProjectsByStudentId,
+  editProject,
+  deleteProject
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 
@@ -52,6 +56,14 @@ router.get('/getcv/:student_id', getcvfile)
 router.post('/setprefer/:student_id', setpreference)
 
 router.get('/getOnestudent/:student_id', getOneStudentbyId)
+
+router.post('/addProjects/:student_id', addProject);
+
+router.get('/getProjects/:student_id', getProjectsByStudentId);
+
+router.patch('/editProjects/:student_id/:project_id', editProject);
+
+router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
 
 
 export default router;
