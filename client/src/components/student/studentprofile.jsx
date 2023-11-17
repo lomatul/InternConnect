@@ -4,6 +4,8 @@ import axios from "axios";
 // import "./Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // const user = JSON.parse(localStorage.getItem('user')) || {"student_id" : "100"};
 // const student_id = user.student_id
@@ -91,8 +93,7 @@ const StudentProfile = () => {
 
 
   const handleEditClick = () => {
-    // Enable edit mode
-    setEditMode(true);
+    setEditMode(true);              // Enable edit mode
   };
 
   const handleimagesave = () => {
@@ -143,10 +144,13 @@ const StudentProfile = () => {
         });
         // Handle the response if needed
         console.log(response.data); // This is just for demonstration
-        window.location.reload();
-      } catch (error) {
+        toast.success('Profile saved successfully', { position: "top-right" });
+        // window.location.reload();
+      }
+       catch (error) {
         // Handle errors
         console.error(error);
+        toast.error('Error while saving profile', { position: "top-right" });
       }
   
     }catch(error){
@@ -169,6 +173,7 @@ const StudentProfile = () => {
       });
       // Handle the response if needed
       console.log(response.data); // This is just for demonstration
+      toast.success('Profile saved successfully', { position: "top-right" });
     } catch (error) {
       // Handle errors
       console.error(error);

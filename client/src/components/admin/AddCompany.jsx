@@ -24,26 +24,25 @@ const Add = () => {
   };
 
 
-  const isContactNumberValid = (contactNumber) => {
-    const contactNumberPattern = /^01\d{9}$/;
-    return contactNumberPattern.test(contactNumber);
-  };
-
-
-
   const [formData, setFormData] = useState({
-    companyID: "",
     name: "",
     address: "",
-    email: "",
-    requiredDomain: "",
+    historicalData: [
+      {
+        year: new Date().getFullYear(),
+        address: "",
+        requiredDomain: [],
+        internsHired: 0,
+        contactNumber: "",
+        selectedInterns: [],
+      },
+    ],
     minInterns: "",
     maxInterns: "",
-    internsHired: "",
-    contactNumber: "",
     status: "",
     description: ""
   });
+
 
   const handlefileSubmit = async(event) => {
     event.preventDefault()
@@ -85,16 +84,8 @@ const Add = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
 
-    if (name === 'contactNumber') {
-      // Use a regular expression to match digits only
-      const numericValue = value.replace(/\D/g, ''); // Remove non-digit characters
-  
-      setFormData({ ...formData, [name]: numericValue });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
-    
   };
 
 
@@ -111,12 +102,14 @@ const Add = () => {
     }
 
     // Check if the contact number is valid
-    if (!isContactNumberValid(formData.contactNumber)) {
-      setContactNumberError('Contact number should start with "01" and have 11 digits');
+    const contactNumberPattern = /^01\d{9}$/; // Pattern for contact number starting with "01" and having 11 digits
+    if (!contactNumberPattern.test(formData.contactNumber)) {
+      setContactNumberError('Contact number should start with "01" and have 11 digits in total');
       return;
     } else {
       setContactNumberError('');
     }
+
 
     try {
       const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
@@ -128,16 +121,22 @@ const Add = () => {
       toast.error('Failed to create the company', { position: "top-right" });
       // Handle the error cases
     }
+
     setFormData({
       companyID: "",
       name: "",
-      address: "",
-      email: "",
-      requiredDomain: "",
+      historicalData: [
+        {
+          year: new Date().getFullYear(),
+          address: "",
+          requiredDomain: [],
+          internsHired: 0,
+          contactNumber: "",
+          selectedInterns: [],
+        },
+      ],
       minInterns: "",
       maxInterns: "",
-      internsHired: "",
-      contactNumber: "",
       status: "",
       description: ""
     })
@@ -156,6 +155,7 @@ const Add = () => {
               <img src="adcompany.gif" alt="" />
           </div>
       </div>
+
       <div className="studentguideline">           
                   <ul>
                      
@@ -164,9 +164,11 @@ const Add = () => {
                  
              <div className='xcellupload'>         
                    <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" onChange={handleFileSelect}/>
-                    <button onClick={handleSubmit}>Create</button>          
-              </div>
+                    <button onClick={handlefileSubmit}>Create</button>          
+             </div>
        </div>
+
+
        <div className='admincontainer'>
           <div className='studenttext'>
               <h1>Seamless Company Addition: Step by Step </h1>
@@ -190,7 +192,9 @@ const Add = () => {
           <div className="form-group">
               <label htmlFor="address">Address<span>*</span></label>
               <input type="text" name="address" value={formData.address} onChange={handleChange} />
-            </div>
+          </div>
+
+
 
           <div className="form-group">
               <label htmlFor="email">Email <span>*</span></label>
@@ -200,26 +204,26 @@ const Add = () => {
               <div className="form-group">
               <label htmlFor="minInterns">Min Interns</label>
               <input type="number" name="minInterns" min="0" value={formData.minInterns} onChange={handleChange} />
-              </div>
+          </div>
+
 
           <div className="form-group">
               <label htmlFor="contactNumber">Contact Number<span>*</span></label>
-              <input type="number" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
+              <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
               {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
-              </div>
+          </div>
 
 
-          <div className="form-group">
-              <label htmlFor="maxInterns">Max Interns</label>
-              <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
-              </div>
 
+          
          
 
           <div className="form-group">
               <label htmlFor="internsHired">Interns Hired</label>
               <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
-              </div>
+          </div>
+          
+
 
           <div className="form-group">
               <label htmlFor="requiredDomain">Domain</label>
@@ -228,14 +232,35 @@ const Add = () => {
                   <div className="options-container">
 
                   <label> <Checkbox id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />  &nbsp; UI/UX Designer </label> 
-                  <label> <Checkbox id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />  &nbsp; Software Development </label> 
+                  <label> <Checkbox id="Backend Developer" name="requiredDomain" value="Backend Developer" onChange={handleChange} />  &nbsp; Backend Developer </label> 
+                  <label> <Checkbox id="Frontend Developer" name="requiredDomain" value="Frontend Developer" onChange={handleChange} />  &nbsp; Frontend Developer </label> 
                   <label> <Checkbox id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />  &nbsp; Documentation </label> 
+                  <label> <Checkbox id="QA Engineer" name="requiredDomain" value="QA Engineer" onChange={handleChange} />  &nbsp; QA Engineer </label> 
+                  <label> <Checkbox id="Project Manager" name="requiredDomain" value="Project Manager" onChange={handleChange} />  &nbsp; Project Manager </label> 
                   <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />  &nbsp; DevOps </label> 
-
+                  <label> <Checkbox id="System Architect" name="requiredDomain" value="System Architect" onChange={handleChange} />  &nbsp; System Architect </label> 
                       </div>
                     </div>
                   </div>
               </div>
+
+              <div className="form-group">
+              <label htmlFor="requiredDomain">Number of Interns Per Domain</label>
+              <div className="number-interns">
+
+                  
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />            
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+              </div>
+
+              </div>
+
               </div>
         
           <button type="submit">Create</button>

@@ -9,13 +9,13 @@ const sendPasswordResetEmail = async (Name, email, otp) => {
       service: 'gmail',
       host: 'smtp.gmail.com',
       auth: {
-        user: 'zayed.hasan.14@gmail.com', // Update with your Gmail email address
-        pass: process.env.mail_pass, // Update with your Gmail password or create an app-specific password
+        user: 'internconnect.swe@gmail.com', 
+        pass: process.env.mail_pass,
       },
     });
 
     await transporter.sendMail({
-      from: 'zayed.hasan.14@gmail.com', // Update with your Gmail email address
+      from: 'internconnect.swe@gmail.com',
       to: email,
       subject: 'Password Reset',
       text: `Hi ${Name}, Your OTP is ${otp}`,
