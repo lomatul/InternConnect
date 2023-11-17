@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 
 const studentSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -12,9 +12,9 @@ const studentSchema = new mongoose.Schema({
 
   CV: { type: String },
 
-  companyPreferences: [{key:{type:Number}, value:{type:String}}],
+  companyPreferences: [{ key: { type: Number }, value: { type: String } }],
 
-  domainPreferences: [{key:{type:Number}, value:{type:String}}],
+  domainPreferences: [{ key: { type: Number }, value: { type: String } }],
 
   CGPA: { type: Number },
 
@@ -45,20 +45,26 @@ const studentSchema = new mongoose.Schema({
 
   updatedAt: { type: Date, default: Date.now },
 
-  image: {type:String},
+  image: { type: String },
 
-  hobbies: { type: [String] }, 
+  hobbies: { type: [String] },
 
   skills: { type: [String] },
 
-  languageEfficiency: { type: [String] }, 
+  languageEfficiency: { type: [String] },
 
-  pastExperiences: { type: String }, 
+  pastExperiences: { type: String },
 
-  externalLinks: { type: [String] }, 
+  externalLinks: { type: [String] },
 
-  projects: [{ type: String }], 
-
+  projects: [
+    {
+      name: { type: String },
+      year: { type: Number },
+      description: { type: String },
+      technologies: { type: [String] },
+    },
+  ],
 });
 
 export default mongoose.model("Student", studentSchema);
