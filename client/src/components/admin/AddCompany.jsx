@@ -209,11 +209,7 @@ const Add = () => {
               </div>
 
 
-          <div className="form-group">
-              <label htmlFor="maxInterns">Max Interns</label>
-              <input type="number" name="maxInterns" min="0" value={formData.maxInterns} onChange={handleChange} />
-              </div>
-
+          
          
 
           <div className="form-group">
@@ -228,14 +224,35 @@ const Add = () => {
                   <div className="options-container">
 
                   <label> <Checkbox id="UI/UX Designer" name="requiredDomain" value="UI/UX Designer" onChange={handleChange} />  &nbsp; UI/UX Designer </label> 
-                  <label> <Checkbox id="Software Development" name="requiredDomain" value="Software Development" onChange={handleChange} />  &nbsp; Software Development </label> 
+                  <label> <Checkbox id="Backend Developer" name="requiredDomain" value="Backend Developer" onChange={handleChange} />  &nbsp; Backend Developer </label> 
+                  <label> <Checkbox id="Frontend Developer" name="requiredDomain" value="Frontend Developer" onChange={handleChange} />  &nbsp; Frontend Developer </label> 
                   <label> <Checkbox id="Documentation" name="requiredDomain" value="Documentation" onChange={handleChange} />  &nbsp; Documentation </label> 
+                  <label> <Checkbox id="QA Engineer" name="requiredDomain" value="QA Engineer" onChange={handleChange} />  &nbsp; QA Engineer </label> 
+                  <label> <Checkbox id="Project Manager" name="requiredDomain" value="Project Manager" onChange={handleChange} />  &nbsp; Project Manager </label> 
                   <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />  &nbsp; DevOps </label> 
-
+                  <label> <Checkbox id="System Architect" name="requiredDomain" value="System Architect" onChange={handleChange} />  &nbsp; System Architect </label> 
                       </div>
                     </div>
                   </div>
               </div>
+
+              <div className="form-group">
+              <label htmlFor="requiredDomain">Number of Interns Per Domain</label>
+              <div className="number-interns">
+
+                  
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />            
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+              </div>
+
+              </div>
+
               </div>
         
           <button type="submit">Create</button>
