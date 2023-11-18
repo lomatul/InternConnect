@@ -24,7 +24,7 @@ import Test from "./components/test";
 import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
 import CvSend from "./Pages/Cvsend";
-
+import AddAssesment from "./Pages/Mentor";
 
 
 
@@ -63,6 +63,7 @@ function App() {
         <Route path="/SendNotifi" element = {useradmin?<SendNotifi/>:<Page404/>} />
         <Route path="/Test" element = {<Test/>} />
         <Route path="/Cvsend" element = {<CvSend/>} />
+        <Route path="/AddAssesment" element = {<AddAssesment/>} />
 
       </Routes>
     </BrowserRouter>

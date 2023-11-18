@@ -1,0 +1,36 @@
+.assesment-form form{
+
+    display: grid;
+    margin-top: 0px;
+    background-color: rgba(28, 37, 96, 0.1);
+    box-shadow: 10px 10px 8px #888888;
+    width: 700px;
+    height: 850px;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 10px 10px 8px #888888;
+    padding: 20px;
+  }
+
+  .assesment-form {
+    justify-content: center;
+    display: flex;
+  }
+
+  .assesment-form .form-group {
+    padding: 10px;
+    margin-top: 10px;
+  }
+
+  .assesment-form .form-group RadioButton{
+    color: black;
+  }
+  .assesment-form .form-group1 {
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+  }
+  .assesment-form .form-group1  label{
+ 
+    margin-left: -20px;
+  }
