@@ -127,3 +127,32 @@ export const sendCvsToCompany = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 }
+
+export const postGuideline = async (req, res) => {
+  try {
+    const { courseCode, courseName, shortDescription, credit, committeeMembers, year } = req.body;
+    const admin = await Admin.findOne();
+
+    if (!admin) {
+      return res.status(404).json({ error: 'Admin not found' });
+    }
+
+    admin.guideline = {
+      courseCode,
+      courseName,
+      shortDescription,
+      credit,
+      committeeMembers,
+      year
+    };
+
+    await admin.save();
+
+    res.status(200).json({
+      message: 'Guideline updated successfully!',
+    });
+  } catch (error) {
+    console.error('Error updating guideline:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
