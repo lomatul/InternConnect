@@ -25,7 +25,7 @@ import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
 import CvSend from "./Pages/Cvsend";
 import AddAssesment from "./Pages/Mentor";
-
+import Modal from "./components/modal/modal";
 
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -64,6 +64,7 @@ function App() {
         <Route path="/Test" element = {<Test/>} />
         <Route path="/Cvsend" element = {<CvSend/>} />
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
+        <Route path="/Modal" element = {<Modal/>} />
 
       </Routes>
     </BrowserRouter>

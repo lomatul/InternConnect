@@ -8,7 +8,7 @@ function AddAssesment() {
 
   return (
     <div className='newAdmin'> 
-      <Mentor/>  
+      {/* <Mentor/>   */}
       <Assesment />
     </div>
   )

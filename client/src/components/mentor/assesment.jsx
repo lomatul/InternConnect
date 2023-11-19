@@ -1,81 +1,60 @@
-import React from 'react'
+// Import necessary libraries and components
+import React, { useState } from 'react';
 import "../test.css";
-import "./mentor.css"
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-
-
+import "./mentor.css";
+import ComInfo from './companyinfo';
+import ProjectInfo from './projectassesment';
+import MentorInfo from './mentorinfo';
+import Evaluation from './evalute';
 
 const Assesment = () => {
-    return (     
-    <div >
-        <button>Start Assesment</button>
-        <div className="assesment-form">
-        <form >
+  const [page, setPage] = useState(0);
 
-            <div className="form-group">
-              <label htmlFor="">Email<span>*</span></label>
-              <input type="email" value={""} />
-            </div>
-            <p>Intern's Information from Evaluator</p>
-            <div className="form-group">
-              <label htmlFor="">Intern's Name<span>*</span></label>
-              <input type="text" value={""} />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Intern's Designation (e.g., Front-end Software Developer)<span>*</span></label>
-              <input type="text" value={""} />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Intern's Joining Date  (e.g., January 7, 2019)<span>*</span></label>
-              <input type="text" value={""} />
-            </div>
-                
-            <div className="form-group">
-            <label htmlFor="">Intern's Last Working Day (e.g., January 7, 2019)<span>*</span></label>
-              <input type="text" value={""} />
-            </div>
-            <div className="form-group">
-            <label htmlFor="">Intern's Last Working Day (e.g., January 7, 2019)<span>*</span></label>
-            <input type="text" value={""} />
-            </div>
-            <div className="form-group1">
+  const FormTitles = ["Company Info", "Project Assignments", "Mentor Info", "Evaluation"];
 
-            <FormControl>
-            <label htmlFor="">Intern's Last Working Day (e.g., January 7, 2019)<span>*</span></label>
+  const PageDisplay = () => {
+    const pages = [ComInfo, ProjectInfo, MentorInfo, Evaluation];
+    const Component = pages[page];
+    return <Component />;
+  };
 
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="female"
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="female" control={<Radio />} label="Female" />
-                    <FormControlLabel value="male" control={<Radio />} label="Male" />
-                    <FormControlLabel value="other" control={<Radio />} label="Other" />
-                </RadioGroup>
-            </FormControl>
-            </div>
-
-
-            <div className="form-group">
-              <label htmlFor="">Working Location of Intern<span>*</span></label>
-              <input type="text" value={""} />
-            </div>
-            
-
-            <button>Next</button>    
- 
-
- 
-              <button type="submit">Send</button>
-        
-        </form>
+  return (
+    <div className="mentorform">
+      <div className="progressbar">
+        <div style={{ width: page * 25 + "%" }}></div>
       </div>
-  
-</div>
-  )
-}
-export default Assesment
+
+      <div className="form-container">
+        <div className="mentorheader">
+          <h1>{FormTitles[page]}</h1>
+        </div>
+        <div className="page-transition-container">
+          {PageDisplay()}
+        </div>
+        <div className="mentorfooter">
+          <button
+            disabled={page === 0}
+            onClick={() => {
+              setPage((currPage) => currPage - 1);
+            }}
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => {
+              if (page === FormTitles.length - 1) {
+                alert("FORM SUBMITTED");
+              } else {
+                setPage((currPage) => currPage + 1);
+              }
+            }}
+          >
+            {page === FormTitles.length - 1 ? "Submit" : "Next"}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Assesment;
