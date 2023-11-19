@@ -176,7 +176,7 @@ const LoginFormComponent = () => {
                   Student Login
                 </button>
               </div>
-              <img src="stu-login.png" className="image" alt="" />
+              <img src="admin-login.png" className="image" alt="" />
             </div>
             <div className="panel right-panel">
               <div className="logincontent">

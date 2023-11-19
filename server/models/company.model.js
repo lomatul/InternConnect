@@ -9,7 +9,7 @@ const companySchema = new mongoose.Schema({
   historicalData: 
   [
     {
-      year: { type: Number, required: true, unique: true },
+      year: { type: Number, required: true, unique: true, default: new Date().getFullYear() },
 
       address: { type: String },
 

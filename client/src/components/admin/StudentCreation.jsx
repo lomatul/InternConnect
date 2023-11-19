@@ -2,7 +2,9 @@ import React from 'react'
 // import "./Add.css";
 import axios from "axios";
 import {useState} from 'react';
-import "../test.css"
+import "../test.css";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Addstudent = () => {
@@ -26,9 +28,13 @@ const handleSubmit = async(event) => {
         },
       }).then((response)=>{
           console.log(response)
-          window.location.reload();
+          toast.success('Students have been created successfully', { position: "top-right" });
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
       }).catch((error)=>{
           if (error.response) {
+              toast.error('Error while creating students', { position: "top-right" });
               console.log(error.response);
               console.log("server responded");
             } else if (error.request) {

@@ -8,6 +8,75 @@
     align-items: center;
 }
 
+.companies  .edit button {
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    outline: 2 px solid white ;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.companies  .save button {
+    height: 30px;
+    width: 100px;
+      border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.companies  button {
+    height: 30px;
+    border: none;
+    width: 100px;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.companies .form-group   {
+   width: 70%;
+   margin-left: 100px;
+  }
+
+.table-button{
+    align-items: center;
+}
+
+.table .form-button button{
+    margin-bottom: 50px;
+    margin-left: 600px;
+    height: 60px;
+    width: 200px;
+    border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.table-button button{
+    padding: 10px;
+    height: 60px;
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 200px;
+    border: none;
+    white-space: nowrap;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+
 .companies main.table {
     width: 102vw;
     background-color: #b9cfd7;

@@ -4,7 +4,7 @@
 }
 
 .newAdmin{
-    height: 200vh;
+    height: 300vh;
 }
 
 .admincontainer{
@@ -210,11 +210,11 @@ font-size: 18px;
   .adminContact form{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 50px;
+    margin-top: 0px;
     background-color: rgba(28, 37, 96, 0.1);
     box-shadow: 10px 10px 8px #888888;
     width: 400px;
-    height: 550px;
+    height: 650px;
     display: block;
     border-radius: 20px;
     box-shadow: 10px 10px 8px #888888;
@@ -422,6 +422,8 @@ font-size: 18px;
   align-items: center;
 }
 
+
+
 .form-group span{
   color: #d40b00;
 }
@@ -458,6 +460,40 @@ font-size: 18px;
   margin-right: 200px;
   
 }
+
+.studentpreference .form-group .number-interns input{
+  height: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  width: 250px;
+  border-radius: 5px;
+
+}
+.sending-cvs{
+  display: flex; /* Use flex display */
+  justify-content: center; /* Place items at each end of the container */
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 20px;
+  text-align: left;
+}
+.sending-cvs .form-group{
+  padding: 20px;
+  width: 300px;
+}
+
+.sending-cvs .form-group  input[type="number"] {
+  border: none;
+  height: 65px;
+  border-bottom: 3px solid rgb(31, 16, 110);
+  padding: 8px 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
 .studentguideline h2{
 text-align: center;
 }

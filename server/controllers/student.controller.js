@@ -501,5 +501,99 @@ export const getOneStudentbyId = async (req, res) =>{
     res.status(400).json({message: error.message})
   }
   
-}
-    
+};
+
+
+export const addProject = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const { name, year, description, technologies } = req.body;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    student.projects.push({ name, year, description, technologies });
+
+    await student.save();
+
+    return res.status(201).json({ message: "Project added successfully", student });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+export const getProjectsByStudentId = async (req, res, next) => {
+  try {
+    const { student_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const projects = student.projects;
+
+    res.status(200).json({ projects });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const editProject = async (req, res) => {
+  try {
+    const { student_id, project_id } = req.params;
+    const { name, year, description, technologies } = req.body;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    const project = student.projects.id(project_id);
+
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    project.name = name;
+    project.year = year;
+    project.description = description;
+    project.technologies = technologies;
+
+    await student.save();
+
+    return res.status(200).json({ message: "Project updated successfully", student });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+export const deleteProject = async (req, res) => {
+  try {
+    const { student_id, project_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    student.projects.pull(project_id);
+
+    await student.save();
+
+    return res.status(200).json({ message: "Project deleted successfully", student });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+};

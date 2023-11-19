@@ -5,6 +5,8 @@ import passport from 'passport';
 import Student from "../models/student.model.js";
 import Mailfunction from "./custom.mailsender.js";
 import {MatchStudentByCGPA, MatchStudentByAlgorithm } from './service.controller.js'
+import sendCVsEmail from "./cv.mailsender.js";
+import Company from '../models/company.model.js';
 
 export const postlogin= (req, res, next) =>{
 
@@ -127,3 +129,63 @@ export const getMatchedStudentForCompany = async (req, res) =>{
     res.status(400).json({ error: error.message });
   }
 }
+
+
+export const sendCvsToCompany = async (req, res) => {
+  try {
+    const { cvFileNames, companyName } = req.body;
+
+    if (!cvFileNames || !companyName || cvFileNames.length === 0) {
+      return res.status(400).json({ error: 'Please provide CV file names, company name, and ensure the array is not empty.' });
+    }
+
+    // Find the company based on the provided name
+    const company = await Company.findOne({ name: companyName });
+
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found.' });
+    }
+
+    // Get the company's email from the database
+    const recipientEmail = company.email;
+
+    // Send the CVs to the company email using the new function
+    await sendCVsEmail(cvFileNames, recipientEmail);
+
+    res.status(200).json({
+      message: "CVs sent to the company successfully!",
+    });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+}
+
+export const postGuideline = async (req, res) => {
+  try {
+    const { courseCode, courseName, shortDescription, credit, committeeMembers, year } = req.body;
+    const admin = await Admin.findOne();
+
+    if (!admin) {
+      return res.status(404).json({ error: 'Admin not found' });
+    }
+
+    admin.guideline = {
+      courseCode,
+      courseName,
+      shortDescription,
+      credit,
+      committeeMembers,
+      year
+    };
+
+    await admin.save();
+
+    res.status(200).json({
+      message: 'Guideline updated successfully!',
+    });
+  } catch (error) {
+    console.error('Error updating guideline:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
