@@ -16,7 +16,7 @@ router.post('/sendtoall', sendmailtoall)
 router.post('/sendtoone', sendmailtoindividual)
 
 //testing 
-router.get('/getMatchedStudents', getMatchedStudentForCompany)
+router.post('/getMatchedStudents', getMatchedStudentForCompany)
 router.post('/sendcvtocompany', sendCvsToCompany)
 router.post('/uploadGuideline', postGuideline)
 

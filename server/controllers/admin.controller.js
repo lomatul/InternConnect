@@ -110,20 +110,26 @@ export const getMatchedStudentForCompany = async (req, res) =>{
     const {company, number, type}=req.body;
     var returnedMAtches;
     var returnStudent;
+    var returnStudentId=[];
     if(type==1){
       returnedMAtches=await MatchStudentByAlgorithm(company, number);
-      console.log("returnedMAtches",returnedMAtches[company])
       returnStudent=returnedMAtches[company].map((Element)=>{return Element.student});
     }else{
       returnedMAtches=await MatchStudentByCGPA(company, number);
       returnStudent=returnedMAtches[company];
     }
     
+    const getid = returnStudent.map(async element =>{
+      console.log("element", element);
+      const student=await Student.findById(element);
+      console.log("student", student.student_id);
+      return student
+    })
 
+    returnStudentId=await Promise.all(getid)
 
-    console.log("in admin", returnedMAtches);
-    console.log("in admin", returnStudent);
-    res.status(200).json({returnStudent})
+    console.log("returned StudentIds", returnStudentId);
+    res.status(200).json({returnStudentId})
   }catch(error){
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
@@ -133,14 +139,20 @@ export const getMatchedStudentForCompany = async (req, res) =>{
 
 export const sendCvsToCompany = async (req, res) => {
   try {
-    const { cvFileNames, companyName } = req.body;
+    const { companyID, students } = req.body;
 
-    if (!cvFileNames || !companyName || cvFileNames.length === 0) {
+    if (!companyID || students.length === 0) {
       return res.status(400).json({ error: 'Please provide CV file names, company name, and ensure the array is not empty.' });
     }
 
+    console.log("ei porjonto ashse", companyID, students);
+    var cvFileNames=[];
+    const getallcvfiles=students.map(element => {
+      return element.CV;
+    });
+    cvFileNames=await Promise.all(getallcvfiles);
     // Find the company based on the provided name
-    const company = await Company.findOne({ name: companyName });
+    const company = await Company.findById(companyID)
 
     if (!company) {
       return res.status(404).json({ error: 'Company not found.' });
@@ -151,6 +163,14 @@ export const sendCvsToCompany = async (req, res) => {
 
     // Send the CVs to the company email using the new function
     await sendCVsEmail(cvFileNames, recipientEmail);
+
+    students.forEach(async element => {
+      const student=await Student.findOne({ student_id: element.student_id });
+
+      student.currentStatus="Send";
+      student.companyStatus=companyID;
+      await student.save();
+    });
 
     res.status(200).json({
       message: "CVs sent to the company successfully!",

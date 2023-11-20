@@ -1,27 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Sendcv = () => {
   const [showTable, setShowTable] = useState(false);
-  const [cvList, setCvList] = useState([
-    { name: 'Lomatul Mahzabin', studentId: '200042113', cv: '200042113_cv' },
-    { name: 'Lomatul Mahzabin', studentId: '200042113', cv: '200042113_cv' },
-    { name: 'Lomatul Mahzabin', studentId: '200042113', cv: '200042113_cv' },
-    { name: 'Lomatul Mahzabin', studentId: '200042113', cv: '200042113_cv' },
-    // Add more initial data if needed
-  ]);
+  const [cvList, setCvList] = useState([]);
+  const [companies, setCompanies] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState([]);
+  const [sort,setSort]=useState([]);
+  const [number, setNumber]=useState('');
+  const [students, setStudents] = useState([]);
+
+  const [loading, setLoading] = useState(false);
 
   const [selectedStudent, setSelectedStudent] = useState(null);
 
-  const handleOkayButtonClick = () => {
-    setShowTable(!showTable);
+  const handleOkayButtonClick = async(e) => {
+    e.preventDefault();
+    setShowTable(true);
+    try{
+      await axios.post('http://localhost:4000/InterConnect/admin/getMatchedStudents', {company:selectedCompany, number, type:sort})
+      .then((response)=>{
+        console.log("upcoming list", response.data.returnStudentId);
+        setCvList(response.data.returnStudentId);
+    }).catch((error)=>{
+        if (error.response) {
+            toast.error('Error while getting matched student', { position: "top-right" });
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+    });
+    }catch(error){
+      console.log("An Error Occured", error);
+    }
+    
   };
 
 
   const sortingways=[  
-    {value:"Default", label:"Default"},
-    {value:"CGPA", label:"CGPA"}
+    {value:1, label:"Default"},
+    {value:2, label:"CGPA"}
 ]
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/InterConnect/company/companies')
+      .then((response) => {
+        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        setCompanies(hiringCompanies);
+        console.log(companies)
+        // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching companies:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/InterConnect/student/students')
+      .then((response) => {
+        const filteredStudents = response.data.students.filter((student) => student.accountActivationStatus && student.currentStatus==null && !cvList.includes(student.studentId));
+        setStudents(filteredStudents);
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching students:', error);
+      });
+  }, []);
 
   const handleRemoveRow = (index) => {
     const updatedCvList = [...cvList];
@@ -32,15 +80,44 @@ const Sendcv = () => {
   const handleAddButtonClick = () => {
     // Logic to add a new CV to the list with the selected student
     if (selectedStudent) {
-      const newCv = {
-        name: selectedStudent.name,
-        studentId: selectedStudent.studentId,
-        cv: `${selectedStudent.studentId}_cv`, // You may need to generate a unique CV identifier
-      };
+      const newCv = selectedStudent;
+      // const newCv = {
+      //   name: selectedStudent.name,
+      //   studentId: selectedStudent.studentId,
+      //   cv: `${selectedStudent.studentId}_cv`, // You may need to generate a unique CV identifier
+      // };
       setCvList([...cvList, newCv]);
       setSelectedStudent(null);
     }
   };
+
+  const handleSendButtonClick= async() =>{
+    setLoading(true);
+    try{
+      await axios.post('http://localhost:4000/InterConnect/admin/sendcvtocompany', {companyID:selectedCompany, students:cvList})
+      .then((response)=>{
+        console.log(response);
+        toast.success('Cvs has been sent to the companies!')
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
+    }).catch((error)=>{
+        if (error.response) {
+            toast.error('Error while getting matched student', { position: "top-right" });
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+    }).finally(() => {
+      setLoading(false); // Set loading to false regardless of success or failure
+    });
+    }catch(error){
+      console.log("An Error Occured", error);
+    }
+  }
 
   return (
     <div>
@@ -66,17 +143,20 @@ const Sendcv = () => {
                   <div className="sending-cvs">
                     <div className="form-group">
                             <label htmlFor=""> Number of CVs<span>*</span></label>
-                            <input type="number" min="0"/>
+                            <input type="number" min="1" value={number} onChange={(e)=>setNumber(e.target.value)}/>
                     </div>
 
                     <div className="form-group">
                         <label>Name of the Company:</label>
-                        <Select className='adselect' />        
+                        <Select className='adselect' options={companies.map((company)=>({
+                                  value:company._id,
+                                  label:company.name
+                            }))} onChange={(selectedOption) => setSelectedCompany(selectedOption.value)}/>        
                     </div>
                     
                     <div className="form-group">
                         <label>Sorting Method:</label>
-                        <Select className='adselect'  options={sortingways} />             
+                        <Select className='adselect'  options={sortingways} onChange={(selectedOption) => setSort(selectedOption.value)}/>             
                     </div>
                 
           </div>
@@ -84,6 +164,7 @@ const Sendcv = () => {
           </div>
 
       <div className="cvSending">
+      {loading && <p>Loading...</p>}
         {showTable && (
           <div className="companies">
             <main className="table">
@@ -104,8 +185,8 @@ const Sendcv = () => {
                     {cvList.map((cv, index) => (
                       <tr key={index}>
                         <td>{cv.name}</td>
-                        <td>{cv.studentId}</td>
-                        <td>{cv.cv}</td>
+                        <td>{cv.student_id}</td>
+                        <td>{cv.CV}</td>
                         <td>
                           <button onClick={() => handleRemoveRow(index)}>
                             Remove
@@ -121,13 +202,12 @@ const Sendcv = () => {
               <div className="form-group">
                 <Select
                   className='adselect'
-                  value={selectedStudent}
-                  options={[
-                    { value: '1', label: 'Student 1', name: 'Student 1', studentId: '1' },
-                    { value: '2', label: 'Student 2', name: 'Student 2', studentId: '2' },
-                    // Add more students as needed
-                  ]}
-                  onChange={(selectedOption) => setSelectedStudent(selectedOption)}
+                  // value={selectedStudent?{ value: selectedStudent, label: selectedStudent.student_id }:null}
+                  options={students.map((student)=>({
+                      value:student,
+                      label:student.student_id
+                  }))}
+                  onChange={(selectedOption) => setSelectedStudent(selectedOption.value)}
                 />
                 </div>
                 <div className="table-button">
@@ -135,7 +215,7 @@ const Sendcv = () => {
                 </div>
                 </div>
                 <div className="form-button">
-                <button >Send</button>      
+                <button onClick={handleSendButtonClick}>Send</button>      
                 </div>
                       
             </main>
