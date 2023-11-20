@@ -100,7 +100,7 @@ const Sendcv = () => {
         toast.success('Cvs has been sent to the companies!')
         setTimeout(() => {
           window.location.reload();
-        }, 3000);
+        }, 2000);
     }).catch((error)=>{
         if (error.response) {
             toast.error('Error while getting matched student', { position: "top-right" });
