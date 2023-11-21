@@ -10,9 +10,9 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 const InternInfo = () => {
-    return (     
+  return (     
     <div >
-       <p>Intern Information</p>
+       <p>Intern's Information from Evaluator</p>
         <div className="assesment-form">
         <form>
 
@@ -20,7 +20,7 @@ const InternInfo = () => {
               <label htmlFor="">Email<span>*</span></label>
               <input type="email" value={""} />
             </div>
-            <p>Intern's Information from Evaluator</p>
+            
             <div className="form-group">
               <label htmlFor="">Intern's Name<span>*</span></label>
               <input type="text" value={""} />
@@ -39,9 +39,14 @@ const InternInfo = () => {
               <input type="text" value={""} />
             </div>
 
+            <div className="form-group">
+            <label htmlFor="">Your role with this intern<span>*</span></label>
+            </div>
+
+
             <div className="form-group1">
             <FormControl>
-            <label htmlFor="">Your role with this intern<span>*</span></label>
+           
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Senior Manager"
@@ -54,27 +59,27 @@ const InternInfo = () => {
             </FormControl>
             </div>
 
+            <div className="form-group">
+            <label htmlFor="">Working Location of Intern<span>*</span></label>
+            </div>
+
+
             <div className="form-group1">
             <FormControl>
-            <label htmlFor="">Working Location of Intern<span>*</span></label>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="About 75% remote"
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="Fully on-site" control={<Radio />} label="Fully on-site" />
-                    <FormControlLabel value="About 25% remote " control={<Radio />} label="About 25% remote" />
-                    <FormControlLabel value="About 50% remote " control={<Radio />} label="About 50% remote" />
-                    <FormControlLabel value="About 75% remote " control={<Radio />} label="About 75% remote" />
-                    <FormControlLabel value="Fully remote " control={<Radio />} label="Fully remote" />
+            <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group">
+                    <FormControlLabel style={{ marginLeft:"0px"}} value="Fully on-site" control={<Radio />} label="Fully on-site" />
+                    <FormControlLabel style={{ marginLeft:"150px"}} value="About 25% remote " control={<Radio />} label="About 25% remote" />
+                    <FormControlLabel style={{ marginLeft:"0px"}} value="About 50% remote " control={<Radio />} label="About 50% remote" />
+                    <FormControlLabel style={{ marginLeft:"105px"}} value="About 75% remote " control={<Radio />} label="About 75% remote" />
+                    <FormControlLabel style={{ marginLeft:"0px"}} value="Fully remote " control={<Radio />} label="Fully remote" />
                     
                 </RadioGroup>
             </FormControl>
-            </div>   
+            </div>
         </form>
         
       </div>
-
 
   
 </div>

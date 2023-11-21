@@ -12,65 +12,51 @@ import FormLabel from '@mui/material/FormLabel';
 const ComInfo = () => {
     return (     
     <div >
-        <p>Company Information</p>
+       <p>Please Fill up the Form Below</p>
         <div className="assesment-form">
         <form>
 
             <div className="form-group">
-              <label htmlFor="">Email<span>*</span></label>
-              <input type="email" value={""} />
+              <label htmlFor="">Company's Legal Name<span>*</span></label>
+              <input type="text" value={""} />
             </div>
-            <p>Intern's Information from Evaluator</p>
+            
             <div className="form-group">
-              <label htmlFor="">Intern's Name<span>*</span></label>
+              <label htmlFor="">Company's Alternative Names<span>*</span></label>
+              <p>Some companies are popular with alternative names. Often a short form or simply another
+              name. Please list all of them below, each name in their own line</p>
+
               <input type="text" value={""} />
             </div>
             <div className="form-group">
-              <label htmlFor="">Intern's Designation (e.g., Front-end Software Developer)<span>*</span></label>
+              <label htmlFor="">Company Street Address<span>*</span></label>
               <input type="text" value={""} />
             </div>
             <div className="form-group">
-              <label htmlFor="">Intern's Joining Date  (e.g., January 7, 2023)<span>*</span></label>
+              <label htmlFor="">Company Website<span>*</span></label>
               <input type="text" value={""} />
             </div>
                 
             <div className="form-group">
-            <label htmlFor="">Intern's Last Working Day (e.g., January 7, 2023)<span>*</span></label>
+            <label htmlFor="">Primary business of the company<span>*</span></label>
               <input type="text" value={""} />
             </div>
 
-            <div className="form-group1">
-            <FormControl>
-            <label htmlFor="">Your role with this intern<span>*</span></label>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="Senior Manager"
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="Senior Manager" control={<Radio />} label="Senior Manager (e.g., CEO/CTO/MD/Team Lead)" />
-                    <FormControlLabel value="Line Manager" control={<Radio />} label="Line Manager (e.g., Mentor/Supervisor)" />
-                    <FormControlLabel value="Both" control={<Radio />} label="Both" />
-                </RadioGroup>
-            </FormControl>
+            <div className="form-group">
+            
+            <label htmlFor="">List up to three most frequently used programming language at your company<span>*</span></label>
             </div>
+            <div className="form-group">         
+            <label htmlFor="">List up to three most frequently used database systems at your company<span>*</span></label>
 
-            <div className="form-group1">
-            <FormControl>
-            <label htmlFor="">Working Location of Intern<span>*</span></label>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="About 75% remote"
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="Fully on-site" control={<Radio />} label="Fully on-site" />
-                    <FormControlLabel value="About 25% remote " control={<Radio />} label="About 25% remote" />
-                    <FormControlLabel value="About 50% remote " control={<Radio />} label="About 50% remote" />
-                    <FormControlLabel value="About 75% remote " control={<Radio />} label="About 75% remote" />
-                    <FormControlLabel value="Fully remote " control={<Radio />} label="Fully remote" />
-                    
-                </RadioGroup>
-            </FormControl>
+  
             </div>
+            <div className="form-group">           
+            <label htmlFor="">List any other tools and technologies that are frequently used at your company
+              Containers, CI/CD tools, source control systems, issue trackers - anything you think are
+              important<span>*</span></label> 
+            </div>
+           
         </form>
         
       </div>

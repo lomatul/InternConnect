@@ -1,9 +1,8 @@
  .assesment-form  form{
-/*  */
     margin-top: 50px;
-    background-color:rgb(206, 205, 207,0.3);
+    background-color:rgb(185, 212, 212);
     box-shadow: 10px 10px 8px #888888;
-    width: 800px;
+    width: 900px;
     height: 1050px;
     display: block;
     border-radius: 20px;
@@ -11,9 +10,7 @@
     transition: transform 0.5s ease-in-out;
   }
 
-  .fruit{
-    color: black;
-  }
+ 
 
   .assesment-form {
     /* background-image: url('../public/formbk.jpg'); */
@@ -22,7 +19,9 @@
   }
 
   .assesment-form  .form-group {
-    padding: 10px;
+    margin-right: 100px;
+    margin-left: 100px;
+    padding: 15px;
     margin-top: 10px;
   }
 
@@ -30,12 +29,17 @@
     color: black;
   }
   .assesment-form .form-group1 {
-    padding: 10px;
+    margin-right: 100px;
+    margin-left: 120px;
+    padding: 25px;
     margin-top: 10px;
-    margin-left: 20px;
+    background-color: rgb(227, 237, 237);
+    border-radius: 10px;
   }
+  /* .assesment-form .form-group1  span{
+    color: red;
+  } */
   .assesment-form .form-group1  label{
- 
     margin-left: -20px;
   }
 
@@ -133,4 +137,11 @@
     /* Your custom styles here */
     color: red;
     /* Add more styles as needed */
+  }
+
+  .page-container p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }

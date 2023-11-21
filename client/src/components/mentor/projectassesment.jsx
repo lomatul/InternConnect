@@ -16,27 +16,14 @@ const ProjectInfo = () => {
         <div className="assesment-form">
         <form>
 
+        <div className="form-group">
+        <label htmlFor="">Did the intern get a chance to work on a client project? <span>*</span></label>
+            </div>
            
 
             <div className="form-group1">
             <FormControl>
-            <label htmlFor="">Did the intern get a chance to work on a client project?<span>*</span></label>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="Yes"
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="Yes" control={<Radio />} label=" Yes" />
-                    <FormControlLabel value="No" control={<Radio />} label=" No" />
-                    <FormControlLabel value="Not Sure" control={<Radio />} label=" Not Sure" />
-                    <FormControlLabel value="Not Applicable" control={<Radio />} label="Not Applicable" />
-                </RadioGroup>
-            </FormControl>
-            </div>
-
-            <div className="form-group1">
-            <FormControl>
-            <label htmlFor="">Did the intern's code got pushed into the production code base<span>*</span></label>
+           
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Yes"
@@ -51,10 +38,29 @@ const ProjectInfo = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="">Briefly mention the tasks assigned to the intern <span>*</span></label>
-              <input type="text" value={""}   style={{ height: "300px", width: "750px" , marginTop:"30px"}} />
+            <label htmlFor="">Did the intern's code got pushed into the production code base ? <span>*</span></label>
+               </div>
+           
+
+            <div className="form-group1">
+            <FormControl>
+            <RadioGroup
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="Yes"
+                    name="radio-buttons-group"
+                >
+                    <FormControlLabel value="Yes" control={<Radio />} label=" Yes" />
+                    <FormControlLabel value="No" control={<Radio />} label=" No" />
+                    <FormControlLabel value="Not Sure" control={<Radio />} label=" Not Sure" />
+                    <FormControlLabel value="Not Applicable" control={<Radio />} label="Not Applicable" />
+                </RadioGroup>
+            </FormControl>
             </div>
-            
+
+            <div className="form-group">
+        <label htmlFor="">Briefly mention the tasks assigned to the intern <span>*</span></label>
+            <textarea rows="15"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+            </div>
 
 
         </form>

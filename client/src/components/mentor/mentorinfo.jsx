@@ -12,52 +12,34 @@ import { RadioGroup, RadioButton } from 'react-radio-buttons';
 const MentorInfo = () => {
     return (     
     <div >
-       <p>Mentor Information</p>
+       <p>You can skip this section if you have already submitted this form for another intern</p>
         <div className="assesment-form">
         <form>
 
             <div className="form-group">
-              <label htmlFor="">Email<span>*</span></label>
-              <input type="email" value={""} />
+              <label htmlFor="">Your Name<span>*</span></label>
+              <input type="text" value={""} />
             </div>
 
-            <p>Intern's Information from Evaluator</p>
-
-
+            <div className="form-group">
+              <label htmlFor="">Your Designation<span>*</span></label>
+              <input type="text" value={""} />
+            </div>
            
-            <RadioGroup horizontal >
-                <RadioButton  value="apple" >
-                  Apple
-                </RadioButton>
-                <RadioButton name="fruit" value="orange">
-                  Orange
-                </RadioButton>
-                <RadioButton  name="fruit" value="melon">
-                  Melon
-                </RadioButton>
-            </RadioGroup>
-                
-           
-
           
+          <p>Feedback about the Internship Program</p>
 
-            <div className="form-group1">
-            <FormControl>
-            <label htmlFor="">Working Location of Intern<span>*</span></label>
-                <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="About 75% remote"
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="Fully on-site" control={<Radio />} label="Fully on-site" />
-                    <FormControlLabel value="About 25% remote " control={<Radio />} label="About 25% remote" />
-                    <FormControlLabel value="About 50% remote " control={<Radio />} label="About 50% remote" />
-                    <FormControlLabel value="About 75% remote " control={<Radio />} label="About 75% remote" />
-                    <FormControlLabel value="Fully remote " control={<Radio />} label="Fully remote" />
-                    
-                </RadioGroup>
-            </FormControl>
+          <div className="form-group">
+              <label htmlFor=""> How can we improve the internship program?<span>*</span></label>
+              <textarea rows="10"   value={""}  style={{ marginTop: "30px" }} ></textarea>
             </div>
+
+            <div className="form-group">
+              <label htmlFor="">Other Comments about the internship program<span>*</span></label>
+              <textarea rows="10"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+            </div>
+
+           
         </form>
         
       </div>
