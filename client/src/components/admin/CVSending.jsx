@@ -63,13 +63,13 @@ const Sendcv = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        const filteredStudents = response.data.students.filter((student) => student.accountActivationStatus && student.currentStatus==null && !cvList.includes(student.studentId));
+        const filteredStudents = response.data.students.filter((student) => student.accountActivationStatus && student.currentStatus==null && !cvList.includes(student.student_id));
         setStudents(filteredStudents);
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
       });
-  }, []);
+  }, [cvList]);
 
   const handleRemoveRow = (index) => {
     const updatedCvList = [...cvList];
@@ -81,11 +81,6 @@ const Sendcv = () => {
     // Logic to add a new CV to the list with the selected student
     if (selectedStudent) {
       const newCv = selectedStudent;
-      // const newCv = {
-      //   name: selectedStudent.name,
-      //   studentId: selectedStudent.studentId,
-      //   cv: `${selectedStudent.studentId}_cv`, // You may need to generate a unique CV identifier
-      // };
       setCvList([...cvList, newCv]);
       setSelectedStudent(null);
     }

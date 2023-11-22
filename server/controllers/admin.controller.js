@@ -3,9 +3,9 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import passport from 'passport';
 import Student from "../models/student.model.js";
-import Mailfunction from "./custom.mailsender.js";
+import Mailfunction from "./mailsenders/custom.mailsender.js";
 import {MatchStudentByCGPA, MatchStudentByAlgorithm } from './service.controller.js'
-import sendCVsEmail from "./cv.mailsender.js";
+import sendCVsEmail from "./mailsenders/cv.mailsender.js";
 import Company from '../models/company.model.js';
 
 export const postlogin= (req, res, next) =>{
@@ -75,16 +75,24 @@ export const register = async (req, res) => {
 
 export const sendmailtoall = async (req, res) => {
   try {
-    const {text, sub} = req.body
+    const {text, sub, type} = req.body
     console.log(req.body)
-    const students = await Student.find();
-    students.map(async element =>{
+    if(type=="Student"){
+      const students = await Student.find();
+      students.map(async element =>{
       console.log(element)
       await Mailfunction(sub, element.email, text);
     })
-    res.status(200).json({
-      message: "Message sent successfully!",
-    });
+    }else if(type=="Company"){
+      const companies = await Company.find();
+      companies.map(async element =>{
+      console.log(element)
+      await Mailfunction(sub, element.email, text);
+    })
+    }else{
+      return res.status(404).json({ error: "Type is not given properly" });
+    }
+    res.status(200).json({message: "Message sent successfully!"});
   } catch (error) {
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
@@ -209,3 +217,5 @@ export const postGuideline = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+

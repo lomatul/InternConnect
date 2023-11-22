@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
-import sendPasswordResetEmail from "./forget.password.mailsender.js";
+import sendPasswordResetEmail from "./mailsenders/forget.password.mailsender.js";
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
@@ -378,9 +378,7 @@ export const resetPasswordWithOTP = async (req, res, next) => {
 //Upload a file
 export const uploadcvfile= async (req, res) =>{
   try{
-    console.log("it came here in uploadcv")
     const { student_id } = req.params;
-    console.log(student_id)
     const student = await Student.findOne({ student_id: student_id });
   
     if (!student) {
@@ -391,8 +389,6 @@ export const uploadcvfile= async (req, res) =>{
 
     await student.save();
     // console.log("req", req)
-    console.log("filename", req.file.filename)
-    console.log("Filepath", req.file.path)
     res.status(200).json({message:"Uploaded"})
   }catch (error) {
     // next(error);
@@ -408,7 +404,6 @@ export const getcvfile= async (req, res) =>{
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const tempDir = path.join(__dirname, '../Storage/Cv');
-    console.log("it came here in uploadcv")
     const { student_id } = req.params;
     console.log(student_id)
     const student = await Student.findOne({ student_id: student_id });
@@ -597,3 +592,33 @@ export const deleteProject = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
+export const updateCompanyStatus = (async (req, res)=>{
+  try{
+    const {studentId, Status}=req.body;
+    var student;
+    try{
+      if(Status==="rejected"){
+        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:null, companyStatus:null}});
+      }else if(Status==="rejected"){
+        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:"Hirred"}});
+      }else{
+        return res.status(400).json({ message: "Status code value is not correct" });
+      }
+      if(!student){
+        return res.status(404).json({ message: "Value is not updated. No such student is found "});
+      }
+      res.status(200).send("Student status is updated");
+    }catch(error){
+      console.log("Error: ", error);
+      res.status(400).json({ error: error.message });
+    }
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+
+
+
+})

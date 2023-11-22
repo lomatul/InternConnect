@@ -12,6 +12,7 @@ const SendNotification = () => {
   const [recipientEmail, setRecipientEmail] = useState("");
   const [text, setText]= useState('')
   const [sub, setSub]= useState('')
+  const [type, setType]=useState('')
   const options=[
     {value:"All",label:"All"},
     {value:"Individual", label:"Individual"},
@@ -42,7 +43,7 @@ const SendNotification = () => {
     console.log(recipientType)
     if(recipientType==="All"){
     try {
-      await axios.post('http://localhost:4000/InterConnect/admin/sendtoall', {text, sub})
+      await axios.post('http://localhost:4000/InterConnect/admin/sendtoall', {text, sub, type})
       .then((response) => {
         console.log(response)// Initially, both arrays are the same
         toast.success('Notification sent successfully', { position: "top-right" });
@@ -121,14 +122,14 @@ const SendNotification = () => {
                 </div>
                 
                 
-            <div className="form-group">
+            {recipientType==="All"&&<div className="form-group">
               <label htmlFor="">Select Recipient<span>*</span></label>
 
               <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                  <Select className='adselect' options={receiver} onChange={handleRecipientTypeChange} value={receiver.find((option) => option.value === recipientType)}/>
-             </div>      
+                  <Select className='adselect' options={receiver} onChange={(selectedOption) => setType(selectedOption.value)}/>
+             </div>   
 
-        </div>
+        </div>}
 
 
             <div className="form-group">

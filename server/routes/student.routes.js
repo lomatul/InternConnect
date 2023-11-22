@@ -18,7 +18,8 @@ import {
   addProject,
   getProjectsByStudentId,
   editProject,
-  deleteProject
+  deleteProject,
+  updateCompanyStatus
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 
@@ -65,5 +66,6 @@ router.patch('/editProjects/:student_id/:project_id', editProject);
 
 router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
 
+router.patch('/UpdateCurrentStatus', updateCompanyStatus);
 
 export default router;

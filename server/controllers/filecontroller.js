@@ -2,7 +2,7 @@ import express from 'express';
 import fs from 'fs';
 import xlsx from 'xlsx';
 import otpgenerator from 'otp-generator';
-import Mailfunction from './mailsender.js';
+import Mailfunction from './mailsenders/mailsender.js';
 import bcrypt from 'bcrypt';
 import Student from '../models/student.model.js';
 import Company from '../models/company.model.js';
