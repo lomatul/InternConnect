@@ -35,16 +35,15 @@ const Assesment = () => {
         <div className="page-container">
           {PageDisplay()}
         </div>
-        <div className="mentorfooter">
-          <button
-            disabled={page === 0}
+        <div className="mentorfooter"disabled={page === 0}
             onClick={() => {
               setPage((currPage) => currPage - 1);
-            }}
-          >
+            }}>
+         
             Prev
-          </button>
-          <button
+          
+          </div>
+          <div className="mentorfooter1"
             onClick={() => {
               if (page === FormTitles.length - 1) {
                 alert("FORM SUBMITTED");
@@ -54,7 +53,7 @@ const Assesment = () => {
             }}
           >
             {page === FormTitles.length - 1 ? "Submit" : "Next"}
-          </button>
+         
         </div>
       </div>
     </div>
