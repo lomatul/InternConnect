@@ -2,15 +2,14 @@ import '../components/test.css'
 import Assesment from '../components/mentor/assesment'
 import Mentor from '../components/mentor/mentor'
 
-
-function AddMentor() {
+function AddAssesment() {
  
 
   return (
-    <div className='newAdmin'> 
-      <Mentor/>  
+    <div className='newAdmin'>  
+      <Assesment/>
     </div>
   )
 }
 
-export default AddMentor
+export default AddAssesment

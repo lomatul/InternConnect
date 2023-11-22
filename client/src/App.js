@@ -24,7 +24,8 @@ import Test from "./components/test";
 import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
 import CvSend from "./Pages/Cvsend";
-import AddAssesment from "./Pages/Mentor";
+import AddAssesment from "./Pages/Addassesment";
+import AddMentor from "./Pages/Mentor";
 import Modal from "./components/modal/modal";
 
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/Test" element = {<Test/>} />
         <Route path="/Cvsend" element = {<CvSend/>} />
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
+        <Route path="/AddMentor" element = {<AddMentor/>} />
         <Route path="/Modal" element = {<Modal/>} />
 
       </Routes>
