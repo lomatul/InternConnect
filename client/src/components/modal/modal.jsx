@@ -1,30 +1,51 @@
-import React from "react";
-import "./Modal.css";
+import React, { useState, useRef } from "react";
+import "./Modal.css"; // Replace with the actual path to your stylesheet
+import SignUp from "./SignUp";
+import PersonalInfo from "./PersonalInfo";
+import LocationInfo from "./LocationInfo";
 
-function Modal({ setOpenModal }) {
-  return (
-    <div className="modalBackground">
-      <div className="modalContainer">
-        <div className="titleCloseBtn">
-          <button
-            onClick={() => {
-              setOpenModal("children");
-            }}
-          >
-            X
-          </button>
-        </div>
-        <div className="title">
-          <h1>OTP Has been Sent</h1>
-        </div>
-        
-        <div className="footer">
 
-          
-        </div>
-      </div>
+
+const Modal = () => {
+
+  const [x, setX] = useState(0);
+
+  const [page, setPage] = useState(0);
+  const componentList = [
+    <SignUp
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+    <PersonalInfo
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+    <LocationInfo
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />, 
+
+  ];
+
+ 
+     return(
+      <div className="App">
+          <div className="progress-bar">
+      <div style={{width: page === 0? "25%": page === 1? "50%": page === 2? "75%" : "100%"}}></div>
+    </div> 
+
+     
+      <div>{componentList[page]}</div>
+
+    
     </div>
-  );
-}
 
+    );
+  };
 export default Modal;

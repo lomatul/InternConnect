@@ -153,8 +153,9 @@ const Sendcv = () => {
                         <label>Sorting Method:</label>
                         <Select className='adselect'  options={sortingways} onChange={(selectedOption) => setSort(selectedOption.value)}/>             
                     </div>
-                
-          </div>
+                  </div>
+
+
           <button onClick={handleOkayButtonClick}>Okay</button>
           </div>
 
