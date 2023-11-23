@@ -12,51 +12,78 @@ import Evaluation4 from './evaluate4';
 import InternInfo from './interninfo';
 
 const Assesment = () => {
+
+  const [x, setX] = useState(0);
+
   const [page, setPage] = useState(0);
+  const componentList = [
+    <InternInfo
+  page={page}
+  setPage={setPage}
+  x={x}
+  setX={setX}
+/>, 
 
-  const FormTitles = ["Intern's Basic Information", "Project Assignments", "Assessment", "Assessment","Assessment","Assessment","Your Information", "Company Information"];
+    <ProjectInfo
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+  
+    <Evaluation
+    page={page}
+    setPage={setPage}
+    x={x}
+    setX={setX}
+  />,
+  <Evaluation2
+    page={page}
+    setPage={setPage}
+    x={x}
+    setX={setX}
+  />,
+  <Evaluation3
+    page={page}
+    setPage={setPage}
+    x={x}
+    setX={setX}
+  />, 
+  <Evaluation4
+  page={page}
+  setPage={setPage}
+  x={x}
+  setX={setX}
+/>,
+  <MentorInfo
+  page={page}
+  setPage={setPage}
+  x={x}
+  setX={setX}
+/>, 
+ <ComInfo
+ page={page}
+ setPage={setPage}
+ x={x}
+ setX={setX}
+/>,
 
-  const PageDisplay = () => {
-    const pages = [InternInfo,ProjectInfo,Evaluation,Evaluation2,Evaluation3,Evaluation4, MentorInfo,ComInfo ];
-    const Component = pages[page];
-    return <Component />;
-  };
+  ];
+
 
   return (
+    
     <div className="mentorform">
-      <div className="progressbar">
-        <div style={{ width: page * 12.5 + "%" }}></div>
-      </div>
+     <div className="progress-bar">
+      <div style={{width: page === 0? "12%": page === 1? "24%": page === 3? "35%": page === 4? "49%":page === 5? "60%":page === 6? "75%":page === 7? "84%" : "100%"}}></div>
+    </div> 
 
-      <div className="form-container">
-        <div className="mentorheader">
-          <h1>{FormTitles[page]}</h1>
-        </div>
-        <div className="page-container">
-          {PageDisplay()}
-        </div>
-        <div className="mentorfooter"disabled={page === 0}
-            onClick={() => {
-              setPage((currPage) => currPage - 1);
-            }}>
-         
-            Prev
-          
-          </div>
-          <div className="mentorfooter1"
-            onClick={() => {
-              if (page === FormTitles.length - 1) {
-                alert("FORM SUBMITTED");
-              } else {
-                setPage((currPage) => currPage + 1);
-              }
-            }}
-          >
-            {page === FormTitles.length - 1 ? "Submit" : "Next"}
-         
-        </div>
-      </div>
+     
+      <div>{componentList[page]}</div>
+
+    
     </div>
+
   );
 };
 

@@ -6,13 +6,24 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { motion } from "framer-motion";
 
 
 
-const ProjectInfo = () => {
-    return (     
-    <div >
-        <p>Please Fill up the Form Below</p>
+const ProjectInfo =  ( { page, setPage,x,setX  } )  => {
+    return (
+
+        <motion.div                            //updated the div tag
+        initial={{ x: x }}
+        transition={{ duration: 1 }}
+        animate={{ x: 0 }}
+      >
+        
+        <div className="mentorheader">
+          <h1>Project Assignments</h1>
+          <p>Please Fill up the Form Below</p>
+        </div>
+
         <div className="assesment-form">
         <form>
 
@@ -65,12 +76,18 @@ const ProjectInfo = () => {
 
         </form>
         
-      </div>
+            <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page + 1); setX(1000);}}>
+              Next
+            </button>
+          <br/>
+            <button
+              onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);  }}>
+              Previous </button>
+              
+         </div>
 
+    </motion.div>
+  );
+};
 
-     
-  
-</div>
-  )
-}
 export default ProjectInfo

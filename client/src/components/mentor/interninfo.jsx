@@ -6,13 +6,23 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { motion } from "framer-motion";
 
 
+const InternInfo =  ( { page, setPage,x,setX  } )  => {
+  return (
 
-const InternInfo = () => {
-  return (     
-    <div >
-       <p>Intern's Information from Evaluator</p>
+      <motion.div                            //updated the div tag
+      initial={{ x: x }}
+      transition={{ duration: 1 }}
+      animate={{ x: 0 }}
+    >
+
+          <div className="mentorheader">
+                    <h1>Intern's Basic Information</h1>
+          <p>Intern's Information from Evaluator</p>     </div>
+ 
+      
         <div className="assesment-form">
         <form>
 
@@ -79,10 +89,13 @@ const InternInfo = () => {
             </div>
         </form>
         
+        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+            Next
+          </button>
+
       </div>
 
-  
-</div>
-  )
-}
+</motion.div>
+    );
+  };
 export default InternInfo

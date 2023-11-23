@@ -30,6 +30,7 @@ const SignUp  =  ( { page, setPage,x,setX  } )  => {
           className="form-group"
           placeholder="Password"
         />
+        
  <button onClick={() => {setPage(page + 1); setX(1000);}}>
   Next
 </button>

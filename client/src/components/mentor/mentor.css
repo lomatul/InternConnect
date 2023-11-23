@@ -10,9 +10,22 @@
     transition: transform 0.5s ease-in-out;
   }
 
- 
+  .assesment-form button{
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    outline: 2 px solid white ;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+  }
 
   .assesment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     /* background-image: url('../public/formbk.jpg'); */
     justify-content: center;
     display: flex;
@@ -47,32 +60,28 @@
     transform: translateX(100%);
   }
 
-   .progressbar {
-    display: block;
-    margin-left: 350px;
-    margin-top: 100px;
-    width: 800px;
-    border-radius: 5px;
-    height: 10px;
+   .progress-bar {
+    display: flex;
+    margin-left: 300px;
+    margin-top: 50px;
+    width: 1000px;
+    height: 15px;
     background-color: white;
     margin-bottom: 50px;
   }
-   .progressbar div {
-    border-radius: 5px;
-    width: 33.3%;
-    margin-top: 100px;
+  .progress-bar div {
+    width: 25%;
     height: 100%;
     background-color: rgb(98, 0, 255);
   }
 
-  /* .mentorform{
+  .mentorform{
+    overflow: hidden;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  } */
+  }
 
 
   .mentorheader{
@@ -83,48 +92,6 @@
   }
 
 
-  /* .mentorform {
-    overflow: hidden;
-  }
-
-  .form-container {
-    overflow: hidden;
-    position: relative;
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .page-transition-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .page-transition-container > * {
-    transform: translateX(10%);
-    transition: transform 0.3s ease-in-out;
-  }
-
-  .page-transition-container > .active {
-    transform: translateX(0);
-  } */
-
-  /* .form-group1 FormControlLabel{
-    color: black;
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
-    border-radius: 1px;
-    padding: 10px;
-    flex: 1 1 0%;
-    margin-bottom: 0px;
-    margin-right: 8px;
-  } */
-
-  .custom-radio {
-    /* Your custom styles here */
-    color: red;
-    /* Add more styles as needed */
-  }
 
   .page-container p {
     display: flex;
@@ -177,47 +144,3 @@
     left: 100%;
   }
 
-
-  .mentorfooter{
-    margin-top: 50px;
-    margin-left: 500px;
-    background: linear-gradient(to right, rgb(0, 195, 255), white);
-	color: rgb(0, 0, 0);
-	--width: 150px;
-	--height: calc(var(--width) / 4);
-	width: var(--width);
-	height: var(--height);
-	text-align: center;
-	line-height: var(--height);
-	font-size: calc(var(--height) / 2.5);
-	font-family: sans-serif;
-	letter-spacing: 0.2em;
-	border: 1px solid black;
-	border-radius: 2em;
-	transform: perspective(500px) rotateY(-15deg);
-	text-shadow: 6px 3px 2px rgba(0, 0, 0, 0.2);
-	box-shadow: 2px 0 0 5px rgba(0, 0, 0, 0.2);
-	transition: 0.5s;
-	position: relative;
-	overflow: hidden;
-  }
-
-  .mentorfooter:hover {
-    transform: perspective(500px) rotateY(15deg);
-    text-shadow: -6px 3px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: -2px 0 0 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .mentorfooter::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, transparent, white, transparent);
-    left: -100%;
-    transition: 0.5s;
-  }
-  
-  .mentorfooter:hover::before {
-    left: 100%;
-  }
