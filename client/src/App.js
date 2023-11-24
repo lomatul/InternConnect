@@ -66,6 +66,7 @@ function App() {
         <Route path="/Cvsend" element = {<CvSend/>} />
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
         <Route path="/AddMentor" element = {<AddMentor/>} />
+        <Route path="/AddMentor/:id" element = {<AddMentor/>} />
         <Route path="/Modal" element = {<Modal/>} />
 
       </Routes>

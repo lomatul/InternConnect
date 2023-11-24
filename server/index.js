@@ -14,6 +14,7 @@ import companyRoute from "./routes/company.routes.js";
 import distributionRoute from "./routes/distribution.routes.js";
 import gradeRoute from "./routes/grade.routes.js";
 import reportRoute from "./routes/report.routes.js";
+import mentorRoute from "./routes/mentor.routes.js"
 
 const port = process.env.PORT || 4000;
 const app = express();
@@ -53,6 +54,7 @@ app.use("/InterConnect/company", companyRoute);
 app.use("/InterConnect/distribution", distributionRoute);
 app.use("/InterConnect/grade", gradeRoute);
 app.use("/InterConnect/report", reportRoute);
+app.use("/InterConnect/mentor", mentorRoute);
 
 
 app.use((err, req, res, next)=>{

@@ -6,8 +6,9 @@ const mentorSchema = new mongoose.Schema({
 
   email: { type: String, required: true, unique: true },
   
-  assignedStudents: [{ type: String, ref: 'Student', unique: true }],
+  assignedStudents: [{ type: String,  unique: true }],
 
+  position:{type:String}
 });
 
 export default mongoose.model('Mentor', mentorSchema);

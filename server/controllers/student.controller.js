@@ -8,6 +8,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import validator from "validator";
+import Company from '../models/company.model.js';
 
 
 
@@ -601,8 +602,11 @@ export const updateCompanyStatus = (async (req, res)=>{
     try{
       if(Status==="rejected"){
         student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:null, companyStatus:null}});
-      }else if(Status==="rejected"){
-        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:"Hirred"}});
+      }else if(Status==="Hirred"){
+        student=await Student.findOneAndUpdate({ student_id:studentId }, {$set:{currentStatus:"Hirred"}});
+        const company=await Company.findById(student.companyStatus)
+        company.selectedInterns.push(studentId);
+        await company.save();
       }else{
         return res.status(400).json({ message: "Status code value is not correct" });
       }
