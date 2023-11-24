@@ -21,13 +21,12 @@ import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
 import { Toaster } from 'react-hot-toast';
 import Test from "./components/test";
-import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
 import CvSend from "./Pages/Cvsend";
 import AddAssesment from "./Pages/Addassesment";
 import AddMentor from "./Pages/Mentor";
 import Modal from "./components/modal/modal";
-
+import History from "./Pages/comhistory";
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -52,7 +51,6 @@ function App() {
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
-        <Route path="/Select" element = {<Dropdown/>} />
         <Route path="/Student" element = {userstudent?<Students/>:<Page404/>} />
         <Route path="/AddStudent" element = {useradmin?<AddStudent/>:<Page404/>} />
         <Route path="/NotFound" element = {<Page404/>} />
@@ -67,6 +65,7 @@ function App() {
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
         <Route path="/AddMentor" element = {<AddMentor/>} />
         <Route path="/Modal" element = {<Modal/>} />
+        <Route path="/History" element = {<History/>} />
 
       </Routes>
     </BrowserRouter>

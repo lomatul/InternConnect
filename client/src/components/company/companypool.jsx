@@ -29,6 +29,7 @@ const Companypool = () => {
   }, [search, companies]);
 
   return (
+    
     <main className="table">
       <section className="table__header">
         <h1>Company Details </h1>
