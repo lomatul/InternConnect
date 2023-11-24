@@ -1,94 +1,108 @@
-/* Variables */
-:root {
-    --accentcolor: #fcae2c;
-    --lightcolor: #fff;
-    --darkcolor: #444;
-  }
-  
-  /* Form Styles */
-  form {
-    max-width: 250px;
-    position: relative;
-    margin: 50px auto 0;
-    font-size: 15px;
-  }
-  
-  .radiobtn {
-    position: relative;
-    display: block;
-  }
-  
-  .radiobtn label {
-    display: block;
-    background: lighten(var(--accentcolor), 30%);
-    color: var(--darkcolor);
-    border-radius: 5px;
-    padding: 10px 20px;
-    border: 2px solid lighten(var(--accentcolor), 20%);
-    margin-bottom: 5px;
-    cursor: pointer;
-  }
-  
-  .radiobtn label:after,
-  .radiobtn label:before {
-    content: "";
-    position: absolute;
-    right: 11px;
-    top: 11px;
-    width: 20px;
-    height: 20px;
-    border-radius: 3px;
-    background: lighten(var(--accentcolor), 15%);
-  }
-  
-  .radiobtn label:before {
-    background: transparent;
-    transition: 0.1s width cubic-bezier(0.075, 0.82, 0.165, 1) 0s,
-      0.3s height cubic-bezier(0.075, 0.82, 0.165, 2) 0.1s;
-    z-index: 2;
-    overflow: hidden;
-    background-repeat: no-repeat;
-    background-size: 13px;
-    background-position: center;
-    width: 0;
-    height: 0;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNS4zIDEzLjIiPiAgPHBhdGggZmlsbD0iI2ZmZiIgZD0iTTE0LjcuOGwtLjQtLjRhMS43IDEuNyAwIDAgMC0yLjMuMUw1LjIgOC4yIDMgNi40YTEuNyAxLjcgMCAwIDAtMi4zLjFMLjQgN2ExLjcgMS43IDAgMCAwIC4xIDIuM2wzLjggMy41YTEuNyAxLjcgMCAwIDAgMi40LS4xTDE1IDMuMWExLjcgMS43IDAgMCAwLS4yLTIuM3oiIGRhdGEtbmFtZT0iUGZhZCA0Ii8+PC9zdmc+);
-  }
-  
-  /* Radio Button Styling */
-  input[type="radio"] {
-    display: none;
-    position: absolute;
-    width: 100%;
-    appearance: none;
-  }
-  
-  input[type="radio"]:checked + label {
-    background: lighten(var(--accentcolor), 15%);
-    animation-name: blink;
-    animation-duration: 1s;
-    border-color: var(--accentcolor);
-  }
-  
-  input[type="radio"]:checked + label:after {
-    background: var(--accentcolor);
-  }
-  
-  input[type="radio"]:checked + label:before {
-    width: 20px;
-    height: 20px;
-  }
-  
-  /* Keyframes */
-  @keyframes blink {
-    0%, 10%, 30%, 45%, 100% {
-      background-color: lighten(var(--accentcolor), 15%);
-    }
-    11%, 29%, 50% {
-      background-color: lighten(var(--accentcolor), 20%);
-    }
-    50% {
-      background-color: lighten(var(--accentcolor), 15%);
-    }
-  }
-  
+.view-project {
+  margin-top: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.projects {
+  text-align: center;
+  width: 100%;
+  max-width: 1100px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(195, 216, 223);
+  margin: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.projects h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.projects ul {
+  list-style: none;
+  padding: 0;
+}
+
+.projects li {
+  text-align: justify;
+  background-color: rgb(255, 255, 255);
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.projects h3 {
+
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.projects span {
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  color: blue;
+}
+
+
+
+.projects p {
+  height: 50px;
+  padding: 5px;
+  font-size: 17px;
+  margin-right: 10px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 8px #888888;
+}
+
+.projects input[type="text"] {
+  border: none;
+  height: 50px;
+  border-bottom: 3px solid rgb(31, 16, 110);
+  padding: 8px 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.projects  input[type="text"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+
+.project-button {
+display: flex; /* Use flex display */
+justify-content: space-between; /* Place items at each end of the container */
+margin-left: 300px;
+margin-right: 300px;
+
+}
+
+.projects   button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  width: 180px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.projects button:hover {
+  background-color: #ffffff;
+  color: #000000;
+  outline: 2px solid black;
+}

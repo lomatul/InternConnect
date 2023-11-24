@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useAuthContext} from "../../context/useAuthcontext"
 import "./project.css";
+import { motion } from "framer-motion";
 
-const Project = () => {
+
+
+const Project = ({page, setPage,x,setX} ) => {
   const { userstudent } = useAuthContext();
   const [projects, setProjects] = useState([]);
   const [newProject, setNewProject] = useState({
@@ -93,6 +96,25 @@ const Project = () => {
 
   return (
     <div>
+
+    <button
+          onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page-2); setX(-2000);  }}>
+          Profile </button>
+          
+              <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);}}>
+                  Edit 
+                </button>
+              <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page); setX(0);}}>
+                  Project 
+                </button>
+    
+    
+        <motion.div                            //updated the div tag
+            initial={{ x: x }}
+            transition={{ duration: 1 }}
+            animate={{ x: 0 }}
+          > 
+          
       <div className="view-project">
         <div className="projects">
           <h2>Projects</h2>
@@ -146,7 +168,9 @@ const Project = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
+
+</div>
   );
 };
 
