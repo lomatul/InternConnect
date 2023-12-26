@@ -119,8 +119,17 @@ const Project = ({page, setPage,x,setX} ) => {
         <div className="projects">
           <h2>Projects</h2>
           <ul>
+
             {projects.map((project, index) => (
+
+
               <li key={index}>
+                <div className="Project-header">
+              <img
+                src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg"
+                alt="rover"
+              />
+            </div>
                 <h3>{project.name}</h3>
                 <p> <span>Year:</span> {project.year}</p>
                 <p><span>Description: </span>{project.description}</p>
@@ -129,9 +138,15 @@ const Project = ({page, setPage,x,setX} ) => {
                   <button onClick={() => handleEditProject(index)}>Edit</button>
                   <button onClick={() => handleDeleteProject(index)}>Delete</button>
                 </div>
+
+    
+
               </li>
+
             ))}
+
           </ul>
+
           <div>
             <h3>{editingIndex === -1 ? 'Add a Project' : 'Edit Project'}</h3>
             {isAdding && (
@@ -166,6 +181,8 @@ const Project = ({page, setPage,x,setX} ) => {
               {editingIndex === -1 ? 'Add' : 'Save'}
             </button>
           </div>
+
+
         </div>
       </div>
     </motion.div>

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import "./Modal.css"; // Replace with the actual path to your stylesheet
+import "./newproject.css";
+import { motion } from "framer-motion";
 
-const Modal = () => {
+const NewProject = ({page, setPage,x,setX} ) => {
   const initialProject = {
     name: "",
     year: "",
     description: "",
     technologies: "",
+    link:"",
   };
 
   const [projects, setProjects] = useState([]);
@@ -84,19 +86,38 @@ const Modal = () => {
   // };
 
   return (
+    <div>
 
-    <div className="view-project">
+    <button
+          onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page-2); setX(-2000);  }}>
+          Profile </button>
+          
+              <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);}}>
+                  Edit 
+                </button>
+              <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page); setX(0);}}>
+                  Project 
+                </button>
+    
+    
+        <motion.div                            //updated the div tag
+            initial={{ x: x }}
+            transition={{ duration: 1 }}
+            animate={{ x: 0 }}
+          > 
+          
+    <div className="containermodal">
       <div className="projectmodal">
         {projects.map((project, index) => (
           <div className="Project" key={index}>
             <div className="Project-header">
               <img
-                src="https://c0.wallpaperflare.com/preview/483/210/436/car-green-4x4-jeep.jpg"
+                src="coding.jpg"
                 alt="rover"
               />
             </div>
             <div className="Project-body">
-              <span className="tag tag-teal">Github Link</span>
+              <span className="tag tag-teal">Github Link <a href={project.link}></a></span>
               <h4>{project.name}</h4>
               <p>{project.description}</p>
               <div className="user">
@@ -149,6 +170,15 @@ const Modal = () => {
                 value={newProject.technologies}
                 onChange={handleInputChange}
               />
+         <label htmlFor="link">Github Link :</label>
+            <input
+                type="text"
+                id="link"
+                name="Github Link"
+                value={newProject.link}
+                onChange={handleInputChange}
+              />
+
               <button onClick={handleAddProject}>Add Project</button>
             </div>
           </div>
@@ -156,8 +186,10 @@ const Modal = () => {
 
         <button onClick={() => setShowAddForm(true)}>Add Project</button>
       </div>
-    </div>
+      </div>
+      </motion.div>
+
+</div>
   );
 };
-
-export default Modal;
+export default NewProject;

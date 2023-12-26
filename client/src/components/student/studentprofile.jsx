@@ -8,7 +8,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ViewProfile from "./viewprofile";
 import EditProfile from "./editprofile";
-import Project from "./project";
+// import Project from "./project";
+import NewProject from "./newprojects";
 
 
 const StudentProfile = () => {
@@ -202,7 +203,7 @@ const StudentProfile = () => {
       handleSaveClick={handleSaveClick}
     />,
 
-    <Project
+    <NewProject
       page={page}
       setPage={setPage}
       x={x}
