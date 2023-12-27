@@ -1,9 +1,11 @@
-// ViewProfile.jsx
-import React from 'react';
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-
+import Modal from "../modal/modal";
+import "../modal/Modal.css";
 
 const ViewProfile = ({ userData, page, setPage,x,setX }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <div>
 
@@ -29,14 +31,10 @@ const ViewProfile = ({ userData, page, setPage,x,setX }) => {
    
     <div className="view-profile">
       
-    <img
-            src={userData.image}
-            alt="Profile"
-          />
-
-     
-
-
+        <img
+                src={userData.image}
+                alt="Profile"
+              />
           <div className="view-profile3">
           <h2>
             Name : <span>{userData.name}</span>
@@ -84,16 +82,36 @@ const ViewProfile = ({ userData, page, setPage,x,setX }) => {
               <p className='link'><span>{userData.externalLinks}</span></p>
             </div>
 
-          </div>
+            {/* <div className="hired">
+              <button >Hired</button>
+              </div>
+               */}
 
-
-
-      
-    
-
+          </div>  
     </div>
 
-    
+    <div className="view-profile4">
+      <p>If You are already hired by any company for Internship please fill out the form</p>
+          <div className="form-group">
+                  <label htmlFor=""> Company Name<span>*</span></label> 
+                  <input type="text" placeholder="Give name" />
+           </div>
+
+           <div className="form-group">
+                  <label htmlFor=""> Position <span>*</span></label> 
+                  <input type="text" placeholder="Position" />
+           </div>
+
+          
+           <div className="form-group">
+           <label htmlFor=""> Hired Date  <span>*</span></label> 
+              <input type="date" placeholder="Select Date" />
+            </div>
+            <div className="hired">
+                          <button >Hired</button>
+                          </div>
+
+    </div>
     
 
     </motion.div>

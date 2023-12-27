@@ -87,6 +87,17 @@
     
   }
 
+  .view-profile4{
+    background-color: #cce3fa;
+    box-shadow: 0 0 15px rgba(22, 75, 124, 0.9);
+    border-radius: 10px;
+    width: 900px;
+    padding:50px;
+    margin-left: -150px;
+    margin-top: 50px;
+  }
+
+
   .view-profile3{
     margin-left: 300px;
     margin-top: -280px;
@@ -146,7 +157,22 @@
     outline: none;
   }
 
+  .form-group input[type="date"]{
+    border: none;
+    height: 50px;
+    margin-left: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 30%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
 
+  .view-profile4 .form-group {
+    margin-top: 20px;
+  }
     
   .projects input[type="link"] {
     border: none;
