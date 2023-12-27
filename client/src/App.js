@@ -27,6 +27,7 @@ import AddAssesment from "./Pages/Addassesment";
 import AddMentor from "./Pages/Mentor";
 import Modal from "./components/modal/modal";
 import History from "./Pages/comhistory";
+import GradeSend from "./Pages/Gradesubmit";
 
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -65,6 +66,7 @@ function App() {
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
         <Route path="/AddMentor" element = {<AddMentor/>} />
         <Route path="/Modal" element = {<Modal/>} />
+        <Route path="/GradeSend" element = {<GradeSend/>} />
         <Route path="/History" element = {<History/>} />
 
       </Routes>

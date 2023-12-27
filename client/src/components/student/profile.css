@@ -1,12 +1,11 @@
 .admin-profile {
     flex-direction: column;
     justify-content: space-between;
-    width: 1100px;
+    width: 900px;
     height: 140px;
     margin-top: 50px;
     margin-right: 150px;
-    margin-left: 150px;
-    padding: 20px;
+    margin-left: 550px;
     /* background-color: #84a8c6;
     border: 1px solid #ccc; */
     border-radius: 5px;
@@ -16,9 +15,9 @@
   .view-profile2{
     margin: 0 ;
     position: relative;
-      display: flex;
-      flex-direction: row;
-      text-align: center;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
   }
 
   .view-profile2 h3 {
@@ -79,12 +78,19 @@
   
   
   .view-profile {
-    /* text-align: center; */
-    margin-bottom: 50px;
+    border: solid black 2px;
+    border-radius: 10px;
+    width: 900px;
+    padding:50px;
+    margin-left: -150px;
+    margin-top: 50px;
     
   }
 
-
+  .view-profile3{
+    margin-left: 300px;
+    margin-top: -280px;
+  }
   .profile{
     margin: 0;
     display: flex;
@@ -116,8 +122,8 @@
       outline: 3px solid #0a0738;
       /* background-color: rgb(255, 255, 255); */
       padding: 20px;
-      width: 180px;
-      height: 250px;
+      width: 200px;
+      height: 280px;
       margin: 10px 0;
       
     }

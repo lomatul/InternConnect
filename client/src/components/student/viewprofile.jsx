@@ -34,9 +34,14 @@ const ViewProfile = ({ userData, page, setPage,x,setX }) => {
             alt="Profile"
           />
 
-      <h2>
+     
+
+
+          <div className="view-profile3">
+          <h2>
             Name : <span>{userData.name}</span>
           </h2>
+          
           <p>
             <img
               src="id.png"
@@ -53,34 +58,43 @@ const ViewProfile = ({ userData, page, setPage,x,setX }) => {
             />
             Email: <span>{userData.email}</span>{" "}
           </p>
-      <div className="view-profile2">
-        <h3>Hobbies:</h3>
-        <p><span>{userData.hobbies}</span></p>
-      </div>
 
-      <div className="view-profile2">
-        <h3>Skills:</h3>
-        <p><span>{userData.skills}</span></p>
-      </div>
+             <div className="view-profile2">
+              <h3>Hobbies:</h3>
+              <p><span>{userData.hobbies}</span></p>
+            </div>
 
-      <div className="view-profile2">
-        <h3>Language Efficiency:</h3>
-        <p><span>{userData.languageEfficiency}</span></p>
-      </div>
+            <div className="view-profile2">
+              <h3>Skills:</h3>
+              <p><span>{userData.skills}</span></p>
+            </div>
 
-      <div className="view-profile2">
-        <h3>Past Experiences:</h3>
-        <p><span>{userData.pastExperiences}</span></p>
-      </div>
+            <div className="view-profile2">
+              <h3>Language Efficiency:</h3>
+              <p><span>{userData.languageEfficiency}</span></p>
+            </div>
 
-      <div className="view-profile2">
-        <h3>External Links:</h3>
-        <p className='link'><span>{userData.externalLinks}</span></p>
-      </div>
+            <div className="view-profile2">
+              <h3>Past Experiences:</h3>
+              <p><span>{userData.pastExperiences}</span></p>
+            </div>
 
+            <div className="view-profile2">
+              <h3>External Links:</h3>
+              <p className='link'><span>{userData.externalLinks}</span></p>
+            </div>
+
+          </div>
+
+
+
+      
     
 
     </div>
+
+    
+    
 
     </motion.div>
 

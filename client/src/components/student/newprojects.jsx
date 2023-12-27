@@ -179,12 +179,18 @@ const NewProject = ({page, setPage,x,setX} ) => {
                 onChange={handleInputChange}
               />
 
+              <div className="add-project">
               <button onClick={handleAddProject}>Add Project</button>
+              </div>
+              
             </div>
           </div>
         )}
 
+      <div className="add-project">
         <button onClick={() => setShowAddForm(true)}>Add Project</button>
+        </div>
+        
       </div>
       </div>
       </motion.div>
