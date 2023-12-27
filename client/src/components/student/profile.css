@@ -87,7 +87,7 @@
     
   }
 
-  .view-profile4{
+  .Hiringform{
     background-color: #cce3fa;
     box-shadow: 0 0 15px rgba(22, 75, 124, 0.9);
     border-radius: 10px;
@@ -157,7 +157,7 @@
     outline: none;
   }
 
-  .form-group input[type="date"]{
+  .Hiringform input[type="date"]{
     border: none;
     height: 50px;
     margin-left: 50px;
@@ -170,7 +170,7 @@
     border-radius: 10px;
   }
 
-  .view-profile4 .form-group {
+  .Hiringform .form-group {
     margin-top: 20px;
   }
     
