@@ -30,7 +30,7 @@ import History from "./Pages/comhistory";
 import GradeSend from "./Pages/Gradesubmit";
 import TestModal from "./Pages/test";
 import { ToastContainer, toast } from 'react-toastify';
-
+import StudentStatus from "./Pages/studentstatus";
 
 function App() {
   const { userstudent } = useAuthContext()
@@ -68,6 +68,7 @@ function App() {
         <Route path="/Modal" element = {<TestModal/>} />
         <Route path="/GradeSend" element = {<GradeSend/>} />
         <Route path="/History" element = {<History/>} />
+        <Route path="/Status" element = {<StudentStatus/>} />
 
       </Routes>
     </BrowserRouter>
