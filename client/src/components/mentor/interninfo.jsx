@@ -18,25 +18,25 @@ const InternInfo = () => {
 
             <div className="form-group">
               <label htmlFor="">Email<span>*</span></label>
-              <input type="email" value={""} />
+              <input type="email"  /> 
             </div>
             
             <div className="form-group">
               <label htmlFor="">Intern's Name<span>*</span></label>
-              <input type="text" value={""} />
+              <input type="text" />
             </div>
             <div className="form-group">
               <label htmlFor="">Intern's Designation (e.g., Front-end Software Developer)<span>*</span></label>
-              <input type="text" value={""} />
+              <input type="text"  />
             </div>
             <div className="form-group">
               <label htmlFor="">Intern's Joining Date  (e.g., January 7, 2023)<span>*</span></label>
-              <input type="text" value={""} />
+              <input type="text"  />
             </div>
                 
             <div className="form-group">
             <label htmlFor="">Intern's Last Working Day (e.g., January 7, 2023)<span>*</span></label>
-              <input type="text" value={""} />
+              <input type="text" />
             </div>
 
             <div className="form-group">
@@ -50,7 +50,7 @@ const InternInfo = () => {
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Senior Manager"
-                    name="radio-buttons-group"
+                    name="radio-buttons-group"     
                 >
                     <FormControlLabel value="Senior Manager" control={<Radio />} label="Senior Manager (e.g., CEO/CTO/MD/Team Lead)" />
                     <FormControlLabel value="Line Manager" control={<Radio />} label="Line Manager (e.g., Mentor/Supervisor)" />
@@ -67,7 +67,8 @@ const InternInfo = () => {
             <div className="form-group1">
             <FormControl>
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group">
+              name="row-radio-buttons-group" >
+                
                     <FormControlLabel style={{ marginLeft:"0px"}} value="Fully on-site" control={<Radio />} label="Fully on-site" />
                     <FormControlLabel style={{ marginLeft:"150px"}} value="About 25% remote " control={<Radio />} label="About 25% remote" />
                     <FormControlLabel style={{ marginLeft:"0px"}} value="About 50% remote " control={<Radio />} label="About 50% remote" />
