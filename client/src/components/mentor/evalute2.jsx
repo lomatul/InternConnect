@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 
-const Evaluation2 = ({value,change}) => {
+const Evaluation2 = ({value,change,feedback}) => {
     return (     
     <div >
        <p>This portion contains questions to evaluate an intern.</p>
@@ -26,7 +26,7 @@ const Evaluation2 = ({value,change}) => {
            
             <RadioGroup col  aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group" value={value.deadline || ''} 
-              onChange={(e) => change('deadline', e.target.value)}>
+              onChange={(e) => {change('deadline', e.target.value); feedback("eval2_deadline", e.target.value)}}>
                     <FormControlLabel value={5} control={<Radio />} label=" Always complete tasks within deadline" />
                     <FormControlLabel value={3} control={<Radio />} label=" Often complete tasks within deadline" />
                     <FormControlLabel value={2} control={<Radio />} label=" Sometimes complete tasks within deadline" />
@@ -46,11 +46,11 @@ const Evaluation2 = ({value,change}) => {
            
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group" value={value.Confidence || ''} 
-              onChange={(e) => change('Confidence', e.target.value)}>
+              onChange={(e) => {change('Confidence', e.target.value); feedback("eval2_Confidence", e.target.value)}}>
                     <FormControlLabel value={5} control={<Radio />} label=" Well understands his/her capability" />
-                    <FormControlLabel style={{ marginLeft:"30px"}} value={2} control={<Radio />} label=" Underestimates his/her capability" />
+                    <FormControlLabel style={{ marginLeft:"30px"}} value={2.5} control={<Radio />} label=" Underestimates his/her capability" />
                     <FormControlLabel value={2} control={<Radio />} label=" Overestimates his/her capability" />
-                    <FormControlLabel style={{ marginLeft:"50px"}} value={1} control={<Radio />} label="I could not assess this" />
+                    <FormControlLabel style={{ marginLeft:"50px"}} value={0} control={<Radio />} label="I could not assess this" />
                 </RadioGroup>                
             </FormControl>
             </div>
@@ -69,7 +69,7 @@ const Evaluation2 = ({value,change}) => {
           
             <RadioGroup col  aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group" value={value.Teamskills || ''} 
-              onChange={(e) => change('Teamskills', e.target.value)}>
+              onChange={(e) => {change('Teamskills', e.target.value); feedback("eval2_Teamskills", e.target.value)}}>
                     <FormControlLabel value={5} control={<Radio />} label=" A good team player" />
                     <FormControlLabel value={4} control={<Radio />} label=" Has occasional difficulties working in a team" />
                     <FormControlLabel value={2} control={<Radio />} label=" Has frequent difficulties working in a team" />
@@ -93,7 +93,7 @@ const Evaluation2 = ({value,change}) => {
             <FormControl>         
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group" value={value.Quality_of_work || ''} 
-              onChange={(e) => change('Quality_of_work', e.target.value)}>
+              onChange={(e) => {change('Quality_of_work', e.target.value); feedback("eval2_uality_of_work", e.target.value)}}>
                     <FormControlLabel style={{ marginRight:"100px"}}  value={5} control={<Radio />} label=" Excellent" />
                     <FormControlLabel style={{ marginRight:"100px"}} value={3} control={<Radio />} label=" Standard" />
                     <FormControlLabel style={{ marginRight:"100px"}} value={2} control={<Radio />} label=" Below Standard" />

@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 
-const Evaluation4 = () => {
+const Evaluation4 = ({feedback, feedbackvalue}) => {
     return (     
     <div >
        <p>This portion contains questions to evaluate an intern.</p>
@@ -19,7 +19,8 @@ const Evaluation4 = () => {
 
         <div className="form-group">
         <label htmlFor="">Overall comment about the intern<span>*</span></label>
-         <textarea rows="10"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+         <textarea rows="10"   style={{ marginTop: "30px" }} 
+         value={feedbackvalue.eval4_comment}  onChange={(e) => {feedback("eval4_comment", e.target.value)}}></textarea>
             </div>
            
             <div className="form-group">
@@ -42,18 +43,19 @@ const Evaluation4 = () => {
               for his/her improvement in future career</p>
 
               <label htmlFor="">Mention one thing you like about this intern<span>*</span></label>
-              <input type="text" value={""} />
+              <input type="text" value={feedbackvalue.eval4_liking}  onChange={(e) => {feedback("eval4_liking", e.target.value)}} />
             </div>
 
             <div className="form-group">
               <label htmlFor="">Mention one thing you do not like about this intern<span>*</span></label>
-              <input type="text" value={""} />
+              <input type="text" value={feedbackvalue.eval4_notliking}  onChange={(e) => {feedback("eval4_notliking", e.target.value)}} />
             </div>
 
 
             <div className="form-group">
              <label htmlFor="">How can this intern do better in his/her career?<span>*</span></label>
-             <textarea rows="10"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+             <textarea rows="10"    style={{ marginTop: "30px" }} 
+             value={feedbackvalue.eval4_suggestion}  onChange={(e) => {feedback("eval4_suggestion", e.target.value)}}></textarea>
             </div>
 
         </form>

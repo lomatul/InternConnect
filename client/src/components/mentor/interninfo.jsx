@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 
-const InternInfo = () => {
+const InternInfo = ({feedback, feedbackvalue}) => {
   return (     
     <div >
        <p>Intern's Information from Evaluator</p>
@@ -18,25 +18,25 @@ const InternInfo = () => {
 
             <div className="form-group">
               <label htmlFor="">Email<span>*</span></label>
-              <input type="email"  /> 
+              <input type="email"  value={feedbackvalue.intern_Email ||''}  onChange={(e) => {feedback("intern_Email", e.target.value)}}/> 
             </div>
             
             <div className="form-group">
               <label htmlFor="">Intern's Name<span>*</span></label>
-              <input type="text" />
+              <input type="text" value={feedbackvalue.intern_name ||''}  onChange={(e) => {feedback("intern_name", e.target.value)}}/>
             </div>
             <div className="form-group">
               <label htmlFor="">Intern's Designation (e.g., Front-end Software Developer)<span>*</span></label>
-              <input type="text"  />
+              <input type="text" value={feedbackvalue.intern_desc ||''}  onChange={(e) => {feedback("intern_desc", e.target.value)}} />
             </div>
             <div className="form-group">
               <label htmlFor="">Intern's Joining Date  (e.g., January 7, 2023)<span>*</span></label>
-              <input type="text"  />
+              <input type="text"  value={feedbackvalue.intern_join ||''}  onChange={(e) => {feedback("intern_join", e.target.value)}}/>
             </div>
                 
             <div className="form-group">
             <label htmlFor="">Intern's Last Working Day (e.g., January 7, 2023)<span>*</span></label>
-              <input type="text" />
+              <input type="text" value={feedbackvalue.intern_lastday ||''}  onChange={(e) => {feedback("intern_lastday", e.target.value)}}/>
             </div>
 
             <div className="form-group">
@@ -50,7 +50,8 @@ const InternInfo = () => {
                 <RadioGroup
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Senior Manager"
-                    name="radio-buttons-group"     
+                    name="radio-buttons-group" 
+                    value={feedbackvalue.intern_role ||''}  onChange={(e) => {feedback("intern_role", e.target.value)}}    
                 >
                     <FormControlLabel value="Senior Manager" control={<Radio />} label="Senior Manager (e.g., CEO/CTO/MD/Team Lead)" />
                     <FormControlLabel value="Line Manager" control={<Radio />} label="Line Manager (e.g., Mentor/Supervisor)" />
@@ -67,7 +68,8 @@ const InternInfo = () => {
             <div className="form-group1">
             <FormControl>
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group" >
+              name="row-radio-buttons-group"
+              value={feedbackvalue.intern_location ||''}  onChange={(e) => {feedback("intern_location", e.target.value)}} >
                 
                     <FormControlLabel style={{ marginLeft:"0px"}} value="Fully on-site" control={<Radio />} label="Fully on-site" />
                     <FormControlLabel style={{ marginLeft:"150px"}} value="About 25% remote " control={<Radio />} label="About 25% remote" />

@@ -11,15 +11,13 @@ import Evaluation3 from './evalute3';
 import Evaluation4 from './evaluate4';
 import InternInfo from './interninfo';
 import  html2pdf  from 'html2pdf.js';
-import PDFDocument from './interninforesponsepdf'
 import {pdf} from '@react-pdf/renderer';
 
 const Assesment = () => {
   const [page, setPage] = useState(0);
   const [evaluation, setEvaluation] = useState([]);
-  const [interninform, setInterninform] = useState([]);
-  const [evaluatform, setEvaluateform] = useState([]);
-  const [companyform, setCompanyform] = useState([]);
+  const [feedback, setFeedback] = useState([]);
+
 
 
 
@@ -28,14 +26,24 @@ const Assesment = () => {
       ...prevValues,
       [group]: value,
     }))
-    // console.log(evaluation)
+    console.log(evaluation)
   }
+
+
+  const handlefeedback= (group, value) => {
+    setFeedback(prevValues => ({
+      ...prevValues,
+      [group]: value,
+    }))
+  }
+
 
 
 
   
   const handlesubmit = async() =>{
 
+    console.log(feedback);
     
     var sum=0;
     Object.values(evaluation).forEach((value) =>{ sum=sum+Number(value); console.log("whole object for show", sum)});
@@ -47,7 +55,7 @@ const Assesment = () => {
   const PageDisplay = () => {
     const pages = [InternInfo,ProjectInfo,Evaluation,Evaluation2,Evaluation3,Evaluation4, MentorInfo,ComInfo ];
     const Component = pages[page];
-    return <Component value={evaluation} change={handleRadiochange}/>;
+    return <Component value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}/>;
   };
 
   return (

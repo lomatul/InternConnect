@@ -9,7 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 
-const ProjectInfo = () => {
+const ProjectInfo = ({feedback, feedbackvalue}) => {
     return (     
     <div >
         <p>Please Fill up the Form Below</p>
@@ -28,6 +28,7 @@ const ProjectInfo = () => {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Yes"
                     name="radio-buttons-group"
+                    value={feedbackvalue.project_access || ''}  onChange={(e) => {feedback("project_access", e.target.value)}}
                 >
                     <FormControlLabel value="Yes" control={<Radio />} label=" Yes" />
                     <FormControlLabel value="No" control={<Radio />} label=" No" />
@@ -48,6 +49,7 @@ const ProjectInfo = () => {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Yes"
                     name="radio-buttons-group"
+                    value={feedbackvalue.project_push || ''}  onChange={(e) => {feedback("project_push", e.target.value)}}
                 >
                     <FormControlLabel value="Yes" control={<Radio />} label=" Yes" />
                     <FormControlLabel value="No" control={<Radio />} label=" No" />
@@ -59,7 +61,8 @@ const ProjectInfo = () => {
 
             <div className="form-group">
         <label htmlFor="">Briefly mention the tasks assigned to the intern <span>*</span></label>
-            <textarea rows="15"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+            <textarea rows="15"   value={feedbackvalue.project_task || ''}  onChange={(e) => {feedback("project_task", e.target.value)}}
+              style={{ marginTop: "30px" }} ></textarea>
             </div>
 
 
