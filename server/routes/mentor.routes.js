@@ -5,6 +5,9 @@ import {
   getMentorByEmail ,
   updateMentorByEmail,
   deleteMentorByEmail,
+  AddAssesment,
+  getAssesment,
+  getmentor
 
 } from '../controllers/mentor.controller.js';
 
@@ -19,5 +22,11 @@ router.get('/getMentor/:email', getMentorByEmail);
 router.put('/updateMentor/:email', updateMentorByEmail );
 
 router.delete('/deleteMentor/:email', deleteMentorByEmail);
+
+router.post('/AddAssesment', AddAssesment);
+
+router.get('/getAssesment/:mentorid/:StudentId', getAssesment);
+
+router.get('/getmentorbyid/:mentorid', getmentor);
 
 export default router;

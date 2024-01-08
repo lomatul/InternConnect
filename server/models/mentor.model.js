@@ -8,7 +8,12 @@ const mentorSchema = new mongoose.Schema({
   
   assignedStudents: [{ type: String,  unique: true }],
 
-  position:{type:String}
+  position:{type:String},
+  
+  response :[{
+    student_id :{type:String},
+    assesment:{type:Object}
+  }]
 });
 
 export default mongoose.model('Mentor', mentorSchema);

@@ -27,6 +27,7 @@ import CvSend from "./Pages/Cvsend";
 import AddAssesment from "./Pages/Addassesment";
 import AddMentor from "./Pages/Mentor";
 import Modal from "./components/modal/modal";
+import ViewAssesment from "./Pages/Viewassesment"
 
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -68,6 +69,8 @@ function App() {
         <Route path="/AddMentor" element = {<AddMentor/>} />
         <Route path="/AddMentor/:id" element = {<AddMentor/>} />
         <Route path="/Modal" element = {<Modal/>} />
+        <Route path="/AddAssesment/:mentorid/:StudentId" element = {<AddAssesment/>} />
+        <Route path="/ViewAssesment/:mentorid/:StudentId" element = {<ViewAssesment/>} />
 
       </Routes>
     </BrowserRouter>
