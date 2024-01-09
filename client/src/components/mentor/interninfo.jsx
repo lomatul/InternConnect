@@ -9,10 +9,19 @@ import FormLabel from '@mui/material/FormLabel';
 import { motion } from "framer-motion";
 
 
-const InternInfo = ({feedback, feedbackvalue, page, setPage,x,setX}) => {
-  return (     
-    <div >
-       <p>Intern's Information from Evaluator</p>
+const InternInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
+  return (
+      <motion.div                            //updated the div tag
+      initial={{ x: x }}
+      transition={{ duration: 1 }}
+      animate={{ x: 0 }}
+    >
+
+          <div className="mentorheader">
+                    <h1>Intern's Basic Information</h1>
+          <p>Intern's Information from Evaluator</p>     </div>
+ 
+      
         <div className="assesment-form">
         <form>
 
