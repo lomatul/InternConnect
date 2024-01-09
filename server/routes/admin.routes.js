@@ -1,5 +1,9 @@
 import express from 'express';
-import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMatchedStudentForCompany,sendCvsToCompany, postGuideline, sendMentorsForm} from '../controllers/admin.controller.js';
+import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMatchedStudentForCompany,sendCvsToCompany, postGuideline, sendMentorsForm,
+    postCvdeadline,
+    getCvdeadline,
+    getGradeExcel
+} from '../controllers/admin.controller.js';
 import upload from '../middlewares/multer.js';
 import { ulpoadfiledata, ulpoadCompanydata } from '../controllers/filecontroller.js';
 
@@ -14,6 +18,9 @@ router.post('/uploadfile', upload.single('file'), ulpoadfiledata)
 router.post('/uploadcompanyfile', upload.single('file'), ulpoadCompanydata)
 router.post('/sendtoall', sendmailtoall)
 router.post('/sendtoone', sendmailtoindividual)
+router.post('/postCvdeadline', postCvdeadline);
+router.get("/getCvdeadline", getCvdeadline);
+router.get("/getGradeExcel", getGradeExcel);
 
 //testing 
 router.post('/getMatchedStudents', getMatchedStudentForCompany)

@@ -8,6 +8,7 @@ import {MatchStudentByCGPA, MatchStudentByAlgorithm } from './service.controller
 import sendCVsEmail from "./mailsenders/cv.mailsender.js";
 import Company from '../models/company.model.js';
 import otpgenerator from 'otp-generator';
+import xlsx from 'xlsx';
 
 export const postlogin= (req, res, next) =>{
 
@@ -236,6 +237,93 @@ export const sendMentorsForm = async(req, res)=>{
 
   }catch (error){
     console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+export const postCvdeadline = async( req, res) => {
+  try{
+    const {time} = req.body;
+
+    const admin = await Admin.findOne();
+
+    const deadline= admin.deadlines.find((el)=> {return el.topic==="cv"})
+
+    if(deadline){
+      deadline.time=time
+      await admin.save();
+    }else{
+      const newdeadline = {
+        topic : "cv",
+        time : time
+      }
+
+      admin.deadlines.push(newdeadline);
+      await admin.save();
+    }
+
+
+    return res.status(200).json({message:"new deadline is set."})
+
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+export const getCvdeadline = async( req, res) => {
+  try{
+
+    const admin = await Admin.findOne();
+
+    const deadline= admin.deadlines.find((el)=> {return el.topic==="cv"})
+
+    if(!deadline){
+      return res.status(400).json({error:"Deadline not found."});
+    }
+
+
+    return res.status(200).json({Deadline:deadline.time});
+
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+export const getGradeExcel = async(req, res) => {
+  try {
+    const students = await Student.find();
+
+    const simplifiedData = students.map(student => ({
+      name: student.name,
+      student_id: student.student_id,
+      CGPA: student.CGPA,
+    }));
+
+    const workbook = xlsx.utils.book_new();
+    const worksheet = xlsx.utils.json_to_sheet(simplifiedData);
+
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'CGPA Report');
+
+
+    const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', bookSST: false, type: 'binary' });
+
+
+    const buffer = Buffer.from(excelBuffer, 'binary');
+
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=CGPA_Report.xlsx');
+
+    res.end(buffer);
+
+  } catch (error) {
+    console.error('Error exporting CGPA:', error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }

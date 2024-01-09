@@ -122,7 +122,7 @@ export const AddAssesment = async (req, res) => {
     
     console.log("Answer, mentorid, StudentIdD", Answer, mentorid, StudentId);
 
-    const existassment = mentor.response.find((element)=>{element.student_id==StudentId});
+    const existassment = mentor.response.find((element)=>{return element.student_id==StudentId});
 
     if(existassment){
       res.status(400).json({error:"This Student is already evaluated"});
@@ -148,7 +148,7 @@ export const UpdateAssesment = async (req, res) => {
 
     const mentor = await Mentor.findById(mentorid);
 
-    const existassment = mentor.response.find((element)=>{element.student_id==StudentId});
+    const existassment = mentor.response.find((element)=>{return element.student_id==StudentId});
 
     existassment.assesment=Answer;
     await mentor.save();
