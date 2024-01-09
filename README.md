@@ -33,10 +33,11 @@ In Progress  :hourglass_flowing_sand:
 ##  :briefcase: Brief Overview : 
 ```
 This software would significantly streamline the entire internship placement process,
- alleviating the burdens faced by everyone involved. Our goal is to develop a user-friendly
-web application that will not only eliminate these issues but also enhance the overall experience of all
- parties involved, including students, Islamic University of Technology (IUT) administrators,
- participating companies, supervisors, system administrators, visitors, and authorities.
+alleviating the burdens faced by everyone involved. Our goal is to develop a user-friendly
+web application that will not only eliminate these issues but also enhance the overall experience
+of all parties involved, including students, Islamic University of Technology (IUT)
+administrators,participating companies, supervisors, system administrators, visitors,
+and authorities.
  ```
 
 
