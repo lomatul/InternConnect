@@ -19,6 +19,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Assesment = () => {
   const {mentorid, StudentId} = useParams();
+
+  const [x, setX] = useState(0);
+
   const [page, setPage] = useState(0);
   const [evaluation, setEvaluation] = useState([]);
   const [feedback, setFeedback] = useState([]);
@@ -131,11 +134,67 @@ const Assesment = () => {
     </div>
     )
   }
+  const componentList = [
+    <InternInfo
+  page={page}
+  setPage={setPage}
+  x={x}
+  setX={setX}
+/>, 
+
+    <ProjectInfo
+      page={page}
+      setPage={setPage}
+      x={x}
+      setX={setX}
+    />,
+  
+    <Evaluation
+    page={page}
+    setPage={setPage}
+    x={x}
+    setX={setX}
+  />,
+  <Evaluation2
+    page={page}
+    setPage={setPage}
+    x={x}
+    setX={setX}
+  />,
+  <Evaluation3
+    page={page}
+    setPage={setPage}
+    x={x}
+    setX={setX}
+  />, 
+  <Evaluation4
+  page={page}
+  setPage={setPage}
+  x={x}
+  setX={setX}
+/>,
+  <MentorInfo
+  page={page}
+  setPage={setPage}
+  x={x}
+  setX={setX}
+/>, 
+ <ComInfo
+ page={page}
+ setPage={setPage}
+ x={x}
+ setX={setX}
+/>,
+
+  ];
+
+
   return (
+    
     <div className="mentorform">
-      <div className="progressbar">
-        <div style={{ width: page * 12.5 + "%" }}></div>
-      </div>
+     <div className="progress-bar">
+      <div style={{width: page === 0? "12%": page === 1? "24%": page === 3? "35%": page === 4? "49%":page === 5? "60%":page === 6? "75%":page === 7? "84%" : "100%"}}></div>
+    </div> 
 
       <div className="form-container" id="form-container">
         <div className="mentorheader">
@@ -167,7 +226,12 @@ const Assesment = () => {
           </button>
         </div>
       </div>
+     
+      <div>{componentList[page]}</div>
+
+    
     </div>
+
   );
 };
 

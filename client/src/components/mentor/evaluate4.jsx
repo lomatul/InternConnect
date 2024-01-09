@@ -6,13 +6,23 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { motion } from "framer-motion";
 
 
 
-const Evaluation4 = ({feedback, feedbackvalue}) => {
-    return (     
-    <div >
-       <p>This portion contains questions to evaluate an intern.</p>
+const Evaluation4 =  ( { feedback, feedbackvalue,page, setPage,x,setX  } )  => {
+  return (
+
+      <motion.div                            //updated the div tag
+      initial={{ x: x }}
+      transition={{ duration: 1 }}
+      animate={{ x: 0 }}
+    >
+ 
+        <div className="mentorheader">
+                        <h1>Intern's Assesment</h1>
+                        <p>This portion contains questions to evaluate an intern.</p>
+        </div>
         <div className="assesment-form">
         <form>
 
@@ -59,11 +69,17 @@ const Evaluation4 = ({feedback, feedbackvalue}) => {
             </div>
 
         </form>
-        
-      </div>
+        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+              Next
+            </button>
+          <br/>
+            <button
+              onClick={() => {setPage(page - 1); setX(-1000);  }}>
+              Previous </button>
+    </div>
 
-  
-</div>
-  )
-}
+    </motion.div>
+  );
+};
+
 export default Evaluation4

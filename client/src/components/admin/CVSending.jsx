@@ -151,7 +151,7 @@ const Sendcv = () => {
                     
                     <div className="form-group">
                         <label>Sorting Method:</label>
-                        <Select className='adselect'  options={sortingways} onChange={(selectedOption) => setSort(selectedOption.value)}/>             
+                        <Select className='adselect'   onChange={(selectedOption) => setSort(selectedOption.value)}/>             
                     </div>
                   </div>
 

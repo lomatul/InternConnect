@@ -4,10 +4,11 @@ import Student from '../models/student.model.js';
 
 export const createMentor = async (req, res, next) => {
   try {
-    const { name, email } = req.body;
+    const { name, designation, email } = req.body;
 
     const mentor = new Mentor({
       name,
+      designation,
       email,
     });
 
@@ -74,6 +75,7 @@ export const updateMentorByEmail = async (req, res, next) => {
     }
 
     mentor.name = req.body.name;
+    mentor.designation = req.body.designation;
     mentor.assignedStudents = req.body.assignedStudents;        // req.body.assignedStudents has to be an array of student_id (s)
 
     await mentor.save();

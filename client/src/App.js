@@ -21,16 +21,23 @@ import { useAuthContext } from "./context/useAuthcontext";
 import SendNotifi from "./Pages/AddNotification";
 import { Toaster } from 'react-hot-toast';
 import Test from "./components/test";
-import Dropdown from "./components/modal/select";
 import Proflie from "./Pages/StudentProfile";
 import CvSend from "./Pages/Cvsend";
 import AddAssesment from "./Pages/Addassesment";
 import AddMentor from "./Pages/Mentor";
 import Modal from "./components/modal/modal";
 import ViewAssesment from "./Pages/Viewassesment"
-
-
+import History from "./Pages/comhistory";
+import GradeSend from "./Pages/Gradesubmit";
+import TestModal from "./Pages/test";
 import { ToastContainer, toast } from 'react-toastify';
+import StudentStatus from "./Pages/studentstatus";
+import GradeStatus from "./Pages/studentgrade";
+
+
+
+
+
 
 
 function App() {
@@ -53,7 +60,6 @@ function App() {
         <Route path="/Addguideline" element = {<AddguideLine/>} />
         <Route path="/Contact" element = {<Contacts/>} />
         <Route path="/Forget" element = {<Forgets/>} />
-        <Route path="/Select" element = {<Dropdown/>} />
         <Route path="/Student" element = {userstudent?<Students/>:<Page404/>} />
         <Route path="/AddStudent" element = {useradmin?<AddStudent/>:<Page404/>} />
         <Route path="/NotFound" element = {<Page404/>} />
@@ -68,10 +74,13 @@ function App() {
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
         <Route path="/AddMentor" element = {<AddMentor/>} />
         <Route path="/AddMentor/:id" element = {<AddMentor/>} />
-        <Route path="/Modal" element = {<Modal/>} />
+        <Route path="/Modal" element = {<TestModal/>} />
         <Route path="/AddAssesment/:mentorid/:StudentId" element = {<AddAssesment/>} />
         <Route path="/ViewAssesment/:mentorid/:StudentId" element = {<ViewAssesment/>} />
-
+        <Route path="/GradeSend" element = {<GradeSend/>} />
+        <Route path="/History" element = {<History/>} />
+        <Route path="/Status" element = {<StudentStatus/>} />
+        <Route path="/GradeStatus" element = {<GradeStatus/>} />
       </Routes>
     </BrowserRouter>
   );

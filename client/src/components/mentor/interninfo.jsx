@@ -6,10 +6,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { motion } from "framer-motion";
 
 
-
-const InternInfo = ({feedback, feedbackvalue}) => {
+const InternInfo = ({feedback, feedbackvalue, page, setPage,x,setX}) => {
   return (     
     <div >
        <p>Intern's Information from Evaluator</p>
@@ -82,10 +82,13 @@ const InternInfo = ({feedback, feedbackvalue}) => {
             </div>
         </form>
         
+        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+            Next
+          </button>
+
       </div>
 
-  
-</div>
-  )
-}
+</motion.div>
+    );
+  };
 export default InternInfo

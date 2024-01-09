@@ -6,15 +6,26 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import html2pdf from 'html2pdf.js';
+import { motion } from "framer-motion";
 
 
-const Evaluation =({value,change,feedback}) => {
+
+const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
+  return (
+
+      <motion.div                            //updated the div tag
+      initial={{ x: x }}
+      transition={{ duration: 1 }}
+      animate={{ x: 0 }}
+    >
  
-  return (     
-    <div id='assesment-form'>
-       <p>This portion contains questions to evaluate an intern.</p>
-        <div className="assesment-form"  >
+        <div className="mentorheader">
+                        <h1>Intern's Assesment</h1>
+                        <p>This portion contains questions to evaluate an intern.</p>
+        </div>
+ 
+ 
+         <div className="assesment-form">
         <form>
 
           
@@ -108,10 +119,17 @@ const Evaluation =({value,change,feedback}) => {
 
         </form>
         
-      </div>
+        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+              Next
+            </button>
+          <br/>
+            <button
+              onClick={() => {setPage(page - 1); setX(-1000);  }}>
+              Previous </button>
+    </div>
 
-  
-</div>
-  )
-}
+    </motion.div>
+  );
+};
+
 export default Evaluation
