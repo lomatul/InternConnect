@@ -39,7 +39,6 @@ const studentSchema = new mongoose.Schema({
       technologies: { type: String },
     },
   ],
-  report: { type: String },
 });
 
 export default mongoose.model("Student", studentSchema);
