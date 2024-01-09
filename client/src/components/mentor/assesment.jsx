@@ -139,51 +139,51 @@ const Assesment = () => {
   page={page}
   setPage={setPage}
   x={x}
-  setX={setX}
+  setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
 />, 
 
     <ProjectInfo
       page={page}
       setPage={setPage}
       x={x}
-      setX={setX}
+      setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
     />,
   
     <Evaluation
     page={page}
     setPage={setPage}
     x={x}
-    setX={setX}
+    setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
   />,
   <Evaluation2
     page={page}
     setPage={setPage}
     x={x}
-    setX={setX}
+    setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
   />,
   <Evaluation3
     page={page}
     setPage={setPage}
     x={x}
-    setX={setX}
+    setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
   />, 
   <Evaluation4
   page={page}
   setPage={setPage}
   x={x}
-  setX={setX}
+  setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
 />,
   <MentorInfo
   page={page}
   setPage={setPage}
   x={x}
-  setX={setX}
+  setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
 />, 
  <ComInfo
  page={page}
  setPage={setPage}
  x={x}
- setX={setX}
+ setX={setX}  value={evaluation} change={handleRadiochange} feedback={handlefeedback} feedbackvalue={feedback}
 />,
 
   ];
