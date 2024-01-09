@@ -68,4 +68,6 @@ router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
 
 router.patch('/UpdateCurrentStatus', updateCompanyStatus);
 
+router.post('/uploadInternshipReport/:student_id', UploadInternshipReport.single('file'), uploadInternshipReportFile);
+
 export default router;
