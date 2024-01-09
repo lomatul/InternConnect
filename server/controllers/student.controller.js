@@ -622,3 +622,22 @@ export const updateCompanyStatus = (async (req, res)=>{
 
 
 })
+
+export const uploadInternshipReportFile = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    student.internshipReport = req.file.filename;
+
+    await student.save();
+
+    res.status(200).json({ message: 'Internship report uploaded successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
