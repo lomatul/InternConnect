@@ -11,7 +11,7 @@ import FormLabel from '@mui/material/FormLabel';
 
 
 
-const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
+const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  => {
   return (
 
       <motion.div                            //updated the div tag
@@ -85,6 +85,9 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
             <button
               onClick={() => {setPage(page - 1); setX(-1000);  }}>
               Previous </button>
+
+              <button onClick={submit}>
+              Submit </button>
     </div>
 
     </motion.div>
