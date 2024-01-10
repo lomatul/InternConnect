@@ -37,6 +37,8 @@ const studentSchema = new mongoose.Schema({
 
   presentationMarks: { type: Number },
 
+  evaluatedMentorMarks: { type: Number },
+
   finalGrade: { type: String },
 
   bio: { type: String },
