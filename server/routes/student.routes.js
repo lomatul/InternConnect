@@ -20,7 +20,8 @@ import {
   editProject,
   deleteProject,
   updateCompanyStatus,
-  uploadInternshipReportFile
+  uploadInternshipReportFile,
+  getStudentReportById
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 import uploadInternshipReport from '../middlewares/multer.report.js';
@@ -71,5 +72,7 @@ router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
 router.patch('/UpdateCurrentStatus', updateCompanyStatus);
 
 router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
+
+router.get('/getStudentReport/:student_id', getStudentReportById);
 
 export default router;
