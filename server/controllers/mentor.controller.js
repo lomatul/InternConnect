@@ -218,3 +218,40 @@ export const getmentor = async (req, res) => {
   }
 
 }
+
+
+export const evaluateAverageMentorMarks = async (req, res) => {
+  try {
+    const { StudentId } = req.params; 
+
+    const allMentors = await Mentor.find();
+
+    let totalMarks = 0;
+    let mentorCount = 0;
+
+    for (const mentor of allMentors) 
+    {
+      const assignedStudent = mentor.assignedStudents.find( (student) => student.student_id === StudentId);
+
+      if (assignedStudent) 
+      {
+        totalMarks += assignedStudent.evaluation;
+        mentorCount += 1;
+      }
+    }
+
+    const averageMarks = mentorCount !== 0 ? totalMarks / mentorCount : 0;
+
+    await Student.findOneAndUpdate(
+      { student_id: StudentId },
+      { evaluatedMentorMarks: averageMarks },
+      { new: true }
+    );
+
+    return res.status(200).json({ message: 'Average marks calculated and saved successfully' });
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
