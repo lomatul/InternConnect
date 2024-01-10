@@ -7,6 +7,13 @@
     height: 300vh;
 }
 
+@media (max-width:900px){
+  .newAdmin{
+      width: 90%;
+  }
+}
+
+
 .admincontainer{
     align-items: center;
     display: grid;
@@ -17,11 +24,6 @@
 
 
 
-.admincard .image img{
-    width: 800px;
-    height: auto;
-    animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
-}
 
 .admincontainer text {
     display: flex;
@@ -70,9 +72,7 @@
 
 
 .admincard .card .adbuttons button {
-    /* display: flex; */
     align-items: center;
-  /* Add margin to create space between buttons */
     color: rgb(37, 16, 104);
     background-color: rgb(207, 201, 223);
     height: 40px;
@@ -102,10 +102,101 @@
 }
 
 .admincard .card img{
-    /* animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite; */
     max-width: 250px;
     max-height: 250px;
 }
+
+
+@media (max-width:1065px){
+  .admincard .cards{
+
+      display: grid;
+      grid-template-columns: 1fr ;
+  }
+  .admincard .card{
+    margin-left: 110px;
+    margin-right: 110px;
+    border-radius: 10px;
+    height: 150px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+  height: 1800px;
+  border-radius: 10px;
+  outline: 2px solid brown;
+}
+}
+
+
+
+@media (max-width:1265px){
+
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+}
+}
+
+
+@media (max-width:765px){
+  .admincard .cards{
+
+      display: grid;
+      grid-template-columns: 1fr ;
+  }
+  .admincard .card{
+    margin-left: 110px;
+    margin-right: 110px;
+    border-radius: 10px;
+    height: 150px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+  height: 1800px;
+  border-radius: 10px;
+  outline: 2px solid brown;
+}
+}
+
+@media (max-width:450px){
+  .admincard .cards{
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 200px;
+  }
+  .admincard .card{
+    margin-left: 110px;
+    margin-right: 110px;
+    border-radius: 10px;
+ 
+    height: 150px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+  height: 1800px;
+  border-radius: 10px;
+  outline: 2px solid brown;
+}
+}
+
 
 
 
@@ -114,6 +205,8 @@
     height: 500px;
     width: 500px;
 }
+
+
 .admincontainer .studenttext h3{
 font-size: 18px;
 }
