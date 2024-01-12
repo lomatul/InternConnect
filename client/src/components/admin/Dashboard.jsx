@@ -24,8 +24,8 @@ function Dashboard() {
                     <a href="/AddCompany">Add Companies &rarr;</a>
                 </div>
                 <div className='card'>
-                    <img src="ad-guide.png" alt=""  />
-                    <a href="/Addguideline">Add Guideline &rarr;</a>
+                    <img src="deadline.png" alt=""  />
+                    <a href="/Adddeadline">Add Deadlines &rarr;</a>
                 </div> 
             </div>
 
