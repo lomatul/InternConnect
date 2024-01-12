@@ -691,3 +691,31 @@ text-align: center;
  .sample-cvs a:focus {
   outline: none; /* Remove the default focus outline on links */
 }
+
+
+.date {
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+.date span
+{
+  color: red;
+}
+.date-button {
+  margin-top: -50px;
+}
+
+.date-button  button{
+  color: #fffdfd;
+  margin-left: 50px;
+  height: 45px;
+  margin-left: 400px;
+  width: 150px;
+  background-color: #000000;
+  border-radius: 10px;
+}
+.date input {
+  width: 300px;
+  border-bottom: 3px solid rgb(255, 255, 255);
+}

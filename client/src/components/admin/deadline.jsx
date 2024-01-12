@@ -28,25 +28,33 @@ const Adddeadline = () => {
         </div>
       
         <div className="date">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <label> Set Deadline for Cv Submission</label>
+            <div className="datepicker">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker />
             </LocalizationProvider>
+            </div>      
+            <div className="date-button">
+            <button>Submit</button>
+            </div>
         </div>
         
 
 
         <div className="date">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <label> Set Deadline for Report Submission </label>
+        <div className="datepicker">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DatePicker />
             </LocalizationProvider>
+        </div>  
+            <div className="date-button">
+            <button>Submit</button>
+            </div>    
         </div>
 
 
-        <div className="date">
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DatePicker />
-            </LocalizationProvider>
-        </div>
+
 
     </div>
   );
