@@ -87,6 +87,7 @@ export const getCompanyByEmailAndYear  = async (req, res, next) => {
   }
 };
 
+
 export const getCompanyByID  = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -99,7 +100,6 @@ export const getCompanyByID  = async (req, res, next) => {
       });
       
     }
-
     
     res.status(200).send(company)
   } catch (error) {
@@ -107,6 +107,7 @@ export const getCompanyByID  = async (req, res, next) => {
     res.status(400).json(({error:error.message}))
   }
 };
+
 
 // Update a company by email and year
 export const updateCompanyByEmailAndYear  = async (req, res, next) => {
@@ -241,6 +242,7 @@ export const deleteCompanyByEmailAndYear  = async (req, res, next) => {
   }
 };
 
+
 export const assignMenotors = async( req, res)=>{
   try{
     const {id, Studentid, otp, newmentors}=req.body;
@@ -283,6 +285,26 @@ export const sendFormtomentors = async(req, res)=>{
     })
     await Promise.all(promise);
     res.status(200).json({message:"Email works"})
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+export const sendHiredNotifyingMail= async(req, res) =>{
+  try{
+    const { companyName, studentId, studentName } = req.body;
+    const companies = await Company.find({ name: companyName });  
+    const notificationPromises = companies.map(async (element) => {
+      const sub = 'Hired Notification';
+      const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to confirm that the student: ${studentName}, ID: ${studentId} is now hired as an intern by your company.</p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusById/${studentId}">Confirm</a>`;
+      await Mailfunction(sub, element.email, text);
+    })
+    await Promise.all(notificationPromises);
+
+    res.status(200).json({ message: 'Email works' });
 
   }catch (error){
     console.log("Error: ", error);

@@ -595,7 +595,7 @@ export const deleteProject = async (req, res) => {
 };
 
 
-export const updateCompanyStatus = (async (req, res)=>{
+export const updateCurrentStatus = (async (req, res)=>{
   try{
     const {studentId, Status}=req.body;
     var student;
@@ -623,6 +623,28 @@ export const updateCompanyStatus = (async (req, res)=>{
     res.status(400).json({ error: error.message });
   }
 })
+
+
+export const updateCurrentStatusById = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+
+    const updatedStudent = await Student.findOneAndUpdate(
+      { student_id },
+      { $set: { currentStatus: 'Hired' } }, 
+      { new: true } 
+    );
+
+    if (!updatedStudent) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    res.status(200).json({ message: 'Student status updated successfully', updatedStudent });
+  } catch (error) {
+    console.error('Error updating student status:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 
 export const uploadInternshipReportFile = async (req, res) => {

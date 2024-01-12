@@ -9,7 +9,8 @@ import {
   deleteCompanyByEmailAndYear,
   getCompanyByID, 
   assignMenotors,
-  sendFormtomentors
+  sendFormtomentors,
+  sendHiredNotifyingMail,
 
 } from '../controllers/company.controller.js';
 
@@ -34,4 +35,7 @@ router.delete('/deleteCompany/:email/:year', deleteCompanyByEmailAndYear);
 router.post('/assignMenotors', assignMenotors);
 
 router.get('/sendmentorsforms', sendFormtomentors)
+
+router.get('/sendHiredNotifyingMail', sendHiredNotifyingMail)
+
 export default router;

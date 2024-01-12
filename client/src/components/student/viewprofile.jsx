@@ -1,12 +1,30 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from 'axios';
 
 const ViewProfile = ({ userData, page, setPage, x, setX }) => {
   const [hired, setHired] = useState(false);
+  const [companyName, setCompanyName] = useState('');
 
-  const handleHiredClick = () => {
-    setHired(true);
+
+  const handleHiredClick = async () => { 
+    try {
+      if (!companyName) {
+        console.error('Company name is required.');
+        return;
+      }
+  
+      const { name, Id } = userData;
+
+      await axios.post('http://localhost:4000/InterConnect/company/sendHiredNotifyingMail', { companyName, studentId: Id, studentName: name, });
+  
+      setHired(true);
+
+    } catch (error) {
+      console.error('Error sending hired notification:', error);
+    }
   };
+
 
   return (
     <div>
@@ -108,8 +126,8 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
               out the form
             </p>
             <div className="form-group">
-              <label htmlFor=""> Company Name<span>*</span></label>
-              <input type="text" placeholder="Give name" />
+              <label htmlFor="" name="companyName"> Company Name<span>*</span></label>
+              <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Give name" />            
             </div>
 
             <div className="form-group">

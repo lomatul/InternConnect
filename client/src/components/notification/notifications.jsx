@@ -45,7 +45,7 @@ const SendNotification = () => {
     try {
       await axios.post('http://localhost:4000/InterConnect/admin/sendtoall', {text, sub, type})
       .then((response) => {
-        console.log(response)// Initially, both arrays are the same
+        console.log(response)   // Initially, both arrays  are the same
         toast.success('Notification sent successfully', { position: "top-right" });
           setTimeout(() => {
             window.location.reload();
@@ -96,6 +96,7 @@ const SendNotification = () => {
     setText('')
     setSub('')
   };
+  
 
   return (
     <div >
