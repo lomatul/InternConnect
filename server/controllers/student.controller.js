@@ -626,3 +626,56 @@ export const updateCompanyStatus = (async (req, res)=>{
 
 
 })
+
+export const uploadInternshipReportFile = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    student.internshipReport = req.file.filename;
+
+    await student.save();
+
+    res.status(200).json({ message: 'Internship report uploaded successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+export const getStudentReportById = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const reportFileName = student.internshipReport;
+
+    if (!reportFileName) {
+      return res.status(404).json({ message: 'Internship report not found' });
+    }
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const reportsDir = path.join(__dirname, '../Storage/Report');
+
+    const reportPath = path.join(reportsDir, reportFileName);
+
+    // Set the content type to display PDF in the browser
+    res.contentType("application/pdf");
+
+    // Send the file as a response
+    res.sendFile(reportPath, { headers: { 'Content-Disposition': `inline; filename=${reportFileName}` } });
+
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+};

@@ -7,6 +7,7 @@ import Mailfunction from "./mailsenders/custom.mailsender.js";
 import {MatchStudentByCGPA, MatchStudentByAlgorithm } from './service.controller.js'
 import sendCVsEmail from "./mailsenders/cv.mailsender.js";
 import Company from '../models/company.model.js';
+import Grade from '../models/grade.model.js';
 import otpgenerator from 'otp-generator';
 
 export const postlogin= (req, res, next) =>{
@@ -239,4 +240,24 @@ export const sendMentorsForm = async(req, res)=>{
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+export const postReportMarks = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const { reportMarks } = req.body;
 
+    let grade = await Grade.findOne({ student_id });
+
+    if (!grade) {
+      grade = new Grade({ student_id });
+    }
+
+    grade.reportMarks = reportMarks;
+
+    await grade.save();
+
+    res.status(200).json({ message: 'Report marks posted successfully!', grade });
+  } catch (error) {
+    console.error('Error posting report marks:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

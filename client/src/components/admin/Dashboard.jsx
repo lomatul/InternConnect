@@ -50,8 +50,8 @@ function Dashboard() {
 
 
                 <div className='card'>
-                    <img src="ad-stu.png" alt=""  />
-                    <a href="/">Add Grades &rarr;</a>
+                    <img src="grade.png" alt=""  />
+                    <a href="/GradeStatus"> Evaluate &rarr;</a>
                 </div> 
             </div>
 

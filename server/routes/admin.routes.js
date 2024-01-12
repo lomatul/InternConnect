@@ -1,5 +1,5 @@
 import express from 'express';
-import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMatchedStudentForCompany,sendCvsToCompany, postGuideline, sendMentorsForm} from '../controllers/admin.controller.js';
+import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMatchedStudentForCompany,sendCvsToCompany, postGuideline, sendMentorsForm, postReportMarks} from '../controllers/admin.controller.js';
 import upload from '../middlewares/multer.js';
 import { ulpoadfiledata, ulpoadCompanydata } from '../controllers/filecontroller.js';
 
@@ -20,4 +20,6 @@ router.post('/getMatchedStudents', getMatchedStudentForCompany)
 router.post('/sendcvtocompany', sendCvsToCompany)
 router.post('/uploadGuideline', postGuideline)
 router.get('/sendFroms', sendMentorsForm)
+router.post('/postReportMarks/:student_id', postReportMarks);
+
 export default router;
