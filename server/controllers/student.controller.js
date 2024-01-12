@@ -602,7 +602,7 @@ export const updateCompanyStatus = (async (req, res)=>{
       if(Status==="rejected"){
         student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:null, companyStatus:null}});
       }else if(Status==="rejected"){
-        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:"Hirred"}});
+        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:"Hired"}});
       }else{
         return res.status(400).json({ message: "Status code value is not correct" });
       }
@@ -618,10 +618,8 @@ export const updateCompanyStatus = (async (req, res)=>{
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
   }
-
-
-
 })
+
 
 export const uploadInternshipReportFile = async (req, res) => {
   try {
