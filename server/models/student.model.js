@@ -11,7 +11,7 @@ const studentSchema = new mongoose.Schema({
   domainPreferences: [{ key: { type: Number }, value: { type: String } }],
   CGPA: { type: Number },
   currentStatus: { type: String },
-  companyStatus: { type: String },
+  companyStatus: { type: String },      // Takes in a company's object_id (Basically a company)
   OTP: {
     code: { type: String },
     timestamp: { type: Date },

@@ -192,6 +192,7 @@ export const sendCvsToCompany = async (req, res) => {
   }
 }
 
+
 export const postGuideline = async (req, res) => {
   try {
     const { courseCode, courseName, shortDescription, credit, committeeMembers, year } = req.body;
@@ -241,6 +242,7 @@ export const sendMentorsForm = async(req, res)=>{
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
 
 export const postReportMarks = async (req, res) => {
   try {
