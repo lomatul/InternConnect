@@ -328,3 +328,55 @@ export const getGradeExcel = async(req, res) => {
   }
 }
 
+export const postReportdeadline = async( req, res) => {
+  try{
+    const {time} = req.body;
+
+    const admin = await Admin.findOne();
+
+    const deadline= admin.deadlines.find((el)=> {return el.topic==="report"})
+
+    if(deadline){
+      deadline.time=time
+      await admin.save();
+    }else{
+      const newdeadline = {
+        topic : "report",
+        time : time
+      }
+
+      admin.deadlines.push(newdeadline);
+      await admin.save();
+    }
+
+
+    return res.status(200).json({message:"new deadline is set."})
+
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+export const getReportdeadline = async( req, res) => {
+  try{
+
+    const admin = await Admin.findOne();
+
+    const deadline= admin.deadlines.find((el)=> {return el.topic==="report"})
+
+    if(!deadline){
+      return res.status(400).json({error:"Deadline not found."});
+    }
+
+
+    return res.status(200).json({Deadline:deadline.time});
+
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
