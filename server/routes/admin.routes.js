@@ -1,5 +1,5 @@
 import express from 'express';
-import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMatchedStudentForCompany,sendCvsToCompany, postGuideline, sendMentorsForm,
+import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMatchedStudentForCompany,sendCvsToCompany, postGuideline, sendMentorsForm, postReportMarks,
     postCvdeadline,
     getCvdeadline,
     getGradeExcel,
@@ -31,4 +31,6 @@ router.post('/getMatchedStudents', getMatchedStudentForCompany)
 router.post('/sendcvtocompany', sendCvsToCompany)
 router.post('/uploadGuideline', postGuideline)
 router.get('/sendFroms', sendMentorsForm)
+router.post('/postReportMarks/:student_id', postReportMarks);
+
 export default router;

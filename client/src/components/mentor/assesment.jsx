@@ -93,7 +93,7 @@ const Assesment = () => {
     var sum=0;
     Object.values(evaluation).forEach((value) =>{ sum=sum+Number(value); console.log("whole object for show", sum)});
     try {
-      await axios.post('http://localhost:4000/InterConnect/mentor/AddAssesment', {Answer:feedback, mentorid, StudentId}
+      await axios.post('http://localhost:4000/InterConnect/mentor/AddAssesment', {Answer:feedback, mentorid, StudentId, sum}
       ).then((response)=>{
       console.log(response)
       toast.success('Assesment stored', { position: "top-right" });

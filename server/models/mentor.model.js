@@ -8,7 +8,10 @@ const mentorSchema = new mongoose.Schema({
 
   email: { type: String, required: true, unique: true },
   
-  assignedStudents: [{ type: String,  unique: true }],
+  assignedStudents: [{ 
+    student_id: {type: String},
+    evaluation: {type: Number},
+  }],
 
   position:{type:String},
   

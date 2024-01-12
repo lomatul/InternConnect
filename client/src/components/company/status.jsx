@@ -7,8 +7,7 @@ const Status = () => {
 
   return (
     <main className="table">
-       
-
+      
       <section className="table__header">
         <h1> Student Status </h1>
 
@@ -30,7 +29,7 @@ const Status = () => {
                 <td> Lomatul Mahzabin </td>
                 <td>200042113 </td>
                 <td> Pending </td>
-                <td>  </td>               
+                <td> Comapany3 </td>               
               </tr>
 
               <tr>

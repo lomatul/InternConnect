@@ -7,8 +7,8 @@ import {
   deleteMentorByEmail,
   AddAssesment,
   getAssesment,
-  getmentor
-
+  getmentor,
+  evaluateAverageMentorMarks,
 } from '../controllers/mentor.controller.js';
 
 const router = express.Router();
@@ -24,6 +24,8 @@ router.put('/updateMentor/:email', updateMentorByEmail );
 router.delete('/deleteMentor/:email', deleteMentorByEmail);
 
 router.post('/AddAssesment', AddAssesment);
+
+router.put('/evaluateMarks/:StudentId', evaluateAverageMentorMarks );
 
 router.get('/getAssesment/:mentorid/:StudentId', getAssesment);
 
