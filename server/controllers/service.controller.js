@@ -10,6 +10,7 @@ function isAvailable(availability, matchedcompany){
         return false;
     }
 }
+
 export const MatchStudentByCGPA = async(company, number)=>{
     const students= await Student.find({}).sort({CGPA:-1});
     // console.log(students);
@@ -83,6 +84,7 @@ async function createCompanypreference(companies){
     return comapanyPreference;
     
 }
+
 
 //now stable marriage
 export const MatchStudentByAlgorithm = async (company, number)=>{

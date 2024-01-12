@@ -155,7 +155,7 @@ export const sendCvsToCompany = async (req, res) => {
       return res.status(400).json({ error: 'Please provide CV file names, company name, and ensure the array is not empty.' });
     }
 
-    console.log("ei porjonto ashse", companyID, students);
+    console.log("It came to here", companyID, students);
     var cvFileNames=[];
     const getallcvfiles=students.map(element => {
       return element.CV;

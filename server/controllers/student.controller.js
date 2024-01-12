@@ -602,8 +602,8 @@ export const updateCompanyStatus = (async (req, res)=>{
     try{
       if(Status==="rejected"){
         student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:null, companyStatus:null}});
-      }else if(Status==="Hirred"){
-        student=await Student.findOneAndUpdate({ student_id:studentId }, {$set:{currentStatus:"Hirred"}});
+      }else if(Status==="Hired"){
+        student=await Student.findOneAndUpdate({ student_id:studentId }, {$set:{currentStatus:"Hired"}});
         const company=await Company.findById(student.companyStatus)
         company.selectedInterns.push(studentId);
         await company.save();
@@ -622,10 +622,8 @@ export const updateCompanyStatus = (async (req, res)=>{
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
   }
-
-
-
 })
+
 
 export const uploadInternshipReportFile = async (req, res) => {
   try {

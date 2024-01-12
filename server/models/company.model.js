@@ -25,7 +25,9 @@ const companySchema = new mongoose.Schema({
   ],
   
   minInterns: { type: Number, },
+  
   requiredDomain: [  {  domain: { type: String },   internsNeeded: { type: Number, default: 0 }  } ],  
+
   selectedInterns: [{ type:String }],
   
   maxInterns: { type: Number, },
