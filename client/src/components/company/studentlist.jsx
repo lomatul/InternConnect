@@ -64,7 +64,7 @@ const Studentlist = () => {
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>
                 <td>{student.CGPA}</td>
-                <td><a href={"http://localhost:4000/InterConnect/student/getcv/"+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
+                <td style={{textDecoration:"underline"}}><a  href={"http://localhost:4000/InterConnect/student/getcv/"+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
               </tr>
             ))}
           </tbody>

@@ -89,9 +89,10 @@ const Gradesheet = () => {
               <tr>
                 <th>Name</th>
                 <th>ID</th>
-                <th>Mentor's Grade</th>
-                <th>Report Grade</th>
-                <th>Presentation Grade</th>
+                <th>Mentor's Marks</th>
+                <th>Student's Report </th>
+                <th>Report Marks</th>
+                <th>Presentation Marks</th>
                 <th></th>
               </tr>
             </thead>
@@ -103,20 +104,16 @@ const Gradesheet = () => {
   
                   <td>                                  
                       Lomatul Mahzabin                                   
-                  </td>
-  
-  
-                
-  
+                  </td>            
                   <td>                 
                       200042113                    
                     </td>
-  
-  
-                  <td>                 
+                   <td>                 
                       A                 
                   </td>
-  
+                  <td>                 
+                      200042113_report.pdf            
+                  </td>
   
                   <td>
                   {editRow === index ? (

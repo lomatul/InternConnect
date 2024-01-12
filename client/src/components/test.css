@@ -7,6 +7,13 @@
     height: 300vh;
 }
 
+@media (max-width:900px){
+  .newAdmin{
+      width: 90%;
+  }
+}
+
+
 .admincontainer{
     align-items: center;
     display: grid;
@@ -17,11 +24,6 @@
 
 
 
-.admincard .image img{
-    width: 800px;
-    height: auto;
-    animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite;
-}
 
 .admincontainer text {
     display: flex;
@@ -32,7 +34,7 @@
 }
 
 .admincard{
-    background-color: rgb(173, 220, 232);
+  background-color: rgb(198, 220, 230);
     margin-top: 50px;
     margin-left: 110px;
     margin-right: 110px;
@@ -70,9 +72,7 @@
 
 
 .admincard .card .adbuttons button {
-    /* display: flex; */
     align-items: center;
-  /* Add margin to create space between buttons */
     color: rgb(37, 16, 104);
     background-color: rgb(207, 201, 223);
     height: 40px;
@@ -102,10 +102,105 @@
 }
 
 .admincard .card img{
-    /* animation:  animate cubic-bezier(0.445, 0.05, 0.55, 0.95) 7s infinite; */
     max-width: 250px;
     max-height: 250px;
 }
+
+
+@media (max-width:1065px){
+  .admincard .cards{
+
+      display: grid;
+      grid-template-columns: 1fr ;
+  }
+  .admincard .card{
+    margin-left: 110px;
+    margin-right: 110px;
+    border-radius: 10px;
+    height: 150px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+  height: 1800px;
+  border-radius: 10px;
+  outline: 2px solid brown;
+}
+}
+
+
+
+@media (max-width:1265px){
+
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+}
+}
+
+
+@media (max-width:765px){
+  .admincard .cards{
+
+      display: grid;
+      grid-template-columns: 1fr ;
+  }
+  .admincard .card{
+    margin-left: 110px;
+    margin-right: 110px;
+    border-radius: 10px;
+    height: 150px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+  height: 1800px;
+  border-radius: 10px;
+  outline: 2px solid brown;
+}
+}
+
+
+
+
+
+@media (max-width:450px){
+  .admincard .cards{
+      display: grid;
+      grid-template-columns: 1fr;
+      width: 200px;
+  }
+  .admincard .card{
+    margin-left: 110px;
+    margin-right: 110px;
+    border-radius: 10px;
+ 
+    height: 150px;
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.admincard{
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 50px;
+  height: 1800px;
+  border-radius: 10px;
+  outline: 2px solid brown;
+}
+}
+
 
 
 
@@ -114,6 +209,15 @@
     height: 500px;
     width: 500px;
 }
+
+@media (max-width:850px){
+  .admincontainer  .adminimage img{
+    margin-left: 0px;
+    height: 400px;
+    width: 400px;
+}
+}
+
 .admincontainer .studenttext h3{
 font-size: 18px;
 }
@@ -161,7 +265,7 @@ font-size: 18px;
 
   
 .xcellupload {
-    background-color: rgba(50, 50, 50, 0.1);
+    background-color: rgba(226, 233, 234, 0.5);
     box-shadow: 10px 10px 8px #888888;
     margin-top: 100px;
     border-radius: 20px;
@@ -180,17 +284,15 @@ font-size: 18px;
   
   
   
- .xcellupload  button{
+ /* .xcellupload  button{
       padding: 16px;
       width: 200px;
       margin-left: 100px;
       border-radius: 10px;
       color: rgb(255, 255, 255);
       white-space: nowrap;
-      background: #000000; /* fallback for older browsers*/
-      /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
-      background: linear-gradient(to right, #3dabb3, #ead7e0); */
-  }
+      background: #000000;
+  } */
   .adminContact{
     justify-content: center;
     display: flex;
@@ -302,6 +404,30 @@ font-size: 18px;
     margin-top: 30px;
     border-radius: 10px;
     outline: 4px solid black;
+
+}
+
+@media (max-width:1400px){
+  .adminnotification .text{
+    height: 600px;
+    width: 300px;
+}
+.adminnotification .text .adimage img{
+margin-left: -100px;
+}
+
+}
+
+
+@media (max-width:1200px){
+  .adminnotification .text{
+    height: 600px;
+    width: 300px;
+}
+.adminnotification .text .adimage img{
+margin-left: -150px;
+width: 300px;
+}
 
 }
 
@@ -438,6 +564,33 @@ font-size: 18px;
   border-radius: 10px;
 }
 
+@media (max-width:1450px){
+  .studentguideline button
+  {
+    margin-left: 300px;
+  }
+}
+@media (max-width:1250px){
+  .studentguideline button
+  {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width:1150px){
+  .studentguideline button
+  {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width:1000px){
+  .studentguideline button
+  {
+    margin-left: 00px;
+  }
+}
+
 
 .studentguideline button:hover
 {
@@ -537,4 +690,32 @@ text-align: center;
 
  .sample-cvs a:focus {
   outline: none; /* Remove the default focus outline on links */
+}
+
+
+.date {
+  margin-left: 200px;
+  margin-top: 50px;
+}
+
+.date span
+{
+  color: red;
+}
+.date-button {
+  margin-top: -50px;
+}
+
+.date-button  button{
+  color: #fffdfd;
+  margin-left: 50px;
+  height: 45px;
+  margin-left: 400px;
+  width: 150px;
+  background-color: #000000;
+  border-radius: 10px;
+}
+.date input {
+  width: 300px;
+  border-bottom: 3px solid rgb(255, 255, 255);
 }
