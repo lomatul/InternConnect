@@ -1,31 +1,20 @@
 import React, {useEffect} from 'react'
-import "../test.css";
+import "../../test.css";
 import "./mentor.css"
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { motion } from "framer-motion";
+import html2pdf from 'html2pdf.js';
 
 
-
-const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
-  return (
-
-      <motion.div                            //updated the div tag
-      initial={{ x: x }}
-      transition={{ duration: 1 }}
-      animate={{ x: 0 }}
-    >
+const Evaluation =({ feedbackvalue}) => {
  
-        <div className="mentorheader">
-                        <h1>Intern's Assesment</h1>
-                        <p>This portion contains questions to evaluate an intern.</p>
-        </div>
- 
- 
-         <div className="assesment-form">
+  return (     
+    <div id='assesment-form'>
+       <p>This portion contains questions to evaluate an intern.</p>
+        <div className="assesment-form"  >
         <form>
 
           
@@ -35,8 +24,7 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
             <div className="form-group1">
             <FormControl>         
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group" value={value.interest || ''} 
-              onChange={(e) =>{change('interest', e.target.value) ; feedback("eval_interest", e.target.value)}}>
+              name="row-radio-buttons-group" value={feedbackvalue.eval_interest || ''} >
                     <FormControlLabel value={5} control={<Radio />} label=" Very enthusiastic" />
                     <FormControlLabel style={{ marginLeft:"150px"}}  value={4} control={<Radio />} label=" Interested" /> 
                     <FormControlLabel style={{ marginRight:"100px"}} value={3} control={<Radio />} label=" Shows occasional disinterest" />
@@ -58,9 +46,7 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
             <FormControl>
            
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group" value={value.dependancy || ''} 
-              onChange={(e) => {change('dependancy', e.target.value); feedback("eval_dependancy", e.target.value)}
-              }>
+              name="row-radio-buttons-group" value={feedbackvalue.eval_dependancy || ''} >
                     <FormControlLabel value={4} control={<Radio />} label="Exceptionally dependable" />
                     <FormControlLabel style={{ marginLeft:"100px"}}  value={3} control={<Radio />} label=" Standard" /> 
                     <FormControlLabel style={{ marginRight:"100px"}} value={2} control={<Radio />} label=" Not very dependable" />
@@ -79,8 +65,7 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
             <div className="form-group1">
             <FormControl>         
             <RadioGroup col  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group" value={value.Proactiveness || ''} 
-              onChange={(e) =>{ change('Proactiveness', e.target.value); feedback("eval_Proactiveness", e.target.value)}}>
+              name="row-radio-buttons-group" value={feedbackvalue.eval_Proactiveness || ''} >
                     <FormControlLabel value={5} control={<Radio />} label=" Submit assigned tasks proactively, asks for tasks when idle" />
                     <FormControlLabel value={4} control={<Radio />} label=" Shows occasional lack of proactiveness" />
                     <FormControlLabel value={3} control={<Radio />} label=" Must be pushed to work" />
@@ -99,8 +84,7 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
             <FormControl>
            
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group" value={value.Attendance || ''} 
-              onChange={(e) => {change('Attendance', e.target.value); feedback("eval_Attendance", e.target.value)}}>
+              name="row-radio-buttons-group" value={feedbackvalue.eval_Attendance|| ''} >
                     <FormControlLabel value={5} control={<Radio />} label=" Regular" />
                     <FormControlLabel style={{ marginLeft:"150px"}} value={2} control={<Radio />} label=" Occasionally absent without leave" />
                     <FormControlLabel value={1} control={<Radio />} label=" Very Irregular" />
@@ -119,17 +103,10 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
 
         </form>
         
-        <button onClick={() => {setPage(page + 1); setX(1000);}}>
-              Next
-            </button>
-          <br/>
-            <button
-              onClick={() => {setPage(page - 1); setX(-1000);  }}>
-              Previous </button>
-    </div>
+      </div>
 
-    </motion.div>
-  );
-};
-
+  
+</div>
+  )
+}
 export default Evaluation

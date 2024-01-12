@@ -21,6 +21,9 @@ const studentSchema = new mongoose.Schema({
   weeklyBiWeeklyReport: { type: String },
   internshipReport: { type: String },
   presentationMarks: { type: Number },
+
+  evaluatedMentorMarks: { type: Number },
+
   finalGrade: { type: String },
   bio: { type: String },
   createdAt: { type: Date, default: Date.now },

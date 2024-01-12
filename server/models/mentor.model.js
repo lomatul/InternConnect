@@ -8,8 +8,17 @@ const mentorSchema = new mongoose.Schema({
 
   email: { type: String, required: true, unique: true },
   
-  assignedStudents: [{ type: String, ref: 'Student', unique: true }],
+  assignedStudents: [{ 
+    student_id: {type: String},
+    evaluation: {type: Number},
+  }],
 
+  position:{type:String},
+  
+  response :[{
+    student_id :{type:String},
+    assesment:{type:Object}
+  }]
 });
 
 export default mongoose.model('Mentor', mentorSchema);

@@ -1,29 +1,18 @@
 import React from 'react'
-import "../test.css";
+import "../../test.css";
 import "./mentor.css"
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { motion } from "framer-motion";
 
 
 
-const ProjectInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
-    return (
-
-        <motion.div                            //updated the div tag
-        initial={{ x: x }}
-        transition={{ duration: 1 }}
-        animate={{ x: 0 }}
-      >
-        
-        <div className="mentorheader">
-          <h1>Project Assignments</h1>
-          <p>Please Fill up the Form Below</p>
-        </div>
-
+const ProjectInfo = ({feedbackvalue}) => {
+    return (     
+    <div >
+        <p>Please Fill up the Form Below</p>
         <div className="assesment-form">
         <form>
 
@@ -39,8 +28,7 @@ const ProjectInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Yes"
                     name="radio-buttons-group"
-                    value={feedbackvalue.project_access || ''}  onChange={(e) => {feedback("project_access", e.target.value)}}
-                >
+                    value={feedbackvalue.project_access || ''} >
                     <FormControlLabel value="Yes" control={<Radio />} label=" Yes" />
                     <FormControlLabel value="No" control={<Radio />} label=" No" />
                     <FormControlLabel value="Not Sure" control={<Radio />} label=" Not Sure" />
@@ -60,8 +48,7 @@ const ProjectInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
                     aria-labelledby="demo-radio-buttons-group-label"
                     defaultValue="Yes"
                     name="radio-buttons-group"
-                    value={feedbackvalue.project_push || ''}  onChange={(e) => {feedback("project_push", e.target.value)}}
-                >
+                    value={feedbackvalue.project_push || ''} >
                     <FormControlLabel value="Yes" control={<Radio />} label=" Yes" />
                     <FormControlLabel value="No" control={<Radio />} label=" No" />
                     <FormControlLabel value="Not Sure" control={<Radio />} label=" Not Sure" />
@@ -72,25 +59,19 @@ const ProjectInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
 
             <div className="form-group">
         <label htmlFor="">Briefly mention the tasks assigned to the intern <span>*</span></label>
-            <textarea rows="15"   value={feedbackvalue.project_task || ''}  onChange={(e) => {feedback("project_task", e.target.value)}}
+            <textarea rows="15"   value={feedbackvalue.project_task || ''}  
               style={{ marginTop: "30px" }} ></textarea>
             </div>
 
 
         </form>
         
-            <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page + 1); setX(1000);}}>
-              Next
-            </button>
-          <br/>
-            <button
-              onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);  }}>
-              Previous </button>
-              
-         </div>
+      </div>
 
-    </motion.div>
-  );
-};
 
+     
+  
+</div>
+  )
+}
 export default ProjectInfo

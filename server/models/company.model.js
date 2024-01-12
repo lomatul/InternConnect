@@ -27,12 +27,14 @@ const companySchema = new mongoose.Schema({
   minInterns: { type: Number, },
   
   requiredDomain: [  {  domain: { type: String },   internsNeeded: { type: Number, default: 0 }  } ],  
-  
-  selectedInterns: [{ type: mongoose.Schema.Types.ObjectId, ref: 'students' }],
+
+  selectedInterns: [{ type:String }],
   
   maxInterns: { type: Number, },
       
   status: { type: String },       // Status (Hiring or Closed etc)
+
+  OTP: {type: String}
 
 });
 

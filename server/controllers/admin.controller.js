@@ -8,6 +8,7 @@ import {MatchStudentByCGPA, MatchStudentByAlgorithm } from './service.controller
 import sendCVsEmail from "./mailsenders/cv.mailsender.js";
 import Company from '../models/company.model.js';
 import Grade from '../models/grade.model.js';
+import otpgenerator from 'otp-generator';
 
 export const postlogin= (req, res, next) =>{
 
@@ -219,6 +220,26 @@ export const postGuideline = async (req, res) => {
   }
 };
 
+
+export const sendMentorsForm = async(req, res)=>{
+  try{
+    const companies = await Company.find();
+    companies.map(async element =>{
+      const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
+      console.log(element);
+      element.OTP=otp;
+      const sub = "Testing"
+      const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="http://localhost:3000/AddMentor/${element._id}">AddMentorForm</a>`;
+      await Mailfunction(sub, element.email, text);
+      await element.save();
+    })
+    res.status(200).json({message:"Email works"})
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 export const postReportMarks = async (req, res) => {
   try {
     const { student_id } = req.params;
