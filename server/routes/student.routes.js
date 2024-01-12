@@ -19,7 +19,8 @@ import {
   getProjectsByStudentId,
   editProject,
   deleteProject,
-  updateCompanyStatus,
+  updateCurrentStatus,
+  updateCurrentStatusById,
   uploadInternshipReportFile,
   getStudentReportById
 } from '../controllers/student.controller.js';
@@ -69,7 +70,9 @@ router.patch('/editProjects/:student_id/:project_id', editProject);
 
 router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
 
-router.patch('/UpdateCurrentStatus', updateCompanyStatus);
+router.patch('/UpdateCurrentStatus', updateCurrentStatus);
+
+router.patch('/UpdateCurrentStatus/:student_id', updateCurrentStatusById);
 
 router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
 
