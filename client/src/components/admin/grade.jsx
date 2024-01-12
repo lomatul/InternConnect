@@ -1,42 +1,80 @@
-import React from 'react'
-import "../test.css";
+import React, { useState } from 'react';
+import '../test.css';
 import 'react-toastify/dist/ReactToastify.css';
 
+const Addgrade = () => {
+  const [showSendingCvs, setShowSendingCvs] = useState(true);
+  const [mentorPercentage, setMentorPercentage] = useState(0);
+  const [reportPercentage, setReportPercentage] = useState(0);
+  const [presentationPercentage, setPresentationPercentage] = useState(0);
 
-const Addgrade= () => {
-    return (     
-    <div >
-    <div className='admincontainer'>
+  const handleSubmit = () => {
+    // Perform any additional logic or API calls if needed
+
+    // Hide the sending-cvs section
+    setShowSendingCvs(false);
+  };
+
+  return (
+    <div>
+      <div className='admincontainer'>
         <div className='studenttext'>
-            <h3>Streamline Student Betterment </h3>
-            <h1>Add Grade for Students</h1>
-           
+          <h3>Streamline Student Betterment </h3>
+          <h1>Add Grade for Students</h1>
         </div>
-        <div className='adminimage'>
-            <img src="adminstudent.gif" alt="" />
+      </div>
+
+      {showSendingCvs && (
+        <div className="studentguideline">
+          <ul>
+          <li>You can give this Percentage Once in a Session . So be Carefull </li>
+          </ul>
+          <div className="sending-cvs">
+            <div className="form-group">
+              <label htmlFor=""> Percentage on Mentors Evaluation <span>*</span></label>
+              <input
+                type="number"
+                min="1"
+                value={mentorPercentage}
+                onChange={(e) => setMentorPercentage(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Percentage on Report Evaluation</label>
+              <input
+                type="number"
+                min="1"
+                value={reportPercentage}
+                onChange={(e) => setReportPercentage(e.target.value)}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Percentage on Presentation Evaluation</label>
+              <input
+                type="number"
+                min="1"
+                value={presentationPercentage}
+                onChange={(e) => setPresentationPercentage(e.target.value)}
+              />
+            </div>
+            <button onClick={handleSubmit}>Submit</button>
+          </div>
         </div>
+      )}
+
+      {!showSendingCvs && (
+        <div className="studentguideline">
+        <div className="percentage-showing">
+          <p>The Grade will be calculated based on {mentorPercentage}% Mentors Evaluation, {presentationPercentage}% Presentation, and {reportPercentage}% Report Evaluation</p>
+        </div>
+        {/* <button >Generate Grade</button> */}
+        <button >Export Grade</button>
+        </div>
+      )}
     </div>
+  );
+};
 
-    <div className="studentguideline">           
-                <ul>
-                    <li>The "Student Account Creation" feature is a fundamental component of our Internship Management System, allowing students to create their accounts seamlessly with the help of administrative data provided through an Excel sheet.</li>
-                    <li>The admin uploads the Excel sheet containing the student data to the Internship Management System. The system automatically generates student accounts based on the data provided in the Excel sheet.</li>
-                    <li>Each student is assigned a unique account associated with their email address. Once the accounts are created, the system generates a One-Time Password (OTP) for each student. The OTP is a temporary, secure code that will be used for account verification and activation. When they first get started, they will have to change their initial passwords.</li>
-                    <li>The system sends automatic email notifications to each student's provided email address. Students receive the email with their OTP and follow the instructions to activate their accounts</li>
-                    <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
-                </ul>
-               
-        
-
-    <div className='xcellupload'>
-       
-         <button>Create</button>
-        
-        </div>
-
-        </div>
-
-</div>
-  )
-}
-export default Addgrade
+export default Addgrade;

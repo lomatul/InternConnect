@@ -34,7 +34,7 @@
 }
 
 .admincard{
-    background-color: rgb(173, 220, 232);
+  background-color: rgb(198, 220, 230);
     margin-top: 50px;
     margin-left: 110px;
     margin-right: 110px;
@@ -171,6 +171,10 @@
 }
 }
 
+
+
+
+
 @media (max-width:450px){
   .admincard .cards{
       display: grid;
@@ -206,6 +210,13 @@
     width: 500px;
 }
 
+@media (max-width:850px){
+  .admincontainer  .adminimage img{
+    margin-left: 0px;
+    height: 400px;
+    width: 400px;
+}
+}
 
 .admincontainer .studenttext h3{
 font-size: 18px;
@@ -254,7 +265,7 @@ font-size: 18px;
 
   
 .xcellupload {
-    background-color: rgba(50, 50, 50, 0.1);
+    background-color: rgba(225, 20, 20, 0.1);
     box-shadow: 10px 10px 8px #888888;
     margin-top: 100px;
     border-radius: 20px;
@@ -273,17 +284,15 @@ font-size: 18px;
   
   
   
- .xcellupload  button{
+ /* .xcellupload  button{
       padding: 16px;
       width: 200px;
       margin-left: 100px;
       border-radius: 10px;
       color: rgb(255, 255, 255);
       white-space: nowrap;
-      background: #000000; /* fallback for older browsers*/
-      /* background: -webkit-linear-gradient(to right, #58ffec, #f8beda);
-      background: linear-gradient(to right, #3dabb3, #ead7e0); */
-  }
+      background: #000000;
+  } */
   .adminContact{
     justify-content: center;
     display: flex;
@@ -395,6 +404,30 @@ font-size: 18px;
     margin-top: 30px;
     border-radius: 10px;
     outline: 4px solid black;
+
+}
+
+@media (max-width:1400px){
+  .adminnotification .text{
+    height: 600px;
+    width: 300px;
+}
+.adminnotification .text .adimage img{
+margin-left: -100px;
+}
+
+}
+
+
+@media (max-width:1200px){
+  .adminnotification .text{
+    height: 600px;
+    width: 300px;
+}
+.adminnotification .text .adimage img{
+margin-left: -150px;
+width: 300px;
+}
 
 }
 
@@ -529,6 +562,33 @@ font-size: 18px;
   background-color: #000000;
   color: wheat;
   border-radius: 10px;
+}
+
+@media (max-width:1450px){
+  .studentguideline button
+  {
+    margin-left: 300px;
+  }
+}
+@media (max-width:1250px){
+  .studentguideline button
+  {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width:1150px){
+  .studentguideline button
+  {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width:1000px){
+  .studentguideline button
+  {
+    margin-left: 00px;
+  }
 }
 
 
