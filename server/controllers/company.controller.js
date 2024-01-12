@@ -43,12 +43,14 @@ export const getAllCompanies = async (req, res, next) => {
   try {
     const companies = await Company.find();
 
-    res.status(200).json({
-      message: 'Companies retrieved successfully!',
-      companies,
-    });
+    if (!companies || companies.length === 0) {
+      return res.status(404).json({ message: 'No companies found.' });
+    }
+
+    res.status(200).json(companies);
+
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
 
