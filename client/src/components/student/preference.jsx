@@ -121,7 +121,7 @@ const Prefernces = () => {
 
                     <div className="form-group">
                         <label htmlFor="">Contact Number<span>*</span></label>
-                        <input type="number" min="0"/>
+                        <input type="number" placeholder="Give Contact Number" min="0"/>
                     </div>
 
                 <div className="form-group">

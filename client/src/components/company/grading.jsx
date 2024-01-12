@@ -90,6 +90,7 @@ const Gradesheet = () => {
                 <th>Name</th>
                 <th>ID</th>
                 <th>Mentor's Marks</th>
+                <th>Mentor's Assesment</th>
                 <th>Student's Report </th>
                 <th>Report Marks</th>
                 <th>Presentation Marks</th>
@@ -110,6 +111,9 @@ const Gradesheet = () => {
                     </td>
                    <td>                 
                       A                 
+                  </td>
+                  <td>                 
+                      200042113_assesment              
                   </td>
                   <td>                 
                       200042113_report.pdf            
