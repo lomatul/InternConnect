@@ -330,21 +330,60 @@ export const getCvdeadline = async( req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+const GradeGenerate = async(mentorpart, reportpart, presentationpart) =>{
+  const students = await Student.find();
+
+  const promise = students.map(async(student)=>{
+    const totalmark=(student.evaluatedMentorMarks/60)*mentorpart+(student.internshipReportMarks/100)*reportpart+(student.presentationMarks/100)*presentationpart
+    var grade;
+
+    if (totalmark >= 80) {
+      grade = 'A+';
+    } else if (totalmark >= 75) {
+      grade = 'A';
+    } else if (totalmark >= 70) {
+      grade = 'A-';
+    } else if (totalmark >= 65) {
+      grade = 'B+';
+    } else if (totalmark >= 60) {
+      grade = 'B';
+    } else if (totalmark >= 55) {
+      grade = 'B-';
+    } else if (totalmark >= 50) {
+      grade = 'C+';
+    } else if (totalmark >= 45) {
+      grade = 'C';
+    } else if (totalmark >= 40) {
+      grade = 'D';
+    } else {
+      grade = 'F';
+    }
+
+    student.finalGrade=grade;
+    await student.save();
+  })
+
+  await Promise.all(promise);
+}
+
 
 export const getGradeExcel = async(req, res) => {
   try {
+    const {mentorpart, reportpart, presentationpart} = req.body;
+    await GradeGenerate(mentorpart, reportpart, presentationpart);
     const students = await Student.find();
 
     const simplifiedData = students.map(student => ({
       name: student.name,
       student_id: student.student_id,
       CGPA: student.CGPA,
+      FinalGrade:student.finalGrade
     }));
 
     const workbook = xlsx.utils.book_new();
     const worksheet = xlsx.utils.json_to_sheet(simplifiedData);
 
-    xlsx.utils.book_append_sheet(workbook, worksheet, 'CGPA Report');
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'Grade Report');
 
 
     const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', bookSST: false, type: 'binary' });
@@ -354,7 +393,7 @@ export const getGradeExcel = async(req, res) => {
 
 
     res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    res.setHeader('Content-Disposition', 'attachment; filename=CGPA_Report.xlsx');
+    res.setHeader('Content-Disposition', 'attachment; filename=Grade_Report.xlsx');
 
     res.end(buffer);
 
@@ -461,3 +500,4 @@ export const postMarks = async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
