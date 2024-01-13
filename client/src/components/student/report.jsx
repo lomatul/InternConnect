@@ -20,7 +20,7 @@ const UploadReport = () => {
       if (userstudent.student_id) {
         try {
           axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response) => {
-            if (response.data.student.report) {
+            if (response.data.student.internshipReport) {
               setHasReport(true);
             }
           }).catch((error) => {
@@ -49,7 +49,7 @@ const UploadReport = () => {
       try {
         console.log("came here")
         axios.get(`http://localhost:4000/InterConnect/student/getOnestudent/${id}`).then((response) => {
-          setReport(response.data.students.report);
+          setReport(response.data.students.internshipReport);
         }).catch((error) => {
           if (error.response) {
             console.log(error.response);
@@ -78,7 +78,7 @@ const UploadReport = () => {
     formData.append("file", selectedFile);
     console.log(formData)
     try {
-      await axios.post(`http://localhost:4000/InterConnect/student/uploadReport/${id}`, formData, {
+      await axios.post(`http://localhost:4000/InterConnect/student/uploadInternshipReport/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
