@@ -4,25 +4,67 @@ import Select from 'react-select';
 
 const Companyhistory = () => {
 
-    const years=[  
-        {value:2021, label:"2019"},
-        {value:2022, label:"2022"},
-        {value:2023, label:"2023"},
-    ]
+  const [selectedYear, setSelectedYear] = useState(null); // Default selected year
+  const [historicalData, setHistoricalData] = useState([]);
+  const [years, setYears] = useState([]);
     
+  useEffect(() => {
+    const fetchYears = async () => {
+      try {
+        const response = await axios.get('http://localhost:4000/InterConnect/company/companies');
+        const allCompanies = response.data;
+
+        if (!allCompanies || allCompanies.length === 0) {
+          console.log('No companies found.');
+          return;
+        }
+
+        const uniqueYears = Array.from(
+          new Set(allCompanies.flatMap(company => company.historicalData.map(entry => entry.year)))
+        );
+
+        const yearOptions = uniqueYears.map(year => ({ value: year, label: year.toString() }));
+
+        setYears(yearOptions);
+        setSelectedYear(yearOptions[0]?.value || null);
+      } catch (error) {
+        console.error('An error occurred while fetching companies:', error);
+      }
+    };
+
+    fetchYears();
+  }, []);
+
+
+  useEffect(() => {
+    if (!selectedYear) return;
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:4000/InterConnect/company/getHistoricalData/${selectedYear}`);
+        setHistoricalData(response.data);
+      } catch (error) {
+        console.error('An error occurred while fetching historical data:', error);
+      }
+    };
+
+    fetchData();
+  }, [selectedYear]);
+
+
 
   return (
     <main className="table">
         <div className="form-group1">
         
-          <Select className='adselect'  options={years}/>
-         
+          <Select className='adselect'  options={years}  value={years.find(yearOption => yearOption.value === selectedYear)}  onChange={(selectedOption) => setSelectedYear(selectedOption.value)}/>
+
         </div>
 
       <section className="table__header">
         <h1>Company Details </h1>
-
       </section>
+
       <section className="table__body">
         <table>
           <thead>
@@ -34,15 +76,18 @@ const Companyhistory = () => {
               <th> Interns Hired </th>
             </tr>
           </thead>
+
           <tbody>
           
-              <tr>
-                <td>{"Name"}</td>
-                <td>{"address"}</td>
-                <td>{"email"}</td>
-                <td>{"contactNumber"}</td>
-                <td>{"internsHired"}</td>
+              {historicalData.map((company, index) => (
+              <tr key={index}>
+                <td>{company.name}</td>
+                <td>{company.address}</td>
+                <td>{company.email}</td>
+                <td>{company.contactNumber}</td>
+                <td>{company.internsHired}</td>
               </tr>
+            ))}
 
           </tbody>
         </table>
