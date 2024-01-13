@@ -23,9 +23,9 @@ const Gradesheet = () => {
     try {
       const editedStudent = filteredStudents[index];
 
-      const response = await axios.post(`http://localhost:4000/InterConnect/admin/postReportMarks/${editedStudent.student_id}`, {
-        reportMarks: editedStudent.internshipReportMarks,
-        // presentationMarks: editedStudent.presentationMarks,
+      const response = await axios.post(`http://localhost:4000/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
+        internshipReportMarks: editedStudent.internshipReportMarks,
+        presentationMarks: editedStudent.presentationMarks,
       });
 
       if (response.status === 200) {
@@ -71,7 +71,7 @@ const Gradesheet = () => {
               <th>Internship Report</th>
               <th>Report Marks</th>
               {/* Add Presentation Marks header if needed */}
-              {/* <th>Presentation Marks</th> */}
+              <th>Presentation Marks</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -105,7 +105,7 @@ const Gradesheet = () => {
                   )}
                 </td>
                 {/* Add Presentation Marks column if needed */}
-                {/* <td>
+                <td>
                   {editMode && editIndex === index ? (
                     <input
                       type="number"
@@ -120,7 +120,7 @@ const Gradesheet = () => {
                   ) : (
                     student.presentationMarks
                   )}
-                </td> */}
+                </td>
                 <td>
                   {editMode && editIndex === index ? (
                     <div className="save">
