@@ -19,12 +19,19 @@ const Companylist = () => {
 
    
   });
+
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        console.log('Data from server:', response.data);
-        setCompanies(response.data || []);
-        setFilteredCompanies(response.data || []);
+        const companiesData = response.data;
+
+        if (!companiesData || companiesData.length === 0) {
+          console.log('No companies found.');
+          return;
+        }
+
+        setCompanies(companiesData);
+        setFilteredCompanies(companiesData);
         setCompanyData({
           
         })
