@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import '../test.css';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Addgrade = () => {
   const [showSendingCvs, setShowSendingCvs] = useState(true);
@@ -13,6 +16,29 @@ const Addgrade = () => {
 
     // Hide the sending-cvs section
     setShowSendingCvs(false);
+  };
+
+  const handleSubmitExport = async() => {
+    try {
+      const response = await axios.post('http://localhost:4000/InterConnect/admin/getGradeExcel', {
+        mentorpart: mentorPercentage,
+        reportpart: reportPercentage,
+        presentationpart: presentationPercentage
+      }, { responseType: 'arraybuffer' });
+  
+      const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'Grade_Report.xlsx';
+      link.click();
+  
+
+      toast.success("Excel file downloaded successfully");
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+
   };
 
   return (
@@ -70,7 +96,7 @@ const Addgrade = () => {
           <p>The Grade will be calculated based on {mentorPercentage}% Mentors Evaluation, {presentationPercentage}% Presentation, and {reportPercentage}% Report Evaluation</p>
         </div>
         {/* <button >Generate Grade</button> */}
-        <button >Export Grade</button>
+        <button onClick={handleSubmitExport}>Export Grade</button>
         </div>
       )}
     </div>
