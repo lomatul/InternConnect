@@ -28,21 +28,33 @@ const Status = () => {
               <tr>
                 <td> Lomatul Mahzabin </td>
                 <td>200042113 </td>
-                <td> Pending </td>
+                <div className="status">
+                  <div className="notstart">
+                  <td> Pending </td>
+                  </div>
+                </div>
                 <td> Comapany3 </td>               
               </tr>
 
               <tr>
                 <td> Lomatul Mahzabin </td>
                 <td>200042113 </td>
-                <td> In Progress </td>
+                <div className="status">
+                  <div className="pending">
+                  <td> In Progress </td>
+                  </div>
+                </div>
                 <td> Comapany1  </td>               
               </tr>
 
               <tr>
                 <td> Lomatul Mahzabin </td>
                 <td>200042113 </td>
-                <td> Hired </td>
+                <div className="status">
+                  <div className="hire">
+                  <td> Hired </td>
+                  </div>
+                </div>
                 <td>  Comapany2 </td>               
               </tr>
 
