@@ -9,8 +9,8 @@ const Studentlist = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        setStudents(response.data.students);
-        setFilteredStudents(response.data.students); // Initially, both arrays are the same
+        setStudents(response.data);
+        setFilteredStudents(response.data); // Initially, both arrays are the same
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);

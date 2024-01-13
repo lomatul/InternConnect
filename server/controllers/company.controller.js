@@ -196,6 +196,45 @@ export const createHistoricalDataByEmail = async (req, res, next) => {
 };
 
 
+export const getCompanyHistoryByYear = async (req, res, next) => {
+  try {
+    const year = Number(req.params.year);
+    console.log('Year:', year);
+    const companies = await Company.find({ 'historicalData.year': year });
+
+    if (!companies || companies.length === 0) {
+      return res.status(404).json({ message: `No historical data found for year ${year}.` });
+    }
+
+    const historicalData = companies.map((company) => {
+      const data = company.historicalData.find((entry) => entry.year === year);
+
+      if (!data)         // If no historical data is found for the specified year, return a placeholder object
+      {
+        return {
+          name: company.name,
+          address: 'N/A',  
+          email: company.email,
+          contactNumber: 'N/A',  
+          internsHired: 0,  
+        };
+      }
+      
+      return {
+        name: company.name,
+        address: data.address,
+        email: company.email,
+        contactNumber: data.contactNumber,
+        internsHired: data.internsHired,
+      };
+    });
+
+    res.status(200).json(historicalData);
+  } catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
+  }
+};
+
 
 // Update the status of a company based on email
 export const updateCompanyStatusByEmail = async (req, res, next) => {
