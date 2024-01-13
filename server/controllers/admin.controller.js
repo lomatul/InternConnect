@@ -178,7 +178,7 @@ export const sendCvsToCompany = async (req, res) => {
     students.forEach(async element => {
       const student=await Student.findOne({ student_id: element.student_id });
 
-      student.currentStatus="Send";
+      student.currentStatus="In Progress";
       student.companyStatus=companyID;
       await student.save();
     });
@@ -333,7 +333,8 @@ export const getCvdeadline = async( req, res) => {
 const GradeGenerate = async(mentorpart, reportpart, presentationpart) =>{
   const students = await Student.find();
 try{const promise = students.map(async(student)=>{
-  const totalmark=(student.evaluatedMentorMarks/60)*mentorpart+(student.internshipReportMarks/100)*reportpart+(student.presentationMarks/100)*presentationpart
+  const totalmark=((student.evaluatedMentorMarks || 0)/60)*mentorpart+((student.internshipReportMarks|| 0)/100)*reportpart+((student.presentationMarks || 0)/100)*presentationpart
+  console.log("total mark", totalmark)
   var grade;
 
   if (totalmark >= 80) {
