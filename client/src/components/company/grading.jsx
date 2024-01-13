@@ -5,55 +5,54 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Gradesheet = () => {
+  const [students, setStudents] = useState([]);
+  const [filteredStudents, setFilteredStudents] = useState([]);
+  const [editMode, setEditMode] = useState(false);
+  const [editIndex, setEditIndex] = useState(null);
 
-
-    const [search, setSearch] = useState('');
-    const [companies, setCompanies] = useState([]);
-    const [filteredCompanies, setFilteredCompanies] = useState([]);
-    const [editMode, setEditMode] = useState(false);
-    const [companyData, setCompanyData] = useState({
-      Name: '',
-      ID: '',
-      MentorGrade: '',
-      ReportGrade: '',
-      PresentationGrade: '',  
-     
-    });
-    useEffect(() => {
-      axios.get('http://localhost:4000/InterConnect/company/companies')
-        .then((response) => {
-          setCompanies(response.data.companies);
-          setFilteredCompanies(response.data.companies);
-          setCompanyData({
-            
-          })
-        })
-        .catch((error) => {
-          console.error('An error occurred while fetching companies:', error);
-        });
-    }, []);
-  
-    useEffect(() => {
-      const filtered = companies.filter((company) => {
-        const companyData = `${company.name} ${company.address} ${company.email} ${company.contactNumber}`.toLowerCase();
-        return companyData.includes(search.toLowerCase());
+  useEffect(() => {
+    axios.get('http://localhost:4000/InterConnect/student/students')
+      .then((response) => {
+        setStudents(response.data || []);
+        setFilteredStudents(response.data || []);
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching students:', error);
       });
-  
-      setFilteredCompanies(filtered);
-    }, [search, companies]);
-  
-    const handleStatusUpdate = async (email, newStatus) => {
-      try {
-        const response = await axios.put(`http://localhost:4000/InterConnect/company/updateCompanyStatus/${email}`, {
-          status: newStatus
-        });
-  
-        if (response.status === 200) {
-          console.error('Updated Status');
-        }
-      } catch (error) {
-        console.error('An error occurred while updating company status:', error);
+  }, []);
+
+  const handleSaveClick = async (index) => {
+    try {
+      const editedStudent = filteredStudents[index];
+
+      const response = await axios.post(`http://localhost:4000/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
+        internshipReportMarks: editedStudent.internshipReportMarks,
+        presentationMarks: editedStudent.presentationMarks,
+      });
+      toast.success('Marks have been updated')
+
+      if (response.status === 200) {
+        console.log('Student data updated successfully!');
+        setEditMode(false);
+        setEditIndex(null);
+
+        // Refresh the data after saving
+        axios.get('http://localhost:4000/InterConnect/student/students')
+          .then((response) => {
+            setStudents(response.data || []);
+            setFilteredStudents(response.data || []);
+          })
+          .catch((error) => {
+            console.error('An error occurred while fetching students:', error);
+          });
+      } else {
+        console.error('Failed to update student data. Server returned:', response.status, response.data);
       }
+<<<<<<<<< Temporary merge branch 1
+    } catch (error) {
+      console.error('An error occurred while updating student data:', error);
+    }
+=========
     };
   
     const [editRow, setEditRow] = useState(null);
@@ -157,52 +156,24 @@ const Gradesheet = () => {
                   <td>
                     {editRow === index ? (
                       <div className="save">
-  const [students, setStudents] = useState([]);
-  const [filteredStudents, setFilteredStudents] = useState([]);
-  const [editMode, setEditMode] = useState(false);
-  const [editIndex, setEditIndex] = useState(null);
-
-  useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
-      .then((response) => {
-        setStudents(response.data || []);
-        setFilteredStudents(response.data || []);
-      })
-      .catch((error) => {
-        console.error('An error occurred while fetching students:', error);
-      });
-  }, []);
-
-  const handleSaveClick = async (index) => {
-    try {
-      const editedStudent = filteredStudents[index];
-
-      const response = await axios.post(`http://localhost:4000/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
-        internshipReportMarks: editedStudent.internshipReportMarks,
-        presentationMarks: editedStudent.presentationMarks,
-      });
-      toast.success('Marks have been updated')
-
-      if (response.status === 200) {
-        console.log('Student data updated successfully!');
-        setEditMode(false);
-        setEditIndex(null);
-
-        // Refresh the data after saving
-        axios.get('http://localhost:4000/InterConnect/student/students')
-          .then((response) => {
-            setStudents(response.data || []);
-            setFilteredStudents(response.data || []);
-          })
-          .catch((error) => {
-            console.error('An error occurred while fetching students:', error);
-          });
-      } else {
-        console.error('Failed to update student data. Server returned:', response.status, response.data);
-      }
-    } catch (error) {
-      console.error('An error occurred while updating student data:', error);
-    }
+                      <button onClick={() => handleSaveClick(index)}>Save</button>
+                      </div>
+                    ) : (
+                      <div className="edit">
+                      <button onClick={() => handleEditClick(index)}>
+                        {editRow === index ? 'Save' : 'Edit'}
+                      </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </main>
+    );
+>>>>>>>>> Temporary merge branch 2
   };
 
   const handleReportClick = (studentId) => {
@@ -296,6 +267,5 @@ const Gradesheet = () => {
       </section>
     </main>
   );
-};
 
 export default Gradesheet;
