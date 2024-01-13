@@ -72,7 +72,7 @@
 
 
 .timer{
-  margin-left: 100px;
+  margin-left: 200px;
   display: flex;
   align-items: center;
   width: 400px;
@@ -87,6 +87,9 @@
   cursor: pointer;
 }
 
+.studentguideline span {
+  color: red;
+}
 .text p {
   color: red;
 }

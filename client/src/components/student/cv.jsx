@@ -197,8 +197,7 @@ const UploadCV = () => {
                       <img src="cv-up.gif" alt="" />
                   </div>
             </div>
-          {new Date()>deadline?<p>Deadline is passed.</p>:<p>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-}
+          
             <div className="studentguideline">           
                      <ul>
                         <li>Use a clear and professional format for your CV (preferable in Latex).</li>
@@ -206,6 +205,7 @@ const UploadCV = () => {
                           <li>Highlight your skills, experience, and education.</li>
                           <li>Tailor your CV for the specific job or internship you're applying for.</li>
                           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
                        </ul>
 
                 

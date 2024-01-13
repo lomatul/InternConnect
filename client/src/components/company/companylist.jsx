@@ -80,6 +80,7 @@ const Companylist = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+           <img src='search.png'></img>
         </div>
       </section>
 

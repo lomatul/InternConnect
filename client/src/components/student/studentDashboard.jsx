@@ -22,7 +22,7 @@ function StudentDashboard() {
               style={{ width: "180px", height: "180px", marginTop: "10px" }}
             />
             <div className='text'>
-              <p>The deadline for CV upload is 19 January</p>
+              <p>The deadline for CV upload is 19 January . Go to Cv upload Page</p>
               <button onClick={handleOkayClick}>Okay</button>
             </div>
           </div>

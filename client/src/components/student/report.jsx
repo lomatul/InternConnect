@@ -166,7 +166,7 @@ const UploadReport = () => {
                   
                 </div>
                   <div className='adminimage'>
-                      <img src="cv-up.gif" alt="" />
+                      <img src="reportgif.gif" alt="" />
                   </div>
             </div>
       
