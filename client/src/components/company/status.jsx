@@ -61,7 +61,11 @@ const Status = () => {
               <tr key={index}>
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
-                <td>{student.currentStatus}</td>
+                <div className="status">
+                  <div className="notstart">
+                  <td>{student.currentStatus}</td>
+                  </div>
+                </div>
                 <td>{student.companyName}</td>
               </tr>
             ))}

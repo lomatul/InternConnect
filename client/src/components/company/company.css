@@ -225,11 +225,6 @@ tbody tr.hide td p {
     transition: .2s ease-in-out .5s;
 }
 
-tbody tr.hide td img {
-    width: 0;
-    height: 0;
-    transition: .2s ease-in-out .5s;
-}
 
 .status {
     padding: .4rem 0;
@@ -237,18 +232,19 @@ tbody tr.hide td img {
     text-align: center;
 }
 
-.status.delivered {
+.status .hire {
     background-color: #86e49d;
-    color: #006b21;
+    border-radius: 10px;
 }
 
-.status.cancelled {
+.status .notstart {
+    border-radius: 10px;
     background-color: #d893a3;
-    color: #b30021;
 }
 
-.status.pending {
-    background-color: #ebc474;
+.status .pending {
+    border-radius: 10px;
+    background-color: #fad893;
 }
 
 .status.shipped {
