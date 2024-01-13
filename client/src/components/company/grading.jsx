@@ -22,8 +22,8 @@ const Gradesheet = () => {
     useEffect(() => {
       axios.get('http://localhost:4000/InterConnect/company/companies')
         .then((response) => {
-          setCompanies(response.data.companies);
-          setFilteredCompanies(response.data.companies);
+          setCompanies(response.data || []);
+          setFilteredCompanies(response.data || []);
           setCompanyData({
             
           })
