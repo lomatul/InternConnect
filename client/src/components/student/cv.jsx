@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
@@ -198,8 +197,7 @@ const UploadCV = () => {
                       <img src="cv-up.gif" alt="" />
                   </div>
             </div>
-          {new Date()>deadline?<p>Deadline is passed.</p>:<p>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-}
+          {new Date()>deadline?<p>Deadline is passed.</p>:<p>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</p>}
             <div className="studentguideline">           
                      <ul>
                         <li>Use a clear and professional format for your CV (preferable in Latex).</li>
@@ -207,6 +205,7 @@ const UploadCV = () => {
                           <li>Highlight your skills, experience, and education.</li>
                           <li>Tailor your CV for the specific job or internship you're applying for.</li>
                           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
                        </ul>
 
                 
@@ -218,10 +217,10 @@ const UploadCV = () => {
                           <a href="cvsample3.pdf" download>Download Sample CV 3</a>
                   </div>
 
-                <div className="xcellupload">             
+                {new Date()>deadline?<div className="xcellupload">            
                   <input type="file" accept=".pdf" onChange={handleFileSelect}/>
-                  {new Date()>deadline?<button >Upload Unavailable.</button>:<button onClick={handleSubmit}>Upload</button>}
-                </div>
+                  <button onClick={handleSubmit}>Upload</button>
+                </div>:<div></div>}
                    {hascv&&<button><a style={{color:'white'}} href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download your CV </a></button>}
              </div>
           

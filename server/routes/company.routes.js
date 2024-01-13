@@ -11,6 +11,7 @@ import {
   assignMenotors,
   sendFormtomentors,
   sendHiredNotifyingMail,
+  getCompanyHistoryByYear,
 
 } from '../controllers/company.controller.js';
 
@@ -26,6 +27,8 @@ router.get('/getCompany/:email/:year', getCompanyByEmailAndYear);
 
 router.get('/getCompanybyid/:id', getCompanyByID);
 
+router.get('/getHistoricalData/:year', getCompanyHistoryByYear);
+
 router.put('/updateCompany/:email/:year', updateCompanyByEmailAndYear );
 
 router.put('/updateCompanyStatus/:email', updateCompanyStatusByEmail); 
@@ -39,3 +42,4 @@ router.get('/sendmentorsforms', sendFormtomentors)
 router.get('/sendHiredNotifyingMail', sendHiredNotifyingMail)
 
 export default router;
+
