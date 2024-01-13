@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Gradesheet = () => {
   const [students, setStudents] = useState([]);
@@ -27,6 +29,7 @@ const Gradesheet = () => {
         internshipReportMarks: editedStudent.internshipReportMarks,
         presentationMarks: editedStudent.presentationMarks,
       });
+      toast.success('Marks have been updated')
 
       if (response.status === 200) {
         console.log('Student data updated successfully!');
