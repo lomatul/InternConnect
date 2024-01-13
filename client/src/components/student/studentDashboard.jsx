@@ -23,8 +23,9 @@ function StudentDashboard() {
                 </div>
 
                 <div className='card'>
-                    <img src="ad-com.png" alt=""  />
-                    <a href="/AddCompany">Company list  &rarr;</a>
+                <img src="cv-up.png" alt=""  />
+                    
+                    <a href="/AddCv">CV Upload &rarr;</a>
                 </div>
 
 
@@ -37,13 +38,14 @@ function StudentDashboard() {
             <div className='cards'>
                 
                 <div className='card'>
-                    <img src="cv-up.png" alt=""  />
-                    <a href="/AddCv">CV Upload &rarr;</a>
+                <img src="stu-report.png" alt=""  />
+                    <a href="/Addreport">Submission  &rarr;</a>
+                    
                 </div>
 
                 <div className='card'>
-                    <img src="ad-noti.png" alt=""  />
-                    <a href="/SendNotifi">Send Notification &rarr;</a>
+                    <img src="status.png" alt=""  />
+                    <a href="/Status">See Status &rarr;</a>
                 </div>
 
 

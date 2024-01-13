@@ -9,8 +9,14 @@ const Studentlist = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        setStudents(response.data.students);
-        setFilteredStudents(response.data.students); // Initially, both arrays are the same
+        const studentsData = response.data;
+
+        if (!studentsData || studentsData.length === 0) {
+          console.log('No students found.');
+          return;
+        }
+        setStudents(studentsData);
+        setFilteredStudents(studentsData); // Initially, both arrays are the same
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
@@ -64,7 +70,7 @@ const Studentlist = () => {
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>
                 <td>{student.CGPA}</td>
-                <td><a href={"http://localhost:4000/InterConnect/student/getcv/"+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
+                <td style={{textDecoration:"underline"}}><a  href={"http://localhost:4000/InterConnect/student/getcv/"+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
               </tr>
             ))}
           </tbody>

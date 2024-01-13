@@ -14,9 +14,18 @@ import {
   uploadcvfile,
   getcvfile,
   setpreference,
-  getOneStudentbyId
+  getOneStudentbyId,
+  addProject,
+  getProjectsByStudentId,
+  editProject,
+  deleteProject,
+  updateCurrentStatus,
+  updateCurrentStatusById,
+  uploadInternshipReportFile,
+  getStudentReportById
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
+import uploadInternshipReport from '../middlewares/multer.report.js';
 
 
 const router = express.Router();
@@ -53,5 +62,20 @@ router.post('/setprefer/:student_id', setpreference)
 
 router.get('/getOnestudent/:student_id', getOneStudentbyId)
 
+router.post('/addProjects/:student_id', addProject);
+
+router.get('/getProjects/:student_id', getProjectsByStudentId);
+
+router.patch('/editProjects/:student_id/:project_id', editProject);
+
+router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
+
+router.patch('/UpdateCurrentStatus', updateCurrentStatus);
+
+router.patch('/UpdateCurrentStatus/:student_id', updateCurrentStatusById);
+
+router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
+
+router.get('/getStudentReport/:student_id', getStudentReportById);
 
 export default router;

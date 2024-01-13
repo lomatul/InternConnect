@@ -57,9 +57,10 @@ passport.use('admin',
   new LocalStrategy({usernameField: 'username', passwordField: 'password'},authadmin)
 );
 
-passport.serializeUser( (user, done) => {    done(null, user._id)})
+passport.serializeUser( (user, done) => {    done(null, user)})
 
 passport.deserializeUser(async (id, done) => {
+  console.log("in deseralize user")
   try {
     const student = await Student.findById(id);
     if (student) {

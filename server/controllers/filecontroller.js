@@ -2,7 +2,7 @@ import express from 'express';
 import fs from 'fs';
 import xlsx from 'xlsx';
 import otpgenerator from 'otp-generator';
-import Mailfunction from './mailsender.js';
+import Mailfunction from './mailsenders/mailsender.js';
 import bcrypt from 'bcrypt';
 import Student from '../models/student.model.js';
 import Company from '../models/company.model.js';
@@ -73,13 +73,13 @@ const ulpoadCompanydata = async (req, res)=>{
   if(!req.file){
     throw new Error('No file is selected')
   }
+
   const fileBuffer = req.file.buffer
   const workbook = xlsx.read(fileBuffer); 
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const data = xlsx.utils.sheet_to_json(sheet);
 
-  
 
   // res.status(200).send(data)
   console.log(data)
@@ -88,15 +88,25 @@ const ulpoadCompanydata = async (req, res)=>{
       
       console.log("name", element)
       
-      
       try {
         const company = new Company({
           name: element.Name,
-          address: element.Address,
           email: element.Email,
+          historicalData: [
+            {
+              year: element.Year,
+              address: element.Address,
+              requiredDomain: element.RequiredDomain.map((domain) => ({
+                domain,
+                internsNeeded: 0,
+              })),
+              contactNumber: element.ContactNumber,
+              selectedInterns: [],
+            },
+          ],
           minInterns: element.MinInterns,
           maxInterns: element.MaxInterns,
-          contactNumber: element.ContactNumber
+          status: element.Status,
           
         });
     

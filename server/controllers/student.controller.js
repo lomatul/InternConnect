@@ -3,11 +3,12 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import passport from "passport";
 import otpgenerator from "otp-generator";
-import sendPasswordResetEmail from "./forget.password.mailsender.js";
+import sendPasswordResetEmail from "./mailsenders/forget.password.mailsender.js";
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import validator from "validator";
+import Company from '../models/company.model.js';
 
 
 
@@ -57,12 +58,13 @@ export const getAllStudents = async (req, res, next) => {
   try {
     const students = await Student.find();
 
-    res.status(200).json({
-      message: "Students retrieved successfully!",
-      students,
-    });
-  } catch (error) {
-    next(error);
+    if (!students || students.length === 0) {
+      return res.status(404).json({ message: 'No students found.' });
+    }
+
+    res.status(200).json(students);
+  }  catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
 
@@ -214,6 +216,14 @@ export const postlogin = (req, res, next) => {
       return res.status(401).json({ error: info.message });
     }
     user.password = undefined;
+    req.logIn(user , (err) => {
+      if(err){
+        console.error(err)
+        return res.status(500).json({ error: "Session is not set" });
+      }
+    }
+    )
+    // console.log("if session is set", req.user)
     // Authentication succeeded
     res.status(200).json({ message: "Logged In", User: user });
   })(req, res, next);
@@ -370,9 +380,7 @@ export const resetPasswordWithOTP = async (req, res, next) => {
 //Upload a file
 export const uploadcvfile= async (req, res) =>{
   try{
-    console.log("it came here in uploadcv")
     const { student_id } = req.params;
-    console.log(student_id)
     const student = await Student.findOne({ student_id: student_id });
   
     if (!student) {
@@ -383,8 +391,6 @@ export const uploadcvfile= async (req, res) =>{
 
     await student.save();
     // console.log("req", req)
-    console.log("filename", req.file.filename)
-    console.log("Filepath", req.file.path)
     res.status(200).json({message:"Uploaded"})
   }catch (error) {
     // next(error);
@@ -400,7 +406,6 @@ export const getcvfile= async (req, res) =>{
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const tempDir = path.join(__dirname, '../Storage/Cv');
-    console.log("it came here in uploadcv")
     const { student_id } = req.params;
     console.log(student_id)
     const student = await Student.findOne({ student_id: student_id });
@@ -493,5 +498,205 @@ export const getOneStudentbyId = async (req, res) =>{
     res.status(400).json({message: error.message})
   }
   
-}
-    
+};
+
+
+export const addProject = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const { name, year, description, technologies } = req.body;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    student.projects.push({ name, year, description, technologies });
+
+    await student.save();
+
+    return res.status(201).json({ message: "Project added successfully", student });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+export const getProjectsByStudentId = async (req, res, next) => {
+  try {
+    const { student_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const projects = student.projects;
+
+    res.status(200).json({ projects });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const editProject = async (req, res) => {
+  try {
+    const { student_id, project_id } = req.params;
+    const { name, year, description, technologies } = req.body;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    const project = student.projects.id(project_id);
+
+    if (!project) {
+      return res.status(404).json({ message: "Project not found" });
+    }
+
+    project.name = name;
+    project.year = year;
+    project.description = description;
+    project.technologies = technologies;
+
+    await student.save();
+
+    return res.status(200).json({ message: "Project updated successfully", student });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+export const deleteProject = async (req, res) => {
+  try {
+    const { student_id, project_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    student.projects.pull(project_id);
+
+    await student.save();
+
+    return res.status(200).json({ message: "Project deleted successfully", student });
+  } catch (error) {
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
+export const updateCurrentStatus = (async (req, res)=>{
+  try{
+    const {studentId, Status}=req.body;
+    var student;
+    try{
+      if(Status==="rejected"){
+        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:null, companyStatus:null}});
+      }else if(Status==="Hired"){
+        student=await Student.findOneAndUpdate({ student_id:studentId }, {$set:{currentStatus:"Hired"}});
+        const company=await Company.findById(student.companyStatus)
+        company.selectedInterns.push(studentId);
+        await company.save();
+      }else{
+        return res.status(400).json({ message: "Status code value is not correct" });
+      }
+      if(!student){
+        return res.status(404).json({ message: "Value is not updated. No such student is found "});
+      }
+      res.status(200).send("Student status is updated");
+    }catch(error){
+      console.log("Error: ", error);
+      res.status(400).json({ error: error.message });
+    }
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+})
+
+
+export const updateCurrentStatusById = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+
+    const updatedStudent = await Student.findOneAndUpdate(
+      { student_id },
+      { $set: { currentStatus: 'Hired' } }, 
+      { new: true } 
+    );
+
+    if (!updatedStudent) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    res.status(200).json({ message: 'Student status updated successfully', updatedStudent });
+  } catch (error) {
+    console.error('Error updating student status:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+export const uploadInternshipReportFile = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    student.internshipReport = req.file.filename;
+
+    await student.save();
+
+    res.status(200).json({ message: 'Internship report uploaded successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+export const getStudentReportById = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const reportFileName = student.internshipReport;
+
+    if (!reportFileName) {
+      return res.status(404).json({ message: 'Internship report not found' });
+    }
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const reportsDir = path.join(__dirname, '../Storage/Report');
+
+    const reportPath = path.join(reportsDir, reportFileName);
+
+    // Set the content type to display PDF in the browser
+    res.contentType("application/pdf");
+
+    // Send the file as a response
+    res.sendFile(reportPath, { headers: { 'Content-Disposition': `inline; filename=${reportFileName}` } });
+
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+};

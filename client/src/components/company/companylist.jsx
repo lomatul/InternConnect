@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Checkbox from 'rc-checkbox';
+import 'rc-checkbox/assets/index.css';
 
 const Companylist = () => {
   const [search, setSearch] = useState('');
@@ -17,11 +19,19 @@ const Companylist = () => {
 
    
   });
+
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        setCompanies(response.data.companies);
-        setFilteredCompanies(response.data.companies);
+        const companiesData = response.data;
+
+        if (!companiesData || companiesData.length === 0) {
+          console.log('No companies found.');
+          return;
+        }
+
+        setCompanies(companiesData);
+        setFilteredCompanies(companiesData);
         setCompanyData({
           
         })
@@ -89,45 +99,102 @@ const Companylist = () => {
               <th>Address</th>
               <th>Email</th>
               <th>Contact Number</th>
-              <th>Max Interns</th>
               <th>Min Interns</th>
-              <th>Interns Hired</th>
               <th>Status</th>
-              {/* <th>Action</th> */}
+              <th>Action</th>
             </tr>
           </thead>
 
           <tbody>
             {filteredCompanies.map((company, index) => (
               <tr key={index}>
-                <td>
 
-                {company.name}
 
-                
-                  {/* {editRow === index ? (
+                <td>              
+                  {editRow === index ? (
                     <input
                       type="text"
-                      value=
+                      value={company.name}
                       onChange={(e) => {
-                        // Update the company's name here
+                        const updatedCompanies = [...companies];
+                        updatedCompanies[index].name = e.target.value;
+                        setCompanies(updatedCompanies);
                       }}
                     />
                   ) : (
                     company.name
-                  )} */}
-
-                  
+                  )}                  
                 </td>
-                <td>{company.address}</td>
-                <td>{company.email}</td>
-                <td>{company.contactNumber}</td>
-                <td>{company.maxInterns}</td>
-                <td>{company.minInterns}</td>
-                <td>{company.internsHired}</td>
+
+
                 <td>
-                  <input
-                    type="checkbox"
+                {editRow === index ? (
+                    <input
+                      type="text"
+                      value={company.address}
+                      onChange={(e) => {
+                        const updatedCompanies = [...companies];
+                        updatedCompanies[index].address = e.target.value;
+                        setCompanies(updatedCompanies);
+                      }}
+                    />
+                  ) : (
+                    company.address
+                  )}</td>
+
+                <td>
+                {editRow === index ? (
+                    <input
+                      type="email"
+                      value={company.email}
+                      onChange={(e) => {
+                        const updatedCompanies = [...companies];
+                        updatedCompanies[index].email = e.target.value;
+                        setCompanies(updatedCompanies);
+                      }}
+                    />
+                  ) : (
+                    company.email
+                  )}
+                  </td>
+
+
+                <td>
+                {editRow === index ? (
+                    <input
+                      type="text"
+                      value={company.contactNumber}
+                      onChange={(e) => {
+                        const updatedCompanies = [...companies];
+                        updatedCompanies[index].contactNumber = e.target.value;
+                        setCompanies(updatedCompanies);
+                      }}
+                    />
+                  ) : (
+                    company.contactNumber
+                  )}
+                </td>
+
+
+                <td>
+                {editRow === index ? (
+                    <input
+                      type="number" min={"0"}
+                      value={company.minInterns}
+                      onChange={(e) => {
+                        const updatedCompanies = [...companies];
+                        updatedCompanies[index].minInterns = e.target.value;
+                        setCompanies(updatedCompanies);
+                      }}
+                    />
+                  ) : (
+                    company.minInterns
+                  )}
+                </td>
+
+                <td>
+                  <Checkbox
+                    
                     id="running"
                     value="running"
                     checked={company.status === 'Hiring'}
@@ -137,16 +204,22 @@ const Companylist = () => {
                       window.location.reload();
                     }}
                   />
+
+
                 </td>
-                {/* <td>
+                <td>
                   {editRow === index ? (
+                    <div className="save">
                     <button onClick={() => handleSaveClick(index)}>Save</button>
+                    </div>
                   ) : (
+                    <div className="edit">
                     <button onClick={() => handleEditClick(index)}>
                       {editRow === index ? 'Save' : 'Edit'}
                     </button>
+                    </div>
                   )}
-                </td> */}
+                </td>
               </tr>
             ))}
           </tbody>

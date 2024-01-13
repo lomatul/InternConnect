@@ -1,4 +1,7 @@
 import Company from '../models/company.model.js';
+import Mentor from '../models/mentor.model.js';
+import otpgenerator from 'otp-generator';
+import Mailfunction from "./mailsenders/custom.mailsender.js";
 
 // Create a company
 export const createCompany = async (req, res, next) => {
@@ -40,12 +43,14 @@ export const getAllCompanies = async (req, res, next) => {
   try {
     const companies = await Company.find();
 
-    res.status(200).json({
-      message: 'Companies retrieved successfully!',
-      companies,
-    });
+    if (!companies || companies.length === 0) {
+      return res.status(404).json({ message: 'No companies found.' });
+    }
+
+    res.status(200).json(companies);
+
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
 
@@ -81,6 +86,27 @@ export const getCompanyByEmailAndYear  = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
+  }
+};
+
+
+export const getCompanyByID  = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const company = await Company.findOne({ _id:id });
+
+    if (!company) {
+     return res.status(404).json({
+        message: 'Company not found!',
+      });
+      
+    }
+    
+    res.status(200).send(company)
+  } catch (error) {
+    console.log(error)
+    res.status(400).json(({error:error.message}))
   }
 };
 
@@ -256,3 +282,73 @@ export const deleteCompanyByEmailAndYear  = async (req, res, next) => {
     next(error);
   }
 };
+
+
+export const assignMenotors = async( req, res)=>{
+  try{
+    const {id, Studentid, otp, newmentors}=req.body;
+    const company=await Company.findById(id);
+    if(company.OTP!=otp){
+      return res.status(400).json({ message: "Invalid or expired OTP" });
+    }
+    newmentors.map(async (element)=>{
+      const mentor = new Mentor({
+        name:element.name,
+        email:element.email,
+        assignedStudents:[Studentid]
+      });
+      await mentor.save();
+    })   
+    res.status(200).json({ message:"Mentors created"});
+  }catch(error){
+    res.status(400).json({ error: error.message });
+  }
+
+  
+}
+
+
+export const sendFormtomentors = async(req, res)=>{
+  try{
+    const mentors = await Mentor.find();
+    const promise=mentors.map(async element =>{
+      const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
+      console.log(element);
+      element.OTP=otp;
+      const sub = "Testing"
+      var text=`<p>Dear ${element.name},</p><p>Please click the following link to assesment the intern, doing internship. While submitting, please use the given OTP. Your OTP is '${otp}'</p>`;
+      element.assignedStudents.forEach((element)=>{
+        var link=`<p>For Student ${element} the assesment form link is:- <a href="http://localhost:3000/AddAssesment/${element}">Assesment this student</a></p>`;
+        text=text+link;
+      })
+      await Mailfunction(sub, element.email, text);
+      await element.save();
+    })
+    await Promise.all(promise);
+    res.status(200).json({message:"Email works"})
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+export const sendHiredNotifyingMail= async(req, res) =>{
+  try{
+    const { companyName, studentId, studentName } = req.body;
+    const companies = await Company.find({ name: companyName });  
+    const notificationPromises = companies.map(async (element) => {
+      const sub = 'Hired Notification';
+      const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to confirm that the student: ${studentName}, ID: ${studentId} is now hired as an intern by your company.</p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusById/${studentId}">Confirm</a>`;
+      await Mailfunction(sub, element.email, text);
+    })
+    await Promise.all(notificationPromises);
+
+    res.status(200).json({ message: 'Email works' });
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

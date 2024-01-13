@@ -4,10 +4,21 @@ const mentorSchema = new mongoose.Schema({
 
   name: { type: String, required: true },
 
-  email: { type: String, required: true },
-  
-  assignedStudents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Student' }],
+  designation: { type: String, required: true },
 
+  email: { type: String, required: true, unique: true },
+  
+  assignedStudents: [{ 
+    student_id: {type: String},
+    evaluation: {type: Number},
+  }],
+
+  position:{type:String},
+  
+  response :[{
+    student_id :{type:String},
+    assesment:{type:Object}
+  }]
 });
 
 export default mongoose.model('Mentor', mentorSchema);
