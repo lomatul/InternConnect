@@ -288,6 +288,17 @@ export const postCvdeadline = async( req, res) => {
       await admin.save();
     }
 
+    const student = await Student.find();
+    var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
+    
+    const promise = student.map(async(element)=>{
+      const sub="New Deadline is Published for Cv"
+      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
+      await Mailfunction(sub, element.email, text);
+    })
+
+    await Promise.all(promise);
+
 
     return res.status(200).json({message:"new deadline is set."})
 
@@ -374,6 +385,16 @@ export const postReportdeadline = async( req, res) => {
       await admin.save();
     }
 
+    const student = await Student.find();
+    var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
+    
+    const promise = student.map(async(element)=>{
+      const sub="New Deadline is Published for Report"
+      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
+      await Mailfunction(sub, element.email, text);
+    })
+
+    await Promise.all(promise);
 
     return res.status(200).json({message:"new deadline is set."})
 
