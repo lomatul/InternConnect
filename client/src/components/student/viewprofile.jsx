@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from 'axios';
 
+
+
 const ViewProfile = ({ userData, page, setPage, x, setX }) => {
   const [hired, setHired] = useState(false);
   const [companyName, setCompanyName] = useState('');
@@ -28,34 +30,45 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
 
   return (
     <div>
-      <button
+
+       <a style={{ marginRight:"50px", textDecoration:"underline" ,fontSize:"18px" , cursor:"pointer"}}  
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
           setPage(page);
           setX(0);
         }}
-      >
-        Profile{" "}
-      </button>
+        > 
+       <img src="user.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" }}   />
+      Profile
+    </a>
 
-      <button
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          setPage(page + 1);
-          setX(1000);
-        }}
-      >
-        Edit{" "}
-      </button>
-      <button
-        onClick={() => {
+
+
+    <a style={{ marginRight:"50px", textDecoration:"underline" ,fontSize:"18px" , cursor:"pointer" }}   
+      onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setPage(page + 1);
+            setX(1000);
+          }}
+          > 
+        <img src="edit.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
+        Edit Profile
+      </a>
+
+
+
+      <a style={{ marginRight:"30px", textDecoration:"underline" ,fontSize:"18px",  cursor:"pointer" }}  
+     onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
           setPage(page + 2);
           setX(2000);
-        }}
-      >
-        Project{" "}
-      </button>
+        }}> 
+       <img src="project.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
+      Projects
+    </a>
+
+
+
 
       <motion.div
         initial={{ x: x }}
