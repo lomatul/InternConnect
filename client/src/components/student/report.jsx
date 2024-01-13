@@ -110,22 +110,8 @@ const UploadReport = () => {
   const handleView = async (event) => {
     event.preventDefault()
     try {
-      await axios.get(`http://localhost:4000/InterConnect/student/getReport/${id}`).then((response) => {
-        console.log(response)
-        var fileName = `${id}.pdf`
-        download(response.data, fileName);
-      }).catch((error) => {
-        if (error.response) {
-          console.log(error.response);
-          console.log("server responded");
-          toast.error('Failed to upload', { position: "top-right" });
-        } else if (error.request) {
-          console.log("network error");
-        } else {
-          console.log(error);
-        }
-      });
-
+      const reportUrl = `http://localhost:4000/InterConnect/student/getStudentReport/${id}`;
+      window.open(reportUrl, '_blank');
     } catch (error) {
       console.error('An error occurred:', error);
     }
@@ -166,7 +152,7 @@ const UploadReport = () => {
           <input type="file" accept=".pdf" onChange={handleFileSelect} />
           {hasReport ? <button onClick={handleSubmit}>Upload</button> : <button onClick={handleSubmit}>Upload</button>}
         </div>
-        {hasReport && <button><a style={{ color: 'white' }} href={`http://localhost:4000/InterConnect/student/getReport/${id}`} download={`${id}.pdf`}>Download your Report </a></button>}
+        {hasReport && <button onClick={handleView}>View your Report </button>}
       </div>
 
     </div>
