@@ -9,7 +9,7 @@ const Companypool = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        const hiringCompanies = response.data.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
       })
