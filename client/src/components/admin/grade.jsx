@@ -9,9 +9,6 @@ const Addgrade = () => {
   const [presentationPercentage, setPresentationPercentage] = useState(0);
 
   const handleSubmit = () => {
-    // Perform any additional logic or API calls if needed
-
-    // Hide the sending-cvs section
     setShowSendingCvs(false);
   };
 

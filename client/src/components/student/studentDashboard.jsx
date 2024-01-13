@@ -1,16 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 function StudentDashboard() {
+    const [showTimer, setshowTimer] = useState(true);
+
+    const handleOkayClick = () => {
+        setshowTimer(false);
+      };
 
   return (
-   
-    <div >
+       <div >
     <div className='admincontainer'>
         <div className='text'>
             <h3>Welcome to  </h3>
             <h1>Student Dashboard</h1>
         </div>
-
+        {showTimer && (
+          <div className='timer'>
+            <img
+              src="timer.gif"
+              alt=""
+              style={{ width: "180px", height: "180px", marginTop: "10px" }}
+            />
+            <div className='text'>
+              <p>The deadline for CV upload is 19 January</p>
+              <button onClick={handleOkayClick}>Okay</button>
+            </div>
+          </div>
+        )}
+           
     </div>
 
     <div className='admincard'>

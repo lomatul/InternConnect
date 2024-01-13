@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
