@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "./newproject.css";
 import { motion } from "framer-motion";
 
-const NewProject = ({page, setPage,x,setX} ) => {
+const NewProject = ({page, setPage, x, setX} ) => {
   const initialProject = {
     name: "",
     year: "",
     description: "",
     technologies: "",
-    link:"",
+    link: "",
   };
 
   const [projects, setProjects] = useState([]);
@@ -17,6 +17,7 @@ const NewProject = ({page, setPage,x,setX} ) => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    console.log(name, value);
     setNewProject((prevProject) => ({ ...prevProject, [name]: value }));
   };
 
@@ -26,64 +27,12 @@ const NewProject = ({page, setPage,x,setX} ) => {
     setShowAddForm(false);
   };
 
-  // const handleEditProject = (index) => {
-  //   setIsAdding(true);
-  //   setNewProject(projects[index]);
-  //   setEditingIndex(index);
-  //   console.log("Edit project at index", index);
-  // };
-
   const handleDeleteProject = (index) => {
     setProjects((prevProjects) =>
       prevProjects.filter((_, i) => i !== index)
     );
   };
 
-
-  // const handleSaveProject = async () => {
-  //   try {
-  //     let response;
-
-  //     if (editingIndex === -1) {
-  //       // Add new project
-  //       response = await axios.post(`http://localhost:4000/InterConnect/student/addProjects/${userstudent.student_id}`, newProject);
-  //     } else {
-  //       // Update existing project
-  //       response = await axios.patch(`http://localhost:4000/InterConnect/student/editProjects/${userstudent.student_id}/${projects[editingIndex]?._id}`, newProject);
-  //     }
-
-  //     // Ensure the response structure matches the expected format
-  //     const updatedProject = response.data.student?.projects;
-
-  //     if (updatedProject) {
-  //       const updatedProjects = [...projects];
-
-  //       if (editingIndex === -1) {
-  //         updatedProjects.push(updatedProject);
-  //       } else {
-  //         updatedProjects[editingIndex] = updatedProject;
-  //       }
-
-  //       setProjects(updatedProjects);
-  //       setEditingIndex(-1);
-
-  //       // Reset newProject to the initial state
-  //       setNewProject({
-  //         name: '',
-  //         year: '',
-  //         description: '',
-  //         technologies: '',
-  //       });
-
-  //       setIsAdding(false);
-  //       window.location.reload();
-  //     } else {
-  //       console.error('Invalid response format:', response.data);
-  //     }
-  //   } catch (error) {
-  //     console.error('Error adding/updating project:', error);
-  //   }
-  // };
 
   return (
     <div>
@@ -93,23 +42,23 @@ const NewProject = ({page, setPage,x,setX} ) => {
                   onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page-2); setX(-2000);  }}>
                   <img src="user.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" }}   />
                   Profile
-                </a>
+              </a>
 
 
 
-                <a style={{ marginRight:"50px", textDecoration:"underline" ,fontSize:"18px" , cursor:"pointer" }}   
-                  onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);}}   > 
-                    <img src="edit.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
-                    Edit Profile
-                </a>
+              <a style={{ marginRight:"50px", textDecoration:"underline" ,fontSize:"18px" , cursor:"pointer" }}   
+                onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);}}   > 
+                  <img src="edit.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
+                  Edit Profile
+              </a>
 
 
 
-                <a style={{ marginRight:"30px", textDecoration:"underline" ,fontSize:"18px",  cursor:"pointer" }}  
-                  onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page); setX(0);}}> 
-                  <img src="project.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
-                  Projects
-               </a>
+              <a style={{ marginRight:"30px", textDecoration:"underline" ,fontSize:"18px",  cursor:"pointer" }}  
+                 onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page); setX(0);}}> 
+                 <img src="project.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
+                 Projects
+              </a>
 
 
 
@@ -189,7 +138,7 @@ const NewProject = ({page, setPage,x,setX} ) => {
             <input
                 type="text"
                 id="link"
-                name="Github Link"
+                name="link"
                 value={newProject.link}
                 onChange={handleInputChange}
               />
@@ -203,7 +152,7 @@ const NewProject = ({page, setPage,x,setX} ) => {
         )}
 
       <div className="add-project">
-        <button onClick={() => setShowAddForm(true)}>Add Project</button>
+        <button onClick={() => setShowAddForm(true)}>Add New</button>
         </div>
         
       </div>
