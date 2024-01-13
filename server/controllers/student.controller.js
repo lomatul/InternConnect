@@ -58,12 +58,13 @@ export const getAllStudents = async (req, res, next) => {
   try {
     const students = await Student.find();
 
-    res.status(200).json({
-      message: "Students retrieved successfully!",
-      students,
-    });
-  } catch (error) {
-    next(error);
+    if (!students || students.length === 0) {
+      return res.status(404).json({ message: 'No students found.' });
+    }
+
+    res.status(200).json(students);
+  }  catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
 

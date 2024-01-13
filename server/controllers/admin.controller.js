@@ -426,3 +426,38 @@ export const getReportdeadline = async( req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
+export const postMarks = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const { presentationMarks, internshipReportMarks } = req.body;
+
+    // Find the student based on the provided student_id
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found.' });
+    }
+
+    // Update the presentationMarks and internshipReportMarks
+    student.presentationMarks = presentationMarks;
+    student.internshipReportMarks = internshipReportMarks;
+
+    // Save the updated student
+    await student.save();
+
+    res.status(200).json({
+      message: 'Marks updated successfully!',
+      student: {
+        name: student.name,
+        student_id: student.student_id,
+        presentationMarks: student.presentationMarks,
+        internshipReportMarks: student.internshipReportMarks,
+      },
+    });
+  } catch (error) {
+    console.error('Error updating marks:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};

@@ -43,7 +43,7 @@ const Mentor = () => {
         try {
           // Fetch students
           const responseStudents = await axios.get('http://localhost:4000/InterConnect/student/students');
-          const fetchedStudents = responseStudents.data.students;
+          const fetchedStudents = responseStudents.data;
     
           const filteredStudents = fetchedStudents.filter((student) =>
             company.selectedInterns.includes(student.student_id)
@@ -54,7 +54,7 @@ const Mentor = () => {
     
           // Fetch mentors after students are fetched
           const responseMentors = await axios.get('http://localhost:4000/InterConnect/mentor/mentors');
-          const fetchedMentors = responseMentors.data.mentors;
+          const fetchedMentors = responseMentors.data;
     
           // Use fetchedMentors as needed
           console.log("Mentors:", fetchedMentors);
@@ -68,7 +68,7 @@ const Mentor = () => {
           setStudents(finalFilteredStudents);
           console.log('Final filtered students:', finalFilteredStudents);
         } catch (error) {
-          console.error('An error occurred:', error);
+          console.error('An error occurred:', error.message);
         }
       };
     

@@ -38,14 +38,14 @@ function StudentDashboard() {
             <div className='cards'>
                 
                 <div className='card'>
-                <img src="ad-com.png" alt=""  />
+                <img src="stu-report.png" alt=""  />
                     <a href="/Addreport">Submission  &rarr;</a>
                     
                 </div>
 
                 <div className='card'>
-                    <img src="ad-noti.png" alt=""  />
-                    <a href="/SendNotifi">Send Notification &rarr;</a>
+                    <img src="status.png" alt=""  />
+                    <a href="/Status">See Status &rarr;</a>
                 </div>
 
 
