@@ -28,12 +28,11 @@ const Mailfunction = async (sub, email, text) =>{
             console.log("email send succsesfully inner")
             // console.log(info)
         })
-        console.log("email send succsesfully")
 
     }catch(error)
     {
         console.log("email not sent!");
-		console.log(error);
+		console.log(error.message);
 		return error;
     }
 }
