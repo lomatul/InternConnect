@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
@@ -206,6 +205,7 @@ const UploadCV = () => {
                           <li>Highlight your skills, experience, and education.</li>
                           <li>Tailor your CV for the specific job or internship you're applying for.</li>
                           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
                        </ul>
 
                 

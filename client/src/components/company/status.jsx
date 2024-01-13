@@ -5,6 +5,19 @@ import Select from 'react-select';
 const Status = () => {
   const [students, setStudents] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filteredStudents, setFilteredStudents] = useState([]);
+
+  useEffect(() => {
+    // Filter students based on search input
+    const filtered = students.filter((student) => {
+      const studentData = `${student.name} ${student.student_id} ${student.email} ${student.currentStatus} ${student.CGPA}`.toLowerCase();
+      return studentData.includes(search.toLowerCase());
+    });
+
+    setFilteredStudents(filtered);
+  }, [search, students]);
+
 
   useEffect(() => {
     // Fetching students
@@ -45,6 +58,16 @@ const Status = () => {
     <main className="table">
       <section className="table__header">
         <h1> Student Status </h1>
+        <div className="input-group">
+          <input
+            type="search"
+            placeholder="Search Data by Student Name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <img src='search.png'></img>
+        </div>
+
       </section>
       <section className="table__body">
         <table>
@@ -57,7 +80,7 @@ const Status = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student, index) => (
+            {filteredStudents.map((student, index) => (
               <tr key={index}>
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>

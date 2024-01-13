@@ -1,5 +1,6 @@
 import Company from '../models/company.model.js';
 import Mentor from '../models/mentor.model.js';
+import Student from '../models/student.model.js';
 import otpgenerator from 'otp-generator';
 import Mailfunction from "./mailsenders/custom.mailsender.js";
 
@@ -336,17 +337,32 @@ export const sendFormtomentors = async(req, res)=>{
 
 export const sendHiredNotifyingMail= async(req, res) =>{
   try{
-    const { companyName, studentId, studentName } = req.body;
-    const companies = await Company.find({ name: companyName });  
-    const notificationPromises = companies.map(async (element) => {
-      const sub = 'Hired Notification';
-      const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to confirm that the student: ${studentName}, ID: ${studentId} is now hired as an intern by your company.</p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusById/${studentId}">Confirm</a>`;
-      await Mailfunction(sub, element.email, text);
-    })
-    await Promise.all(notificationPromises);
+    const { studentId, studentName } = req.body;
+    console.log("Student ID: " + studentId);
+    const student = await Student.findOne({ student_id: studentId });
+
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    const matchedCompany = student.companyStatus;
+
+    const company = await Company.findOne({ _id: matchedCompany });
+
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found' });
+    }
+
+    const companyEmail = company.email;
+    console.log("Company Mail: " + companyEmail);
+
+    const sub = 'Hired Notification';
+    const text = `<p>Dear HR of ${company.name},</p><p>Please click the following link to confirm that the student: ${studentName}, ID: ${studentId} is now hired as an intern by your company.
+    </p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusByIdToHired/${studentId}">Confirm</a> 
+    <p>If not, click the following link:</p>  <p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusByIdToRejected/${studentId}">Reject</a></p>`;
+    await Mailfunction(sub, companyEmail, text);
 
     res.status(200).json({ message: 'Email works' });
-
   }catch (error){
     console.log("Error: ", error);
     res.status(500).json({ error: 'Internal Server Error' });

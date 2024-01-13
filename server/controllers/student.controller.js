@@ -626,9 +626,10 @@ export const updateCurrentStatus = (async (req, res)=>{
 })
 
 
-export const updateCurrentStatusById = async (req, res) => {
+export const updateCurrentStatusByIdToHired = async (req, res) => {
   try {
     const { student_id } = req.params;
+    console.log(student_id)
 
     const updatedStudent = await Student.findOneAndUpdate(
       { student_id },
@@ -640,9 +641,32 @@ export const updateCurrentStatusById = async (req, res) => {
       return res.status(404).json({ error: 'Student not found' });
     }
 
-    res.status(200).json({ message: 'Student status updated successfully', updatedStudent });
+    res.status(200).json({ message: 'Student status updated successfully' });
   } catch (error) {
-    console.error('Error updating student status:', error);
+    console.error('Error updating student status:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+export const updateCurrentStatusByIdToRejected = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    console.log(student_id)
+
+    const updatedStudent = await Student.findOneAndUpdate(
+      { student_id },
+      { $set: { currentStatus: 'rejected' } }, 
+      { new: true } 
+    );
+
+    if (!updatedStudent) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    res.status(200).json({ message: 'Student status updated successfully' });
+  } catch (error) {
+    console.error('Error updating student status:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };

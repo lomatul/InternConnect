@@ -47,6 +47,7 @@ const Companypool = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+           <img src='search.png'></img>
         </div>
       </section>
       <section className="table__body">
