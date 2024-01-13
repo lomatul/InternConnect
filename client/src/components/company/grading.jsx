@@ -48,132 +48,9 @@ const Gradesheet = () => {
       } else {
         console.error('Failed to update student data. Server returned:', response.status, response.data);
       }
-<<<<<<<<< Temporary merge branch 1
     } catch (error) {
       console.error('An error occurred while updating student data:', error);
     }
-=========
-    };
-  
-    const [editRow, setEditRow] = useState(null);
-  
-    const handleEditClick = (index) => {
-      setEditRow(index);
-      setEditMode(true);
-    };
-  
-    const handleSaveClick = (index) => {
-      // Save the edited company data here, and then exit edit mode.
-      setEditRow(null);
-      setEditMode(false);
-    };
-  
-    return (
-      <main className="table">
-        <section className="table__header">
-          <h1>Student Grade Details</h1>
-          <div className="input-group">
-            <input
-              type="search"
-              placeholder="Search Data..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
-             <img src='search.png'></img>
-          </div>
-        </section>
-  
-        <section className="table__body">
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>ID</th>
-                <th>Mentor's Marks</th>
-                <th>Mentor's Assesment</th>
-                <th>Student's Report </th>
-                <th>Report Marks</th>
-                <th>Presentation Marks</th>
-                <th></th>
-              </tr>
-            </thead>
-  
-            <tbody>
-              {filteredCompanies.map((company, index) => (
-                <tr key={index}>
-  
-  
-                  <td>                                  
-                      Lomatul Mahzabin                                   
-                  </td>            
-                  <td>                 
-                      200042113                    
-                    </td>
-                   <td>                 
-                      A                 
-                  </td>
-                  <td>                 
-                      200042113_assesment              
-                  </td>
-                  <td>                 
-                      200042113_report.pdf            
-                  </td>
-  
-                  <td>
-                  {editRow === index ? (
-                      <input
-                        type="number" min={"0"}
-                        value={company.minInterns}
-                        onChange={(e) => {
-                          const updatedCompanies = [...companies];
-                          updatedCompanies[index].minInterns = e.target.value;
-                          setCompanies(updatedCompanies);
-                        }}
-                      />
-                    ) : (
-                      company.minInterns
-                    )}
-                  </td>
-  
-                  <td>
-                  {editRow === index ? (
-                      <input
-                        type="number" min={"0"}
-                        value={company.minInterns}
-                        onChange={(e) => {
-                          const updatedCompanies = [...companies];
-                          updatedCompanies[index].minInterns = e.target.value;
-                          setCompanies(updatedCompanies);
-                        }}
-                      />
-                    ) : (
-                      company.minInterns
-                    )}
-                  </td>
-
-
-
-                  <td>
-                    {editRow === index ? (
-                      <div className="save">
-                      <button onClick={() => handleSaveClick(index)}>Save</button>
-                      </div>
-                    ) : (
-                      <div className="edit">
-                      <button onClick={() => handleEditClick(index)}>
-                        {editRow === index ? 'Save' : 'Edit'}
-                      </button>
-                      </div>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-      </main>
-    );
->>>>>>>>> Temporary merge branch 2
   };
 
   const handleReportClick = (studentId) => {
@@ -267,5 +144,6 @@ const Gradesheet = () => {
       </section>
     </main>
   );
+};
 
 export default Gradesheet;
