@@ -9,14 +9,8 @@ const Studentlist = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        const studentsData = response.data;
-
-        if (!studentsData || studentsData.length === 0) {
-          console.log('No students found.');
-          return;
-        }
-        setStudents(studentsData);
-        setFilteredStudents(studentsData); // Initially, both arrays are the same
+        setStudents(response.data);
+        setFilteredStudents(response.data); // Initially, both arrays are the same
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
