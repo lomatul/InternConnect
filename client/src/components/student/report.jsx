@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthContext } from "../../context/useAuthcontext";
-import React, { useState, useEffect} from 'react';
-import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
 import { toast } from 'react-toastify';
