@@ -18,11 +18,24 @@ const Adddeadline = () => {
 
   const handleSubmitcv = async(e) => {
     e.preventDefault()
+    const currentDate = new Date();
+    
     try{
 
       if (!selectedCvDate) {
         if (!cvSubmitWarningShown) {
           toast.warning("Please select a date for CV submission", { position: "top-right" });
+          setCvSubmitWarningShown(true);
+          setTimeout(() => {
+            setCvSubmitWarningShown(false);
+          }, 4000);
+        }
+        return;
+      }
+
+      if (new Date(selectedCvDate) < currentDate) {
+        if (!cvSubmitWarningShown) {
+          toast.error("CV submission date should be later than the current date", { position: "top-right" });
           setCvSubmitWarningShown(true);
           setTimeout(() => {
             setCvSubmitWarningShown(false);
@@ -74,11 +87,24 @@ const Adddeadline = () => {
 
   const handleSubmitreport = async(e) => {
     e.preventDefault()
+    const currentDate = new Date();
+
     try{
 
       if (!selectedReportDate) {
         if (!reportSubmitWarningShown) {
           toast.warning("Please select a date for report submission", { position: "top-right" });
+          setReportSubmitWarningShown(true);
+          setTimeout(() => {
+            setReportSubmitWarningShown(false);
+          }, 4000);
+        }
+        return;
+      }
+
+      if (new Date(selectedReportDate) < currentDate) {
+        if (!reportSubmitWarningShown) {
+          toast.error("Report submission date should be later than the current date", { position: "top-right" });
           setReportSubmitWarningShown(true);
           setTimeout(() => {
             setReportSubmitWarningShown(false);
