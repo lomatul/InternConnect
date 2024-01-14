@@ -267,58 +267,48 @@ export const postReportMarks = async (req, res) => {
 };
 
 
-export const postCvdeadline = async( req, res) => {
-  try{
-    const {time} = req.body;
 
-    const admin = await Admin.findOne();
+const GradeGenerate = async(mentorpart, reportpart, presentationpart) =>{
+  const students = await Student.find();
+try{const promise = students.map(async(student)=>{
+  const totalmark=((student.evaluatedMentorMarks || 0)/60)*mentorpart+((student.internshipReportMarks|| 0)/100)*reportpart+((student.presentationMarks || 0)/100)*presentationpart
+  console.log("total mark", totalmark)
+  var grade;
 
-    const deadline= admin.deadlines.find((el)=> {return el.topic==="cv"})
-
-    if(deadline){
-      deadline.time=time
-      await admin.save();
-    }else{
-      const newdeadline = {
-        topic : "cv",
-        time : time
-      }
-
-      admin.deadlines.push(newdeadline);
-      await admin.save();
-    }
-
-
-    return res.status(200).json({message:"new deadline is set."})
-
-
-  }catch (error){
-    console.log("Error: ", error);
-    res.status(500).json({ error: 'Internal Server Error' });
+  if (totalmark >= 80) {
+    grade = 'A+';
+  } else if (totalmark >= 75) {
+    grade = 'A';
+  } else if (totalmark >= 70) {
+    grade = 'A-';
+  } else if (totalmark >= 65) {
+    grade = 'B+';
+  } else if (totalmark >= 60) {
+    grade = 'B';
+  } else if (totalmark >= 55) {
+    grade = 'B-';
+  } else if (totalmark >= 50) {
+    grade = 'C+';
+  } else if (totalmark >= 45) {
+    grade = 'C';
+  } else if (totalmark >= 40) {
+    grade = 'D';
+  } else {
+    grade = 'F';
   }
+
+  student.finalGrade=grade;
+  await student.save();
+})
+
+await Promise.all(promise);
+}catch (error){
+  console.log("Error: ", error);
+  res.status(500).json({ error: 'Internal Server Error' });
+}
+  
 }
 
-
-export const getCvdeadline = async( req, res) => {
-  try{
-
-    const admin = await Admin.findOne();
-
-    const deadline= admin.deadlines.find((el)=> {return el.topic==="cv"})
-
-    if(!deadline){
-      return res.status(400).json({error:"Deadline not found."});
-    }
-
-
-    return res.status(200).json({Deadline:deadline.time});
-
-
-  }catch (error){
-    console.log("Error: ", error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-}
 
 export const getGradeExcel = async(req, res) => {
   try {
@@ -352,6 +342,109 @@ export const getGradeExcel = async(req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
+
+export const postMarks = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const { presentationMarks, internshipReportMarks } = req.body;
+
+    // Find the student based on the provided student_id
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found.' });
+    }
+
+    // Update the presentationMarks and internshipReportMarks
+    student.presentationMarks = presentationMarks;
+    student.internshipReportMarks = internshipReportMarks;
+
+    // Save the updated student
+    await student.save();
+
+    res.status(200).json({
+      message: 'Marks updated successfully!',
+      student: {
+        name: student.name,
+        student_id: student.student_id,
+        presentationMarks: student.presentationMarks,
+        internshipReportMarks: student.internshipReportMarks,
+      },
+    });
+  } catch (error) {
+    console.error('Error updating marks:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+
+export const postCvdeadline = async( req, res) => {
+  try{
+    const {time} = req.body;
+
+    const admin = await Admin.findOne();
+
+    const deadline= admin.deadlines.find((el)=> {return el.topic==="cv"})
+
+    if(deadline){
+      deadline.time=time
+      await admin.save();
+    }else{
+      const newdeadline = {
+        topic : "cv",
+        time : time
+      }
+
+      admin.deadlines.push(newdeadline);
+      await admin.save();
+    }
+
+    const student = await Student.find();
+    var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
+    
+    const promise = student.map(async(element)=>{
+      const sub="New Deadline is Published for Cv"
+      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
+      await Mailfunction(sub, element.email, text);
+    })
+
+    await Promise.all(promise);
+
+
+    return res.status(200).json({message:"new deadline is set."})
+
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
+export const getCvdeadline = async( req, res) => {
+  try{
+
+    const admin = await Admin.findOne();
+
+    const deadline= admin.deadlines.find((el)=> {return el.topic==="cv"})
+
+    if(!deadline){
+      return res.status(400).json({error:"Deadline not found."});
+    }
+
+
+    return res.status(200).json({Deadline:deadline});
+
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
 
 export const postReportdeadline = async( req, res) => {
   try{
@@ -397,7 +490,7 @@ export const getReportdeadline = async( req, res) => {
     }
 
 
-    return res.status(200).json({Deadline:deadline.time});
+    return res.status(200).json({Deadline:deadline});
 
 
   }catch (error){
@@ -405,38 +498,3 @@ export const getReportdeadline = async( req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-
-
-export const postMarks = async (req, res) => {
-  try {
-    const { student_id } = req.params;
-    const { presentationMarks, internshipReportMarks } = req.body;
-
-    // Find the student based on the provided student_id
-    const student = await Student.findOne({ student_id });
-
-    if (!student) {
-      return res.status(404).json({ error: 'Student not found.' });
-    }
-
-    // Update the presentationMarks and internshipReportMarks
-    student.presentationMarks = presentationMarks;
-    student.internshipReportMarks = internshipReportMarks;
-
-    // Save the updated student
-    await student.save();
-
-    res.status(200).json({
-      message: 'Marks updated successfully!',
-      student: {
-        name: student.name,
-        student_id: student.student_id,
-        presentationMarks: student.presentationMarks,
-        internshipReportMarks: student.internshipReportMarks,
-      },
-    });
-  } catch (error) {
-    console.error('Error updating marks:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
