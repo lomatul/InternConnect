@@ -45,13 +45,19 @@ const Prefernces = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        const allCompanies = response.data;
+
+        if (!allCompanies || allCompanies.length === 0) {
+          console.log('No companies found.');
+          return;
+        }
+        const hiringCompanies = allCompanies.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         console.log(companies)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
       })
       .catch((error) => {
-        console.error('An error occurred while fetching companies:', error);
+        console.error('An error occurred while fetching companies:', error.message);
       });
   }, []);
   
@@ -121,22 +127,31 @@ const Prefernces = () => {
 
                     <div className="form-group">
                         <label htmlFor="">Contact Number<span>*</span></label>
-                        <input type="number" min="0"/>
+                        <input type="number" placeholder="Give Contact Number" min="0"/>
                     </div>
 
                 <div className="form-group">
                       <h2>Give Company Preferences</h2>
                     <label htmlFor="">Choice 1<span>*</span> </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect' value={firstchoicecompany} options={companies} onChange={(e) => setFirstchoicecompany(e.target.value)} />        
+                            <Select className='adselect'  options={companies.map((company)=>({
+                                  value:company._id,
+                                  label:company.name
+                            }))} onChange={(selectedOption) => setFirstchoicecompany(selectedOption.value)} />        
                         </div>
                     <label htmlFor="">Choice 2 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect' value={secondchoicecompany} options={domains} onChange={(e) => setSecondchoicecompany(e.target.value)} />
+                            <Select className='adselect'  options={companies.map((company)=>({
+                                  value:company._id,
+                                  label:company.name
+                            }))}onChange={(selectedOption) => setSecondchoicecompany(selectedOption.value)} />
                         </div>                      
                     <label htmlFor="">Choice 3 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                              <Select className='adselect' value={thirdchoicecompany} options={domains}onChange={(e) => setThirdchoicecompany(e.target.value)}/>              
+                              <Select className='adselect'  options={companies.map((company)=>({
+                                  value:company._id,
+                                  label:company.name
+                            }))}onChange={(selectedOption) => setThirdchoicecompany(selectedOption.value)}/>              
                         </div>                        
                   </div>
 
@@ -145,15 +160,15 @@ const Prefernces = () => {
                       <h2>Give Domain Preferences</h2>
                     <label htmlFor="">Choice 1<span>*</span> </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect' value={firstchoicecompany} options={domains}  onChange={(e) => setFirstchoicedomain(e.target.value)} />        
+                            <Select className='adselect'  options={domains}  onChange={(selectedOption) => setFirstchoicedomain(selectedOption.value)} />        
                         </div>
                     <label htmlFor="">Choice 2 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect' value={secondchoicecompany} options={domains} onChange={(e) => setSecondchoicedomain(e.target.value)}/>
+                            <Select className='adselect'  options={domains} onChange={(selectedOption) => setSecondchoicedomain(selectedOption.value)}/>
                         </div>                      
                     <label htmlFor="">Choice 3 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                              <Select className='adselect' value={thirdchoicecompany} options={domains}onChange={(e) => setThirdchoicedomain(e.target.value)}/>              
+                              <Select className='adselect'  options={domains}onChange={(selectedOption) => setThirdchoicedomain(selectedOption.value)}/>              
                         </div>                        
                   </div>
 

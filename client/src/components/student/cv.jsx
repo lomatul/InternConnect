@@ -1,5 +1,4 @@
 import React, { useState, useEffect} from 'react';
-import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
@@ -16,6 +15,7 @@ const UploadCV = () => {
   const [id, setId] = useState('')
   const [hascv, setHascv]=useState(false)
   const [cv, setCv]=useState('')
+  const [deadline, setDeadline]=useState('')
 
   useEffect(() => {
     if (userstudent) {
@@ -43,7 +43,6 @@ const UploadCV = () => {
       }
       if(userstudent.CV){
         setHascv(true);
-        
       }
       setLoading(false); // Set loading to false when data is available
     } 
@@ -51,6 +50,31 @@ const UploadCV = () => {
     // Update the 'userData' state with the fetched data
     // For simplicity, we are using mock data here.
   }, [userstudent]);
+
+    
+  useEffect(()=>{
+    const date= new Date();
+    console.log("Current Date", date);
+    try {
+        console.log("came here")
+        axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
+          const { time } = response.data.Deadline; 
+          setDeadline(new Date(time));
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }, []
+  )
   
   useEffect(()=>{
     if(id){
@@ -82,8 +106,10 @@ const UploadCV = () => {
   
   const handleSubmit = async(event) => {
     event.preventDefault()
-
-    const formData = new FormData();
+    if(Date()>deadline){
+      alert("Deadline passed");
+    }else{
+      const formData = new FormData();
       formData.append("file", selectedFile);
       console.log(formData)
     try {
@@ -120,6 +146,8 @@ const UploadCV = () => {
       console.error('An error occurred:', error);
     }
     setSelectedFile(null)
+    }
+    
   }
 
   const handleview = async(event) => {
@@ -170,7 +198,7 @@ const UploadCV = () => {
                       <img src="cv-up.gif" alt="" />
                   </div>
             </div>
-      
+          {new Date()>deadline?<p>Deadline is passed.</p>:<p>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</p>}
             <div className="studentguideline">           
                      <ul>
                         <li>Use a clear and professional format for your CV (preferable in Latex).</li>
@@ -178,6 +206,7 @@ const UploadCV = () => {
                           <li>Highlight your skills, experience, and education.</li>
                           <li>Tailor your CV for the specific job or internship you're applying for.</li>
                           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
                        </ul>
 
                 
@@ -189,10 +218,10 @@ const UploadCV = () => {
                           <a href="cvsample3.pdf" download>Download Sample CV 3</a>
                   </div>
 
-                <div className="xcellupload">             
+                {new Date()>deadline?<div className="xcellupload">            
                   <input type="file" accept=".pdf" onChange={handleFileSelect}/>
-                  {hascv?<button onClick={handleSubmit}>Upload</button>:<button onClick={handleSubmit}>Upload</button>}
-                </div>
+                  <button onClick={handleSubmit}>Upload</button>
+                </div>:<div></div>}
                    {hascv&&<button><a style={{color:'white'}} href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download your CV </a></button>}
              </div>
           

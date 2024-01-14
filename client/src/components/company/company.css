@@ -8,6 +8,81 @@
     align-items: center;
 }
 
+.table .form-group1{
+    width: 30%;
+   margin-left: 500px;
+   margin-top: 30px;
+}
+
+.companies  .edit button {
+    height: 30px;
+    width: 100px;
+    border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    outline: 2 px solid white ;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.companies  .save button {
+    height: 30px;
+    width: 100px;
+      border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.companies  button {
+    height: 30px;
+    border: none;
+    width: 100px;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.companies .form-group   {
+   width: 70%;
+   margin-left: 100px;
+  }
+
+.table-button{
+    align-items: center;
+}
+
+.table .form-button button{
+    margin-bottom: 50px;
+    margin-left: 600px;
+    height: 60px;
+    width: 200px;
+    border: none;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+.table-button button{
+    padding: 10px;
+    height: 60px;
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    margin-right: 200px;
+    border: none;
+    white-space: nowrap;
+    background-color: rgb(170, 185, 184);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
+
 .companies main.table {
     width: 102vw;
     background-color: #b9cfd7;
@@ -29,8 +104,9 @@
 }
 
 .table__header .input-group {
-   margin-left: 50px;
-    width: 35%;
+    margin-left: 50px;
+    margin-right: 100px;
+    width: 400px;
     height: 50px;
     background-color: #fff5;
     padding: 0 .8rem;
@@ -42,14 +118,14 @@
 }
 
 .table__header .input-group:hover {
-    width: 45%;
+    width: 450px;
     background-color: #fff8;
     box-shadow: 0 .1rem .4rem #0002;
 }
 
 .table__header .input-group img {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .table__header .input-group input {
@@ -150,11 +226,6 @@ tbody tr.hide td p {
     transition: .2s ease-in-out .5s;
 }
 
-tbody tr.hide td img {
-    width: 0;
-    height: 0;
-    transition: .2s ease-in-out .5s;
-}
 
 .status {
     padding: .4rem 0;
@@ -162,18 +233,19 @@ tbody tr.hide td img {
     text-align: center;
 }
 
-.status.delivered {
+.status .hire {
     background-color: #86e49d;
-    color: #006b21;
+    border-radius: 10px;
 }
 
-.status.cancelled {
+.status .notstart {
+    border-radius: 10px;
     background-color: #d893a3;
-    color: #b30021;
 }
 
-.status.pending {
-    background-color: #ebc474;
+.status .pending {
+    border-radius: 10px;
+    background-color: #fad893;
 }
 
 .status.shipped {

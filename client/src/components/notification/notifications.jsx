@@ -12,10 +12,17 @@ const SendNotification = () => {
   const [recipientEmail, setRecipientEmail] = useState("");
   const [text, setText]= useState('')
   const [sub, setSub]= useState('')
+  const [type, setType]=useState('')
   const options=[
     {value:"All",label:"All"},
     {value:"Individual", label:"Individual"},
   ]
+
+  const receiver=[
+    {value:"Company",label:"Company"},
+    {value:"Student", label:"Student"},
+  ]
+
 
 
   const handleRecipientTypeChange = (selectedOption) => {
@@ -36,9 +43,9 @@ const SendNotification = () => {
     console.log(recipientType)
     if(recipientType==="All"){
     try {
-      await axios.post('http://localhost:4000/InterConnect/admin/sendtoall', {text, sub})
+      await axios.post('http://localhost:4000/InterConnect/admin/sendtoall', {text, sub, type})
       .then((response) => {
-        console.log(response)// Initially, both arrays are the same
+        console.log(response)   // Initially, both arrays  are the same
         toast.success('Notification sent successfully', { position: "top-right" });
           setTimeout(() => {
             window.location.reload();
@@ -89,6 +96,7 @@ const SendNotification = () => {
     setText('')
     setSub('')
   };
+  
 
   return (
     <div >
@@ -114,16 +122,24 @@ const SendNotification = () => {
               <input type="text" value={sub} onChange={(e) => setSub(e.target.value)}/>
                 </div>
                 
+                
+            {recipientType==="All"&&<div className="form-group">
+              <label htmlFor="">Select Recipient<span>*</span></label>
+
+              <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
+                  <Select className='adselect' options={receiver} onChange={(selectedOption) => setType(selectedOption.value)}/>
+             </div>   
+
+        </div>}
+
 
             <div className="form-group">
               <label htmlFor="">Select Recipient<span>*</span></label>
 
               <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
                   <Select className='adselect' options={options} onChange={handleRecipientTypeChange} value={options.find((option) => option.value === recipientType)}/>
-             </div>
-         
-              {recipientType === "Individual" && (
-                
+             </div>      
+              {recipientType === "Individual" && (             
                 <div>
                   <label htmlFor="">Recipient Email Address<span>*</span></label>
                   <input
@@ -134,8 +150,7 @@ const SendNotification = () => {
                   />
                 </div>
               )}
-
-</div>
+        </div>
               <button type="submit">Send</button>
         
         </form>

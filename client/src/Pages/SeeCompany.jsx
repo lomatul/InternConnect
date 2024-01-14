@@ -13,6 +13,8 @@ function SeeCompanies() {
   return (
     <div className='newAdmin'>   
       <Navbar/>
+      <p style={{ marginLeft:"100px"}}>If you want to see the Previous Company History <a href='/History'> Click Here</a></p>
+   
       <div className="companies">     
       <Companypool/>
       </div>
