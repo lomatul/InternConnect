@@ -5,48 +5,125 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
-import toast, { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 
 
 const Adddeadline = () => {
   
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedCvDate, setSelectedCvDate] = useState(null);
   const [selectedReportDate, setSelectedReportDate] = useState(null);
+  const [cvSubmitWarningShown, setCvSubmitWarningShown] = useState(false);
+  const [reportSubmitWarningShown, setReportSubmitWarningShown] = useState(false);
 
-  
   const handleSubmitcv = async(e) => {
     e.preventDefault()
     try{
-      await axios.post('http://localhost:4000/InterConnect/admin/postCvdeadline', {time:selectedDate}
+
+      if (!selectedCvDate) {
+        if (!cvSubmitWarningShown) {
+          toast.warning("Please select a date for CV submission", { position: "top-right" });
+          setCvSubmitWarningShown(true);
+          setTimeout(() => {
+            setCvSubmitWarningShown(false);
+          }, 4000);
+        }
+        return;
+      }
+
+      const reportDeadlineResponse = await axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline');
+      const existingReportDeadline = reportDeadlineResponse.data.Deadline;
+
+      // Check if existing Report deadline is earlier than selectedCvDate
+      if (existingReportDeadline && new Date(existingReportDeadline.time) <= new Date(selectedCvDate)) {
+        if (!cvSubmitWarningShown) {
+          toast.error("CV submission date should be earlier than the existing Report submission date", { position: "top-right" });
+          setCvSubmitWarningShown(true);
+          setTimeout(() => {
+            setCvSubmitWarningShown(false);
+          }, 4000);
+        }
+        return;
+      }
+
+      await axios.post('http://localhost:4000/InterConnect/admin/postCvdeadline', {time:selectedCvDate}
           ).then((response)=>{
               console.log(response);
-              toast.success("New deadline is posted")
+              toast.success("New deadline is posted", { position: "top-right" })
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
           }).catch((error)=>{
               if (error.response) {
-                  console.log(error.response);
-                  console.log("server responded");
-                } else if (error.request) {
-                  console.log("network error");
-                } else {
-                  console.log(error);
-                }
+                toast.error('Error while creating deadline', { position: "top-right" });
+                console.log(error.response);
+                console.log("server responded");
+              } else if (error.request) {
+                console.log("network error");
+              } else {
+                console.log(error);
+              }
       });
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error.message);
     }
-    setSelectedDate(null)
+    setSelectedCvDate(null);
+    setCvSubmitWarningShown(false);
   }
+ 
+
   const handleSubmitreport = async(e) => {
     e.preventDefault()
     try{
+
+      if (!selectedReportDate) {
+        if (!reportSubmitWarningShown) {
+          toast.warning("Please select a date for report submission", { position: "top-right" });
+          setReportSubmitWarningShown(true);
+          setTimeout(() => {
+            setReportSubmitWarningShown(false);
+          }, 4000);
+        }
+        return;
+      }
+
+      // Check if CV submission date is earlier than Report submission date
+      if (selectedCvDate && new Date(selectedCvDate) >= new Date(selectedReportDate)) {
+        if (!reportSubmitWarningShown) {
+          toast.error("Report submission date should be later than CV submission date", { position: "top-right" });
+          setReportSubmitWarningShown(true);
+          setTimeout(() => {
+            setReportSubmitWarningShown(false);
+          }, 4000);
+        }
+        return;
+      }
+
+    const cvDeadlineResponse = await axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline');
+    const existingCvDeadline = cvDeadlineResponse.data.Deadline;
+
+    // Check if existing CV deadline is later than selectedReportDate
+    if (existingCvDeadline && new Date(existingCvDeadline.time) >= new Date(selectedReportDate)) {
+      if (!reportSubmitWarningShown) {
+        toast.error("Report submission date should be later than the existing CV submission date", { position: "top-right" });
+        setReportSubmitWarningShown(true);
+        setTimeout(() => {
+          setReportSubmitWarningShown(false);
+        }, 4000);
+      }
+      return;
+    }
+
       await axios.post('http://localhost:4000/InterConnect/admin/postReportdeadline', {time:selectedReportDate}
           ).then((response)=>{
               console.log(response);
-              toast.success("New deadline is posted")
+              toast.success("New deadline is posted", { position: "top-right" });
+              setTimeout(() => {
+                window.location.reload();
+              }, 2000);
           }).catch((error)=>{
               if (error.response) {
+                 toast.error('Error while creating deadline', { position: "top-right" });
                   console.log(error.response);
                   console.log("server responded");
                 } else if (error.request) {
@@ -56,11 +133,13 @@ const Adddeadline = () => {
                 }
       });
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error.message);
     }
-    selectedReportDate(null)
+    setSelectedReportDate(null);
+    setReportSubmitWarningShown(false);
   }
  
+
   return (
     <div>
       <div className='admincontainer'>
@@ -68,8 +147,6 @@ const Adddeadline = () => {
           <h3>Streamline Student Betterment </h3>
           <h1>Add Deadlines for Students</h1>
         </div>
-
-
       </div>
 
 
@@ -83,7 +160,7 @@ const Adddeadline = () => {
             <label> Set Deadline for Cv Submission</label>
             <div className="datepicker">
             <LocalizationProvider dateAdapter={AdapterDayjs} >
-            <DatePicker onChange={(e)=>{setSelectedDate(e.toISOString())}}/>
+            <DatePicker onChange={(e)=>{setSelectedCvDate(e.toISOString())}}/>
             </LocalizationProvider>
             </div>      
             <div className="date-button">
@@ -104,8 +181,6 @@ const Adddeadline = () => {
             <button onClick={handleSubmitreport}>Submit</button>
             </div>    
         </div>
-
-
 
 
     </div>
