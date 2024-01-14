@@ -9,6 +9,7 @@ const Gradesheet = () => {
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+  const [viewassesment, setViewassesment] = useState(null);
 
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
@@ -24,6 +25,18 @@ const Gradesheet = () => {
         setStudents(studentsData);
         setFilteredStudents(studentsData);
   
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching students:', error);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    axios.get('http://localhost:4000/InterConnect/mentor/getViewAssesment')
+      .then((response) => {
+        console.log(response.data.assesment)
+        setViewassesment(response.data.assesment);
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
@@ -77,6 +90,11 @@ const Gradesheet = () => {
   const handleReportClick = (studentId) => {
     window.open(`http://localhost:4000/InterConnect/student/getStudentReport/${studentId}`, '_blank');
   };
+  if(!viewassesment){
+    return(
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <main className="table">
@@ -106,7 +124,15 @@ const Gradesheet = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.evaluatedMentorMarks || 'N/A'}</td>
-                <td>{student.mentorsAssessment || 'N/A'}</td>
+                {viewassesment[student.student_id] ? (
+                  <td>
+                      {viewassesment[student.student_id].map((el) => (
+                      <a href={`/ViewAssesment/${el}/${student.student_id}`}>View Assessment</a>
+                  ))}
+                  </td>
+                    ) : (
+                  <td>'N/A'</td>
+                  )}
                 <td>
                   <Link to="#" onClick={() => handleReportClick(student.student_id)}>
                     {student.internshipReport || 'N/A'}
