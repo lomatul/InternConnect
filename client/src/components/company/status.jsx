@@ -85,9 +85,21 @@ const Status = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <div className="status">
+                  {!student.currentStatus&&
                   <div className="notstart">
                   <td>{student.currentStatus}</td>
                   </div>
+                  }
+                  {student.currentStatus==="In Progress"&&
+                  <div className="somthing">
+                  <td>{student.currentStatus}</td>
+                  </div>
+                  }
+                  {student.currentStatus==="Hired"&&
+                  <div className="something">
+                  <td>{student.currentStatus}</td>
+                  </div>
+                  }
                 </div>
                 <td>{student.companyName}</td>
               </tr>
