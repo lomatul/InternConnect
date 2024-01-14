@@ -14,8 +14,17 @@ const Gradesheet = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        setStudents(response.data || []);
-        setFilteredStudents(response.data || []);
+
+        const studentsData = response.data;
+
+        if (!studentsData || studentsData.length === 0) {
+          console.log('No students found.');
+          return;
+        }
+
+        setStudents(studentsData);
+        setFilteredStudents(studentsData);
+  
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
@@ -42,7 +51,11 @@ const Gradesheet = () => {
         internshipReportMarks: editedStudent.internshipReportMarks,
         presentationMarks: editedStudent.presentationMarks,
       });
-      toast.success('Marks have been updated')
+
+      toast.success('Marks Have Been Updated', { position: "top-right" });
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
 
       if (response.status === 200) {
         console.log('Student data updated successfully!');
@@ -52,8 +65,16 @@ const Gradesheet = () => {
         // Refresh the data after saving
         axios.get('http://localhost:4000/InterConnect/student/students')
           .then((response) => {
-            setStudents(response.data || []);
-            setFilteredStudents(response.data || []);
+
+            const studentsData = response.data;
+
+            if (!studentsData || studentsData.length === 0) {
+              console.log('No students found.');
+              return;
+            }
+            setStudents(studentsData);
+            setFilteredStudents(studentsData);
+
           })
           .catch((error) => {
             console.error('An error occurred while fetching students:', error);
