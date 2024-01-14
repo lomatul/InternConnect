@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import {useLocation} from 'react-router-dom';
 
 
-
 const Updatepassword = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,11 +19,10 @@ const Updatepassword = () => {
 
   const [passwordStrengthMessage, setPasswordStrengthMessage] = useState('');
 
-// Function to clear the password strength message after 3 seconds
 const clearPasswordStrengthMessage = () => {
   setTimeout(() => {
     setPasswordStrengthMessage('');
-  }, 2000); // 3 seconds
+  }, 2000); // 2 seconds
 };
 
   useEffect(() => {
