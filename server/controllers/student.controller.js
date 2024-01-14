@@ -220,12 +220,15 @@ export const postlogin = (req, res, next) => {
       if(err){
         console.error(err)
         return res.status(500).json({ error: "Session is not set" });
+      }else{
+        console.log("if session is set", req.user)
+        res.status(200).json({ message: "Logged In", User: user });
       }
     }
     )
-    // console.log("if session is set", req.user)
+
     // Authentication succeeded
-    res.status(200).json({ message: "Logged In", User: user });
+
   })(req, res, next);
 };
 
@@ -724,3 +727,29 @@ export const getStudentReportById = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
+export const ViewGrade = async(req, res) => {
+  try{
+    const id=req.user.id;
+
+    const student = await Student.findById(id);
+  
+    const returnStudentGrade = {
+      evaluatedMentorMarks:student.evaluatedMentorMarks,
+      presentationMarks:student.presentationMarks,
+      internshipReportMarks:student.internshipReportMarks,
+      finalGrade:student.finalGrade
+    }
+
+    console.log(returnStudentGrade)
+
+    res.status(200).json({returnStudentGrade:returnStudentGrade});
+  }catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+  
+
+
+}

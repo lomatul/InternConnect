@@ -198,7 +198,6 @@ const UploadCV = () => {
                       <img src="cv-up.gif" alt="" />
                   </div>
             </div>
-          {new Date()>deadline?<p>Deadline is passed.</p>:<p>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</p>}
             <div className="studentguideline">           
                      <ul>
                         <li>Use a clear and professional format for your CV (preferable in Latex).</li>
@@ -218,7 +217,7 @@ const UploadCV = () => {
                           <a href="cvsample3.pdf" download>Download Sample CV 3</a>
                   </div>
 
-                {new Date()>deadline?<div className="xcellupload">            
+                {new Date()<deadline?<div className="xcellupload">            
                   <input type="file" accept=".pdf" onChange={handleFileSelect}/>
                   <button onClick={handleSubmit}>Upload</button>
                 </div>:<div></div>}

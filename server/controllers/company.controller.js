@@ -296,7 +296,8 @@ export const assignMenotors = async( req, res)=>{
       const mentor = new Mentor({
         name:element.name,
         email:element.email,
-        assignedStudents:[Studentid]
+        designation:element.position,
+        assignedStudents:[{student_id:Studentid}]
       });
       await mentor.save();
     })   
