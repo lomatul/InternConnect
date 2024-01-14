@@ -39,10 +39,17 @@ const Contacts = () => {
             
         </div>
                 
-                
-
+             <div className="contact-submit">
               <button type="submit">Send</button>
-              <button style={{marginTop:"20px"}} > Go Back</button>
+              </div>
+              <div className="contact-submit">
+
+              
+              <button style={{ cursor: 'pointer' , marginTop:"20px"}}>
+                <a href="/"   style={{ color:"wheat"}}>Go Back</a>
+              </button>
+              </div>
+              
         </form>
       </div>
       </div>
