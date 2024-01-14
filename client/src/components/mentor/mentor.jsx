@@ -125,11 +125,11 @@ const Mentor = () => {
       // Remove the mentor at the specified index from the array
       setMentors((prevMentors) => prevMentors.filter((_, i) => i !== index));
     };
-    if(students.length==0){
-      return(
-        <div><p>Thanks, You have added mentors for all students.</p></div>
-      )
-    }
+    // if(students.length==0){
+    //   return(
+    //     <div><p>Thanks, You have added mentors for all students.</p></div>
+    //   )
+    // }
     return (     
     <div >
     <div className='admincontainer'>

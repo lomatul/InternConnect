@@ -89,8 +89,8 @@ const Navbar = () => {
         {(!userstudent && !useradmin) ? (
           <a href='/login'>Login</a>
         ) : null}
-        {userstudent ? <a href='/Student'>{userstudent.name}</a> : null}
-        {useradmin ? <a href='/Admin'>{useradmin.name}</a> : null}
+        {userstudent ? <a href='/Student'> <img src="user.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" , marginRight:"10px" }}   />{userstudent.name}</a> : null}
+        {useradmin ? <a href='/Admin'> <img src="adnav.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" , marginRight:"10px" }}   />{useradmin.name}</a> : null}
       </div>
     </div>
   );
