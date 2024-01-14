@@ -50,7 +50,7 @@ const Sendcv = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        const hiringCompanies = response.data.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         console.log(companies)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
@@ -158,7 +158,7 @@ const Sendcv = () => {
                     
                     <div className="form-group">
                         <label>Sorting Method:</label>
-                        <Select className='adselect'   onChange={(selectedOption) => setSort(selectedOption.value)}/>             
+                        <Select className='adselect'  options={sortingways} onChange={(selectedOption) => setSort(selectedOption.value)}/>             
                     </div>
                   </div>
 
