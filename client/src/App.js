@@ -33,7 +33,7 @@ import TestModal from "./Pages/test";
 import { ToastContainer, toast } from 'react-toastify';
 import StudentStatus from "./Pages/studentstatus";
 import GradeStatus from "./Pages/studentgrade";
-import Adddeadline from "./components/admin/deadline";
+import SendDeadline from "./Pages/deadline";
 import Addreport from "./Pages/AddReport";
 
 
@@ -81,7 +81,7 @@ function App() {
         <Route path="/History" element = {<History/>} />
         <Route path="/Status" element = {<StudentStatus/>} />
         <Route path="/GradeStatus" element = {<GradeStatus/>} />
-        <Route path="/Adddeadline" element = {<Adddeadline/>} />
+        <Route path="/Adddeadline" element = {<SendDeadline/>} />
         <Route path="/Addreport" element = {<Addreport/>} />
       </Routes>
     </BrowserRouter>
