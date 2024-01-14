@@ -23,11 +23,12 @@ import {
   updateCurrentStatusByIdToHired,
   updateCurrentStatusByIdToRejected,
   uploadInternshipReportFile,
-  getStudentReportById
+  getStudentReportById,
+  ViewGrade
 } from '../controllers/student.controller.js';
 import Upload from '../middlewares/multer.Cv.js'; 
 import uploadInternshipReport from '../middlewares/multer.report.js';
-
+import {ensureAuthenticated} from '../middlewares/auth.middleware.js'
 
 const router = express.Router();
 
@@ -80,5 +81,7 @@ router.get('/updateCurrentStatusByIdToRejected/:student_id', updateCurrentStatus
 router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
 
 router.get('/getStudentReport/:student_id', getStudentReportById);
+
+router.get('/ViewGrade', ensureAuthenticated, ViewGrade);
 
 export default router;
