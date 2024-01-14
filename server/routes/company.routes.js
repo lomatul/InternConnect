@@ -39,7 +39,7 @@ router.post('/assignMenotors', assignMenotors);
 
 router.get('/sendmentorsforms', sendFormtomentors)
 
-router.get('/sendHiredNotifyingMail', sendHiredNotifyingMail)
+router.post('/sendHiredNotifyingMail', sendHiredNotifyingMail)
 
 export default router;
 

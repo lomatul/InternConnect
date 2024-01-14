@@ -25,7 +25,7 @@ router.post('/postCvdeadline', postCvdeadline);
 router.get("/getCvdeadline", getCvdeadline);
 router.post('/postReportdeadline', postReportdeadline);
 router.get("/getReportdeadline", getReportdeadline);
-router.get("/getGradeExcel", getGradeExcel);
+router.post("/getGradeExcel", getGradeExcel);
 
 //testing 
 router.post('/getMatchedStudents', getMatchedStudentForCompany)

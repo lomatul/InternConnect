@@ -20,7 +20,8 @@ import {
   editProject,
   deleteProject,
   updateCurrentStatus,
-  updateCurrentStatusById,
+  updateCurrentStatusByIdToHired,
+  updateCurrentStatusByIdToRejected,
   uploadInternshipReportFile,
   getStudentReportById
 } from '../controllers/student.controller.js';
@@ -72,7 +73,9 @@ router.delete('/deleteProjects/:student_id/:project_id', deleteProject);
 
 router.patch('/UpdateCurrentStatus', updateCurrentStatus);
 
-router.patch('/UpdateCurrentStatus/:student_id', updateCurrentStatusById);
+router.get('/updateCurrentStatusByIdToHired/:student_id', updateCurrentStatusByIdToHired);
+
+router.get('/updateCurrentStatusByIdToRejected/:student_id', updateCurrentStatusByIdToRejected);
 
 router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
 

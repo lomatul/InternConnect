@@ -34,10 +34,11 @@ const Studentlist = () => {
         <div className="input-group">
           <input
             type="search"
-            placeholder="Search Data..."
+            placeholder="Search Data by Company Name..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+           <img src='search.png'></img>
         </div>
       </section>
 

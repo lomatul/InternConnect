@@ -178,7 +178,7 @@ export const sendCvsToCompany = async (req, res) => {
     students.forEach(async element => {
       const student=await Student.findOne({ student_id: element.student_id });
 
-      student.currentStatus="Send";
+      student.currentStatus="In Progress";
       student.companyStatus=companyID;
       await student.save();
     });
@@ -444,6 +444,83 @@ export const getCvdeadline = async( req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+const GradeGenerate = async(mentorpart, reportpart, presentationpart) =>{
+  const students = await Student.find();
+try{const promise = students.map(async(student)=>{
+  const totalmark=((student.evaluatedMentorMarks || 0)/60)*mentorpart+((student.internshipReportMarks|| 0)/100)*reportpart+((student.presentationMarks || 0)/100)*presentationpart
+  console.log("total mark", totalmark)
+  var grade;
+
+  if (totalmark >= 80) {
+    grade = 'A+';
+  } else if (totalmark >= 75) {
+    grade = 'A';
+  } else if (totalmark >= 70) {
+    grade = 'A-';
+  } else if (totalmark >= 65) {
+    grade = 'B+';
+  } else if (totalmark >= 60) {
+    grade = 'B';
+  } else if (totalmark >= 55) {
+    grade = 'B-';
+  } else if (totalmark >= 50) {
+    grade = 'C+';
+  } else if (totalmark >= 45) {
+    grade = 'C';
+  } else if (totalmark >= 40) {
+    grade = 'D';
+  } else {
+    grade = 'F';
+  }
+
+  student.finalGrade=grade;
+  await student.save();
+})
+
+await Promise.all(promise);
+}catch (error){
+  console.log("Error: ", error);
+  res.status(500).json({ error: 'Internal Server Error' });
+}
+  
+}
+
+
+export const getGradeExcel = async(req, res) => {
+  try {
+    const {mentorpart, reportpart, presentationpart} = req.body;
+    await GradeGenerate(mentorpart, reportpart, presentationpart);
+    const students = await Student.find();
+
+    const simplifiedData = students.map(student => ({
+      name: student.name,
+      student_id: student.student_id,
+      CGPA: student.CGPA,
+      FinalGrade:student.finalGrade
+    }));
+
+    const workbook = xlsx.utils.book_new();
+    const worksheet = xlsx.utils.json_to_sheet(simplifiedData);
+
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'Grade Report');
+
+
+    const excelBuffer = xlsx.write(workbook, { bookType: 'xlsx', bookSST: false, type: 'binary' });
+
+
+    const buffer = Buffer.from(excelBuffer, 'binary');
+
+
+    res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition', 'attachment; filename=Grade_Report.xlsx');
+
+    res.end(buffer);
+
+  } catch (error) {
+    console.error('Error exporting CGPA:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
 
 
 export const postReportdeadline = async( req, res) => {
@@ -467,6 +544,16 @@ export const postReportdeadline = async( req, res) => {
       await admin.save();
     }
 
+    const student = await Student.find();
+    var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
+    
+    const promise = student.map(async(element)=>{
+      const sub="New Deadline is Published for Report"
+      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
+      await Mailfunction(sub, element.email, text);
+    })
+
+    await Promise.all(promise);
 
     return res.status(200).json({message:"new deadline is set."})
 
@@ -498,3 +585,39 @@ export const getReportdeadline = async( req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+
+export const postMarks = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const { presentationMarks, internshipReportMarks } = req.body;
+
+    // Find the student based on the provided student_id
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ error: 'Student not found.' });
+    }
+
+    // Update the presentationMarks and internshipReportMarks
+    student.presentationMarks = presentationMarks;
+    student.internshipReportMarks = internshipReportMarks;
+
+    // Save the updated student
+    await student.save();
+
+    res.status(200).json({
+      message: 'Marks updated successfully!',
+      student: {
+        name: student.name,
+        student_id: student.student_id,
+        presentationMarks: student.presentationMarks,
+        internshipReportMarks: student.internshipReportMarks,
+      },
+    });
+  } catch (error) {
+    console.error('Error updating marks:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+

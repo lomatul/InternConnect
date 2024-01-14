@@ -104,8 +104,9 @@
 }
 
 .table__header .input-group {
-   margin-left: 50px;
-    width: 35%;
+    margin-left: 50px;
+    margin-right: 100px;
+    width: 400px;
     height: 50px;
     background-color: #fff5;
     padding: 0 .8rem;
@@ -117,14 +118,14 @@
 }
 
 .table__header .input-group:hover {
-    width: 45%;
+    width: 450px;
     background-color: #fff8;
     box-shadow: 0 .1rem .4rem #0002;
 }
 
 .table__header .input-group img {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .table__header .input-group input {
