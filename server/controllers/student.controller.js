@@ -8,6 +8,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import validator from "validator";
+import Company from '../models/company.model.js';
 
 
 
@@ -57,12 +58,13 @@ export const getAllStudents = async (req, res, next) => {
   try {
     const students = await Student.find();
 
-    res.status(200).json({
-      message: "Students retrieved successfully!",
-      students,
-    });
-  } catch (error) {
-    next(error);
+    if (!students || students.length === 0) {
+      return res.status(404).json({ message: 'No students found.' });
+    }
+
+    res.status(200).json(students);
+  }  catch (error) {
+    res.status(500).json({ message: 'Internal server error', error: error.message });
   }
 };
 
@@ -594,15 +596,18 @@ export const deleteProject = async (req, res) => {
 };
 
 
-export const updateCompanyStatus = (async (req, res)=>{
+export const updateCurrentStatus = (async (req, res)=>{
   try{
     const {studentId, Status}=req.body;
     var student;
     try{
       if(Status==="rejected"){
         student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:null, companyStatus:null}});
-      }else if(Status==="rejected"){
-        student=await Student.updateOne({ student_id:studentId }, {$set:{currentStatus:"Hirred"}});
+      }else if(Status==="Hired"){
+        student=await Student.findOneAndUpdate({ student_id:studentId }, {$set:{currentStatus:"Hired"}});
+        const company=await Company.findById(student.companyStatus)
+        company.selectedInterns.push(studentId);
+        await company.save();
       }else{
         return res.status(400).json({ message: "Status code value is not correct" });
       }
@@ -618,7 +623,104 @@ export const updateCompanyStatus = (async (req, res)=>{
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
   }
-
-
-
 })
+
+
+export const updateCurrentStatusByIdToHired = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    console.log(student_id)
+
+    const updatedStudent = await Student.findOneAndUpdate(
+      { student_id },
+      { $set: { currentStatus: 'Hired' } }, 
+      { new: true } 
+    );
+
+    if (!updatedStudent) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    res.status(200).json({ message: 'Student status updated successfully' });
+  } catch (error) {
+    console.error('Error updating student status:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+export const updateCurrentStatusByIdToRejected = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    console.log(student_id)
+
+    const updatedStudent = await Student.findOneAndUpdate(
+      { student_id },
+      { $set: { currentStatus: 'rejected' } }, 
+      { new: true } 
+    );
+
+    if (!updatedStudent) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    res.status(200).json({ message: 'Student status updated successfully' });
+  } catch (error) {
+    console.error('Error updating student status:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+export const uploadInternshipReportFile = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    student.internshipReport = req.file.filename;
+
+    await student.save();
+
+    res.status(200).json({ message: 'Internship report uploaded successfully' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+export const getStudentReportById = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+
+    const student = await Student.findOne({ student_id });
+
+    if (!student) {
+      return res.status(404).json({ message: 'Student not found' });
+    }
+
+    const reportFileName = student.internshipReport;
+
+    if (!reportFileName) {
+      return res.status(404).json({ message: 'Internship report not found' });
+    }
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const reportsDir = path.join(__dirname, '../Storage/Report');
+
+    const reportPath = path.join(reportsDir, reportFileName);
+
+    // Set the content type to display PDF in the browser
+    res.contentType("application/pdf");
+
+    // Send the file as a response
+    res.sendFile(reportPath, { headers: { 'Content-Disposition': `inline; filename=${reportFileName}` } });
+
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+};

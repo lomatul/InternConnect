@@ -26,10 +26,18 @@ import CvSend from "./Pages/Cvsend";
 import AddAssesment from "./Pages/Addassesment";
 import AddMentor from "./Pages/Mentor";
 import Modal from "./components/modal/modal";
+import ViewAssesment from "./Pages/Viewassesment"
 import History from "./Pages/comhistory";
 import GradeSend from "./Pages/Gradesubmit";
 import TestModal from "./Pages/test";
 import { ToastContainer, toast } from 'react-toastify';
+import StudentStatus from "./Pages/studentstatus";
+import GradeStatus from "./Pages/studentgrade";
+import Adddeadline from "./components/admin/deadline";
+import Addreport from "./Pages/AddReport";
+
+
+
 
 
 function App() {
@@ -65,10 +73,16 @@ function App() {
         <Route path="/Cvsend" element = {<CvSend/>} />
         <Route path="/AddAssesment" element = {<AddAssesment/>} />
         <Route path="/AddMentor" element = {<AddMentor/>} />
+        <Route path="/AddMentor/:id" element = {<AddMentor/>} />
         <Route path="/Modal" element = {<TestModal/>} />
+        <Route path="/AddAssesment/:mentorid/:StudentId" element = {<AddAssesment/>} />
+        <Route path="/ViewAssesment/:mentorid/:StudentId" element = {<ViewAssesment/>} />
         <Route path="/GradeSend" element = {<GradeSend/>} />
         <Route path="/History" element = {<History/>} />
-
+        <Route path="/Status" element = {<StudentStatus/>} />
+        <Route path="/GradeStatus" element = {<GradeStatus/>} />
+        <Route path="/Adddeadline" element = {<Adddeadline/>} />
+        <Route path="/Addreport" element = {<Addreport/>} />
       </Routes>
     </BrowserRouter>
   );

@@ -45,13 +45,19 @@ const Prefernces = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        const allCompanies = response.data;
+
+        if (!allCompanies || allCompanies.length === 0) {
+          console.log('No companies found.');
+          return;
+        }
+        const hiringCompanies = allCompanies.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         console.log(companies)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
       })
       .catch((error) => {
-        console.error('An error occurred while fetching companies:', error);
+        console.error('An error occurred while fetching companies:', error.message);
       });
   }, []);
   
@@ -121,7 +127,7 @@ const Prefernces = () => {
 
                     <div className="form-group">
                         <label htmlFor="">Contact Number<span>*</span></label>
-                        <input type="number" min="0"/>
+                        <input type="number" placeholder="Give Contact Number" min="0"/>
                     </div>
 
                 <div className="form-group">

@@ -1,43 +1,74 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from 'axios';
+
+
 
 const ViewProfile = ({ userData, page, setPage, x, setX }) => {
   const [hired, setHired] = useState(false);
+  const [companyName, setCompanyName] = useState('');
 
-  const handleHiredClick = () => {
-    setHired(true);
+
+  const handleHiredClick = async () => { 
+    try {
+      if (!companyName) {
+        console.error('Company name is required.');
+        return;
+      }
+  
+      const { name, Id } = userData;
+
+      await axios.post('http://localhost:4000/InterConnect/company/sendHiredNotifyingMail', { companyName, studentId: Id, studentName: name, });
+  
+      setHired(true);
+
+    } catch (error) {
+      console.error('Error sending hired notification:', error);
+    }
   };
+
 
   return (
     <div>
-      <button
+
+       <a style={{ marginRight:"50px", textDecoration:"underline" ,fontSize:"18px" , cursor:"pointer"}}  
         onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
           setPage(page);
           setX(0);
         }}
-      >
-        Profile{" "}
-      </button>
+        > 
+       <img src="user.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" }}   />
+      Profile
+    </a>
 
-      <button
-        onClick={() => {
-          window.scrollTo({ top: 0, behavior: "smooth" });
-          setPage(page + 1);
-          setX(1000);
-        }}
-      >
-        Edit{" "}
-      </button>
-      <button
-        onClick={() => {
+
+
+    <a style={{ marginRight:"50px", textDecoration:"underline" ,fontSize:"18px" , cursor:"pointer" }}   
+      onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            setPage(page + 1);
+            setX(1000);
+          }}
+          > 
+        <img src="edit.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
+        Edit Profile
+      </a>
+
+
+
+      <a style={{ marginRight:"30px", textDecoration:"underline" ,fontSize:"18px",  cursor:"pointer" }}  
+     onClick={() => {
           window.scrollTo({ top: 0, behavior: "smooth" });
           setPage(page + 2);
           setX(2000);
-        }}
-      >
-        Project{" "}
-      </button>
+        }}> 
+       <img src="project.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px"}}    />
+      Projects
+    </a>
+
+
+
 
       <motion.div
         initial={{ x: x }}
@@ -90,7 +121,6 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
               <h3>Past Experiences:</h3>
               <p><span>{userData.pastExperiences}</span></p>
             </div>
-           
 
             <div className="view-profile2">
               <h3>External Links:</h3>
@@ -98,18 +128,20 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
                 <span>{userData.externalLinks}</span>
               </p>
             </div>
+
           </div>
         </div>
 
         {!hired && (
           <div className="Hiringform">
+
             <p>
-              If You are already hired by any company for Internship please fill
-              out the form
+              If You are already hired by any company for Internship please fill out the form
             </p>
+
             <div className="form-group">
-              <label htmlFor=""> Company Name<span>*</span></label>
-              <input type="text" placeholder="Give name" />
+              <label htmlFor="" name="companyName"> Company Name<span>*</span></label>
+              <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Give name" required/>            
             </div>
 
             <div className="form-group">
@@ -124,9 +156,11 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
               </label>
               <input type="date" placeholder="Select Date" />
             </div>
+
             <div className="hired">
               <button onClick={handleHiredClick}>Hired</button>
             </div>
+
           </div>
         )}
       </motion.div>

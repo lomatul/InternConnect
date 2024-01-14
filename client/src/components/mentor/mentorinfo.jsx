@@ -4,7 +4,7 @@ import "./mentor.css"
 import { motion } from "framer-motion";
 
 
-const MentorInfo =  ( { page, setPage,x,setX  } )  => {
+const MentorInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
   return (
 
       <motion.div                            //updated the div tag
@@ -23,12 +23,12 @@ const MentorInfo =  ( { page, setPage,x,setX  } )  => {
 
             <div className="form-group">
               <label htmlFor="">Your Name</label>
-              <input type="text" value={""} />
+              <input type="text" value={feedbackvalue.mentorName || ''}  onChange={(e) => {feedback("mentorName", e.target.value)}} />
             </div>
 
             <div className="form-group">
               <label htmlFor="">Your Designation</label>
-              <input type="text" value={""} />
+              <input type="text" value={feedbackvalue.mentordesig || ''}  onChange={(e) => {feedback("mentordesig", e.target.value)}}  />
             </div>
            
           
@@ -36,12 +36,14 @@ const MentorInfo =  ( { page, setPage,x,setX  } )  => {
 
           <div className="form-group">
               <label htmlFor=""> How can we improve the internship program?</label>
-              <textarea rows="10"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+              <textarea rows="10"   value={feedbackvalue.mentorimprove || ''}  onChange={(e) => {feedback("mentorimprove", e.target.value)}} 
+                style={{ marginTop: "30px" }} ></textarea>
             </div>
 
             <div className="form-group">
               <label htmlFor="">Other Comments about the internship program</label>
-              <textarea rows="10"   value={""}  style={{ marginTop: "30px" }} ></textarea>
+              <textarea rows="10"   value={feedbackvalue.mentorComment || ''}  onChange={(e) => {feedback("mentorComment", e.target.value)}} 
+                style={{ marginTop: "30px" }} ></textarea>
             </div>
 
            

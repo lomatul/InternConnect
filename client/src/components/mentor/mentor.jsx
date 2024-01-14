@@ -1,7 +1,8 @@
 import React from 'react'
 // import "./Add.css";
 import axios from "axios";
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import {useParams} from 'react-router-dom'
 import "../test.css";
 import Select from 'react-select';
 import { toast } from 'react-toastify';
@@ -11,11 +12,71 @@ import { Button } from '@mui/material';
 
 const Mentor = () => {
 
+    const {id} = useParams();
     const [mentors, setMentors] = useState([]);
     const [mentorName, setMentorName] = useState('');
     const [mentorEmail, setMentorEmail] = useState('');
     const [mentorPosition, setMentorPosition] = useState('');
+    const [company, setCompany] = useState('');
+    const [students, setStudents]=useState([]);
+    const [allmentors, setAllmentors]=useState([])
+    const [selectedStudentId, setSelectedStudentId] = useState('');
+    const [otp, setOtp]=useState('');
+    const [trigger, setTrigger]=useState(true)
+
+
+
+    useEffect(() => {
+      axios.get('http://localhost:4000/InterConnect/company/getCompanybyid/'+id)
+        .then((response) => {
+          setCompany(response.data);
+          console.log(response)
+          // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
+        })
+        .catch((error) => {
+          console.error('An error occurred while fetching companies:', error);
+        });
+    }, []);
   
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          // Fetch students
+          const responseStudents = await axios.get('http://localhost:4000/InterConnect/student/students');
+          const fetchedStudents = responseStudents.data;
+    
+          const filteredStudents = fetchedStudents.filter((student) =>
+            company.selectedInterns.includes(student.student_id)
+          );
+    
+          console.log("Filtered students:", filteredStudents);
+          
+    
+          // Fetch mentors after students are fetched
+          const responseMentors = await axios.get('http://localhost:4000/InterConnect/mentor/mentors');
+          const fetchedMentors = responseMentors.data;
+    
+          // Use fetchedMentors as needed
+          console.log("Mentors:", fetchedMentors);
+    
+          // Perform additional logic with fetchedMentors here
+    
+          // For example, filter students based on assignedStudents array in mentors
+          const finalFilteredStudents = filteredStudents.filter((student) =>
+            fetchedMentors.every((mentor) => !mentor.assignedStudents.includes(student.student_id))
+          );
+          setStudents(finalFilteredStudents);
+          console.log('Final filtered students:', finalFilteredStudents);
+        } catch (error) {
+          console.error('An error occurred:', error.message);
+        }
+      };
+    
+      fetchData();
+    }, [trigger, company.selectedInterns]);
+    
+    
+
     const handleAddMentor = () => {
       const newMentor = {
         name: mentorName,
@@ -31,12 +92,44 @@ const Mentor = () => {
       setMentorEmail('');
       setMentorPosition('');
     };
+
+    const handleSubmit = async(e) => {
+      e.preventDefault();
+      try{
+         axios.post('http://localhost:4000/InterConnect/company/assignMenotors', {id, Studentid:selectedStudentId, otp:otp, newmentors: mentors })
+        .then((response) => {
+          console.log(response)
+          toast.success('Mentors are created!')
+          setMentors([]);
+          setSelectedStudentId('')
+          setTrigger(!trigger);
+
+          // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
+        });
+      }catch(error){
+        console.log("An error occured", error);
+      }
+    };
   
     const handleRemoveMentor = (index) => {
       // Remove the mentor at the specified index from the array
       setMentors((prevMentors) => prevMentors.filter((_, i) => i !== index));
     };
-
+    if(students.length==0){
+      return(
+        <div><p>Thanks, You have added mentors for all students.</p></div>
+      )
+    }
     return (     
     <div >
     <div className='admincontainer'>
@@ -46,7 +139,7 @@ const Mentor = () => {
             <div className='button'><a href="/about">Explore Now &#8599;</a></div>
         </div>
         <div className='adminimage'>
-            <img src="mentor.gif" alt="" />
+            <img src="/mentor.gif" alt="" />
         </div>
     </div>
 
@@ -77,15 +170,17 @@ const Mentor = () => {
                 <div className="sending-cvs">
         <div className="form-group">
           <label>Name of the Student <span>*</span> </label>
-          <Select className='adselect'  />
+          <Select className='adselect' options={students.map((student)=>({
+                      value:student.student_id,
+                      label:student.name
+                  }))}
+                  onChange={(selectedOption) => setSelectedStudentId(selectedOption ? selectedOption.value : '')} />
         </div>
         <div className="form-group">
           <label htmlFor="">Write your OTP<span>*</span></label>
-          <input type="text" />
+          <input type="text" required value={otp} onChange={(e)=>setOtp(e.target.value)}/>
         </div>
-        <div className="mentorbutton">
-        <Button  onClick={handleAddMentor}>Add Mentor</Button>
-        </div>
+        
        
       </div>
 
@@ -116,8 +211,26 @@ const Mentor = () => {
         </div>
       ))}
 
+            <div className="form-group">
+              <label>Name of the Mentor <span>*</span> </label>
+              <input type="text" value={mentorName} onChange={(e)=>{setMentorName(e.target.value)}} />
+            </div>
+
+            <div className="form-group">
+              <label>Email of the Mentor <span>*</span></label>
+              <input type="text" value={mentorEmail} onChange={(e)=>{setMentorEmail(e.target.value)}} />
+            </div>
+
+            <div className="form-group">
+              <label>Designation of the Mentor <span>*</span></label>
+              <input type="text" value={mentorPosition}  onChange={(e)=>{setMentorPosition(e.target.value)}}/>
+            </div>
+
+            <div className="mentorbutton">
+              <Button  onClick={handleAddMentor}>Add Mentor</Button>
+            </div>
       
-            <Button>Submit</Button>
+            <Button onClick={handleSubmit}>Submit</Button>
         
     </div>
     </div>

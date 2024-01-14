@@ -63,7 +63,14 @@ const Sendcv = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        const filteredStudents = response.data.students.filter((student) => student.accountActivationStatus && student.currentStatus==null && !cvList.includes(student.student_id));
+        const allStudents = response.data;
+
+        if (!allStudents || allStudents.length === 0) {
+          console.log('No students found.');
+          return;
+        }
+
+        const filteredStudents = allStudents.filter((student) => student.accountActivationStatus && student.currentStatus == null && !cvList.includes(student.student_id));
         setStudents(filteredStudents);
       })
       .catch((error) => {

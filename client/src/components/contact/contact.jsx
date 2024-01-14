@@ -1,47 +1,53 @@
-import "./contact.css"
-import React from 'react';
+import React, { useState } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Contacts() {
+
+const Contacts = () => {
+  
   return (
-    <main>
-      <article>
-    <section className="contact" id="contact">
-      <div className="contactcontainer">
-                <div className="contact-content">
-                <h2 className="contact-title">We are Here to Help You</h2>
-                <figure className="contact-banner">
-                    <img src="contact.gif" alt="contact banner" />
-                </figure>
-                </div>
+    <div >
+      <div className="adminnotification">
+      <div className='text'>
+            <h3>Contact Us :</h3>
+            <h1> Stay Connected!</h1>
+          
+            <div className='adimage'>
+            <img src="ad-con.gif" alt="" />
+        </div> </div>
 
-            <form action="" className="contact-form">
-            <label htmlFor="">Name<span>*</span></label>
-            <input type="text" />
+        <div className="adminContact">
+        <form >
+         
+        <div className="form-group">
+              <label htmlFor="">ID <span>*</span></label>
+              <input type="Number"  />
+            </div>
 
-              <label htmlFor="">Email <span>*</span></label>
-              <input type="text"/>
-  
-              <label htmlFor="">Contact Number<span>*</span></label>
-              <input type="number" min="0"/>
+            <div className="form-group">
+              <label htmlFor="">Name <span>*</span></label>
+              <input type="text"  />
+            </div>
+            <div className="form-group">
+              <label htmlFor="">Subject<span>*</span></label>
+              <input type="text"  />
 
-              <label htmlFor="">Short Description<span>*</span></label>
-              <textarea name="" id="" placeholder="Short description of your problem" cols="30" rows="10"></textarea>
-  
+            <div className="form-group">
+              <label htmlFor="" style={{marginTop:"20px"}} >Short Description<span>*</span></label>
+              <textarea name="" id="" cols="30" rows="10" ></textarea>
+            </div>
 
-          <button htmlFor="" type="submit" >
-            Send Message
-          </button>
-          <button >
-            <a href="/">Go Back</a>
-          </button>
+            
+        </div>
+                
+                
 
+              <button type="submit">Send</button>
+              <button style={{marginTop:"20px"}} > Go Back</button>
         </form>
-        
       </div>
-    </section>
-    </article>
-    </main>
+      </div>
+    </div>
   );
-}
+};
 
 export default Contacts;

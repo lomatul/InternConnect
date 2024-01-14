@@ -15,7 +15,11 @@ const adminSchema = new mongoose.Schema({
     shortDescription: { type: String },
     credit: { type: Number },
     committeeMembers: { type: [String] },
-  }
+  },
+  deadlines:[{
+    topic:{type: String}, 
+    time:{type:Date}
+  }]
   
 });
 

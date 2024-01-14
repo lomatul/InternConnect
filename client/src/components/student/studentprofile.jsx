@@ -214,10 +214,8 @@ const StudentProfile = () => {
 
   return (
     <div className="admin-profile">
-
         <div className="profile-info">
           <div>{componentList[page]}</div>
-   
         </div>
 
     </div>
