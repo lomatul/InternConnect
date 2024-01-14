@@ -35,7 +35,7 @@ import StudentStatus from "./Pages/studentstatus";
 import GradeStatus from "./Pages/studentgrade";
 import SendDeadline from "./Pages/deadline";
 import Addreport from "./Pages/AddReport";
-
+import Sprofile from "./Pages/viewSprofile";
 
 
 
@@ -83,6 +83,7 @@ function App() {
         <Route path="/GradeStatus" element = {<GradeStatus/>} />
         <Route path="/Adddeadline" element = {<SendDeadline/>} />
         <Route path="/Addreport" element = {<Addreport/>} />
+        <Route path="/Sprofile" element = {<Sprofile/>} />
       </Routes>
     </BrowserRouter>
   );
