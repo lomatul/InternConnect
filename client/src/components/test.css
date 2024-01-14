@@ -314,11 +314,11 @@ font-size: 18px;
   .adminContact form{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 0px;
+    margin-top: 30px;
     background-color: rgba(28, 37, 96, 0.1);
     box-shadow: 10px 10px 8px #888888;
-    width: 400px;
-    height: 650px;
+    width: 500px;
+    height: 850px;
     display: block;
     border-radius: 20px;
     box-shadow: 10px 10px 8px #888888;
@@ -377,7 +377,23 @@ font-size: 18px;
     border-radius: 10px;
   }
 
-  
+  .form-group input[type="file"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .form-group img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: -10px;
+  }
 
   .form-group input[type="text"]:focus, 
   .form-group input[type="number"] :focus,
@@ -407,7 +423,7 @@ font-size: 18px;
   }
   
   .adminnotification{
-    height: 800px;
+    height: 1100px;
     align-items: center;
     display: grid;
     margin-left: 110px;
@@ -477,13 +493,22 @@ width: 300px;
 
 .adminContact button
 {
-  margin-left: 100px;
+  margin-left: 90px;
   height: 50px;
-  width: 200px;
-  background-color: #000000;
+  width: 50px;
+  background-color:transparent;
   color: wheat;
+  border: transparent;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.contact-submit button
+{
+  background-color: rgb(0, 0, 0);
+  height: 50px;
+  width: 200px;
+  margin-left: 150px;
 }
 
 .adminContact .adselect select{
