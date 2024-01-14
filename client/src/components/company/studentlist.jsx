@@ -34,7 +34,7 @@ const Studentlist = () => {
         <div className="input-group">
           <input
             type="search"
-            placeholder="Search Data by Company Name..."
+            placeholder="Search Data ..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />

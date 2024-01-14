@@ -54,11 +54,12 @@ const UploadCV = () => {
     
   useEffect(()=>{
     const date= new Date();
-    console.log("Cuurent Date", date);
+    console.log("Current Date", date);
     try {
         console.log("came here")
         axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
-          setDeadline(new Date(response.data.Deadline));
+          const { time } = response.data.Deadline; 
+          setDeadline(new Date(time));
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);
