@@ -31,26 +31,21 @@ const handleSubmit = async(event) => {
           toast.success('Students have been created successfully', { position: "top-right" });
           setTimeout(() => {
             window.location.reload();
-          }, 3000);
+          }, 2000);
       }).catch((error)=>{
           if (error.response) {
-              toast.error('Error while creating students', { position: "top-right" });
-              console.log(error.response);
-              console.log("server responded");
-            } else if (error.request) {
-              console.log("network error");
-            } else {
-              console.log(error);
-            }
+            toast.error('Error while creating students', { position: "top-right" });
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
       });
 
-      // if (response.status === 200) {
-      //   console.log('File uploaded successfully');
-      // } else {
-      //   console.error('File upload failed');
-      // }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error.message);
     }
     setSelectedFile(null)
 }

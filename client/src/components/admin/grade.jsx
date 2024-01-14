@@ -31,7 +31,10 @@ const Addgrade = () => {
       link.click();
   
 
-      toast.success("Excel file downloaded successfully");
+      toast.success('Excel File Downloaded Successfully', { position: "top-right" });
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     } catch (error) {
       console.error('An error occurred:', error);
     }
