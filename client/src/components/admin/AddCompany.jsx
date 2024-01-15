@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
-
+import { BASE_URL } from "../../services/helper.js";
 
 const Add = () => {
   const [selectedFile, setSelectedFile] = useState([]);
@@ -51,7 +51,7 @@ const Add = () => {
     formDatafile.append("file", selectedFile);
     console.log(formDatafile)
     try {
-        await axios.post('http://localhost:4000/InterConnect/admin/uploadcompanyfile', formDatafile, {
+        await axios.post(`${BASE_URL}/InterConnect/admin/uploadcompanyfile`, formDatafile, {
           headers: {
             'Content-Type': 'multipart/form-data', // Set the content type for file upload
           },
@@ -131,7 +131,7 @@ const Add = () => {
 
 
     try {
-      const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
+      const response = await axios.post(`${BASE_URL}/InterConnect/company/createCompany`, formData);
       console.log('Response:', response.data);
       toast.success('Company created successfully', { position: "top-right" });
       setTimeout(() => {
@@ -235,11 +235,7 @@ const Add = () => {
               <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
               {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
           </div>
-          
-
-
-
-          
+             
          
 
           <div className="form-group">
@@ -247,7 +243,6 @@ const Add = () => {
               <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
           </div>
           
-
 
           <div className="form-group">
               <label htmlFor="requiredDomain">Domain</label>

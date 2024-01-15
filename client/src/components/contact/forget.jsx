@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import "../modal/Modal.css"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from "../../services/helper";
+
 
 function Forgets() {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ function Forgets() {
       setIdError('');
 
       try {
-        await axios.post('http://localhost:4000/InterConnect/student/forgetPassword', { student_id })
+        await axios.post(`${BASE_URL}/InterConnect/student/forgetPassword`, { student_id })
           .then((response) => {
             console.log(response);
             toast.success('OTP Sent successfully', { position: "top-right" });

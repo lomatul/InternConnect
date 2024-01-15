@@ -5,6 +5,7 @@ import {useState} from 'react';
 import "../test.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
 
 
 const Addstudent = () => {
@@ -22,7 +23,7 @@ const handleSubmit = async(event) => {
   formData.append("file", selectedFile);
   console.log(formData)
   try {
-      await axios.post('http://localhost:4000/InterConnect/admin/uploadfile', formData, {
+      await axios.post(`${BASE_URL}/InterConnect/admin/uploadfile`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // Set the content type for file upload
         },

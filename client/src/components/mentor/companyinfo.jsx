@@ -24,11 +24,6 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
           <p>Please Fill up the Form Below</p>
         </div>
 
-     
-
-
-
-
 
         <div className="assesment-form">
         <form>

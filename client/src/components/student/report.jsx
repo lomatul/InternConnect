@@ -4,6 +4,8 @@ import axios from "axios";
 import download from 'js-file-download';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const UploadReport = () => {
   const { userstudent } = useAuthContext();
@@ -19,7 +21,7 @@ const UploadReport = () => {
       setId(userstudent.student_id);
       if (userstudent.student_id) {
         try {
-          axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response) => {
+          axios.get(`${BASE_URL}/InterConnect/student/getStudent/${userstudent.student_id}`).then((response) => {
             if (response.data.student.internshipReport) {
               setHasReport(true);
             }
@@ -73,7 +75,7 @@ const UploadReport = () => {
     if (id) {
       try {
         console.log("came here")
-        axios.get(`http://localhost:4000/InterConnect/student/getOnestudent/${id}`).then((response) => {
+        axios.get(`${BASE_URL}/InterConnect/student/getOnestudent/${id}`).then((response) => {
           setReport(response.data.students.internshipReport);
         }).catch((error) => {
           if (error.response) {
@@ -105,7 +107,7 @@ const UploadReport = () => {
     formData.append("file", selectedFile);
     console.log(formData)
     try {
-      await axios.post(`http://localhost:4000/InterConnect/student/uploadInternshipReport/${id}`, formData, {
+      await axios.post(`${BASE_URL}/InterConnect/student/uploadInternshipReport/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -139,7 +141,7 @@ const UploadReport = () => {
   const handleView = async (event) => {
     event.preventDefault()
     try {
-      const reportUrl = `http://localhost:4000/InterConnect/student/getStudentReport/${id}`;
+      const reportUrl = `${BASE_URL}/InterConnect/student/getStudentReport/${id}`;
       window.open(reportUrl, '_blank');
     } catch (error) {
       console.error('An error occurred:', error);

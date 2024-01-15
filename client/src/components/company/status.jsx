@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import { BASE_URL } from '../../services/helper';
+
 
 const Status = () => {
   const [students, setStudents] = useState([]);
@@ -21,11 +23,11 @@ const Status = () => {
 
   useEffect(() => {
     // Fetching students
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
         const fetchedStudents = response.data;
         // Fetching companies
-        axios.get('http://localhost:4000/InterConnect/company/companies')
+        axios.get(`${BASE_URL}/InterConnect/company/companies`)
           .then((response) => {
             const fetchedCompanies = response.data;
             

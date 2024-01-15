@@ -3,6 +3,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { useNavigate } from 'react-router-dom';
 import { useLogout } from '../../hooks/useLogout';
 import axios from "axios";
+import { BASE_URL } from '../../services/helper';
 
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
@@ -11,7 +12,7 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
     const handleClick = () => {
         logout()
         try {
-            axios.get('http://localhost:4000/InterConnect/admin/logout'
+            axios.get(`${BASE_URL}/InterConnect/admin/logout`
             ).then((response)=>{
                 console.log(response)
                 

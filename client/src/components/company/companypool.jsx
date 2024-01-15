@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../services/helper';
+
 
 const Companypool = () => {
   const [search, setSearch] = useState('');
@@ -7,7 +9,7 @@ const Companypool = () => {
   const [filteredCompanies, setFilteredCompanies] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
         const allCompanies = response.data;
 

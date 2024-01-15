@@ -3,6 +3,9 @@ import Select from 'react-select';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from "../../services/helper.js"
+
+
 const Sendcv = () => {
   const [showTable, setShowTable] = useState(false);
   const [cvList, setCvList] = useState([]);
@@ -20,7 +23,7 @@ const Sendcv = () => {
     e.preventDefault();
     setShowTable(true);
     try{
-      await axios.post('http://localhost:4000/InterConnect/admin/getMatchedStudents', {company:selectedCompany, number, type:sort})
+      await axios.post(`${BASE_URL}/InterConnect/admin/getMatchedStudents`, {company:selectedCompany, number, type:sort})
       .then((response)=>{
         console.log("upcoming list", response.data.returnStudentId);
         setCvList(response.data.returnStudentId);
@@ -48,7 +51,7 @@ const Sendcv = () => {
 ]
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
         const hiringCompanies = response.data.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
@@ -61,7 +64,7 @@ const Sendcv = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
         const allStudents = response.data;
 
@@ -96,7 +99,7 @@ const Sendcv = () => {
   const handleSendButtonClick= async() =>{
     setLoading(true);
     try{
-      await axios.post('http://localhost:4000/InterConnect/admin/sendcvtocompany', {companyID:selectedCompany, students:cvList})
+      await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList})
       .then((response)=>{
         console.log(response);
         toast.success('Cvs has been sent to the companies!')

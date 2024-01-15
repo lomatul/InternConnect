@@ -3,6 +3,7 @@ import { useAuthContext } from '../../context/useAuthcontext';
 import { useLogout } from '../../hooks/useLogout';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../services/helper';
 
 const Navbar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = () => {
     logout();
     try {
       axios
-        .get('http://localhost:4000/InterConnect/admin/logout')
+        .get(`${BASE_URL}/InterConnect/admin/logout`)
         .then((response) => {
           console.log(response);
           navigate('/');

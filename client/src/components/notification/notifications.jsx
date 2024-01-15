@@ -4,6 +4,7 @@ import  { useEffect } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
 
 
 const SendNotification = () => {
@@ -66,7 +67,7 @@ const SendNotification = () => {
     console.log(recipientType)
     if(recipientType==="All"){
     try {
-      await axios.post('http://localhost:4000/InterConnect/admin/sendtoall', {text, sub, type})
+      await axios.post(`${BASE_URL}/InterConnect/admin/sendtoall`, {text, sub, type})
       .then((response) => {
         console.log(response)   // Initially, both arrays  are the same
         toast.success('Notification sent successfully', { position: "top-right" });
@@ -92,7 +93,7 @@ const SendNotification = () => {
   }else{
     try {
       console.log(recipientEmail)
-      await axios.post('http://localhost:4000/InterConnect/admin/sendtoone', {text, sub, recipientEmail})
+      await axios.post(`${BASE_URL}/InterConnect/admin/sendtoone`, {text, sub, recipientEmail})
       .then((response) => {
         console.log(response)// Initially, both arrays are the same
         toast.success('Notification sent successfully', { position: "top-right" });
