@@ -18,7 +18,8 @@ const mentorSchema = new mongoose.Schema({
   response :[{
     student_id :{type:String},
     assesment:{type:Object}
-  }]
+  }],
+  company:{type:String}
 });
 
 export default mongoose.model('Mentor', mentorSchema);

@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReportPdf = () => {
+const ReportPdf = ({user,Marks}) => {
   return (
     <PDFViewer style={{ width: '100%', height: '100vh' }}>
       <Document>
@@ -66,8 +66,8 @@ const ReportPdf = () => {
           </View>
           <View style={styles.studentInfo}>
             <View style={{ marginRight: 20 }}>
-              <Text>Student Name: John Doe</Text>
-              <Text>Student ID: 123456</Text>
+              <Text>Student Name: {user.name}</Text>
+              <Text>Student ID: {user.Id}</Text>
             </View>
           </View>
           <View style={styles.table}>
@@ -77,19 +77,19 @@ const ReportPdf = () => {
             </View>
             <View style={styles.row}>
               <Text style={styles.cell}>Mentor Assessment Mark</Text>
-              <Text style={styles.cell}>85</Text>
+              <Text style={styles.cell}>{Marks.evaluatedMentorMarks}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.cell}>Report Mark</Text>
-              <Text style={styles.cell}>90</Text>
+              <Text style={styles.cell}>{Marks.internshipReportMarks}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.cell}>Presentation Mark</Text>
-              <Text style={styles.cell}>88</Text>
+              <Text style={styles.cell}>{Marks.presentationMarks}</Text>
             </View>
             <View style={styles.row}>
               <Text style={styles.cell}>Final Grade</Text>
-              <Text style={styles.cell}>A</Text>
+              <Text style={styles.cell}>{Marks.finalGrade}</Text>
             </View>
           </View>
         </Page>
