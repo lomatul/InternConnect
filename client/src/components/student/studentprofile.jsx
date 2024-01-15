@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ViewProfile from "./viewprofile";
 import EditProfile from "./editprofile";
-// import Project from "./project";
 import NewProject from "./newprojects";
 
 
@@ -214,10 +213,8 @@ const StudentProfile = () => {
 
   return (
     <div className="admin-profile">
-
         <div className="profile-info">
           <div>{componentList[page]}</div>
-   
         </div>
 
     </div>

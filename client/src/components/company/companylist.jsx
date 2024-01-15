@@ -19,11 +19,19 @@ const Companylist = () => {
 
    
   });
+
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        setCompanies(response.data.companies);
-        setFilteredCompanies(response.data.companies);
+        const companiesData = response.data;
+
+        if (!companiesData || companiesData.length === 0) {
+          console.log('No companies found.');
+          return;
+        }
+
+        setCompanies(companiesData);
+        setFilteredCompanies(companiesData);
         setCompanyData({
           
         })
@@ -80,6 +88,7 @@ const Companylist = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+           <img src='search.png'></img>
         </div>
       </section>
 

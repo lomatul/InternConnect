@@ -50,7 +50,7 @@ const Sendcv = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/company/companies')
       .then((response) => {
-        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        const hiringCompanies = response.data.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         console.log(companies)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
@@ -63,7 +63,14 @@ const Sendcv = () => {
   useEffect(() => {
     axios.get('http://localhost:4000/InterConnect/student/students')
       .then((response) => {
-        const filteredStudents = response.data.students.filter((student) => student.accountActivationStatus && student.currentStatus==null && !cvList.includes(student.student_id));
+        const allStudents = response.data;
+
+        if (!allStudents || allStudents.length === 0) {
+          console.log('No students found.');
+          return;
+        }
+
+        const filteredStudents = allStudents.filter((student) => student.accountActivationStatus && student.currentStatus == null && !cvList.includes(student.student_id));
         setStudents(filteredStudents);
       })
       .catch((error) => {
@@ -151,7 +158,7 @@ const Sendcv = () => {
                     
                     <div className="form-group">
                         <label>Sorting Method:</label>
-                        <Select className='adselect'   onChange={(selectedOption) => setSort(selectedOption.value)}/>             
+                        <Select className='adselect'  options={sortingways} onChange={(selectedOption) => setSort(selectedOption.value)}/>             
                     </div>
                   </div>
 
@@ -160,7 +167,7 @@ const Sendcv = () => {
           </div>
 
       <div className="cvSending">
-      {loading && <p>Loading...</p>}
+      {loading && <img src="loading.gif"alt="InternConnect Logo"   style={{width: '60px', height: '60px' , marginBottom:"-10px" , marginRight:"10px" }}   />}
         {showTable && (
           <div className="companies">
             <main className="table">

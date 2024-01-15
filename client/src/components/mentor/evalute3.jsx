@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 
 
-const Evaluation3 =  ( { page, setPage,x,setX  } )  => {
+const Evaluation3 =  ( {value,change,feedback, page, setPage,x,setX  } )  => {
   return (
 
       <motion.div                            //updated the div tag
@@ -37,12 +37,13 @@ const Evaluation3 =  ( { page, setPage,x,setX  } )  => {
      <div className="form-group1">
             <FormControl>
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group">
-                    <FormControlLabel style={{ marginRight:"100px"}} value="Almost always on time" control={<Radio />} label=" Almost always on time" />
-                    <FormControlLabel style={{ marginRight:"100px"}} value="Occasionally late" control={<Radio />} label=" Occasionally late" />
-                    <FormControlLabel style={{ marginRight:"155px"}}value="Frequently late" control={<Radio />} label=" Frequently late" />
-                    <FormControlLabel value="Very poor sense of punctuality" control={<Radio />} label=" Very poor sense of punctuality" />
-                    <FormControlLabel style={{ marginRight:"100px"}} value="I could not assess thisPunctuality" control={<Radio />} label="I could not assess this" />
+              name="row-radio-buttons-group"value={value.Punctuality || ''} 
+              onChange={(e) => {change('Punctuality', e.target.value); feedback("eval3_Punctuality", e.target.value)}}>
+                    <FormControlLabel style={{ marginRight:"100px"}} value={5} control={<Radio />} label=" Almost always on time" />
+                    <FormControlLabel style={{ marginRight:"100px"}} value={4} control={<Radio />} label=" Occasionally late" />
+                    <FormControlLabel style={{ marginRight:"155px"}}value={2} control={<Radio />} label=" Frequently late" />
+                    <FormControlLabel value={1} control={<Radio />} label=" Very poor sense of punctuality" />
+                    <FormControlLabel style={{ marginRight:"100px"}} value={0} control={<Radio />} label="I could not assess this" />
 
                 </RadioGroup>
                 
@@ -58,11 +59,12 @@ const Evaluation3 =  ( { page, setPage,x,setX  } )  => {
             <FormControl>
             
             <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group">
-                    <FormControlLabel style={{ marginRight:"200px"}}value="Standard" control={<Radio />} label=" Standard" />
-                    <FormControlLabel style={{ marginRight:"200px"}}value="Below StandardLearning" control={<Radio />} label=" Below Standard" />
-                    <FormControlLabel style={{ marginRight:"230px"}}value="PoorLearning" control={<Radio />} label=" Poor" />
-                    <FormControlLabel style={{ marginRight:"100px"}} value="I could not assess thisLearning" control={<Radio />} label="I could not assess this" />
+              name="row-radio-buttons-group" value={value.Learning_skill || ''} 
+              onChange={(e) => {change('Learning_skill', e.target.value); feedback("eval2_Learning_skill", e.target.value)}}>
+                    <FormControlLabel style={{ marginRight:"200px"}} value={5} control={<Radio />} label=" Standard" />
+                    <FormControlLabel style={{ marginRight:"200px"}} value={3} control={<Radio />} label=" Below Standard" />
+                    <FormControlLabel style={{ marginRight:"230px"}} value={2} control={<Radio />} label=" Poor" />
+                    <FormControlLabel style={{ marginRight:"100px"}} value={0} control={<Radio />} label="I could not assess this" />
 
                 </RadioGroup>
                 
@@ -74,15 +76,16 @@ const Evaluation3 =  ( { page, setPage,x,setX  } )  => {
             <div className="form-group">
             <label htmlFor="">Overall performance of the intern<span>*</span></label>
               </div>
-            <div className="form-group1">
+            <div className="form-group1" value={value.Overallperformance || ''} 
+              onChange={(e) => {change('Overallperformance', e.target.value); feedback("eval2_Overallperformance", e.target.value)}}>
             <FormControl>
               <RadioGroup row  aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group">
-                    <FormControlLabel style={{ marginRight:"180px"}} value="Outstanding" control={<Radio />} label=" Outstanding" />
-                    <FormControlLabel style={{ marginRight:"100px"}} value="Very good" control={<Radio />} label="Very Good" />
-                    <FormControlLabel value="Standard" control={<Radio />} label=" Standard" />
-                    <FormControlLabel style={{ marginRight:"153px"}}  value="Below Standardperformance" control={<Radio />} label=" Below Standard" />
-                    <FormControlLabel value="Poor" control={<Radio />} label=" Poor" />
+                    <FormControlLabel style={{ marginRight:"180px"}} value={5} control={<Radio />} label=" Outstanding" />
+                    <FormControlLabel style={{ marginRight:"100px"}} value={4} control={<Radio />} label="Very Good" />
+                    <FormControlLabel value={3} control={<Radio />} label=" Standard" />
+                    <FormControlLabel style={{ marginRight:"153px"}}  value={2} control={<Radio />} label=" Below Standard" />
+                    <FormControlLabel value={1} control={<Radio />} label=" Poor" />
                   
                 </RadioGroup>
                 
@@ -97,7 +100,8 @@ const Evaluation3 =  ( { page, setPage,x,setX  } )  => {
             <div className="form-group1">
             <FormControl>
              <RadioGroup col  aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group">
+              name="row-radio-buttons-group" value={value.recommendation || ''} 
+              onChange={(e) => {change('recommendation', e.target.value); feedback("eval2_recommendation", e.target.value)}}>
                     <FormControlLabel value={5} control={<Radio />} label=" Yes" />
                     <FormControlLabel value={4} control={<Radio />} label=" No" />
                     <FormControlLabel value={3} control={<Radio />} label=" Myb" />

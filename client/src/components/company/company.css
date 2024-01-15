@@ -104,8 +104,9 @@
 }
 
 .table__header .input-group {
-   margin-left: 50px;
-    width: 35%;
+    margin-left: 50px;
+    margin-right: 100px;
+    width: 400px;
     height: 50px;
     background-color: #fff5;
     padding: 0 .8rem;
@@ -117,14 +118,14 @@
 }
 
 .table__header .input-group:hover {
-    width: 45%;
+    width: 450px;
     background-color: #fff8;
     box-shadow: 0 .1rem .4rem #0002;
 }
 
 .table__header .input-group img {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .table__header .input-group input {
@@ -225,11 +226,6 @@ tbody tr.hide td p {
     transition: .2s ease-in-out .5s;
 }
 
-tbody tr.hide td img {
-    width: 0;
-    height: 0;
-    transition: .2s ease-in-out .5s;
-}
 
 .status {
     padding: .4rem 0;
@@ -237,18 +233,19 @@ tbody tr.hide td img {
     text-align: center;
 }
 
-.status.delivered {
+.status .hire {
     background-color: #86e49d;
-    color: #006b21;
+    border-radius: 10px;
 }
 
-.status.cancelled {
+.status .notstart {
+    border-radius: 10px;
     background-color: #d893a3;
-    color: #b30021;
 }
 
-.status.pending {
-    background-color: #ebc474;
+.status .pending {
+    border-radius: 10px;
+    background-color: #fad893;
 }
 
 .status.shipped {
