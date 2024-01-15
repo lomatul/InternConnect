@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
+import { BASE_URL } from '../../services/helper.js';
 
 const Companylist = () => {
   const [search, setSearch] = useState('');
@@ -21,7 +22,7 @@ const Companylist = () => {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
         const companiesData = response.data;
 
@@ -52,7 +53,7 @@ const Companylist = () => {
 
   const handleStatusUpdate = async (email, newStatus) => {
     try {
-      const response = await axios.put(`http://localhost:4000/InterConnect/company/updateCompanyStatus/${email}`, {
+      const response = await axios.put(`${BASE_URL}/InterConnect/company/updateCompanyStatus/${email}`, {
         status: newStatus
       });
 

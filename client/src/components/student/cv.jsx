@@ -4,8 +4,7 @@ import axios from "axios";
 import download from 'js-file-download';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import { BASE_URL } from '../../services/helper';
 
 
 const UploadCV = () => {
@@ -22,7 +21,7 @@ const UploadCV = () => {
       setId(userstudent.student_id);
       if(userstudent.student_id){
         try{
-          axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
+          axios.get(`${BASE_URL}/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
           if(response.data.student.CV){
             setHascv(true);
 
@@ -57,9 +56,8 @@ const UploadCV = () => {
     console.log("Current Date", date);
     try {
         console.log("came here at deadline")
-        axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
+        axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline/`).then((response)=>{
           console.log(response)
-          
           setDeadline(new Date(response.data.Deadline.time));
       }).catch((error)=>{
           if (error.response) {
@@ -81,7 +79,7 @@ const UploadCV = () => {
     if(id){
     try {
         console.log("came here")
-        axios.get('http://localhost:4000/InterConnect/student/getOnestudent/'+id).then((response)=>{
+        axios.get(`${BASE_URL}/InterConnect/student/getOnestudent/`+id).then((response)=>{
           setCv(response.data.students.CV)
       }).catch((error)=>{
           if (error.response) {
@@ -114,7 +112,7 @@ const UploadCV = () => {
       formData.append("file", selectedFile);
       console.log(formData)
     try {
-      await axios.post('http://localhost:4000/InterConnect/student/uploadCV/'+id, formData, {
+      await axios.post(`${BASE_URL}/InterConnect/student/uploadCV/`+id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // Set the content type for file upload
         },
@@ -154,7 +152,7 @@ const UploadCV = () => {
   const handleview = async(event) => {
     event.preventDefault()
     try {
-      await axios.get('http://localhost:4000/InterConnect/student/getcv/'+id ).then((response)=>{
+      await axios.get(`${BASE_URL}/InterConnect/student/getcv/`+id ).then((response)=>{
         console.log(response)
         var fileName=id+".pdf"
         download(response.data, fileName);
@@ -222,7 +220,7 @@ const UploadCV = () => {
                   <input type="file" accept=".pdf" onChange={handleFileSelect}/>
                   <button onClick={handleSubmit}>Upload</button>
                 </div>:<div></div>}
-                   {hascv&&<button><a style={{color:'white'}} href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download your CV </a></button>}
+                   {hascv&&<button><a style={{color:'white'}} href={`${BASE_URL}/InterConnect/student/getcv/`+id} download={id+".pdf"}>Download your CV </a></button>}
              </div>
           
         </div>

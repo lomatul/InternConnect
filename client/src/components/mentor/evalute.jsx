@@ -110,11 +110,6 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
                 
             </FormControl>
             </div>
-
-
-
-
-
       
 
         </form>

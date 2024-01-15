@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../services/helper';
+
 
 const Studentlist = () => {
   const [search, setSearch] = useState('');
@@ -7,7 +9,7 @@ const Studentlist = () => {
   const [filteredStudents, setFilteredStudents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
         setStudents(response.data);
         setFilteredStudents(response.data); // Initially, both arrays are the same
@@ -65,7 +67,7 @@ const Studentlist = () => {
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>
                 <td>{student.CGPA}</td>
-                <td style={{textDecoration:"underline"}}><a  href={"http://localhost:4000/InterConnect/student/getcv/"+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
+                <td style={{textDecoration:"underline"}}><a  href={`${BASE_URL}/InterConnect/student/getcv/`+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
               </tr>
             ))}
           </tbody>

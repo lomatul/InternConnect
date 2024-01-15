@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../services/helper';
+
 
 function StudentDashboard() {
     const [showTimer, setshowTimer] = useState(true);
@@ -8,8 +10,8 @@ function StudentDashboard() {
 
     const fetchData = async () => {
         try {
-            const cvResponse = await axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline');
-            const reportResponse = await axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline');
+            const cvResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline`);
+            const reportResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getReportdeadline`);
             
             const cvData = cvResponse.data.Deadline;
             const reportData = reportResponse.data.Deadline;

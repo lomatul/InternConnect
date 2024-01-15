@@ -8,6 +8,7 @@ import Select from 'react-select';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@mui/material';
+import { BASE_URL } from '../../services/helper';
 
 
 const Mentor = () => {
@@ -27,7 +28,7 @@ const Mentor = () => {
 
 
     useEffect(() => {
-      axios.get('http://localhost:4000/InterConnect/company/getCompanybyid/'+id)
+      axios.get(`${BASE_URL}/InterConnect/company/getCompanybyid/`+id)
         .then((response) => {
           setCompany(response.data);
           console.log(response)
@@ -42,7 +43,7 @@ const Mentor = () => {
       const fetchData = async () => {
         try {
           // Fetch students
-          const responseStudents = await axios.get('http://localhost:4000/InterConnect/student/students');
+          const responseStudents = await axios.get(`${BASE_URL}/InterConnect/student/students`);
           const fetchedStudents = responseStudents.data;
     
           const filteredStudents = fetchedStudents.filter((student) =>
@@ -53,7 +54,7 @@ const Mentor = () => {
           
     
           // Fetch mentors after students are fetched
-          const responseMentors = await axios.get('http://localhost:4000/InterConnect/mentor/mentors');
+          const responseMentors = await axios.get(`${BASE_URL}/InterConnect/mentor/mentors`);
           const fetchedMentors = responseMentors.data;
     
           // Use fetchedMentors as needed
@@ -97,7 +98,7 @@ const Mentor = () => {
     const handleSubmit = async(e) => {
       e.preventDefault();
       try{
-         axios.post('http://localhost:4000/InterConnect/company/assignMenotors', {id, Studentid:selectedStudentId, otp:otp, newmentors: mentors })
+         axios.post(`${BASE_URL}/InterConnect/company/assignMenotors`, {id, Studentid:selectedStudentId, otp:otp, newmentors: mentors })
         .then((response) => {
           console.log(response)
           toast.success('Mentors are created!')

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const Gradesheet = () => {
   const [students, setStudents] = useState([]);
@@ -12,7 +14,7 @@ const Gradesheet = () => {
   const [viewassesment, setViewassesment] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
 
         const studentsData = response.data;
@@ -33,7 +35,7 @@ const Gradesheet = () => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/mentor/getViewAssesment')
+    axios.get(`${BASE_URL}/InterConnect/mentor/getViewAssesment`)
       .then((response) => {
         console.log(response.data.assesment)
         setViewassesment(response.data.assesment);
@@ -47,7 +49,7 @@ const Gradesheet = () => {
     try {
       const editedStudent = filteredStudents[index];
 
-      const response = await axios.post(`http://localhost:4000/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
+      const response = await axios.post(`${BASE_URL}/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
         internshipReportMarks: editedStudent.internshipReportMarks,
         presentationMarks: editedStudent.presentationMarks,
       });
@@ -63,7 +65,7 @@ const Gradesheet = () => {
         setEditIndex(null);
 
         // Refresh the data after saving
-        axios.get('http://localhost:4000/InterConnect/student/students')
+        axios.get(`${BASE_URL}/InterConnect/student/students`)
           .then((response) => {
 
             const studentsData = response.data;
@@ -88,7 +90,7 @@ const Gradesheet = () => {
   };
 
   const handleReportClick = (studentId) => {
-    window.open(`http://localhost:4000/InterConnect/student/getStudentReport/${studentId}`, '_blank');
+    window.open(`${BASE_URL}/InterConnect/student/getStudentReport/${studentId}`, '_blank');
   };
   if(!viewassesment){
     return(

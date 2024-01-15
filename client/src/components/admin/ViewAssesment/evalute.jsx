@@ -95,12 +95,6 @@ const Evaluation =({ feedbackvalue}) => {
             </FormControl>
             </div>
 
-
-
-
-
-      
-
         </form>
         
       </div>

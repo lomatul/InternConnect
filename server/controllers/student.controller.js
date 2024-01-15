@@ -507,7 +507,7 @@ export const getOneStudentbyId = async (req, res) =>{
 export const addProject = async (req, res) => {
   try {
     const { student_id } = req.params;
-    const { name, year, description, technologies } = req.body;
+    const { name, year, description, technologies, link } = req.body;
 
     const student = await Student.findOne({ student_id });
 
@@ -515,7 +515,7 @@ export const addProject = async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    student.projects.push({ name, year, description, technologies });
+    student.projects.push({ name, year, description, technologies, link });
 
     await student.save();
 
