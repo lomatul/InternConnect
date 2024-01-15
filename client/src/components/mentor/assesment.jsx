@@ -97,6 +97,7 @@ const Assesment = () => {
       ).then((response)=>{
       console.log(response)
       toast.success('Assesment stored', { position: "top-right" });
+      window.location.reload();
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);
@@ -125,7 +126,7 @@ const Assesment = () => {
     <div>You already have assessed this student.
       <div>Your unassessed students: 
         {notassessedstudents.map((element)=>
-        (<div>element</div>)
+        (<div><a href={`/AddAssesment/${mentorid}/${element}`}></a></div>)
         )}
       </div>
     </div>

@@ -56,10 +56,11 @@ const UploadCV = () => {
     const date= new Date();
     console.log("Current Date", date);
     try {
-        console.log("came here")
+        console.log("came here at deadline")
         axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
-          const { time } = response.data.Deadline; 
-          setDeadline(new Date(time));
+          console.log(response)
+          
+          setDeadline(new Date(response.data.Deadline.time));
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);

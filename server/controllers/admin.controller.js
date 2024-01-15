@@ -230,7 +230,7 @@ export const sendMentorsForm = async(req, res)=>{
       const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
       console.log(element);
       element.OTP=otp;
-      const sub = "Testing"
+      const sub = "Mentor Addition Form"
       const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="http://localhost:3000/AddMentor/${element._id}">AddMentorForm</a>`;
       await Mailfunction(sub, element.email, text);
       await element.save();
@@ -322,7 +322,7 @@ export const getCvdeadline = async( req, res) => {
     }
 
 
-    return res.status(200).json({Deadline:deadline.time});
+    return res.status(200).json({Deadline:deadline});
 
 
   }catch (error){
