@@ -47,7 +47,7 @@ app.use(passport.session()) ;
 
 app.use(express.json()); 
 app.use(cookieParser());
-app.use(cors({origin: FRONTEND_URL , credentials: true}));
+app.use(cors({ credentials: true}));  // origin: FRONTEND_URL ,
 
 
 app.use("/InterConnect/student", studentRoute);

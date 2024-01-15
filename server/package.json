@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "nodemon index.js",
+    "build": "npm i"
   },
   "dependencies": {
     "adm-zip": "^0.5.10",
