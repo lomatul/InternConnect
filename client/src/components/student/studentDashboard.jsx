@@ -103,7 +103,7 @@ function StudentDashboard() {
                 
                 <div className='card'>
                 <img src="stu-report.png" alt=""  />
-                    <a href="/Addreport">Submission  &rarr;</a>
+                    <a href="/Addreport">Report Submission  &rarr;</a>
                     
                 </div>
 
@@ -114,8 +114,8 @@ function StudentDashboard() {
 
 
                 <div className='card'>
-                    <img src="ad-stu.png" alt=""  />
-                    <a href="/">Add Student &rarr;</a>
+                    <img src="reportcard.png" alt=""  />
+                    <a href="/">See MarkSheet&rarr;</a>
                 </div> 
             </div>
 
