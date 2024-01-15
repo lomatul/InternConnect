@@ -293,14 +293,20 @@ export const assignMenotors = async( req, res)=>{
       return res.status(400).json({ message: "Invalid or expired OTP" });
     }
     newmentors.map(async (element)=>{
-      const mentor = new Mentor({
-        name:element.name,
-        email:element.email,
-        designation:element.position,
-        assignedStudents:[{student_id:Studentid}],
-        company:id
-      });
-      await mentor.save();
+      const existingmentor = await Mentor.findOne({email:element.email});
+      if(existingmentor){
+        existingmentor.assignedStudents.push({student_id:Studentid});
+        await existingmentor.save();
+      }else{
+        const mentor = new Mentor({
+          name:element.name,
+          email:element.email,
+          designation:element.position,
+          assignedStudents:[{student_id:Studentid}],
+          company:id
+        });
+        await mentor.save();
+      }
     })   
     res.status(200).json({ message:"Mentors created"});
   }catch(error){
