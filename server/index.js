@@ -22,12 +22,10 @@ const port = process.env.PORT;
 const app = express();
 dotenv.config();
 
-
 const corsOptions = {
-  origin: '*',
+  origin: `https://internconnect.netlify.app`,
   credentials: true,
 };
-
 
 const connection = async () => {
     try {
@@ -41,6 +39,7 @@ const connection = async () => {
       console.log(error);
     }
 };
+
 app.use(session({
   secret: "secret",
   resave: true ,
@@ -54,7 +53,7 @@ app.use(passport.session()) ;
 
 app.use(express.json()); 
 app.use(cookieParser());
-app.use(cors(corsOptions));  // origin: FRONTEND_URL ,
+app.use(cors(corsOptions));  
 
 
 app.use("/InterConnect/student", studentRoute);
