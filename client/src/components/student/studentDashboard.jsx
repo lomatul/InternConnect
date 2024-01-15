@@ -70,7 +70,7 @@ function StudentDashboard() {
                     The deadline for Report Submission is {new Date(reportDeadline.time).toLocaleString()} - Go to Submission Page
                   </p>
                 ) : (
-                  <p>Deadlines not set</p>
+                  <p></p>
                 )}
                 <button onClick={handleOkayClick}>Okay</button>
             </div>
