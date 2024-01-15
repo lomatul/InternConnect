@@ -86,7 +86,7 @@ const StuNavbar = () => {
         {(!userstudent && !useradmin) ? (
           <a href='/login'>Login</a>
         ) : null}
-        {userstudent ? <a href='/Student'>{userstudent.name}</a> : null}
+       {userstudent ? <a href='/Student'> <img src="stu.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" , marginRight:"10px" }}   />{userstudent.name}</a> : null}
         {useradmin ? <a href='/Admin'>{useradmin.name}</a> : null}
       </div>
     </div>
