@@ -297,7 +297,8 @@ export const assignMenotors = async( req, res)=>{
         name:element.name,
         email:element.email,
         designation:element.position,
-        assignedStudents:[{student_id:Studentid}]
+        assignedStudents:[{student_id:Studentid}],
+        company:id
       });
       await mentor.save();
     })   
@@ -317,10 +318,10 @@ export const sendFormtomentors = async(req, res)=>{
       const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
       console.log(element);
       element.OTP=otp;
-      const sub = "Testing"
+      const sub = "Student Assesment"
       var text=`<p>Dear ${element.name},</p><p>Please click the following link to assesment the intern, doing internship. While submitting, please use the given OTP. Your OTP is '${otp}'</p>`;
-      element.assignedStudents.forEach((element)=>{
-        var link=`<p>For Student ${element} the assesment form link is:- <a href="http://localhost:3000/AddAssesment/${element}">Assesment this student</a></p>`;
+      element.assignedStudents.forEach((student)=>{
+        var link=`<p>For Student ${student} the assesment form link is:- <a href="http://localhost:3000/AddAssesment/${element._id}/${student}">Assesment this student</a></p>`;
         text=text+link;
       })
       await Mailfunction(sub, element.email, text);

@@ -14,6 +14,7 @@ const UploadReport = () => {
   const [id, setId] = useState('');
   const [hasReport, setHasReport] = useState(false);
   const [report, setReport] = useState('');
+  const [deadline, setDeadline]=useState('')
 
   useEffect(() => {
     if (userstudent) {
@@ -45,6 +46,31 @@ const UploadReport = () => {
     }
   }, [userstudent]);
 
+  useEffect(()=>{
+    const date= new Date();
+    console.log("Current Date", date);
+    try {
+        console.log("came here at deadline")
+        axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline/').then((response)=>{
+          console.log(response.data.Deadline)
+          
+          setDeadline(new Date(response.data.Deadline.time));
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }, []
+  )
+
   useEffect(() => {
     if (id) {
       try {
@@ -74,8 +100,10 @@ const UploadReport = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    const formData = new FormData();
+    if(Date()>deadline){
+      alert("Deadline passed");
+    }else{
+      const formData = new FormData();
     formData.append("file", selectedFile);
     console.log(formData)
     try {
@@ -106,6 +134,8 @@ const UploadReport = () => {
       console.error('An error occurred:', error);
     }
     setSelectedFile(null)
+    }
+
   }
 
   const handleView = async (event) => {
@@ -141,6 +171,7 @@ const UploadReport = () => {
           <li>Highlight your skills, experience, and education.</li>
           <li>Tailor your Report for the specific job or internship you're applying for.</li>
           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
         </ul>
 
         <div className="sample-cvs">
@@ -149,10 +180,10 @@ const UploadReport = () => {
           <a href="cvsample3.pdf" download>Download Sample Report 3</a>
         </div>
 
-        <div className="xcellupload">
+        {new Date()<deadline?<div className="xcellupload">
           <input type="file" accept=".pdf" onChange={handleFileSelect} />
           {hasReport ? <button onClick={handleSubmit}>Upload</button> : <button onClick={handleSubmit}>Upload</button>}
-        </div>
+        </div>:<div></div>}
         {hasReport && <button onClick={handleView}>View your Report </button>}
       </div>
 

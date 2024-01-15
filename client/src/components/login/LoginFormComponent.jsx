@@ -87,7 +87,7 @@ const LoginFormComponent = () => {
       setPasswordError('');
 
       try {
-          await axios.post(`${BASE_URL}/InterConnect/student/postlogin`, {student_id, password}
+          await axios.post(`${BASE_URL}/InterConnect/student/postlogin`, {student_id, password}, { withCredentials: true }
           ).then((response)=>{
               console.log(response)
               const User = response.data.User
