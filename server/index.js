@@ -23,7 +23,7 @@ const app = express();
 dotenv.config();
 
 const allowedOrigins = [
-  'https://chipper-cat-31c8dc.netlify.app',
+  'https://internconnect.netlify.app/',
 ];
 
 const corsOptions = {
