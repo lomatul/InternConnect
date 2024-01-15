@@ -63,10 +63,11 @@ const Mentor = () => {
     
           // For example, filter students based on assignedStudents array in mentors
           const finalFilteredStudents = filteredStudents.filter((student) =>
-            fetchedMentors.every((mentor) => !mentor.assignedStudents.includes(student.student_id))
+            fetchedMentors.every((mentor) => mentor.assignedStudents.includes(student.student_id))
           );
           setStudents(finalFilteredStudents);
           console.log('Final filtered students:', finalFilteredStudents);
+          console.log('Final  students:', students);
         } catch (error) {
           console.error('An error occurred:', error.message);
         }
