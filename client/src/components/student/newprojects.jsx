@@ -3,6 +3,8 @@ import "./newproject.css";
 import { motion } from "framer-motion";
 import { useAuthContext } from "../../context/useAuthcontext";
 import axios from "axios";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NewProject = ({ page, setPage, x, setX }) => {
   const initialProject = {
@@ -44,6 +46,8 @@ const NewProject = ({ page, setPage, x, setX }) => {
       setProjects((prevProjects) => [...prevProjects, response.data.student.projects]);
       setNewProject(initialProject);
       setShowAddForm(false);
+      toast.success('Project added successfuly');
+      window.location.reload();
     } catch (error) {
       console.error("Error adding project:", error);
     }
@@ -53,6 +57,7 @@ const NewProject = ({ page, setPage, x, setX }) => {
     try {
       await axios.delete(`http://localhost:4000/InterConnect/student/deleteProjects/${userstudent.student_id}/${project_id}`);
       setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
+      toast.success("Project deleted successfully");
     } catch (error) {
       console.error("Error deleting project:", error);
     }
