@@ -19,6 +19,13 @@ const Sendcv = () => {
 
   const [selectedStudent, setSelectedStudent] = useState(null);
 
+  const [mailContent, setMailContent] = useState('Hello,\n\nThis Mail is From InterConnect. Please find the CVs attached for this years internship.\n\n Please Reply us Within 1 Week');
+
+  const handleContentChange = (e) => {
+    setMailContent(e.target.value);
+  };
+
+
   const handleOkayButtonClick = async(e) => {
     e.preventDefault();
     setShowTable(true);
@@ -219,7 +226,18 @@ const Sendcv = () => {
                 <div className="table-button">
                 <button onClick={handleAddButtonClick}>Add</button>             
                 </div>
+                
                 </div>
+                    <div className="form-group">
+                          <div className="mail-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                            <textarea 
+                              cols="30" rows="10"
+                              value={mailContent}
+                              onChange={handleContentChange}
+                              placeholder="Type your mail content here..."
+                            ></textarea>
+                          </div>
+                        </div>
                 <div className="form-button">
                 <button onClick={handleSendButtonClick}>Send</button>      
                 </div>

@@ -23,7 +23,10 @@
 }
 
 
-
+.mail-text{
+  margin-left: 110px;
+  margin-bottom: 50px;
+}
 
 .admincontainer text {
     display: flex;
