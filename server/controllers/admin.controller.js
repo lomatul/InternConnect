@@ -322,7 +322,7 @@ export const getCvdeadline = async( req, res) => {
     }
 
 
-    return res.status(200).json({Deadline:deadline});
+    return res.status(200).json({Deadline:deadline.time});
 
 
   }catch (error){
