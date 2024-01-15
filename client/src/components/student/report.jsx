@@ -98,8 +98,10 @@ const UploadReport = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    const formData = new FormData();
+    if(Date()>deadline){
+      alert("Deadline passed");
+    }else{
+      const formData = new FormData();
     formData.append("file", selectedFile);
     console.log(formData)
     try {
@@ -130,6 +132,8 @@ const UploadReport = () => {
       console.error('An error occurred:', error);
     }
     setSelectedFile(null)
+    }
+
   }
 
   const handleView = async (event) => {
