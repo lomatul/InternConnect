@@ -162,10 +162,6 @@ const Mentor = () => {
                     <li>Thank you very much for supporting our students in their internships.</li>
                     <p>If you need support regarding this form, please  -<a href="/contact">contact us</a>.</p>
 
-                   {/* <span style={{ color: 'red' }}>  We will ensure that the information you provide remains confidential and will not be
-                    disclosed publicly. However, an aggregated result may be presented publicly. For example,
-                    we will NOT publish that you have marked an intern's performance as outstanding, however,
-                    we may publish that x% of the interns were marked as outstanding.</span>  */}
                 </ul>
 
                 <div className="sending-cvs">
@@ -204,7 +200,7 @@ const Mentor = () => {
             </div>
 
             <div className="mentorbutton">
-            <Button onClick={() => handleRemoveMentor(index)}>Remove Mentor</Button>
+            <Button style={{background:"#f09792"  , marginTop:"44px"}} onClick={() => handleRemoveMentor(index)}>Remove Mentor</Button>
             </div>
 
           

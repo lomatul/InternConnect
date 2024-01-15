@@ -33,6 +33,11 @@
 
 }
 
+.addmentor{
+  margin-right: -200px;
+  margin-left: -350px;
+}
+
 .admincard{
   background-color: rgb(198, 220, 230);
     margin-top: 50px;
@@ -658,11 +663,18 @@ width: 300px;
   cursor: pointer;
 }
 
-
-.mentorbutton{
-  margin-top: -10px;
+.cvSending img {
+  margin-top: 50px;
+  margin-left: 600px;
+  height: 160px;
+  width: 160px;
+}
+.mentorbutton button{
   margin-bottom: 60px;
-  margin-left: -500px;
+  width: 150px;
+  background-color: #000000;
+  color: #ffffff;
+  margin-right: -100px;
   cursor: pointer;
 }
 

@@ -115,7 +115,7 @@ function StudentDashboard() {
 
                 <div className='card'>
                     <img src="reportcard.png" alt=""  />
-                    <a href="/">See MarkSheet&rarr;</a>
+                    <a href="/StuMark">See MarkSheet&rarr;</a>
                 </div> 
             </div>
 
