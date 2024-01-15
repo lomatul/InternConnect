@@ -12,6 +12,7 @@ const UploadReport = () => {
   const [id, setId] = useState('');
   const [hasReport, setHasReport] = useState(false);
   const [report, setReport] = useState('');
+  const [deadline, setDeadline]=useState('')
 
   useEffect(() => {
     if (userstudent) {
@@ -42,6 +43,31 @@ const UploadReport = () => {
       setLoading(false);
     }
   }, [userstudent]);
+
+  useEffect(()=>{
+    const date= new Date();
+    console.log("Current Date", date);
+    try {
+        console.log("came here at deadline")
+        axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline/').then((response)=>{
+          console.log(response.data.Deadline)
+          
+          setDeadline(new Date(response.data.Deadline.time));
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }, []
+  )
 
   useEffect(() => {
     if (id) {
