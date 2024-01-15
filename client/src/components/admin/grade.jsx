@@ -4,6 +4,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const Addgrade = () => {
   const [showSendingCvs, setShowSendingCvs] = useState(true);
@@ -17,7 +19,7 @@ const Addgrade = () => {
 
   const handleSubmitExport = async() => {
     try {
-      const response = await axios.post('http://localhost:4000/InterConnect/admin/getGradeExcel', {
+      const response = await axios.post(`${BASE_URL}/InterConnect/admin/getGradeExcel`, {
         mentorpart: mentorPercentage,
         reportpart: reportPercentage,
         presentationpart: presentationPercentage

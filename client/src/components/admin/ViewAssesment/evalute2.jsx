@@ -16,8 +16,7 @@ const Evaluation2 = ({feedbackvalue}) => {
         <div className="assesment-form">
         <form>
 
-          
-          
+    
         <div className="form-group">
         <label htmlFor="">Meeting deadline of Tasks<span>*</span></label>
           </div>

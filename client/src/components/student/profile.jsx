@@ -6,6 +6,8 @@ import { useAuthContext } from "../../context/useAuthcontext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../../services/helper";
+
 
 const StudentProfile = () => {
 
@@ -36,7 +38,7 @@ const StudentProfile = () => {
           try {
             axios
               .get(
-                `http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`
+                `${BASE_URL}/InterConnect/student/getStudent/${userstudent.student_id}`
               )
               .then((response) => {
                 setUserData({

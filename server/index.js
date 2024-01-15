@@ -17,7 +17,8 @@ import reportRoute from "./routes/report.routes.js";
 import mentorRoute from "./routes/mentor.routes.js"
 
 const FRONTEND_URL = process.env.FRONTEND_URL
-const port = process.env.PORT || 4000;
+const port = process.env.PORT;
+
 const app = express();
 dotenv.config();
 

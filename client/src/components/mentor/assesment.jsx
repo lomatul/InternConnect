@@ -16,20 +16,19 @@ import axios from "axios";
 import {useParams} from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const Assesment = () => {
   const {mentorid, StudentId} = useParams();
 
   const [x, setX] = useState(0);
-
   const [page, setPage] = useState(0);
   const [evaluation, setEvaluation] = useState([]);
   const [feedback, setFeedback] = useState([]);
   const [isdone, setIsdone]=useState(false);
   const [notassessedstudents, setNotassessedstudents] = useState([])
   const [mentor, setMentor] = useState('')
-
-
 
 
   const handleRadiochange= (group, value) => {
@@ -52,7 +51,7 @@ const Assesment = () => {
     console.log("Id check", mentorid, StudentId);
     try{
       const fetchdata = async () => {
-        await axios.get('http://localhost:4000/InterConnect/mentor/getmentorbyid/'+mentorid)
+        await axios.get(`${BASE_URL}/InterConnect/mentor/getmentorbyid/`+mentorid)
         .then((response) => {
           console.log(response)
           setMentor(response.data.Mentor);
@@ -93,7 +92,7 @@ const Assesment = () => {
     var sum=0;
     Object.values(evaluation).forEach((value) =>{ sum=sum+Number(value); console.log("whole object for show", sum)});
     try {
-      await axios.post('http://localhost:4000/InterConnect/mentor/AddAssesment', {Answer:feedback, mentorid, StudentId, sum}
+      await axios.post(`${BASE_URL}/InterConnect/mentor/AddAssesment`, {Answer:feedback, mentorid, StudentId, sum}
       ).then((response)=>{
       console.log(response)
       toast.success('Assesment stored', { position: "top-right" });

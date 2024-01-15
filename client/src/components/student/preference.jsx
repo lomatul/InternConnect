@@ -4,6 +4,7 @@ import axios from "axios";
 import Select from 'react-select';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
 
 
 const Prefernces = () => {
@@ -29,10 +30,6 @@ const Prefernces = () => {
     {value:"Project Manager", label:"Project Manager"},
   ]
 
- 
-
-
-
 
   useEffect(() => {
     if (userstudent) {
@@ -42,8 +39,9 @@ const Prefernces = () => {
 
   }, [userstudent]);
 
+
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
         const allCompanies = response.data;
 
@@ -64,11 +62,12 @@ const Prefernces = () => {
   console.log(firstchoicecompany, secondchoicecompany, thirdchoicecompany);
   console.log(firstchoicedomain, secondchoicedomain, thirdchoicedomain)
 
+
   const handleSubmit = async(event) => {
     event.preventDefault()
 
     try {
-      await axios.post('http://localhost:4000/InterConnect/student/setprefer/'+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
+      await axios.post(`${BASE_URL}/InterConnect/student/setprefer/`+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
     }).then((response)=>{
         console.log(response)
         toast.success('Your Preferences have been submitted!')
@@ -122,8 +121,6 @@ const Prefernces = () => {
                           <input type="text" placeholder="Give name" />
                       </div>
 
-
-                   
 
                     <div className="form-group">
                         <label htmlFor="">Contact Number<span>*</span></label>

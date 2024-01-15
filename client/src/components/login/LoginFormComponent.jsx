@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import {useAuthContext} from "../../context/useAuthcontext"
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { BASE_URL } from '../../services/helper';
 
 const LoginFormComponent = () => {
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const LoginFormComponent = () => {
     setLoginError('');
 
     try {
-        await axios.post('http://localhost:4000/InterConnect/admin/postlogin', {username, password}
+        await axios.post(`${BASE_URL}/InterConnect/admin/postlogin`, {username, password}
         ).then((response)=>{
             console.log(response)
             const User = response.data.User
@@ -87,7 +87,7 @@ const LoginFormComponent = () => {
       setPasswordError('');
 
       try {
-          await axios.post('http://localhost:4000/InterConnect/student/postlogin', {student_id, password}
+          await axios.post(`${BASE_URL}/InterConnect/student/postlogin`, {student_id, password}
           ).then((response)=>{
               console.log(response)
               const User = response.data.User

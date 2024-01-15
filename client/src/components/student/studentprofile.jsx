@@ -9,13 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import ViewProfile from "./viewprofile";
 import EditProfile from "./editprofile";
 import NewProject from "./newprojects";
+import { BASE_URL } from "../../services/helper";
 
 
 const StudentProfile = () => {
   const [x, setX] = useState(0);
   const [page, setPage] = useState(0);
-
- 
     
   const navigate = useNavigate();
   const { userstudent } = useAuthContext();
@@ -45,7 +44,7 @@ const StudentProfile = () => {
       try {
         axios
           .get(
-            `http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`
+            `${BASE_URL}/InterConnect/student/getStudent/${userstudent.student_id}`
           )
           .then((response) => {
             setUserData({
@@ -129,7 +128,7 @@ const StudentProfile = () => {
         const imgURL = await handleimagesave();
         try {
           const response = await axios.patch(
-            `http://localhost:4000/InterConnect/student/updateStudent/${userData.Id}`,
+            `${BASE_URL}/InterConnect/student/updateStudent/${userData.Id}`,
             {
               name: userData.name,
               email: userData.email,
@@ -154,7 +153,7 @@ const StudentProfile = () => {
     } else {
       try {
         const response = await axios.patch(
-          `http://localhost:4000/InterConnect/student/updateStudent/${userData.Id}`,
+          `${BASE_URL}/InterConnect/student/updateStudent/${userData.Id}`,
           {
             name: userData.name,
             email: userData.email,

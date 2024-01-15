@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import { BASE_URL } from '../../services/helper';
 
 const Companyhistory = () => {
 
@@ -11,7 +12,7 @@ const Companyhistory = () => {
   useEffect(() => {
     const fetchYears = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/InterConnect/company/companies');
+        const response = await axios.get(`${BASE_URL}/InterConnect/company/companies`);
         const allCompanies = response.data;
 
         if (!allCompanies || allCompanies.length === 0) {
@@ -41,7 +42,7 @@ const Companyhistory = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/InterConnect/company/getHistoricalData/${selectedYear}`);
+        const response = await axios.get(`${BASE_URL}/InterConnect/company/getHistoricalData/${selectedYear}`);
         setHistoricalData(response.data);
       } catch (error) {
         console.error('An error occurred while fetching historical data:', error);
