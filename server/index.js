@@ -22,6 +22,22 @@ const port = process.env.PORT;
 const app = express();
 dotenv.config();
 
+const allowedOrigins = [
+  'https://chipper-cat-31c8dc.netlify.app',
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
+
 const connection = async () => {
     try {
       await mongoose.connect(process.env.MONGO, {
@@ -47,7 +63,7 @@ app.use(passport.session()) ;
 
 app.use(express.json()); 
 app.use(cookieParser());
-app.use(cors({ credentials: true}));  // origin: FRONTEND_URL ,
+app.use(cors(corsOptions));  // origin: FRONTEND_URL ,
 
 
 app.use("/InterConnect/student", studentRoute);
