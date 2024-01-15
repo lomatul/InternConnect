@@ -57,6 +57,7 @@ const NewProject = ({ page, setPage, x, setX }) => {
     try {
       await axios.delete(`http://localhost:4000/InterConnect/student/deleteProjects/${userstudent.student_id}/${project_id}`);
       setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
+      toast.success("Project deleted successfully");
     } catch (error) {
       console.error("Error deleting project:", error);
     }
