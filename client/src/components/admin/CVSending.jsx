@@ -167,7 +167,7 @@ const Sendcv = () => {
           </div>
 
       <div className="cvSending">
-      {loading && <img src="loading.gif"alt="InternConnect Logo"   style={{width: '60px', height: '60px' , marginBottom:"-10px" , marginRight:"10px" }}   />}
+      {loading && <img src="loading.gif"alt="InternConnect Logo" />}
         {showTable && (
           <div className="companies">
             <main className="table">

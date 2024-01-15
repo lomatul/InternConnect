@@ -36,7 +36,7 @@ import GradeStatus from "./Pages/studentgrade";
 import SendDeadline from "./Pages/deadline";
 import Addreport from "./Pages/AddReport";
 import Sprofile from "./Pages/viewSprofile";
-
+import StuMark from "./Pages/Marksheet";
 
 
 
@@ -84,6 +84,8 @@ function App() {
         <Route path="/Adddeadline" element = {<SendDeadline/>} />
         <Route path="/Addreport" element = {<Addreport/>} />
         <Route path="/Sprofile" element = {<Sprofile/>} />
+        <Route path="/StuMark" element = {<StuMark/>} />
+
       </Routes>
     </BrowserRouter>
   );
