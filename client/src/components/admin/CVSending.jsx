@@ -106,7 +106,7 @@ const Sendcv = () => {
   const handleSendButtonClick= async() =>{
     setLoading(true);
     try{
-      await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList})
+      await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList, text: mailContent,})
       .then((response)=>{
         console.log(response);
         console.log("student", cvList);
