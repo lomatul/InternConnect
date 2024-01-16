@@ -150,7 +150,7 @@ export const getMatchedStudentForCompany = async (req, res) =>{
 
 export const sendCvsToCompany = async (req, res) => {
   try {
-    const { companyID, students } = req.body;
+    const { companyID, students, text } = req.body;
 
     if (!companyID || students.length === 0) {
       return res.status(400).json({ error: 'Please provide CV file names, company name, and ensure the array is not empty.' });
@@ -173,7 +173,7 @@ export const sendCvsToCompany = async (req, res) => {
     const recipientEmail = company.email;
 
     // Send the CVs to the company email using the new function
-    await sendCVsEmail(cvFileNames, recipientEmail);
+    await sendCVsEmail(cvFileNames, recipientEmail, text);
 
     students.forEach(async element => {
       const student=await Student.findOne({ student_id: element.student_id });
