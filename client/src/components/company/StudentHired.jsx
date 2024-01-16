@@ -4,7 +4,7 @@ import Select from 'react-select';
 import { BASE_URL } from '../../services/helper';
 
 
-const Status = () => {
+const StatusHired = () => {
   const [students, setStudents] = useState([]);
   const [companies, setCompanies] = useState([]);
   const [search, setSearch] = useState('');
@@ -20,6 +20,31 @@ const Status = () => {
     setFilteredStudents(filtered);
   }, [search, students]);
 
+  const [buttonrow, setHiredRow] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleHired = (index) => {
+    setSelectedOption('Hired');
+  };
+
+  const handleNotHired = (index) => {
+    setSelectedOption('Rejected');
+  };
+
+  const [showhiredButton, setshowhiredButton] = useState(false);
+  const [showRejectButton, setshowRejectButton] = useState(false);
+
+    const handleLinkButtonClick = () => {
+    setshowhiredButton(true);
+    setshowRejectButton(false);
+    };
+  
+    const handleImgButtonClick = () => {
+    setshowRejectButton(false);
+    setshowhiredButton(false);
+    };
+
+
 
   useEffect(() => {
     // Fetching students
@@ -30,14 +55,14 @@ const Status = () => {
         axios.get(`${BASE_URL}/InterConnect/company/companies`)
           .then((response) => {
             const fetchedCompanies = response.data;
-            
-            // Iterateing over students and adding company name based on "companyStatus"
+
+            // Iterating over students and adding company name based on "companyStatus"
             const studentsWithCompanyNames = fetchedStudents.map(student => {
               const matchingCompany = fetchedCompanies.find(company => 
                 String(company._id) === student.companyStatus
               );
               const companyName = matchingCompany ? matchingCompany.name : 'N/A';
-              
+
               return {
                 ...student,
                 companyName,
@@ -67,9 +92,8 @@ const Status = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <img src='search.png'></img>
+          <img src='search.png' alt="Search Icon" />
         </div>
-
       </section>
       <section className="table__body">
         <table>
@@ -77,8 +101,8 @@ const Status = () => {
             <tr>
               <th> Name </th>
               <th> Id </th>
-              <th> Status </th>
               <th> Company Name </th>
+              <th> Status </th>
             </tr>
           </thead>
           <tbody>
@@ -86,24 +110,21 @@ const Status = () => {
               <tr key={index}>
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
-                <div className="status">
-                  {!student.currentStatus&&
-                  <div className="notstart">
-                  <td>{student.currentStatus}</td>
-                  </div>
-                  }
-                  {student.currentStatus==="In Progress"&&
-                  <div className="pending">
-                  <td>{student.currentStatus}</td>
-                  </div>
-                  }
-                  {student.currentStatus==="Hired"&&
-                  <div className="hire">
-                  <td>{student.currentStatus}</td>
-                  </div>
-                  }
-                </div>
                 <td>{student.companyName}</td>
+                <td>
+                  {buttonrow === index && selectedOption === null && (
+                    <>
+                      <button onClick={() => handleHired(index)} disabled={selectedOption === 'Rejected'}>
+                        Hired
+                      </button>
+                      <button onClick={() => handleNotHired(index)} disabled={selectedOption === 'Hired'}>
+                        Rejected
+                      </button>
+                    </>
+                  )}
+                  {selectedOption === 'Hired' && <p>Hired</p>}
+                  {selectedOption === 'Rejected' && <p>Rejected</p>}
+                </td>
               </tr>
             ))}
           </tbody>
@@ -113,4 +134,4 @@ const Status = () => {
   );
 };
 
-export default Status;
+export default StatusHired;

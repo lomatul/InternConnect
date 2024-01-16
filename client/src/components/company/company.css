@@ -35,6 +35,16 @@
     box-shadow: 5px 5px 4px rgb(21, 15, 99);
 }
 
+.companies  .hired button {
+    height: 30px;
+    width: 100px;
+      border: none;
+    background-color: rgb(134, 207, 148);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
 .companies  button {
     height: 30px;
     border: none;
@@ -234,7 +244,7 @@ tbody tr.hide td p {
 }
 
 .status .hire {
-    background-color: #86e49d;
+    background-color: #a9f0bb;
     border-radius: 10px;
 }
 

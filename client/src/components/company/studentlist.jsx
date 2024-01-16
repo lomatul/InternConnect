@@ -64,7 +64,7 @@ const Studentlist = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.email}</td>
-                <td>{2022}</td>
+                <td>{2024}</td>
                 <td style={{ color: student.accountActivationStatus ? 'green' : 'red' }}>
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>

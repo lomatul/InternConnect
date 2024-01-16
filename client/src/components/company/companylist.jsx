@@ -20,7 +20,6 @@ const Companylist = () => {
     MaxInterns:' ',
     MinInterns:' ',
     InternsHired:' ',
-    mentormail:'Email sent',
 
    
   });
