@@ -109,6 +109,7 @@ const Sendcv = () => {
       await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList})
       .then((response)=>{
         console.log(response);
+        console.log("student", cvList);
         toast.success('Cvs has been sent to the companies!')
         setTimeout(() => {
           window.location.reload();
