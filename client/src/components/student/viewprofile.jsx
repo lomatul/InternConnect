@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from 'axios';
-
+import { BASE_URL } from "../../services/helper";
 
 
 const ViewProfile = ({ userData, page, setPage, x, setX }) => {
@@ -18,7 +18,7 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
   
       const { name, Id } = userData;
 
-      await axios.post('http://localhost:4000/InterConnect/company/sendHiredNotifyingMail', { companyName, studentId: Id, studentName: name, });
+      await axios.post(`${BASE_URL}/InterConnect/company/sendHiredNotifyingMail`, { companyName, studentId: Id, studentName: name, });
   
       setHired(true);
 
@@ -121,7 +121,6 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
               <h3>Past Experiences:</h3>
               <p><span>{userData.pastExperiences}</span></p>
             </div>
-           
 
             <div className="view-profile2">
               <h3>External Links:</h3>
@@ -129,18 +128,20 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
                 <span>{userData.externalLinks}</span>
               </p>
             </div>
+
           </div>
         </div>
 
         {!hired && (
           <div className="Hiringform">
+
             <p>
-              If You are already hired by any company for Internship please fill
-              out the form
+              If You are already hired by any company for Internship please fill out the form
             </p>
+
             <div className="form-group">
               <label htmlFor="" name="companyName"> Company Name<span>*</span></label>
-              <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Give name" />            
+              <input type="text" value={companyName} onChange={(e) => setCompanyName(e.target.value)} placeholder="Give name" required/>            
             </div>
 
             <div className="form-group">
@@ -155,9 +156,11 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
               </label>
               <input type="date" placeholder="Select Date" />
             </div>
+
             <div className="hired">
               <button onClick={handleHiredClick}>Hired</button>
             </div>
+
           </div>
         )}
       </motion.div>

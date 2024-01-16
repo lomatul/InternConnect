@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../services/helper';
+
 
 const Studentlist = () => {
   const [search, setSearch] = useState('');
@@ -7,16 +9,10 @@ const Studentlist = () => {
   const [filteredStudents, setFilteredStudents] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
-        const studentsData = response.data;
-
-        if (!studentsData || studentsData.length === 0) {
-          console.log('No students found.');
-          return;
-        }
-        setStudents(studentsData);
-        setFilteredStudents(studentsData); // Initially, both arrays are the same
+        setStudents(response.data);
+        setFilteredStudents(response.data); // Initially, both arrays are the same
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
@@ -40,10 +36,11 @@ const Studentlist = () => {
         <div className="input-group">
           <input
             type="search"
-            placeholder="Search Data..."
+            placeholder="Search Data ..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
+           <img src='search.png'></img>
         </div>
       </section>
 
@@ -54,6 +51,7 @@ const Studentlist = () => {
               <th>Name</th>
               <th>Student ID</th>
               <th>Email</th>
+              <th>Year</th>
               <th>Account Status</th>
               <th>CGPA</th>
               <th>CV</th>
@@ -66,11 +64,12 @@ const Studentlist = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.email}</td>
+                <td>{2024}</td>
                 <td style={{ color: student.accountActivationStatus ? 'green' : 'red' }}>
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>
                 <td>{student.CGPA}</td>
-                <td style={{textDecoration:"underline"}}><a  href={"http://localhost:4000/InterConnect/student/getcv/"+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
+                <td style={{textDecoration:"underline"}}><a  href={`${BASE_URL}/InterConnect/student/getcv/`+student.student_id} download={student.student_id+".pdf"}>{student.CV}</a></td>
               </tr>
             ))}
           </tbody>

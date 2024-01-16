@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import '../test.css';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const Addgrade = () => {
   const [showSendingCvs, setShowSendingCvs] = useState(true);
@@ -9,10 +14,33 @@ const Addgrade = () => {
   const [presentationPercentage, setPresentationPercentage] = useState(0);
 
   const handleSubmit = () => {
-    // Perform any additional logic or API calls if needed
-
-    // Hide the sending-cvs section
     setShowSendingCvs(false);
+  };
+
+  const handleSubmitExport = async() => {
+    try {
+      const response = await axios.post(`${BASE_URL}/InterConnect/admin/getGradeExcel`, {
+        mentorpart: mentorPercentage,
+        reportpart: reportPercentage,
+        presentationpart: presentationPercentage
+      }, { responseType: 'arraybuffer' });
+  
+      const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+  
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'Grade_Report.xlsx';
+      link.click();
+  
+
+      toast.success('Excel File Downloaded Successfully', { position: "top-right" });
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+
   };
 
   return (
@@ -30,6 +58,11 @@ const Addgrade = () => {
           <li>You can give this Percentage Once in a Session . So be Carefull </li>
           </ul>
           <div className="sending-cvs">
+            <p>Click The button for Send Assesment Form to Mentors</p>
+            <button style={{ marginTop:"-10px"}} >Send</button>
+            </div>
+
+          <div className="sending-cvs">
             <div className="form-group">
               <label htmlFor=""> Percentage on Mentors Evaluation <span>*</span></label>
               <input
@@ -41,7 +74,7 @@ const Addgrade = () => {
             </div>
 
             <div className="form-group">
-              <label>Percentage on Report Evaluation</label>
+              <label>Percentage on Report Evaluation <span>*</span> </label>
               <input
                 type="number"
                 min="1"
@@ -51,7 +84,7 @@ const Addgrade = () => {
             </div>
 
             <div className="form-group">
-              <label>Percentage on Presentation Evaluation</label>
+              <label>Percentage on Presentation Evaluation<span>*</span> </label>
               <input
                 type="number"
                 min="1"
@@ -70,7 +103,7 @@ const Addgrade = () => {
           <p>The Grade will be calculated based on {mentorPercentage}% Mentors Evaluation, {presentationPercentage}% Presentation, and {reportPercentage}% Report Evaluation</p>
         </div>
         {/* <button >Generate Grade</button> */}
-        <button >Export Grade</button>
+        <button onClick={handleSubmitExport}>Export Grade</button>
         </div>
       )}
     </div>

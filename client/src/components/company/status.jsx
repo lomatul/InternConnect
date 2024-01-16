@@ -1,18 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
+import { BASE_URL } from '../../services/helper';
+
 
 const Status = () => {
   const [students, setStudents] = useState([]);
   const [companies, setCompanies] = useState([]);
+  const [search, setSearch] = useState('');
+  const [filteredStudents, setFilteredStudents] = useState([]);
+
+  useEffect(() => {
+    // Filter students based on search input
+    const filtered = students.filter((student) => {
+      const studentData = `${student.name} ${student.student_id} ${student.email} ${student.currentStatus} ${student.CGPA}`.toLowerCase();
+      return studentData.includes(search.toLowerCase());
+    });
+
+    setFilteredStudents(filtered);
+  }, [search, students]);
+
 
   useEffect(() => {
     // Fetching students
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
         const fetchedStudents = response.data;
         // Fetching companies
-        axios.get('http://localhost:4000/InterConnect/company/companies')
+        axios.get(`${BASE_URL}/InterConnect/company/companies`)
           .then((response) => {
             const fetchedCompanies = response.data;
             
@@ -45,6 +60,16 @@ const Status = () => {
     <main className="table">
       <section className="table__header">
         <h1> Student Status </h1>
+        <div className="input-group">
+          <input
+            type="search"
+            placeholder="Search Data by Student Name..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <img src='search.png'></img>
+        </div>
+
       </section>
       <section className="table__body">
         <table>
@@ -57,14 +82,26 @@ const Status = () => {
             </tr>
           </thead>
           <tbody>
-            {students.map((student, index) => (
+            {filteredStudents.map((student, index) => (
               <tr key={index}>
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <div className="status">
+                  {!student.currentStatus&&
                   <div className="notstart">
                   <td>{student.currentStatus}</td>
                   </div>
+                  }
+                  {student.currentStatus==="In Progress"&&
+                  <div className="pending">
+                  <td>{student.currentStatus}</td>
+                  </div>
+                  }
+                  {student.currentStatus==="Hired"&&
+                  <div className="hire">
+                  <td>{student.currentStatus}</td>
+                  </div>
+                  }
                 </div>
                 <td>{student.companyName}</td>
               </tr>

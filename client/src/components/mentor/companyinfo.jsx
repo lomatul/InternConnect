@@ -24,11 +24,6 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
           <p>Please Fill up the Form Below</p>
         </div>
 
-     
-
-
-
-
 
         <div className="assesment-form">
         <form>
@@ -83,7 +78,7 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
    
         
             <button
-              onClick={() => {setPage(page - 1); setX(-1000);  }}>
+              onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'});  setPage(page - 1); setX(-1000);  }}>
               Previous </button>
 
               <button onClick={submit}>

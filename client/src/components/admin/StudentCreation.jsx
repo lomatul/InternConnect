@@ -5,6 +5,7 @@ import {useState} from 'react';
 import "../test.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
 
 
 const Addstudent = () => {
@@ -22,7 +23,7 @@ const handleSubmit = async(event) => {
   formData.append("file", selectedFile);
   console.log(formData)
   try {
-      await axios.post('http://localhost:4000/InterConnect/admin/uploadfile', formData, {
+      await axios.post(`${BASE_URL}/InterConnect/admin/uploadfile`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // Set the content type for file upload
         },
@@ -31,26 +32,21 @@ const handleSubmit = async(event) => {
           toast.success('Students have been created successfully', { position: "top-right" });
           setTimeout(() => {
             window.location.reload();
-          }, 3000);
+          }, 2000);
       }).catch((error)=>{
           if (error.response) {
-              toast.error('Error while creating students', { position: "top-right" });
-              console.log(error.response);
-              console.log("server responded");
-            } else if (error.request) {
-              console.log("network error");
-            } else {
-              console.log(error);
-            }
+            toast.error('Error while creating students', { position: "top-right" });
+            console.log(error.response);
+            console.log("server responded");
+          } else if (error.request) {
+            console.log("network error");
+          } else {
+            console.log(error);
+          }
       });
 
-      // if (response.status === 200) {
-      //   console.log('File uploaded successfully');
-      // } else {
-      //   console.error('File upload failed');
-      // }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error.message);
     }
     setSelectedFile(null)
 }

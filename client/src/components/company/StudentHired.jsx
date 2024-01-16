@@ -48,7 +48,7 @@ const StatusHired = () => {
       });
   }, []);
 
-  
+
   useEffect(() => {
     // Filter students based on search input
     const filtered = students.filter((student) => {
@@ -76,7 +76,7 @@ const StatusHired = () => {
     try {
       const studentId = filteredStudents[index].student_id;
       await axios.post(`${BASE_URL}/InterConnect/student/updateCurrentStatusByIdToHired/${studentId}`);
-      
+
       setOperationMessage('Operation Done!');
       updateButtonVisibility(index, false);
       setSelectedOption('Hired');
@@ -93,7 +93,7 @@ const StatusHired = () => {
     try {
       const studentId = filteredStudents[index].student_id;
       await axios.post(`${BASE_URL}/InterConnect/student/updateCurrentStatusByIdToRejected/${studentId}`);
-      
+
       setOperationMessage('Operation Done!');
       updateButtonVisibility(index, false);
       setSelectedOption('Rejected');

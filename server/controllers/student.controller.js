@@ -220,12 +220,15 @@ export const postlogin = (req, res, next) => {
       if(err){
         console.error(err)
         return res.status(500).json({ error: "Session is not set" });
+      }else{
+        console.log("if session is set", req.user)
+        res.status(200).json({ message: "Logged In", User: user });
       }
     }
     )
-    // console.log("if session is set", req.user)
+
     // Authentication succeeded
-    res.status(200).json({ message: "Logged In", User: user });
+
   })(req, res, next);
 };
 
@@ -504,7 +507,7 @@ export const getOneStudentbyId = async (req, res) =>{
 export const addProject = async (req, res) => {
   try {
     const { student_id } = req.params;
-    const { name, year, description, technologies } = req.body;
+    const { name, year, description, technologies, link } = req.body;
 
     const student = await Student.findOne({ student_id });
 
@@ -512,7 +515,7 @@ export const addProject = async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    student.projects.push({ name, year, description, technologies });
+    student.projects.push({ name, year, description, technologies, link });
 
     await student.save();
 
@@ -626,9 +629,10 @@ export const updateCurrentStatus = (async (req, res)=>{
 })
 
 
-export const updateCurrentStatusById = async (req, res) => {
+export const updateCurrentStatusByIdToHired = async (req, res) => {
   try {
     const { student_id } = req.params;
+    console.log(student_id)
 
     const updatedStudent = await Student.findOneAndUpdate(
       { student_id },
@@ -640,9 +644,32 @@ export const updateCurrentStatusById = async (req, res) => {
       return res.status(404).json({ error: 'Student not found' });
     }
 
-    res.status(200).json({ message: 'Student status updated successfully', updatedStudent });
+    res.status(200).json({ message: 'Student status updated successfully' });
   } catch (error) {
-    console.error('Error updating student status:', error);
+    console.error('Error updating student status:', error.message);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
+export const updateCurrentStatusByIdToRejected = async (req, res) => {
+  try {
+    const { student_id } = req.params;
+    console.log(student_id)
+
+    const updatedStudent = await Student.findOneAndUpdate(
+      { student_id },
+      { $set: { currentStatus: 'rejected' } }, 
+      { new: true } 
+    );
+
+    if (!updatedStudent) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    res.status(200).json({ message: 'Student status updated successfully' });
+  } catch (error) {
+    console.error('Error updating student status:', error.message);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
@@ -700,3 +727,31 @@ export const getStudentReportById = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
+export const ViewGrade = async(req, res) => {
+  try{
+    const id=req.user.id;
+
+    const student = await Student.findById(id);
+  
+    const returnStudentGrade = {
+      evaluatedMentorMarks:student.evaluatedMentorMarks,
+      presentationMarks:student.presentationMarks,
+      internshipReportMarks:student.internshipReportMarks,
+      finalGrade:student.finalGrade,
+      Name:student.name,
+      Id:student.student_id
+    }
+
+    console.log(returnStudentGrade)
+
+    res.status(200).json({returnStudentGrade:returnStudentGrade});
+  }catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+  
+
+
+}

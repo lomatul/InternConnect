@@ -4,6 +4,7 @@ import axios from "axios";
 import Select from 'react-select';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
 
 
 const Prefernces = () => {
@@ -17,6 +18,7 @@ const Prefernces = () => {
   const [firstchoicedomain, setFirstchoicedomain]=useState('')
   const [secondchoicedomain, setSecondchoicedomain]=useState('')
   const [thirdchoicedomain, setThirdchoicedomain]=useState('')
+  const [deadline, setDeadline]=useState('')
   // const [filteredCompanies, setFilteredCompanies] = useState([]);
 
 
@@ -29,10 +31,6 @@ const Prefernces = () => {
     {value:"Project Manager", label:"Project Manager"},
   ]
 
- 
-
-
-
 
   useEffect(() => {
     if (userstudent) {
@@ -42,8 +40,9 @@ const Prefernces = () => {
 
   }, [userstudent]);
 
+
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
         const allCompanies = response.data;
 
@@ -60,15 +59,41 @@ const Prefernces = () => {
         console.error('An error occurred while fetching companies:', error.message);
       });
   }, []);
+
+  useEffect(()=>{
+    const date= new Date();
+    console.log("Current Date", date);
+    try {
+        console.log("came here at deadline")
+        axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
+          console.log(response)
+          
+          setDeadline(new Date(response.data.Deadline.time));
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }, []
+  )
   
   console.log(firstchoicecompany, secondchoicecompany, thirdchoicecompany);
   console.log(firstchoicedomain, secondchoicedomain, thirdchoicedomain)
+
 
   const handleSubmit = async(event) => {
     event.preventDefault()
 
     try {
-      await axios.post('http://localhost:4000/InterConnect/student/setprefer/'+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
+      await axios.post(`${BASE_URL}/InterConnect/student/setprefer/`+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
     }).then((response)=>{
         console.log(response)
         toast.success('Your Preferences have been submitted!')
@@ -112,7 +137,7 @@ const Prefernces = () => {
            </div>
        </div>
 
-          <div className="studentpreference">
+       {new Date()<deadline&&<div className="studentpreference">
 
                <form onSubmit={handleSubmit}>
 
@@ -122,8 +147,6 @@ const Prefernces = () => {
                           <input type="text" placeholder="Give name" />
                       </div>
 
-
-                   
 
                     <div className="form-group">
                         <label htmlFor="">Contact Number<span>*</span></label>
@@ -181,8 +204,8 @@ const Prefernces = () => {
               <button onClick={handleSubmit}>Send</button>
               
               </form>
-              </div>
-              
+              </div>}
+
           </div>
         
     );

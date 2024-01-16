@@ -3,6 +3,7 @@ import { useAuthContext } from '../../context/useAuthcontext';
 import { useLogout } from '../../hooks/useLogout';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../../services/helper';
 
 const StuNavbar = () => {
   const [showNav, setShowNav] = useState(false);
@@ -19,7 +20,7 @@ const StuNavbar = () => {
     logout();
     try {
       axios
-        .get('http://localhost:4000/InterConnect/admin/logout')
+        .get(`${BASE_URL}/InterConnect/admin/logout`)
         .then((response) => {
           console.log(response);
           navigate('/');
@@ -73,7 +74,7 @@ const StuNavbar = () => {
             </li>
             <li>
               <a onClick={handleClick} href='/'>
-                LogOut{' '}
+                Log Out{' '}
               </a>
             </li>
           </ul>
@@ -86,7 +87,7 @@ const StuNavbar = () => {
         {(!userstudent && !useradmin) ? (
           <a href='/login'>Login</a>
         ) : null}
-        {userstudent ? <a href='/Student'>{userstudent.name}</a> : null}
+       {userstudent ? <a href='/Student'> <img src="stu.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" , marginRight:"10px" }}   />{userstudent.name}</a> : null}
         {useradmin ? <a href='/Admin'>{useradmin.name}</a> : null}
       </div>
     </div>

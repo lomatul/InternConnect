@@ -1,12 +1,10 @@
 import React, { useState, useEffect} from 'react';
-import "../admin/Add.css";
 import {useAuthContext} from "../../context/useAuthcontext"
 import axios from "axios";
 import download from 'js-file-download';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
+import { BASE_URL } from '../../services/helper';
 
 
 const UploadCV = () => {
@@ -23,7 +21,7 @@ const UploadCV = () => {
       setId(userstudent.student_id);
       if(userstudent.student_id){
         try{
-          axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
+          axios.get(`${BASE_URL}/InterConnect/student/getStudent/${userstudent.student_id}`).then((response)=>{
           if(response.data.student.CV){
             setHascv(true);
 
@@ -55,11 +53,12 @@ const UploadCV = () => {
     
   useEffect(()=>{
     const date= new Date();
-    console.log("Cuurent Date", date);
+    console.log("Current Date", date);
     try {
-        console.log("came here")
-        axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
-          setDeadline(new Date(response.data.Deadline));
+        console.log("came here at deadline")
+        axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline/`).then((response)=>{
+          console.log(response)
+          setDeadline(new Date(response.data.Deadline.time));
       }).catch((error)=>{
           if (error.response) {
               console.log(error.response);
@@ -80,7 +79,7 @@ const UploadCV = () => {
     if(id){
     try {
         console.log("came here")
-        axios.get('http://localhost:4000/InterConnect/student/getOnestudent/'+id).then((response)=>{
+        axios.get(`${BASE_URL}/InterConnect/student/getOnestudent/`+id).then((response)=>{
           setCv(response.data.students.CV)
       }).catch((error)=>{
           if (error.response) {
@@ -113,7 +112,7 @@ const UploadCV = () => {
       formData.append("file", selectedFile);
       console.log(formData)
     try {
-      await axios.post('http://localhost:4000/InterConnect/student/uploadCV/'+id, formData, {
+      await axios.post(`${BASE_URL}/InterConnect/student/uploadCV/`+id, formData, {
         headers: {
           'Content-Type': 'multipart/form-data', // Set the content type for file upload
         },
@@ -153,7 +152,7 @@ const UploadCV = () => {
   const handleview = async(event) => {
     event.preventDefault()
     try {
-      await axios.get('http://localhost:4000/InterConnect/student/getcv/'+id ).then((response)=>{
+      await axios.get(`${BASE_URL}/InterConnect/student/getcv/`+id ).then((response)=>{
         console.log(response)
         var fileName=id+".pdf"
         download(response.data, fileName);
@@ -198,8 +197,6 @@ const UploadCV = () => {
                       <img src="cv-up.gif" alt="" />
                   </div>
             </div>
-          {new Date()>deadline?<p>Deadline is passed.</p>:<p>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</p>
-}
             <div className="studentguideline">           
                      <ul>
                         <li>Use a clear and professional format for your CV (preferable in Latex).</li>
@@ -207,6 +204,7 @@ const UploadCV = () => {
                           <li>Highlight your skills, experience, and education.</li>
                           <li>Tailor your CV for the specific job or internship you're applying for.</li>
                           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+                          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
                        </ul>
 
                 
@@ -218,11 +216,11 @@ const UploadCV = () => {
                           <a href="cvsample3.pdf" download>Download Sample CV 3</a>
                   </div>
 
-                <div className="xcellupload">             
+                {new Date()<deadline?<div className="xcellupload">            
                   <input type="file" accept=".pdf" onChange={handleFileSelect}/>
-                  {new Date()>deadline?<button >Upload Unavailable.</button>:<button onClick={handleSubmit}>Upload</button>}
-                </div>
-                   {hascv&&<button><a style={{color:'white'}} href={"http://localhost:4000/InterConnect/student/getcv/"+id} download={id+".pdf"}>Download your CV </a></button>}
+                  <button onClick={handleSubmit}>Upload</button>
+                </div>:<div></div>}
+                   {hascv&&<button><a style={{color:'white'}} href={`${BASE_URL}/InterConnect/student/getcv/`+id} download={id+".pdf"}>Download your CV </a></button>}
              </div>
           
         </div>

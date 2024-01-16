@@ -11,7 +11,58 @@
   .newAdmin{
       width: 90%;
   }
+  .studentguideline {
+    padding: 0%;
+    width: 600px;
+    font-size: 14px;
+  }
+   .studentguideline .xcellupload {
+    margin-left: 0px;
+    width: 320px;
+  }
+  
 }
+
+@media (max-width:380px){
+
+  .newAdmin .adminnavbar {
+    background-color: transparent;
+
+  }
+  .admincard  .cards .card{
+      margin-left: 100px;
+      height: 250px;
+      width: 200px;
+      display: grid;
+      grid-template-columns: 1fr;
+  }
+   .admincontainer .admincard {
+    margin-left: 100px;
+    height: 1550px;
+    width: 200px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.studentguideline {
+  padding: 0%;
+  width: 200px;
+  font-size: 14px;
+}
+ .studentguideline .xcellupload {
+  margin-left: 0px;
+  width: 120px;
+}
+
+
+.studentpreference  button {
+width: 200px;
+color: red;
+margin-left: -900px;
+margin-right: 900px;
+}
+
+}
+
 
 
 .admincontainer{
@@ -23,7 +74,10 @@
 }
 
 
-
+.mail-text{
+  margin-left: 110px;
+  margin-bottom: 50px;
+}
 
 .admincontainer text {
     display: flex;
@@ -31,6 +85,11 @@
     justify-content: center;
     text-align: center;
 
+}
+
+.addmentor{
+  margin-right: -200px;
+  margin-left: -350px;
 }
 
 .admincard{
@@ -56,7 +115,7 @@
     width: 500px;
     height: 200px;
     padding: 30px;
-    background-color: rgba(50, 50, 50, 0.1);
+    background-color:rgb(233, 244, 249);
     box-shadow: 10px 10px 8px #888888;
     border-radius: 10px;
     display: flex; /* Set the display property to flex */
@@ -71,6 +130,28 @@
 }
 
 
+.timer{
+  margin-left: 200px;
+  display: flex;
+  align-items: center;
+  width: 400px;
+}
+.text button{
+  height: 50px;
+  margin-top: -20px;
+  width: 100px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.studentguideline span {
+  color: red;
+}
+/* .text p {
+  color: red;
+} */
 .admincard .card .adbuttons button {
     align-items: center;
     color: rgb(37, 16, 104);
@@ -79,6 +160,7 @@
     width: 100px;
     justify-content: space-around;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .admincard .adbuttons .add-button {
@@ -165,7 +247,7 @@
   margin-left: 10px;
   margin-right: 10px;
   padding: 50px;
-  height: 1800px;
+  height: 2800px;
   border-radius: 10px;
   outline: 2px solid brown;
 }
@@ -195,7 +277,7 @@
   margin-left: 10px;
   margin-right: 10px;
   padding: 50px;
-  height: 1800px;
+  height: 2800px;
   border-radius: 10px;
   outline: 2px solid brown;
 }
@@ -234,6 +316,7 @@ font-size: 18px;
     border-radius: 10px;
     margin-top: 20px;
   }
+
   
  .studentguideline h2 {
     font-size: 24px;
@@ -283,16 +366,6 @@ font-size: 18px;
   }
   
   
-  
- /* .xcellupload  button{
-      padding: 16px;
-      width: 200px;
-      margin-left: 100px;
-      border-radius: 10px;
-      color: rgb(255, 255, 255);
-      white-space: nowrap;
-      background: #000000;
-  } */
   .adminContact{
     justify-content: center;
     display: flex;
@@ -301,11 +374,13 @@ font-size: 18px;
   .adminContact form{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 0px;
+    margin-top: 30px;
+    margin-right: 200px;
+    margin-left: -50px;
     background-color: rgba(28, 37, 96, 0.1);
     box-shadow: 10px 10px 8px #888888;
-    width: 400px;
-    height: 650px;
+    width: 500px;
+    height: 850px;
     display: block;
     border-radius: 20px;
     box-shadow: 10px 10px 8px #888888;
@@ -364,7 +439,23 @@ font-size: 18px;
     border-radius: 10px;
   }
 
-  
+  .form-group input[type="file"] {
+    border: none;
+    height: 50px;
+    border-bottom: 3px solid rgb(31, 16, 110);
+    padding: 8px 10px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+  .form-group img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: -10px;
+  }
 
   .form-group input[type="text"]:focus, 
   .form-group input[type="number"] :focus,
@@ -394,7 +485,7 @@ font-size: 18px;
   }
   
   .adminnotification{
-    height: 800px;
+    height: 1100px;
     align-items: center;
     display: grid;
     margin-left: 110px;
@@ -464,13 +555,22 @@ width: 300px;
 
 .adminContact button
 {
-  margin-left: 100px;
+  margin-left: 90px;
   height: 50px;
-  width: 200px;
-  background-color: #000000;
+  width: 50px;
+  background-color:transparent;
   color: wheat;
+  border: transparent;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.contact-submit button
+{
+  background-color: rgb(0, 0, 0);
+  height: 50px;
+  width: 200px;
+  margin-left: 150px;
 }
 
 .adminContact .adselect select{
@@ -552,6 +652,7 @@ width: 300px;
   background-color: #000000;
   color: wheat;
   border-radius: 10px;
+  cursor: pointer;
 }
 .studentguideline button
 {
@@ -562,6 +663,21 @@ width: 300px;
   background-color: #000000;
   color: wheat;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.sending-cvs button
+{
+  margin-top: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+  margin-top: 70px;
+  height: 50px;
+  width: 200px;
+  background-color: #000000;
+  color: wheat;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 @media (max-width:1450px){
@@ -594,21 +710,27 @@ width: 300px;
 
 .studentguideline button:hover
 {
-  margin-top: 50px;
-  margin-left: 500px;
-  height: 50px;
-  width: 200px;
+
   background-color: rgb(158, 212, 206);
   color: black;
   outline:2px  solid;
   border-radius: 10px;
+  cursor: pointer;
 }
 
-
-.mentorbutton{
-  margin-top: -10px;
+.cvSending img {
+  margin-top: 50px;
+  margin-left: 600px;
+  height: 160px;
+  width: 160px;
+}
+.mentorbutton button{
   margin-bottom: 60px;
-  margin-left: -500px;
+  width: 150px;
+  background-color: #000000;
+  color: #ffffff;
+  margin-right: -100px;
+  cursor: pointer;
 }
 
 
@@ -703,10 +825,12 @@ text-align: center;
   color: red;
 }
 .date-button {
+  cursor: pointer;
   margin-top: -50px;
 }
 
 .date-button  button{
+  cursor: pointer;
   color: #fffdfd;
   margin-left: 50px;
   height: 45px;

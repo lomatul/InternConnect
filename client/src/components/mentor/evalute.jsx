@@ -61,9 +61,9 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
               name="row-radio-buttons-group" value={value.dependancy || ''} 
               onChange={(e) => {change('dependancy', e.target.value); feedback("eval_dependancy", e.target.value)}
               }>
-                    <FormControlLabel value={4} control={<Radio />} label="Exceptionally dependable" />
-                    <FormControlLabel style={{ marginLeft:"100px"}}  value={3} control={<Radio />} label=" Standard" /> 
-                    <FormControlLabel style={{ marginRight:"100px"}} value={2} control={<Radio />} label=" Not very dependable" />
+                    <FormControlLabel value={5} control={<Radio />} label="Exceptionally dependable" />
+                    <FormControlLabel style={{ marginLeft:"100px"}}  value={4} control={<Radio />} label=" Standard" /> 
+                    <FormControlLabel style={{ marginRight:"100px"}} value={3} control={<Radio />} label=" Not very dependable" />
                     <FormControlLabel style={{ marginLeft:"50px"}} value={1} control={<Radio />} label=" Totally undependable" />
                     <FormControlLabel style={{ marginRight:"100px"}} value={0} control={<Radio />} label="I could not assess this" />
 
@@ -84,7 +84,7 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
                     <FormControlLabel value={5} control={<Radio />} label=" Submit assigned tasks proactively, asks for tasks when idle" />
                     <FormControlLabel value={4} control={<Radio />} label=" Shows occasional lack of proactiveness" />
                     <FormControlLabel value={3} control={<Radio />} label=" Must be pushed to work" />
-                    <FormControlLabel style={{ marginRight:"100px"}} value="1" control={<Radio />} label="I could not assess this" />
+                    <FormControlLabel style={{ marginRight:"100px"}} value={1} control={<Radio />} label="I could not assess this" />
 
                 </RadioGroup>
                 
@@ -110,21 +110,16 @@ const Evaluation =  ( { value,change,feedback, page, setPage,x,setX  } )  => {
                 
             </FormControl>
             </div>
-
-
-
-
-
       
 
         </form>
         
-        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+        <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page + 1); setX(1000);}}>
               Next
             </button>
           <br/>
             <button
-              onClick={() => {setPage(page - 1); setX(-1000);  }}>
+              onClick={() =>{window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);  }}>
               Previous </button>
     </div>
 

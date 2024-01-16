@@ -3,8 +3,8 @@ import './login.css';
 import axios from "axios";
 import { useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
+import { BASE_URL } from '../../services/helper';
 
 
 const Updatepassword = () => {
@@ -20,11 +20,10 @@ const Updatepassword = () => {
 
   const [passwordStrengthMessage, setPasswordStrengthMessage] = useState('');
 
-// Function to clear the password strength message after 3 seconds
 const clearPasswordStrengthMessage = () => {
   setTimeout(() => {
     setPasswordStrengthMessage('');
-  }, 2000); // 3 seconds
+  }, 2000); // 2 seconds
 };
 
   useEffect(() => {
@@ -40,7 +39,7 @@ const clearPasswordStrengthMessage = () => {
     if(newPassword===checkpassword){
       try {
         if(from===0){
-          await axios.post('http://localhost:4000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
+          await axios.post(`${BASE_URL}/InterConnect/student/updatePassword/`+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
               navigate('/login');
@@ -58,7 +57,7 @@ const clearPasswordStrengthMessage = () => {
               }
           });
         }else if (from===1){
-          await axios.post('http://localhost:4000/InterConnect/student/resetPassword/'+Id, {currentPassword, newPassword}
+          await axios.post(`${BASE_URL}/InterConnect/student/resetPassword/`+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
               navigate('/login');

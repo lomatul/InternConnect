@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import '../components/admin/Dashboard.css'
-import '../components/admin/Add.css'
 import Sidebar from '../components/admin/Sidebar'
 import Addguideline from '../components/admin/AddGuideline'
 
