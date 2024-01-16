@@ -3,7 +3,7 @@ import AdmZip from 'adm-zip';
 import fs from 'fs';
 import dotenv from "dotenv";
 
-const sendCVsEmail = async (cvFileNames, recipientEmail) => {
+const sendCVsEmail = async (cvFileNames, recipientEmail, text) => {
   try {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
@@ -35,7 +35,8 @@ const sendCVsEmail = async (cvFileNames, recipientEmail) => {
       from: 'internconnect.swe@gmail.com',
       to: recipientEmail,
       subject: 'CVs for internship',
-      text: "Please find the CVs attached for this year's internship.",
+      // text: "Please find the CVs attached for this year's internship.",
+      text: text,
       attachments: [
         {
           filename: 'cv.zip',
