@@ -1,5 +1,5 @@
 import {afterAll, describe, expect, it} from "@jest/globals";
-import * as app from ".././index.js"
+import app from ".././index.js"
 import  request  from "supertest";
 
 describe('Sanity test', () => {

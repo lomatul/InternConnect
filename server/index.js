@@ -72,3 +72,5 @@ app.listen(port, function(){
     connection();
     console.log(`Server is running on Port ${port}`);
 });
+
+export default app
