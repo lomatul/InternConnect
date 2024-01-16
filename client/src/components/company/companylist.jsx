@@ -3,11 +3,15 @@ import axios from 'axios';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
 import { BASE_URL } from '../../services/helper.js';
+import toast, { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Companylist = () => {
   const [search, setSearch] = useState('');
   const [companies, setCompanies] = useState([]);
   const [filteredCompanies, setFilteredCompanies] = useState([]);
+  const [notAssessedstudentforcompany, setNotAssessedstudentforcompany] = useState(null)
+  const [isButtonClicked, setIsButtonClicked] = useState(false); 
   const [companyData, setCompanyData] = useState({
     Title: '',
     Address: '',
@@ -43,6 +47,23 @@ const Companylist = () => {
   }, []);
 
   useEffect(() => {
+    try{
+      axios.get(`${BASE_URL}/InterConnect/company/getmentoredAssignedStudents`)
+      .then((response) => {
+        setNotAssessedstudentforcompany(response.data.notassignedstudent);
+        console.log(response.data.notassignedstudent);
+        
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching companies:', error);
+      });
+    } catch (error) {
+      console.error('An error occurred while updating company status:', error);
+    }
+    
+  }, [isButtonClicked]);
+
+  useEffect(() => {
     const filtered = companies.filter((company) => {
       const companyData = `${company.name} ${company.address} ${company.email} ${company.contactNumber}`.toLowerCase();
       return companyData.includes(search.toLowerCase());
@@ -65,12 +86,22 @@ const Companylist = () => {
     }
   };
 
-
-  const [isButtonClicked, setIsButtonClicked] = useState(false); 
   const [buttonrow, setMailRow] = useState(null);
-  const handleAddMentor = (index) => {
+  const handleAddMentor = async(index,company) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/InterConnect/admin/sendFroms/${company._id}`);
+
+      if (response.status === 200) {
+        console.log('Mail Send');
+        toast.success('Mail Send')
+      }
+    } catch (error) {
+      console.error('An error occurred while updating company status:', error);
+    }
     setMailRow(index);
+
     setIsButtonClicked(true);
+    console.log(company)
   };
 
   const [editMode, setEditMode] = useState(false);
@@ -234,9 +265,10 @@ const Companylist = () => {
                 <td>
 
                   {buttonrow === index ? (
-                      company.mentormail
+                      <p>{'Form Sent'}</p>
                     ) : (
-                      <button onClick={() => handleAddMentor(index)}>Add Mentor</button>                     
+                      notAssessedstudentforcompany&&notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)    
+       
                     )}
                   </td>
               </tr>

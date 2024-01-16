@@ -5,7 +5,8 @@ import { postlogin, logout, register, sendmailtoall,sendmailtoindividual, getMat
     getGradeExcel,
     postReportdeadline,
     getReportdeadline, 
-    postMarks
+    postMarks,
+    sendMentorsFormToOneCompany
 } from '../controllers/admin.controller.js';
 import upload from '../middlewares/multer.js';
 import { ulpoadfiledata, ulpoadCompanydata } from '../controllers/filecontroller.js';
@@ -32,6 +33,7 @@ router.post('/getMatchedStudents', getMatchedStudentForCompany)
 router.post('/sendcvtocompany', sendCvsToCompany)
 router.post('/uploadGuideline', postGuideline)
 router.get('/sendFroms', sendMentorsForm)
+router.get('/sendFroms/:id', sendMentorsFormToOneCompany)
 router.post('/postMarks/:student_id', postMarks);
 
 export default router;

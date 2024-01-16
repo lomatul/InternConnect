@@ -343,6 +343,7 @@ export const sendFormtomentors = async(req, res)=>{
 }
 
 
+
 export const sendHiredNotifyingMail= async(req, res) =>{
   try{
     const { studentId, studentName } = req.body;

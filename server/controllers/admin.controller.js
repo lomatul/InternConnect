@@ -243,6 +243,28 @@ export const sendMentorsForm = async(req, res)=>{
   }
 }
 
+export const sendMentorsFormToOneCompany = async(req, res)=>{
+  try{
+    const {id}=req.params
+    const company = await Company.findById(id);
+
+      const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
+      console.log(company);
+      company.OTP=otp;
+      const sub = "Mentor Addition Form"
+      const text=`<p>Dear HR of ${company.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="http://localhost:3000/AddMentor/${company._id}">AddMentorForm</a>`;
+      await Mailfunction(sub, company.email, text);
+      await company.save();
+    
+    res.status(200).json({message:"Email works"})
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
 
 export const postReportMarks = async (req, res) => {
   try {

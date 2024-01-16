@@ -24,6 +24,7 @@ const Mentor = () => {
     const [selectedStudentId, setSelectedStudentId] = useState('');
     const [otp, setOtp]=useState('');
     const [trigger, setTrigger]=useState(true)
+    const [notAssessedstudentforcompany, setNotAssessedstudentforcompany] = useState(null)
 
 
 
@@ -38,6 +39,28 @@ const Mentor = () => {
           console.error('An error occurred while fetching companies:', error);
         });
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try{
+          axios.get(`${BASE_URL}/InterConnect/company/getmentoredAssignedStudents`)
+          .then((response) => {
+            setNotAssessedstudentforcompany(response.data.notassignedstudent);
+            console.log(response.data.notassignedstudent);
+            
+          })
+          .catch((error) => {
+            console.error('An error occurred while fetching companies:', error);
+          });
+        } catch (error) {
+          console.error('An error occurred while updating company status:', error);
+        }
+        
+      };
+    
+      fetchData();
+    }, []);
+    
   
     useEffect(() => {
       const fetchData = async () => {
@@ -47,27 +70,19 @@ const Mentor = () => {
           const fetchedStudents = responseStudents.data;
     
           const filteredStudents = fetchedStudents.filter((student) =>
-            company.selectedInterns.includes(student.student_id)
+            notAssessedstudentforcompany[id].includes(student.student_id)
           );
     
           console.log("Filtered students:", filteredStudents);
           
     
           // Fetch mentors after students are fetched
-          const responseMentors = await axios.get(`${BASE_URL}/InterConnect/mentor/mentors`);
-          const fetchedMentors = responseMentors.data;
-    
-          // Use fetchedMentors as needed
-          console.log("Mentors:", fetchedMentors);
-    
+         
           // Perform additional logic with fetchedMentors here
     
           // For example, filter students based on assignedStudents array in mentors
-          const finalFilteredStudents = filteredStudents.filter((student) =>
-            fetchedMentors.every((mentor) => mentor.assignedStudents.includes(student.student_id))
-          );
-          setStudents(finalFilteredStudents);
-          console.log('Final filtered students:', finalFilteredStudents);
+        
+          setStudents(filteredStudents);
           console.log('Final  students:', students);
         } catch (error) {
           console.error('An error occurred:', error.message);
@@ -75,7 +90,7 @@ const Mentor = () => {
       };
     
       fetchData();
-    }, [trigger, company.selectedInterns]);
+    }, [trigger, notAssessedstudentforcompany]);
     
     
 
