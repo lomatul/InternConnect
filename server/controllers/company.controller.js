@@ -376,3 +376,36 @@ export const sendHiredNotifyingMail= async(req, res) =>{
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+export const getmentoredAssignedStudents = async(req, res)=>{
+  console.log("THis function is called")
+  try{
+    const companies=await Company.find({status : 'Hiring'})
+
+    const mentors = await Mentor.find();
+
+    const notassignedstudent={}
+    var assignedStudentsinmentors=[];
+
+    mentors.forEach((element)=>{
+      element.assignedStudents.forEach((element)=>{
+        assignedStudentsinmentors.push(element.student_id)
+      })
+
+    })
+
+    companies.map((company)=>{
+      if(company.selectedInterns){
+        const filtered=company.selectedInterns.filter((el)=> !assignedStudentsinmentors.includes(el));
+        notassignedstudent[company._id]=filtered
+      }
+    })
+
+    console.log("Assigned student test", assignedStudentsinmentors);
+
+    res.status(200).json({notassignedstudent})
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}

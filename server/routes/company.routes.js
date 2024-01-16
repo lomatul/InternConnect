@@ -12,7 +12,7 @@ import {
   sendFormtomentors,
   sendHiredNotifyingMail,
   getCompanyHistoryByYear,
-
+  getmentoredAssignedStudents
 } from '../controllers/company.controller.js';
 
 const router = express.Router();
@@ -40,6 +40,8 @@ router.post('/assignMenotors', assignMenotors);
 router.get('/sendmentorsforms', sendFormtomentors)
 
 router.post('/sendHiredNotifyingMail', sendHiredNotifyingMail)
+
+router.get('/getmentoredAssignedStudents', getmentoredAssignedStudents)
 
 export default router;
 
