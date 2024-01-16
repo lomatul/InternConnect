@@ -8,7 +8,6 @@ const Companylist = () => {
   const [search, setSearch] = useState('');
   const [companies, setCompanies] = useState([]);
   const [filteredCompanies, setFilteredCompanies] = useState([]);
-  const [editMode, setEditMode] = useState(false);
   const [companyData, setCompanyData] = useState({
     Title: '',
     Address: '',
@@ -65,8 +64,16 @@ const Companylist = () => {
     }
   };
 
-  const [editRow, setEditRow] = useState(null);
 
+  const [isButtonClicked, setIsButtonClicked] = useState(false); 
+  const [buttonrow, setMailRow] = useState(null);
+  const handleAddMentor = (index) => {
+    setMailRow(index);
+    setIsButtonClicked(true);
+  };
+
+  const [editMode, setEditMode] = useState(false);
+  const [editRow, setEditRow] = useState(null);
   const handleEditClick = (index) => {
     setEditRow(index);
     setEditMode(true);
@@ -103,6 +110,7 @@ const Companylist = () => {
               <th>Contact Number</th>
               <th>Min Interns</th>
               <th>Status</th>
+              <th>Action</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -222,6 +230,15 @@ const Companylist = () => {
                     </div>
                   )}
                 </td>
+                <td>
+
+                  {buttonrow === index ? (
+                      // company.mentormail
+                      <p>Email Sent</p>
+                    ) : (
+                      <button onClick={() => handleAddMentor(index)}>Add Mentor</button>                     
+                    )}
+                  </td>
               </tr>
             ))}
           </tbody>

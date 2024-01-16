@@ -25,7 +25,6 @@ import Proflie from "./Pages/StudentProfile";
 import CvSend from "./Pages/Cvsend";
 import AddAssesment from "./Pages/Addassesment";
 import AddMentor from "./Pages/Mentor";
-import Modal from "./components/modal/modal";
 import ViewAssesment from "./Pages/Viewassesment"
 import History from "./Pages/comhistory";
 import GradeSend from "./Pages/Gradesubmit";
@@ -37,7 +36,7 @@ import SendDeadline from "./Pages/deadline";
 import Addreport from "./Pages/AddReport";
 import Sprofile from "./Pages/viewSprofile";
 import StuMark from "./Pages/Marksheet";
-
+import Hired from "./Pages/HiredStatus";
 
 
 function App() {
@@ -85,6 +84,7 @@ function App() {
         <Route path="/Addreport" element = {<Addreport/>} />
         <Route path="/Sprofile" element = {<Sprofile/>} />
         <Route path="/StuMark" element = {<StuMark/>} />
+        <Route path="/Hired" element = {<Hired/>} />
 
       </Routes>
     </BrowserRouter>
