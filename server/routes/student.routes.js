@@ -78,6 +78,10 @@ router.get('/updateCurrentStatusByIdToHired/:student_id', updateCurrentStatusByI
 
 router.get('/updateCurrentStatusByIdToRejected/:student_id', updateCurrentStatusByIdToRejected);
 
+router.post('/updateCurrentStatusByIdToHired/:student_id', updateCurrentStatusByIdToHired);
+
+router.post('/updateCurrentStatusByIdToRejected/:student_id', updateCurrentStatusByIdToRejected);
+
 router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
 
 router.get('/getStudentReport/:student_id', getStudentReportById);
