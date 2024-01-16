@@ -38,9 +38,9 @@ const Navbar = () => {
             </nav>
         </div>
         <div className='button' style={{ fontSize: '20px', padding: '50px 60px' , fontWeight: 'bold'}}>
-    {(!userstudent&&!useradmin)?<a href="/login">Login</a>:null}
-    {(userstudent&&!useradmin)?<a href="/Student">{userstudent.name}</a>: null}
-    {(!userstudent&&useradmin)?<a href="/Admin">{useradmin.name}</a>: null}
+    {(!userstudent&&!useradmin)?<a href="/login" ><img src="login.png"alt="InternConnect Logo"   style={{width: '30px', height: '30px' , marginBottom:"-10px" , marginRight:"10px" }} />Login</a>:null}
+    {(userstudent&&!useradmin)?<a href="/Student"><img src="stu.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" , marginRight:"10px" }} />{userstudent.name}</a>: null}
+    {(!userstudent&&useradmin)?<a href="/Admin"> <img src="adnav.png"alt="InternConnect Logo"   style={{width: '40px', height: '40px' , marginBottom:"-10px" , marginRight:"10px" }} />{useradmin.name}</a>: null}
     
 </div>
 

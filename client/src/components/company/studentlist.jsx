@@ -51,6 +51,7 @@ const Studentlist = () => {
               <th>Name</th>
               <th>Student ID</th>
               <th>Email</th>
+              <th>Year</th>
               <th>Account Status</th>
               <th>CGPA</th>
               <th>CV</th>
@@ -63,6 +64,7 @@ const Studentlist = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.email}</td>
+                <td>{2022}</td>
                 <td style={{ color: student.accountActivationStatus ? 'green' : 'red' }}>
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>
