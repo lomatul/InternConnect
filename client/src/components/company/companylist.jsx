@@ -16,7 +16,6 @@ const Companylist = () => {
     MaxInterns:' ',
     MinInterns:' ',
     InternsHired:' ',
-    mentormail:'Email sent',
 
    
   });
@@ -234,7 +233,8 @@ const Companylist = () => {
                 <td>
 
                   {buttonrow === index ? (
-                      company.mentormail
+                      // company.mentormail
+                      <p>Email Sent</p>
                     ) : (
                       <button onClick={() => handleAddMentor(index)}>Add Mentor</button>                     
                     )}
