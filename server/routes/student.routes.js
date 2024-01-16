@@ -74,6 +74,10 @@ router.patch('/UpdateCurrentStatus', updateCurrentStatus);
 
 router.patch('/UpdateCurrentStatus/:student_id', updateCurrentStatusById);
 
+router.post('/updateCurrentStatusByIdToHired/:student_id', updateCurrentStatusByIdToHired);
+
+router.post('/updateCurrentStatusByIdToRejected/:student_id', updateCurrentStatusByIdToRejected);
+
 router.post('/uploadInternshipReport/:student_id', uploadInternshipReport.single('file'), uploadInternshipReportFile);
 
 router.get('/getStudentReport/:student_id', getStudentReportById);
