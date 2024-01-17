@@ -116,6 +116,41 @@ export const deleteMentorByEmail = async (req, res, next) => {
 };
 
 
+const evaluateAverageMentorMarksfunction = async (StudentId, next) => {
+  try {
+
+    const allMentors = await Mentor.find();
+
+    let totalMarks = 0;
+    let mentorCount = 0;
+
+    for (const mentor of allMentors) 
+    {
+      const assignedStudent = mentor.assignedStudents.find( (student) => student.student_id === StudentId);
+
+      if (assignedStudent) 
+      {
+        totalMarks += assignedStudent.evaluation;
+        mentorCount += 1;
+      }
+    }
+
+    const averageMarks = mentorCount !== 0 ? totalMarks / mentorCount : 0;
+
+    await Student.findOneAndUpdate(
+      { student_id: StudentId },
+      { evaluatedMentorMarks: averageMarks },
+      { new: true }
+    );
+
+
+  } catch (error) {
+    console.error('Error:', error);
+    next(error)
+  }
+};
+
+
 export const AddAssesment = async (req, res) => {
   try{
     const {Answer, mentorid, StudentId, sum} = req.body;
@@ -150,7 +185,9 @@ export const AddAssesment = async (req, res) => {
 
     await mentor.save();
 
-    return res.status(200).json({message:"Assesment is also stored."})
+    res.status(200).json({message:"Assesment is also stored."})
+
+    await evaluateAverageMentorMarksfunction(StudentId);
   }catch (error){
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
@@ -170,7 +207,9 @@ export const UpdateAssesment = async (req, res) => {
     existassment.assesment=Answer;
     await mentor.save();
 
-    return res.status(200).json({message:"Assesment Updated."})
+    res.status(200).json({message:"Assesment Updated."})
+
+    await evaluateAverageMentorMarksfunction(StudentId);
   }catch (error){
     console.log("Error: ", error);
     res.status(400).json({ error: error.message });
