@@ -84,30 +84,49 @@ const Addgrade = () => {
               <label htmlFor=""> Percentage on Mentors Evaluation <span>*</span></label>
               <input
                 type="number"
-                min="1"
+                min="0"
+                max="100"
                 value={mentorPercentage}
-                onChange={(e) => setMentorPercentage(e.target.value)}
+                onChange={(e) => {
+                  const inputValue = e.target.value.replace(/^0+(\d)/, '$1'); // Remove leading zeros
+                  if (!isNaN(inputValue) && inputValue >= 0 && inputValue <= 100) {
+                    setMentorPercentage(parseInt(inputValue, 10));
+                  }
+                }}
               />
+
             </div>
 
             <div className="form-group">
               <label>Percentage on Report Evaluation <span>*</span> </label>
               <input
-                type="number"
-                min="1"
-                value={reportPercentage}
-                onChange={(e) => setReportPercentage(e.target.value)}
-              />
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={reportPercentage}
+                    onChange={(e) => {
+                      const inputValue = e.target.value.replace(/^0+(\d)/, '$1');
+                      if (!isNaN(inputValue) && inputValue >= 0 && inputValue <= 100) {
+                        setReportPercentage(inputValue);
+                      }
+                    }}
+                  />
             </div>
 
             <div className="form-group">
               <label>Percentage on Presentation Evaluation<span>*</span> </label>
               <input
-                type="number"
-                min="1"
-                value={presentationPercentage}
-                onChange={(e) => setPresentationPercentage(e.target.value)}
-              />
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={presentationPercentage}
+                    onChange={(e) => {
+                      const inputValue = e.target.value.replace(/^0+(\d)/, '$1');
+                      if (!isNaN(inputValue) && inputValue >= 0 && inputValue <= 100) {
+                        setPresentationPercentage(inputValue);
+                      }
+                    }}
+                  />
             </div>
             <button onClick={handleSubmit}>Submit</button>
           </div>

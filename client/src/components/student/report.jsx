@@ -160,7 +160,7 @@ const UploadReport = () => {
           <h1> Unleash Your Potential with Your Report</h1>
         </div>
         <div className='adminimage'>
-          <img src="cv-up.gif" alt="" />
+          <img src="report.gif" alt="" />
         </div>
       </div>
 
