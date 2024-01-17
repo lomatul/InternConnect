@@ -372,7 +372,7 @@ export const getCvdeadline = async( req, res) => {
 }
 
 
-const GradeGenerate = async(mentorpart, reportpart, presentationpart) =>{
+const GradeGenerate = async(mentorpart, reportpart, presentationpart, next) =>{
   const students = await Student.find();
 try{const promise = students.map(async(student)=>{
   const totalmark=((student.evaluatedMentorMarks||0)/60)*mentorpart+((student.internshipReportMarks || 0)/100)*reportpart+((student.presentationMarks || 0)/100)*presentationpart
@@ -407,7 +407,7 @@ try{const promise = students.map(async(student)=>{
 await Promise.all(promise);
 }catch (error){
   console.log("Error: ", error);
-  res.status(500).json({ error: 'Internal Server Error' });
+  next(error)
 }
   
 }

@@ -59,7 +59,7 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
               <p>Some companies are popular with alternative names. Often a short form or simply another name. Please list all of them below, each name in their own line</p>
               <textarea
                 rows="3"  // Set the number of rows based on your preference
-                value={""} // You can set the initial value if needed
+                value={feedbackvalue.comp_alt_name ||''}  onChange={(e) => {feedback("comp_alt_name", e.target.value)}} // You can set the initial value if needed
               ></textarea>
             </div>
             <div className="form-group">           
@@ -67,7 +67,7 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
               Containers, CI/CD tools, source control systems, issue trackers - anything you think are
               important<span>*</span></label> <textarea
                 rows="3"  // Set the number of rows based on your preference
-                value={""} // You can set the initial value if needed
+                value={feedbackvalue.comp_list_tool ||''}  onChange={(e) => {feedback("comp_list_tool", e.target.value)}} // You can set the initial value if needed
               ></textarea>
             </div>
 
