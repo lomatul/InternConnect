@@ -50,7 +50,7 @@ const Adddeadline = () => {
       const existingReportDeadline = reportDeadlineResponse.data.Deadline;
 
       // Check if existing Report deadline is earlier than selectedCvDate
-      if (existingReportDeadline && new Date(existingReportDeadline.time) <= new Date(selectedCvDate)) {
+      if (existingReportDeadline !== null && existingReportDeadline.time !== null && new Date(existingReportDeadline.time) < new Date(selectedCvDate)) {
         if (!cvSubmitWarningShown) {
           toast.error("CV submission date should be earlier than the existing Report submission date", { position: "top-right" });
           setCvSubmitWarningShown(true);
