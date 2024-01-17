@@ -9,6 +9,7 @@ import {
   getAssesment,
   getmentor,
   evaluateAverageMentorMarks,
+  getViewAssesment
 } from '../controllers/mentor.controller.js';
 
 const router = express.Router();
@@ -30,5 +31,7 @@ router.put('/evaluateMarks/:StudentId', evaluateAverageMentorMarks );
 router.get('/getAssesment/:mentorid/:StudentId', getAssesment);
 
 router.get('/getmentorbyid/:mentorid', getmentor);
+
+router.get('/getViewAssesment', getViewAssesment);
 
 export default router;

@@ -61,9 +61,11 @@
 
 
 .logo{
+
     display: flex;
     align-items: center;
 }
+
 
 .logo h1{
     font-size: 28px;
@@ -84,6 +86,7 @@
 }
 
 .hamburger{
+    margin-left: -100px;
     width: 25px;
     height: 2px;
     background-color: rgb(40,40,40);
@@ -109,6 +112,7 @@
 }
 
 .hamburger1{
+    margin-left: -100px;
     width: 20px;
     height: 2px;
     background-color: rgb(40,40,40);
@@ -147,6 +151,7 @@
         position: absolute;
         background: #e6e6e6;
         left: 0;
+        width:150px;
         z-index: 10;
         margin-top: 40px;
         padding: 40px 0;
@@ -516,6 +521,18 @@
     }
 }
 
+@media (max-width:380px){
+    .cards .card{
+        width: 200px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .testimonial-cards .card{
+        width: 200px;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
 
 
 
@@ -838,9 +855,22 @@
 
 @media (min-width:36rem){
     .services{
-        margin: 5rem auto 0;
+        margin: 7rem auto 0;
+    }
+    .services-right {
+        width: 300px;
     }
 }
+
+@media (min-width:380px){
+    .services{
+        margin: 7rem auto 0;
+    }
+    .services-right {
+        width: 300px;
+    }
+}
+
 
 @media (min-width:60rem){
     .services{
@@ -905,6 +935,23 @@
     /* top: -70px; */
     left: -150px;
 }
+
+@media (max-width:380px){
+    .services{
+        margin-right: 50px;
+    }
+    .bulb{display: block;
+          }
+          .pic h1{
+            font-size: 20px;
+          }
+    .footer-text{
+        width: 18px;
+        margin-top: 10px;
+    }
+}
+
+
 
 @media (max-width:760px){
     .bulb{display: block;}
