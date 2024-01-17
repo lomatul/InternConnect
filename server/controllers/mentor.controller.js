@@ -255,3 +255,24 @@ export const evaluateAverageMentorMarks = async (req, res) => {
   }
 };
 
+
+export const getViewAssesment = async (req, res) => {
+  try{
+    const returnobj={}
+    const mentor = await Mentor.find();
+    mentor.forEach((element)=>{
+      element.response.forEach((el)=>{
+        if(!returnobj[el.student_id]){
+          returnobj[el.student_id]=[]
+        }
+        returnobj[el.student_id].push(element._id);
+      })
+    })
+    console.log(returnobj)
+    return res.status(200).json({assesment:returnobj})
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(400).json({ error: error.message });
+  }
+
+}

@@ -16,7 +16,9 @@ import gradeRoute from "./routes/grade.routes.js";
 import reportRoute from "./routes/report.routes.js";
 import mentorRoute from "./routes/mentor.routes.js"
 
-const port = process.env.PORT || 4000;
+const FRONTEND_URL = process.env.FRONTEND_URL
+const port = process.env.PORT;
+
 const app = express();
 dotenv.config();
 
@@ -45,7 +47,7 @@ app.use(passport.session()) ;
 
 app.use(express.json()); 
 app.use(cookieParser());
-app.use(cors({origin:"http://localhost:3000", credentials: true}));
+app.use(cors({origin: FRONTEND_URL , credentials: true}));
 
 
 app.use("/InterConnect/student", studentRoute);

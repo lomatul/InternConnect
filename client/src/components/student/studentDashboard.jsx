@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../services/helper';
+
 
 function StudentDashboard() {
     const [showTimer, setshowTimer] = useState(true);
@@ -8,8 +10,8 @@ function StudentDashboard() {
 
     const fetchData = async () => {
         try {
-            const cvResponse = await axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline');
-            const reportResponse = await axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline');
+            const cvResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline`);
+            const reportResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getReportdeadline`);
             
             const cvData = cvResponse.data.Deadline;
             const reportData = reportResponse.data.Deadline;
@@ -41,6 +43,12 @@ function StudentDashboard() {
 
     const handleOkayClick = () => {
         setshowTimer(false);
+
+        if (cvDeadline) {
+          window.location.href = "/AddCv";
+        } else if (reportDeadline) {
+          window.location.href = "/Addreport";
+        }
     };
 
 
@@ -103,7 +111,7 @@ function StudentDashboard() {
                 
                 <div className='card'>
                 <img src="stu-report.png" alt=""  />
-                    <a href="/Addreport">Submission  &rarr;</a>
+                    <a href="/Addreport">Report Submission  &rarr;</a>
                     
                 </div>
 
@@ -111,12 +119,7 @@ function StudentDashboard() {
                     <img src="status.png" alt=""  />
                     <a href="/Status">See Status &rarr;</a>
                 </div>
-
-
-                <div className='card'>
-                    <img src="ad-stu.png" alt=""  />
-                    <a href="/">Add Student &rarr;</a>
-                </div> 
+ 
             </div>
 
 

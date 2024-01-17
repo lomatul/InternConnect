@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import { BASE_URL } from '../../services/helper';
 
 
 const Adddeadline = () => {
@@ -46,7 +46,7 @@ const Adddeadline = () => {
         return;
       }
 
-      const reportDeadlineResponse = await axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline');
+      const reportDeadlineResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getReportdeadline`);
       const existingReportDeadline = reportDeadlineResponse.data.Deadline;
 
       // Check if existing Report deadline is earlier than selectedCvDate
@@ -61,7 +61,7 @@ const Adddeadline = () => {
         return;
       }
 
-      await axios.post('http://localhost:4000/InterConnect/admin/postCvdeadline', {time:selectedCvDate}
+      await axios.post(`${BASE_URL}/InterConnect/admin/postCvdeadline`, {time:selectedCvDate}
           ).then((response)=>{
               console.log(response);
               toast.success("New deadline is posted", { position: "top-right" })
@@ -127,7 +127,7 @@ const Adddeadline = () => {
         return;
       }
 
-    const cvDeadlineResponse = await axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline');
+    const cvDeadlineResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline`);
     const existingCvDeadline = cvDeadlineResponse.data.Deadline;
 
     // Check if existing CV deadline is later than selectedReportDate
@@ -142,7 +142,7 @@ const Adddeadline = () => {
       return;
     }
 
-      await axios.post('http://localhost:4000/InterConnect/admin/postReportdeadline', {time:selectedReportDate}
+      await axios.post(`${BASE_URL}/InterConnect/admin/postReportdeadline`, {time:selectedReportDate}
           ).then((response)=>{
               console.log(response);
               toast.success("New deadline is posted", { position: "top-right" });

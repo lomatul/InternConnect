@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import axios from 'axios';
-
+import { BASE_URL } from "../../services/helper";
 
 
 const ViewProfile = ({ userData, page, setPage, x, setX }) => {
@@ -18,7 +18,7 @@ const ViewProfile = ({ userData, page, setPage, x, setX }) => {
   
       const { name, Id } = userData;
 
-      await axios.post('http://localhost:4000/InterConnect/company/sendHiredNotifyingMail', { companyName, studentId: Id, studentName: name, });
+      await axios.post(`${BASE_URL}/InterConnect/company/sendHiredNotifyingMail`, { companyName, studentId: Id, studentName: name, });
   
       setHired(true);
 

@@ -3,6 +3,7 @@ import React from 'react';
 import '../components/aboutus/aboutus.css';
 import AboutUs from '../components/aboutus/aboutus';
 import FAQ from '../components/FAQ';
+import '../components/style.css';
 import Footer from '../components/Footer';
 import Navbar from '../components/Navbar';
 
