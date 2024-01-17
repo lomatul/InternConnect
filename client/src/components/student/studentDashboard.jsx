@@ -43,6 +43,12 @@ function StudentDashboard() {
 
     const handleOkayClick = () => {
         setshowTimer(false);
+
+        if (cvDeadline) {
+          window.location.href = "/AddCv";
+        } else if (reportDeadline) {
+          window.location.href = "/Addreport";
+        }
     };
 
 
@@ -113,12 +119,7 @@ function StudentDashboard() {
                     <img src="status.png" alt=""  />
                     <a href="/Status">See Status &rarr;</a>
                 </div>
-
-
-                <div className='card'>
-                    <img src="reportcard.png" alt=""  />
-                    <a href="/StuMark">See MarkSheet&rarr;</a>
-                </div> 
+ 
             </div>
 
 
