@@ -3,7 +3,7 @@ import axios from 'axios';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
 import { BASE_URL } from '../../services/helper.js';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Companylist = () => {
@@ -12,6 +12,11 @@ const Companylist = () => {
   const [filteredCompanies, setFilteredCompanies] = useState([]);
   const [notAssessedstudentforcompany, setNotAssessedstudentforcompany] = useState(null)
   const [isButtonClicked, setIsButtonClicked] = useState(false); 
+  
+  const [editMode, setEditMode] = useState(false);
+  const [editRow, setEditRow] = useState(null);
+  const [buttonrow, setMailRow] = useState(null);
+
   const [companyData, setCompanyData] = useState({
     Title: '',
     Address: '',
@@ -20,8 +25,6 @@ const Companylist = () => {
     MaxInterns:' ',
     MinInterns:' ',
     InternsHired:' ',
-
-   
   });
 
   useEffect(() => {
@@ -71,6 +74,7 @@ const Companylist = () => {
     setFilteredCompanies(filtered);
   }, [search, companies]);
 
+
   const handleStatusUpdate = async (email, newStatus) => {
     try {
       const response = await axios.put(`${BASE_URL}/InterConnect/company/updateCompanyStatus/${email}`, {
@@ -85,7 +89,6 @@ const Companylist = () => {
     }
   };
 
-  const [buttonrow, setMailRow] = useState(null);
   const handleAddMentor = async(index,company) => {
     try {
       const response = await axios.get(`${BASE_URL}/InterConnect/admin/sendFroms/${company._id}`);
@@ -103,18 +106,43 @@ const Companylist = () => {
     console.log(company)
   };
 
-  const [editMode, setEditMode] = useState(false);
-  const [editRow, setEditRow] = useState(null);
   const handleEditClick = (index) => {
     setEditRow(index);
     setEditMode(true);
   };
 
-  const handleSaveClick = (index) => {
+  const handleSaveClick = async (index) => {
+    try {
+      const companyToUpdate = companies[index];
+      console.log('Updated Company Data:', companyToUpdate);
+
+      const response = await axios.put(`${BASE_URL}/InterConnect/company/updateCompany/${companyToUpdate.email}`, {
+        name: companyToUpdate.name,
+        email: companyToUpdate.email,
+        address: companyToUpdate.address,
+        contactNumber: companyToUpdate.contactNumber,
+        minInterns: companyToUpdate.minInterns,
+      });
+
+      if (response.status === 200) {
+        console.log('Company information updated successfully');
+        
+        toast.success('Company information updated successfully', { position: "top-right" });
+  
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('An error occurred while updating company information:', error);
+    }
+
+ 
     // Save the edited company data here, and then exit edit mode.
     setEditRow(null);
     setEditMode(false);
   };
+  
 
   return (
     <main className="table">
@@ -149,7 +177,6 @@ const Companylist = () => {
           <tbody>
             {filteredCompanies.map((company, index) => (
               <tr key={index}>
-
 
                 <td>              
                   {editRow === index ? (
@@ -246,8 +273,8 @@ const Companylist = () => {
                     }}
                   />
 
-
                 </td>
+
                 <td>
                   {editRow === index ? (
                     <div className="save">
@@ -261,12 +288,13 @@ const Companylist = () => {
                     </div>
                   )}
                 </td>
+                
                 <td>
 
                   {buttonrow === index ? (
                       <p>{'Form Sent'}</p>
                     ) : (
-                      notAssessedstudentforcompany&&notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)    
+                      notAssessedstudentforcompany && notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)    
        
                     )}
                   </td>
