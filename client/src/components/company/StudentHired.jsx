@@ -171,7 +171,7 @@ const StatusHired = () => {
                 student.currentStatus === 'Hired' ? (
                   <p style={{ color: 'green' }}>Hired  <img src="check.png"alt="InternConnect Logo"   style={{width: '30px', height: '30px' ,marginLeft:"10px", marginRight:"10px" , marginBottom:"-5px"}}   /> </p>
                 ) : (
-                  <p style={{ color: 'red' }}>CV not sent <img src="cross.png"alt="InternConnect Logo"   style={{width: '30px', height: '30px' ,marginLeft:"10px", marginRight:"10px" , marginBottom:"-5px"}}  /> </p>
+                  <p style={{ color: 'orange' }}>Pending <img src="cross.png"alt="InternConnect Logo"   style={{width: '30px', height: '30px' ,marginLeft:"10px", marginRight:"10px" , marginBottom:"-5px"}}  /> </p>
                 )
               )}
             </td>

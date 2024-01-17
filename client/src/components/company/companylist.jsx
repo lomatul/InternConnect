@@ -266,7 +266,7 @@ const Companylist = () => {
                   {buttonrow === index ? (
                       <p>{'Form Sent'}</p>
                     ) : (
-                      notAssessedstudentforcompany&&notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)    
+                      notAssessedstudentforcompany&&notAssessedstudentforcompany[company._id]?.length > 0? (<div className="hired"><button onClick={() => handleAddMentor(index,company)}>Add Mentor</button></div>) : (<p>N/A</p>)    
        
                     )}
                   </td>

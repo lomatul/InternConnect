@@ -60,7 +60,7 @@ const Companypool = () => {
               <th> Address </th>
               <th> Email </th>
               <th> Contact Number </th>
-              <th> Interns Hired </th>
+              <th> Min Interns </th>
             </tr>
           </thead>
           <tbody>
