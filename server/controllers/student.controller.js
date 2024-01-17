@@ -636,9 +636,13 @@ export const updateCurrentStatusByIdToHired = async (req, res) => {
 
     const updatedStudent = await Student.findOneAndUpdate(
       { student_id },
-      { $set: { currentStatus: 'Hired' } }, 
+      { $set: { currentStatus: 'Hired' }  }, 
       { new: true } 
     );
+
+    const company=await Company.findById(updatedStudent.companyStatus)
+    company.selectedInterns.push(student_id);
+    await company.save();
 
     if (!updatedStudent) {
       return res.status(404).json({ error: 'Student not found' });
@@ -659,7 +663,7 @@ export const updateCurrentStatusByIdToRejected = async (req, res) => {
 
     const updatedStudent = await Student.findOneAndUpdate(
       { student_id },
-      { $set: { currentStatus: 'rejected' } }, 
+      { $set: { currentStatus: null, companyStatus: null } }, 
       { new: true } 
     );
 
