@@ -3,11 +3,20 @@ import axios from 'axios';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
 import { BASE_URL } from '../../services/helper.js';
+import toast from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Companylist = () => {
   const [search, setSearch] = useState('');
   const [companies, setCompanies] = useState([]);
   const [filteredCompanies, setFilteredCompanies] = useState([]);
+  const [notAssessedstudentforcompany, setNotAssessedstudentforcompany] = useState(null)
+  const [isButtonClicked, setIsButtonClicked] = useState(false); 
+  
+  const [editMode, setEditMode] = useState(false);
+  const [editRow, setEditRow] = useState(null);
+  const [buttonrow, setMailRow] = useState(null);
+
   const [companyData, setCompanyData] = useState({
     Title: '',
     Address: '',
@@ -16,8 +25,6 @@ const Companylist = () => {
     MaxInterns:' ',
     MinInterns:' ',
     InternsHired:' ',
-
-   
   });
 
   useEffect(() => {
@@ -42,6 +49,23 @@ const Companylist = () => {
   }, []);
 
   useEffect(() => {
+    try{
+      axios.get(`${BASE_URL}/InterConnect/company/getmentoredAssignedStudents`)
+      .then((response) => {
+        setNotAssessedstudentforcompany(response.data.notassignedstudent);
+        console.log(response.data.notassignedstudent);
+        
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching companies:', error);
+      });
+    } catch (error) {
+      console.error('An error occurred while updating company status:', error);
+    }
+    
+  }, [isButtonClicked]);
+
+  useEffect(() => {
     const filtered = companies.filter((company) => {
       const companyData = `${company.name} ${company.address} ${company.email} ${company.contactNumber}`.toLowerCase();
       return companyData.includes(search.toLowerCase());
@@ -50,6 +74,7 @@ const Companylist = () => {
     setFilteredCompanies(filtered);
   }, [search, companies]);
 
+
   const handleStatusUpdate = async (email, newStatus) => {
     try {
       const response = await axios.put(`${BASE_URL}/InterConnect/company/updateCompanyStatus/${email}`, {
@@ -57,33 +82,67 @@ const Companylist = () => {
       });
 
       if (response.status === 200) {
-        console.error('Updated Status');
+        console.log('Updated Status');
       }
     } catch (error) {
       console.error('An error occurred while updating company status:', error);
     }
   };
 
+  const handleAddMentor = async(index,company) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/InterConnect/admin/sendFroms/${company._id}`);
 
-  const [isButtonClicked, setIsButtonClicked] = useState(false); 
-  const [buttonrow, setMailRow] = useState(null);
-  const handleAddMentor = (index) => {
+      if (response.status === 200) {
+        console.log('Mail Send');
+        toast.success('Mail Send')
+      }
+    } catch (error) {
+      console.error('An error occurred while updating company status:', error);
+    }
     setMailRow(index);
+
     setIsButtonClicked(true);
+    console.log(company)
   };
 
-  const [editMode, setEditMode] = useState(false);
-  const [editRow, setEditRow] = useState(null);
   const handleEditClick = (index) => {
     setEditRow(index);
     setEditMode(true);
   };
 
-  const handleSaveClick = (index) => {
+  const handleSaveClick = async (index) => {
+    try {
+      const companyToUpdate = companies[index];
+      console.log('Updated Company Data:', companyToUpdate);
+
+      const response = await axios.put(`${BASE_URL}/InterConnect/company/updateCompany/${companyToUpdate.email}`, {
+        name: companyToUpdate.name,
+        email: companyToUpdate.email,
+        address: companyToUpdate.address,
+        contactNumber: companyToUpdate.contactNumber,
+        minInterns: companyToUpdate.minInterns,
+      });
+
+      if (response.status === 200) {
+        console.log('Company information updated successfully');
+        
+        toast.success('Company information updated successfully', { position: "top-right" });
+  
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('An error occurred while updating company information:', error);
+    }
+
+ 
     // Save the edited company data here, and then exit edit mode.
     setEditRow(null);
     setEditMode(false);
   };
+  
 
   return (
     <main className="table">
@@ -118,7 +177,6 @@ const Companylist = () => {
           <tbody>
             {filteredCompanies.map((company, index) => (
               <tr key={index}>
-
 
                 <td>              
                   {editRow === index ? (
@@ -215,8 +273,8 @@ const Companylist = () => {
                     }}
                   />
 
-
                 </td>
+
                 <td>
                   {editRow === index ? (
                     <div className="save">
@@ -230,13 +288,13 @@ const Companylist = () => {
                     </div>
                   )}
                 </td>
+                
                 <td>
 
                   {buttonrow === index ? (
-                      // company.mentormail
-                      <p>Email Sent</p>
+                      <p>{'Form Sent'}</p>
                     ) : (
-                      <button onClick={() => handleAddMentor(index)}>Add Mentor</button>                     
+                      notAssessedstudentforcompany && notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)           
                     )}
                   </td>
               </tr>

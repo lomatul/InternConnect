@@ -14,9 +14,7 @@ import xlsx from 'xlsx';
 export const postlogin= (req, res, next) =>{
 
     // console.log("came in postlogin", req.body)
-  
-    
-    
+
     passport.authenticate('admin', (err, user, info) => {
         if (err) {
           console.error('Authentication error:', err);
@@ -243,6 +241,28 @@ export const sendMentorsForm = async(req, res)=>{
   }
 }
 
+export const sendMentorsFormToOneCompany = async(req, res)=>{
+  try{
+    const {id}=req.params
+    const company = await Company.findById(id);
+
+      const otp=otpgenerator.generate(6, { upperCaseAlphabets: true, lowerCaseAlphabets: true, specialChars: false })
+      console.log(company);
+      company.OTP=otp;
+      const sub = "Mentor Addition Form"
+      const text=`<p>Dear HR of ${company.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="http://localhost:3000/AddMentor/${company._id}">AddMentorForm</a>`;
+      await Mailfunction(sub, company.email, text);
+      await company.save();
+    
+    res.status(200).json({message:"Email works"})
+
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+
 
 export const postReportMarks = async (req, res) => {
   try {
@@ -266,6 +286,11 @@ export const postReportMarks = async (req, res) => {
   }
 };
 
+function delay(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
 
 export const postCvdeadline = async( req, res) => {
   try{
@@ -288,19 +313,32 @@ export const postCvdeadline = async( req, res) => {
       await admin.save();
     }
 
+    
+    res.status(200).json({message:"new deadline is set."})
+
     const student = await Student.find();
     var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
     
-    const promise = student.map(async(element)=>{
-      const sub="New Deadline is Published for Cv"
-      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
-      await Mailfunction(sub, element.email, text);
+    const promise=student.map(async(element, index)=>{
+      if(index!=0&&index%3==0){
+        const sub="New Deadline is Published for Cv"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        await delay(100)
+        console.log("index",index);
+        console.log("Sleeping")
+      }else{
+        const sub="New Deadline is Published for Cv"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        console.log("index",index);
+      }
+
     })
+
 
     await Promise.all(promise);
 
-
-    return res.status(200).json({message:"new deadline is set."})
 
 
   }catch (error){
@@ -329,46 +367,6 @@ export const getCvdeadline = async( req, res) => {
     console.log("Error: ", error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
-}
-const GradeGenerate = async(mentorpart, reportpart, presentationpart) =>{
-  const students = await Student.find();
-try{const promise = students.map(async(student)=>{
-  const totalmark=((student.evaluatedMentorMarks || 0)/60)*mentorpart+((student.internshipReportMarks|| 0)/100)*reportpart+((student.presentationMarks || 0)/100)*presentationpart
-  console.log("total mark", totalmark)
-  var grade;
-
-  if (totalmark >= 80) {
-    grade = 'A+';
-  } else if (totalmark >= 75) {
-    grade = 'A';
-  } else if (totalmark >= 70) {
-    grade = 'A-';
-  } else if (totalmark >= 65) {
-    grade = 'B+';
-  } else if (totalmark >= 60) {
-    grade = 'B';
-  } else if (totalmark >= 55) {
-    grade = 'B-';
-  } else if (totalmark >= 50) {
-    grade = 'C+';
-  } else if (totalmark >= 45) {
-    grade = 'C';
-  } else if (totalmark >= 40) {
-    grade = 'D';
-  } else {
-    grade = 'F';
-  }
-
-  student.finalGrade=grade;
-  await student.save();
-})
-
-await Promise.all(promise);
-}catch (error){
-  console.log("Error: ", error);
-  res.status(500).json({ error: 'Internal Server Error' });
-}
-  
 }
 
 
@@ -429,18 +427,31 @@ export const postReportdeadline = async( req, res) => {
       await admin.save();
     }
 
+    
+  res.status(200).json({message:"new deadline is set."})
+
     const student = await Student.find();
     var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
     
-    const promise = student.map(async(element)=>{
-      const sub="New Deadline is Published for Report"
-      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
-      await Mailfunction(sub, element.email, text);
+    const promise=student.map(async(element, index)=>{
+      if(index!=0&&index%3==0){
+        const sub="New Deadline is Published for Report"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        await delay(100)
+
+        console.log("Sleeping")
+      }else{
+        const sub="New Deadline is Published for Report"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+
+      }
+
     })
 
     await Promise.all(promise);
 
-    return res.status(200).json({message:"new deadline is set."})
 
 
   }catch (error){

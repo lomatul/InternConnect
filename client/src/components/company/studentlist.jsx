@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../services/helper';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Studentlist = () => {
   const [search, setSearch] = useState('');
@@ -11,13 +12,15 @@ const Studentlist = () => {
   useEffect(() => {
     axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
-        setStudents(response.data);
-        setFilteredStudents(response.data); // Initially, both arrays are the same
+        const sortedStudents = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setStudents(sortedStudents);
+        setFilteredStudents(sortedStudents); // Initially, both arrays are the same
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
       });
   }, []);
+
 
   useEffect(() => {
     // Filter students based on search input
@@ -64,7 +67,7 @@ const Studentlist = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.email}</td>
-                <td>{2024}</td>
+                <td>{new Date(student.createdAt).getFullYear()}</td>
                 <td style={{ color: student.accountActivationStatus ? 'green' : 'red' }}>
                   {student.accountActivationStatus ? 'Activated' : 'Deactivated'}
                 </td>

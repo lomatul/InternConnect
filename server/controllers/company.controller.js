@@ -116,6 +116,7 @@ export const getCompanyByID  = async (req, res, next) => {
 export const updateCompanyByEmailAndYear  = async (req, res, next) => {
   try {
     const year = parseInt(req.params.year, 10);      // Converting to a decimal (base: 10)
+    console.log(year)
     const { email } = req.params;
 
     const company = await Company.findOne({ email });
@@ -136,6 +137,10 @@ export const updateCompanyByEmailAndYear  = async (req, res, next) => {
       return;
     }
 
+    company.name = req.body.name; 
+    company.email = req.body.email;
+    company.minInterns = req.body.minInterns; 
+
     // Updating historical data
     historicalDataForYear.address = req.body.address;
     historicalDataForYear.requiredDomain = req.body.requiredDomain;
@@ -145,6 +150,59 @@ export const updateCompanyByEmailAndYear  = async (req, res, next) => {
 
     await company.save();
 
+    res.status(200).json({
+      message: 'Company historical data updated successfully!',
+      company,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+// Update a company by email
+export const updateCompanyByEmail  = async (req, res, next) => {
+  try {
+    const { email } = req.params;
+    console.log(req.body)
+
+    const company = await Company.findOne({ email });
+    console.log("show for test",company);
+    if (!company) {
+      res.status(404).json({
+        message: 'Company not found!',
+      });
+      return;
+    } 
+
+    const currentYear = new Date().getFullYear();
+    let historicalDataForYear = company.historicalData.find(
+      (entry) => entry.year === currentYear
+    );
+
+    // If historical data for the current year is not found, create a new entry
+    if (!historicalDataForYear) {
+      historicalDataForYear = {
+        year: currentYear,
+      };
+      company.historicalData.push(historicalDataForYear);
+    }
+
+    company.name = req.body.name  || company.name; 
+    company.email = req.body.email || company.email;
+    company.address = req.body.address;
+    company.minInterns = req.body.minInterns; 
+
+    // Updating historical data
+    historicalDataForYear.address = req.body.address;
+    historicalDataForYear.requiredDomain = req.body.requiredDomain;
+    historicalDataForYear.internsHired = req.body.internsHired;
+    historicalDataForYear.contactNumber = req.body.contactNumber;
+    historicalDataForYear.selectedInterns = req.body.selectedInterns;
+
+    await company.save();
+
+    console.log(company)
     res.status(200).json({
       message: 'Company historical data updated successfully!',
       company,
@@ -343,6 +401,7 @@ export const sendFormtomentors = async(req, res)=>{
 }
 
 
+
 export const sendHiredNotifyingMail= async(req, res) =>{
   try{
     const { studentId, studentName } = req.body;
@@ -371,6 +430,39 @@ export const sendHiredNotifyingMail= async(req, res) =>{
     await Mailfunction(sub, companyEmail, text);
 
     res.status(200).json({ message: 'Email works' });
+  }catch (error){
+    console.log("Error: ", error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+}
+
+export const getmentoredAssignedStudents = async(req, res)=>{
+  console.log("THis function is called")
+  try{
+    const companies=await Company.find({status : 'Hiring'})
+
+    const mentors = await Mentor.find();
+
+    const notassignedstudent={}
+    var assignedStudentsinmentors=[];
+
+    mentors.forEach((element)=>{
+      element.assignedStudents.forEach((element)=>{
+        assignedStudentsinmentors.push(element.student_id)
+      })
+
+    })
+
+    companies.map((company)=>{
+      if(company.selectedInterns){
+        const filtered=company.selectedInterns.filter((el)=> !assignedStudentsinmentors.includes(el));
+        notassignedstudent[company._id]=filtered
+      }
+    })
+
+    console.log("Assigned student test", assignedStudentsinmentors);
+
+    res.status(200).json({notassignedstudent})
   }catch (error){
     console.log("Error: ", error);
     res.status(500).json({ error: 'Internal Server Error' });

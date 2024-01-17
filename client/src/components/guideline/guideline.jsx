@@ -23,6 +23,30 @@ const GuildeLine = () => {
  
 
 
+        <section>
+        <div className="guidelinecontent">
+          <h2 data-scroll="out">1. Resources and Additional Information</h2>
+          <p data-scroll="out"> The purpose of this Guideline Page is to guide you through the entire 
+          internship process. We aim to provide you with all the information you need to successfully a
+          pply for and complete your internship. Whether you are a student, employer, or any other user, 
+          this page serves as a comprehensive resource to answer your questions and assist you in navigating
+           the internship experience.
+           </p>
+        </div>
+      </section>
+
+        <section>
+        <div className="guidelinecontent">
+          <h2 data-scroll="out">2. Purpose of the Guideline Page</h2>
+          <p data-scroll="out"> The purpose of this Guideline Page is to guide you through the entire 
+          internship process. We aim to provide you with all the information you need to successfully a
+          pply for and complete your internship. Whether you are a student, employer, or any other user, 
+          this page serves as a comprehensive resource to answer your questions and assist you in navigating
+           the internship experience.
+           </p>
+        </div>
+      </section>
+      
 
       
       <section>
@@ -69,46 +93,11 @@ const GuildeLine = () => {
 
 
      
-      <section>
-        <div className="guidelinecontent">
-          <h2 data-scroll="out">Resources and Additional Information</h2>
-          <p data-scroll="out"> The purpose of this Guideline Page is to guide you through the entire 
-          internship process. We aim to provide you with all the information you need to successfully a
-          pply for and complete your internship. Whether you are a student, employer, or any other user, 
-          this page serves as a comprehensive resource to answer your questions and assist you in navigating
-           the internship experience.
-           </p>
-        </div>
-      </section>
+      
 
 
      
-      <section>
-        <div className="guidelinecontent">
-          <h2 data-scroll="out">2. Purpose of the Guideline Page</h2>
-          <p data-scroll="out"> The purpose of this Guideline Page is to guide you through the entire 
-          internship process. We aim to provide you with all the information you need to successfully a
-          pply for and complete your internship. Whether you are a student, employer, or any other user, 
-          this page serves as a comprehensive resource to answer your questions and assist you in navigating
-           the internship experience.
-           </p>
-        </div>
-      </section>
 
-      <section>
-        <div className="guidelinecontent">
-          <h2 data-scroll="out">2. Purpose of the Guideline Page</h2>
-          <p data-scroll="out"> The purpose of this Guideline Page is to guide you through the entire 
-          internship process. We aim to provide you with all the information you need to successfully a
-          pply for and complete your internship. Whether you are a student, employer, or any other user, 
-          this page serves as a comprehensive resource to answer your questions and assist you in navigating
-           the internship experience.
-           </p>
-        </div>
-
-
- 
-      </section>
       <hr />
       <div>
             <p className='text-center'>&#169; Copyright 2023 | All Right Reserved | InternConnect</p>
