@@ -288,6 +288,11 @@ export const postReportMarks = async (req, res) => {
   }
 };
 
+function delay(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
 
 export const postCvdeadline = async( req, res) => {
   try{
@@ -310,19 +315,32 @@ export const postCvdeadline = async( req, res) => {
       await admin.save();
     }
 
+    
+    res.status(200).json({message:"new deadline is set."})
+
     const student = await Student.find();
     var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
     
-    const promise = student.map(async(element)=>{
-      const sub="New Deadline is Published for Cv"
-      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
-      await Mailfunction(sub, element.email, text);
+    const promise=student.map(async(element, index)=>{
+      if(index!=0&&index%3==0){
+        const sub="New Deadline is Published for Cv"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        await delay(100)
+        console.log("index",index);
+        console.log("Sleeping")
+      }else{
+        const sub="New Deadline is Published for Cv"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Cv. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        console.log("index",index);
+      }
+
     })
+
 
     await Promise.all(promise);
 
-
-    return res.status(200).json({message:"new deadline is set."})
 
 
   }catch (error){
@@ -452,18 +470,31 @@ export const postReportdeadline = async( req, res) => {
       await admin.save();
     }
 
+    
+  res.status(200).json({message:"new deadline is set."})
+
     const student = await Student.find();
     var showtime = new Date(time).toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })
     
-    const promise = student.map(async(element)=>{
-      const sub="New Deadline is Published for Report"
-      const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
-      await Mailfunction(sub, element.email, text);
+    const promise=student.map(async(element, index)=>{
+      if(index!=0&&index%3==0){
+        const sub="New Deadline is Published for Report"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        await delay(100)
+        console.log("index",index);
+        console.log("Sleeping")
+      }else{
+        const sub="New Deadline is Published for Report"
+        const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
+        await Mailfunction(sub, element.email, text);
+        console.log("index",index);
+      }
+
     })
 
     await Promise.all(promise);
 
-    return res.status(200).json({message:"new deadline is set."})
 
 
   }catch (error){
