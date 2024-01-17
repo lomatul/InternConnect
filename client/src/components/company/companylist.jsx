@@ -3,7 +3,7 @@ import axios from 'axios';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
 import { BASE_URL } from '../../services/helper.js';
-import toast, { Toaster } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Companylist = () => {
@@ -78,7 +78,7 @@ const Companylist = () => {
       });
 
       if (response.status === 200) {
-        console.error('Updated Status');
+        console.log('Updated Status');
       }
     } catch (error) {
       console.error('An error occurred while updating company status:', error);
