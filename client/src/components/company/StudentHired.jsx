@@ -4,6 +4,7 @@ import Select from 'react-select';
 import { BASE_URL } from '../../services/helper';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { lightGreen } from '@mui/material/colors';
 
 const StatusHired = () => {
   const [students, setStudents] = useState([]);
@@ -149,22 +150,28 @@ const StatusHired = () => {
               {student.currentStatus === 'In Progress' ? (
                 <>
                   {buttonVisibility[index] && (
-                    <button onClick={() => handleHired(index)} disabled={selectedOption === 'Rejected'}>
-                      Set Hired
+                    <div className="hired">
+                      <button  onClick={() => handleHired(index)} disabled={selectedOption === 'Rejected'}>
+                      Set Hired 
                     </button>
+                    </div>
+                    
                   )}
                   {buttonVisibility[index] && (
+                    <div className="rejected">
                     <button onClick={() => handleNotHired(index)} disabled={selectedOption === 'Hired'}>
                       Set Rejected
                     </button>
+                    </div>
+
                   )}
                   {!buttonVisibility[index] && <p>{operationMessage}</p>}
                 </>
               ) : (
                 student.currentStatus === 'Hired' ? (
-                  <p style={{ color: 'green' }}>Hired</p>
+                  <p style={{ color: 'green' }}>Hired  <img src="check.png"alt="InternConnect Logo"   style={{width: '30px', height: '30px' ,marginLeft:"10px", marginRight:"10px" , marginBottom:"-5px"}}   /> </p>
                 ) : (
-                  <p style={{ color: 'red' }}>CV not sent</p>
+                  <p style={{ color: 'red' }}>CV not sent <img src="cross.png"alt="InternConnect Logo"   style={{width: '30px', height: '30px' ,marginLeft:"10px", marginRight:"10px" , marginBottom:"-5px"}}  /> </p>
                 )
               )}
             </td>

@@ -47,10 +47,13 @@ function Dashboard() {
                     <a href="/Hired"> Status &rarr;</a>
                 </div> 
 
-                <div className='card'>
+                
+            </div>
+            <div className='cards'>
+            <div className='card'>
                     <img src="grade.png" alt=""  />
                     <a href="/GradeStatus"> Evaluate &rarr;</a>
-                </div> 
+                </div>
             </div>
         </div>
 
