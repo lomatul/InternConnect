@@ -122,12 +122,16 @@ const Assesment = () => {
   // };
   if(isdone){
     return(
+<<<<<<< Updated upstream
     <div>You already have assessed this student.
       <div>Your unassessed students: 
         {notassessedstudents.map((element)=>
         (<div><a href={`/AddAssesment/${mentorid}/${element}`}></a></div>)
         )}
       </div>
+=======
+    <div>You already have assessed this student. Check Your Email for Any UnAccessed Student.
+>>>>>>> Stashed changes
     </div>
     )
   }
