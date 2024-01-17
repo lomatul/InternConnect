@@ -50,14 +50,14 @@ const Addgrade = () => {
       {showSendingCvs && (
         <div className="studentguideline">
           <ul>
-          <li>You can give this Percentage Once in a Session . So be Carefull </li>
+          <li> Based on percentage on mentor's evaluation, report evaluation and presentation evaluation marks will be calculated. Bear in mind that the numbers are set out of 100 </li>
           </ul>
           <div className="sending-cvs">
             <div className="form-group">
               <label htmlFor=""> Percentage on Mentors Evaluation <span>*</span></label>
               <input
                 type="number"
-                min="1"
+                min="1" max="100"
                 value={mentorPercentage}
                 onChange={(e) => setMentorPercentage(e.target.value)}
               />
@@ -67,7 +67,7 @@ const Addgrade = () => {
               <label>Percentage on Report Evaluation</label>
               <input
                 type="number"
-                min="1"
+                min="1" max="100"
                 value={reportPercentage}
                 onChange={(e) => setReportPercentage(e.target.value)}
               />
@@ -77,7 +77,7 @@ const Addgrade = () => {
               <label>Percentage on Presentation Evaluation</label>
               <input
                 type="number"
-                min="1"
+                min="1" max="100"
                 value={presentationPercentage}
                 onChange={(e) => setPresentationPercentage(e.target.value)}
               />
