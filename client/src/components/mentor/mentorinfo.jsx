@@ -49,12 +49,12 @@ const MentorInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
            
         </form>
         
-        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+        <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page + 1); setX(1000);}}>
               Next
             </button>
           <br/>
             <button
-              onClick={() => {setPage(page - 1); setX(-1000);  }}>
+              onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page - 1); setX(-1000);  }}>
               Previous </button>
     </div>
 

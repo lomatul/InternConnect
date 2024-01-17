@@ -250,3 +250,37 @@ input[type="submit"]{
 .logincontainer.admin-mode .right-panel {
   pointer-events: all;
 }
+
+.updatepassword {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  right: -15%;
+  width: 40%; 
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 5;
+}
+
+.updatepassword p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.updatepassword input {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.updatepassword input[type="submit"] {
+  background-color: #000000;
+  color: wheat;
+  cursor: pointer;
+}
+
+.updatepassword input[type="submit"]:hover {
+  background-color: #4d84e2;
+}

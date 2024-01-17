@@ -16,6 +16,7 @@ import axios from "axios";
 import {useParams} from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from "../../../services/helper.js"
 
 const Assesment = () => {
   const {mentorid, StudentId} = useParams();
@@ -23,18 +24,11 @@ const Assesment = () => {
   const [feedback, setFeedback] = useState([]);
 
 
-
-
-
-
-
-
-
   useEffect(() => {
     console.log("Id check", mentorid, StudentId);
     try{
       const fetchdata = async () => {
-        await axios.get(`http://localhost:4000/InterConnect/mentor/getAssesment/${mentorid}/${StudentId}`)
+        await axios.get(`${BASE_URL}/InterConnect/mentor/getAssesment/${mentorid}/${StudentId}`)
         .then((response) => {
           console.log(response)
           setFeedback(response.data.assesment.assesment);
@@ -51,9 +45,6 @@ const Assesment = () => {
   }, []);
 
 
-
-
-  
 
   const FormTitles = ["Intern's Basic Information", "Project Assignments", "Assessment", "Assessment","Assessment","Assessment","Your Information", "Company Information"];
 

@@ -4,6 +4,8 @@ import axios from "axios";
 import download from 'js-file-download';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const UploadReport = () => {
   const { userstudent } = useAuthContext();
@@ -12,13 +14,14 @@ const UploadReport = () => {
   const [id, setId] = useState('');
   const [hasReport, setHasReport] = useState(false);
   const [report, setReport] = useState('');
+  const [deadline, setDeadline]=useState('')
 
   useEffect(() => {
     if (userstudent) {
       setId(userstudent.student_id);
       if (userstudent.student_id) {
         try {
-          axios.get(`http://localhost:4000/InterConnect/student/getStudent/${userstudent.student_id}`).then((response) => {
+          axios.get(`${BASE_URL}/InterConnect/student/getStudent/${userstudent.student_id}`).then((response) => {
             if (response.data.student.internshipReport) {
               setHasReport(true);
             }
@@ -43,11 +46,36 @@ const UploadReport = () => {
     }
   }, [userstudent]);
 
+  useEffect(()=>{
+    const date= new Date();
+    console.log("Current Date", date);
+    try {
+        console.log("came here at deadline")
+        axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline/').then((response)=>{
+          console.log(response.data.Deadline)
+          
+          setDeadline(new Date(response.data.Deadline.time));
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }, []
+  )
+
   useEffect(() => {
     if (id) {
       try {
         console.log("came here")
-        axios.get(`http://localhost:4000/InterConnect/student/getOnestudent/${id}`).then((response) => {
+        axios.get(`${BASE_URL}/InterConnect/student/getOnestudent/${id}`).then((response) => {
           setReport(response.data.students.internshipReport);
         }).catch((error) => {
           if (error.response) {
@@ -72,12 +100,14 @@ const UploadReport = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-
-    const formData = new FormData();
+    if(Date()>deadline){
+      alert("Deadline passed");
+    }else{
+      const formData = new FormData();
     formData.append("file", selectedFile);
     console.log(formData)
     try {
-      await axios.post(`http://localhost:4000/InterConnect/student/uploadInternshipReport/${id}`, formData, {
+      await axios.post(`${BASE_URL}/InterConnect/student/uploadInternshipReport/${id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -104,12 +134,14 @@ const UploadReport = () => {
       console.error('An error occurred:', error);
     }
     setSelectedFile(null)
+    }
+
   }
 
   const handleView = async (event) => {
     event.preventDefault()
     try {
-      const reportUrl = `http://localhost:4000/InterConnect/student/getStudentReport/${id}`;
+      const reportUrl = `${BASE_URL}/InterConnect/student/getStudentReport/${id}`;
       window.open(reportUrl, '_blank');
     } catch (error) {
       console.error('An error occurred:', error);
@@ -139,6 +171,7 @@ const UploadReport = () => {
           <li>Highlight your skills, experience, and education.</li>
           <li>Tailor your Report for the specific job or internship you're applying for.</li>
           <p>For more detailed guidelines, please refer to our <a href="/Guildeline">Guidelines Page</a>.</p>
+          {new Date()>deadline?<span>Deadline is passed.</span>:<span>Deadline: {deadline.toLocaleString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true })}</span>}
         </ul>
 
         <div className="sample-cvs">
@@ -147,10 +180,10 @@ const UploadReport = () => {
           <a href="cvsample3.pdf" download>Download Sample Report 3</a>
         </div>
 
-        <div className="xcellupload">
+        {new Date()<deadline?<div className="xcellupload">
           <input type="file" accept=".pdf" onChange={handleFileSelect} />
           {hasReport ? <button onClick={handleSubmit}>Upload</button> : <button onClick={handleSubmit}>Upload</button>}
-        </div>
+        </div>:<div></div>}
         {hasReport && <button onClick={handleView}>View your Report </button>}
       </div>
 

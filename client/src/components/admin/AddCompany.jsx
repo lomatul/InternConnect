@@ -4,12 +4,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
-
+import { BASE_URL } from "../../services/helper.js";
+import { useNavigate } from 'react-router-dom';
 
 const Add = () => {
   const [selectedFile, setSelectedFile] = useState([]);
   const [emailError, setEmailError] = useState('');
   const [contactNumberError, setContactNumberError] = useState('');
+  const navigate = useNavigate();
 
 
   const handleFileSelect = (event) => {
@@ -51,18 +53,27 @@ const Add = () => {
     formDatafile.append("file", selectedFile);
     console.log(formDatafile)
     try {
-        await axios.post('http://localhost:4000/InterConnect/admin/uploadcompanyfile', formDatafile, {
+        await axios.post(`${BASE_URL}/InterConnect/admin/uploadcompanyfile`, formDatafile, {
           headers: {
             'Content-Type': 'multipart/form-data', // Set the content type for file upload
           },
         }).then((response)=>{
             console.log(response)
-         
+            toast.success('Company created successfully', { position: "top-right" });
+            navigate('/CompanyList');
+            // setTimeout(() => {
+            //   window.location.reload();
+            // }, 2000);
+
+
         }).catch((error)=>{
             if (error.response) {
                 console.log(error.response);
                 console.log("server responded");
                 toast.error('File upload failed', { position: "top-right" });
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
               } else if (error.request) {
                 console.log("network error");
               } else {
@@ -70,11 +81,6 @@ const Add = () => {
               }
         });
   
-        // if (response.status === 200) {
-        //   console.log('File uploaded successfully');
-        // } else {
-        //   console.error('File upload failed');
-        // }
       } catch (error) {
         console.error('An error occurred:', error);
       }
@@ -84,7 +90,24 @@ const Add = () => {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
+
+    if (name === 'requiredDomain') {
+      const domainArray = value.split(',').map(domain => domain.trim()); 
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        historicalData: [
+          {
+            ...prevFormData.historicalData[0],
+            requiredDomain: domainArray,
+          },
+        ],
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    };
 
   };
 
@@ -112,14 +135,18 @@ const Add = () => {
 
 
     try {
-      const response = await axios.post('http://localhost:4000/InterConnect/company/createCompany', formData);
+      const response = await axios.post(`${BASE_URL}/InterConnect/company/createCompany`, formData);
       console.log('Response:', response.data);
       toast.success('Company created successfully', { position: "top-right" });
-      // Handle success and error cases
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (error) {
       console.error('An error occurred:', error);
       toast.error('Failed to create the company', { position: "top-right" });
-      // Handle the error cases
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
 
     setFormData({
@@ -212,10 +239,7 @@ const Add = () => {
               <input type="text" name="contactNumber" value={formData.contactNumber} onChange={handleChange} />
               {contactNumberError && <div class="error-message">{contactNumberError}</div>} 
           </div>
-
-
-
-          
+             
          
 
           <div className="form-group">
@@ -223,7 +247,6 @@ const Add = () => {
               <input type="number" name="internsHired" min="0" value={formData.internsHired} onChange={handleChange} />
           </div>
           
-
 
           <div className="form-group">
               <label htmlFor="requiredDomain">Domain</label>
@@ -238,25 +261,29 @@ const Add = () => {
                   <label> <Checkbox id="QA Engineer" name="requiredDomain" value="QA Engineer" onChange={handleChange} />  &nbsp; QA Engineer </label> 
                   <label> <Checkbox id="Project Manager" name="requiredDomain" value="Project Manager" onChange={handleChange} />  &nbsp; Project Manager </label> 
                   <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />  &nbsp; DevOps </label> 
-                  <label> <Checkbox id="System Architect" name="requiredDomain" value="System Architect" onChange={handleChange} />  &nbsp; System Architect </label> 
-                      </div>
-                    </div>
+                  <label> <Checkbox id="System Architect" name="requiredDomain" value="System Architect" onChange={handleChange} />  &nbsp; System Architect </label>
+                  <div className="form-group">
+                      <label htmlFor="other">Others</label> 
+                      <input type="text" name="name" placeholder="Give other Domain if any " value={formData.name} onChange={handleChange}/>
+                  </div>                
+                 </div>
+                  </div>
                   </div>
               </div>
 
               <div className="form-group">
               <label htmlFor="requiredDomain">Number of Interns Per Domain</label>
               <div className="number-interns">
-
-                  
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />            
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
-                  <input type="number" name="numInter" min="0" value={""} onChange={handleChange} />
+                {[1, 2, 3, 4, 5, 6, 7, 8 ,9].map((index) => (
+                    <input
+                        key={index}
+                        type="number"
+                        name={`numInter${index}`}
+                        min="0"
+                        value={formData[`numInter${index}`] || ""}
+                        onChange={handleChange}
+                    />
+                ))}
               </div>
 
               </div>

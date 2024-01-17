@@ -3,18 +3,42 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const Gradesheet = () => {
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [editMode, setEditMode] = useState(false);
   const [editIndex, setEditIndex] = useState(null);
+  const [viewassesment, setViewassesment] = useState(null);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
-        setStudents(response.data || []);
-        setFilteredStudents(response.data || []);
+
+        const studentsData = response.data;
+
+        if (!studentsData || studentsData.length === 0) {
+          console.log('No students found.');
+          return;
+        }
+
+        setStudents(studentsData);
+        setFilteredStudents(studentsData);
+  
+      })
+      .catch((error) => {
+        console.error('An error occurred while fetching students:', error);
+      });
+  }, []);
+
+
+  useEffect(() => {
+    axios.get(`${BASE_URL}/InterConnect/mentor/getViewAssesment`)
+      .then((response) => {
+        console.log(response.data.assesment)
+        setViewassesment(response.data.assesment);
       })
       .catch((error) => {
         console.error('An error occurred while fetching students:', error);
@@ -25,11 +49,15 @@ const Gradesheet = () => {
     try {
       const editedStudent = filteredStudents[index];
 
-      const response = await axios.post(`http://localhost:4000/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
+      const response = await axios.post(`${BASE_URL}/InterConnect/admin/postMarks/${editedStudent.student_id}`, {
         internshipReportMarks: editedStudent.internshipReportMarks,
         presentationMarks: editedStudent.presentationMarks,
       });
-      toast.success('Marks have been updated')
+
+      toast.success('Marks Have Been Updated', { position: "top-right" });
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
 
       if (response.status === 200) {
         console.log('Student data updated successfully!');
@@ -37,10 +65,18 @@ const Gradesheet = () => {
         setEditIndex(null);
 
         // Refresh the data after saving
-        axios.get('http://localhost:4000/InterConnect/student/students')
+        axios.get(`${BASE_URL}/InterConnect/student/students`)
           .then((response) => {
-            setStudents(response.data || []);
-            setFilteredStudents(response.data || []);
+
+            const studentsData = response.data;
+
+            if (!studentsData || studentsData.length === 0) {
+              console.log('No students found.');
+              return;
+            }
+            setStudents(studentsData);
+            setFilteredStudents(studentsData);
+
           })
           .catch((error) => {
             console.error('An error occurred while fetching students:', error);
@@ -54,8 +90,13 @@ const Gradesheet = () => {
   };
 
   const handleReportClick = (studentId) => {
-    window.open(`http://localhost:4000/InterConnect/student/getStudentReport/${studentId}`, '_blank');
+    window.open(`${BASE_URL}/InterConnect/student/getStudentReport/${studentId}`, '_blank');
   };
+  if(!viewassesment){
+    return(
+      <div>Loading...</div>
+    )
+  }
 
   return (
     <main className="table">
@@ -85,7 +126,15 @@ const Gradesheet = () => {
                 <td>{student.name}</td>
                 <td>{student.student_id}</td>
                 <td>{student.evaluatedMentorMarks || 'N/A'}</td>
-                <td>{student.mentorsAssessment || 'N/A'}</td>
+                {viewassesment[student.student_id] ? (
+                  <td>
+                      {viewassesment[student.student_id].map((el) => (
+                      <a href={`/ViewAssesment/${el}/${student.student_id}`}>View Assessment</a>
+                  ))}
+                  </td>
+                    ) : (
+                  <td>'N/A'</td>
+                  )}
                 <td>
                   <Link to="#" onClick={() => handleReportClick(student.student_id)}>
                     {student.internshipReport || 'N/A'}
