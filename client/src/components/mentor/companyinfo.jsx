@@ -72,7 +72,6 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
             </div>
 
         
-           
         </form>
         
    
