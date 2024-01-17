@@ -3,6 +3,9 @@ import Select from 'react-select';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from "../../services/helper.js"
+
+
 const Sendcv = () => {
   const [showTable, setShowTable] = useState(false);
   const [cvList, setCvList] = useState([]);
@@ -16,12 +19,19 @@ const Sendcv = () => {
 
   const [selectedStudent, setSelectedStudent] = useState(null);
 
+  const [mailContent, setMailContent] = useState('Hello,\n\nThis Mail is From InterConnect. Please find the CVs attached for this years internship.\n\n Please Reply us Within 1 Week');
+
+  const handleContentChange = (e) => {
+    setMailContent(e.target.value);
+  };
+
+
   const handleOkayButtonClick = async(e) => {
     e.preventDefault();
     setShowTable(true);
     console.log("company Id", selectedCompany)
     try{
-      await axios.post('http://localhost:4000/InterConnect/admin/getMatchedStudents', {company:selectedCompany, number, type:sort})
+      await axios.post(`${BASE_URL}/InterConnect/admin/getMatchedStudents`, {company:selectedCompany, number, type:sort})
       .then((response)=>{
         console.log("upcoming list", response.data.returnStudentId);
         setCvList(response.data.returnStudentId);
@@ -56,9 +66,9 @@ const Sendcv = () => {
 ]
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
-        const hiringCompanies = response.data.companies.filter((company) => company.status === 'Hiring');
+        const hiringCompanies = response.data.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         console.log(companies)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
@@ -69,7 +79,7 @@ const Sendcv = () => {
   }, []);
 
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/student/students')
+    axios.get(`${BASE_URL}/InterConnect/student/students`)
       .then((response) => {
         const allStudents = response.data;
 
@@ -104,9 +114,10 @@ const Sendcv = () => {
   const handleSendButtonClick= async() =>{
     setLoading(true);
     try{
-      await axios.post('http://localhost:4000/InterConnect/admin/sendcvtocompany', {companyID:selectedCompany, students:cvList})
+      await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList, text: mailContent,})
       .then((response)=>{
         console.log(response);
+        console.log("student", cvList);
         toast.success('Cvs has been sent to the companies!')
         setTimeout(() => {
           window.location.reload();
@@ -166,7 +177,7 @@ const Sendcv = () => {
                     
                     <div className="form-group">
                         <label>Sorting Method:</label>
-                        <Select className='adselect'   onChange={(selectedOption) => setSort(selectedOption.value)}/>             
+                        <Select className='adselect'  options={sortingways} onChange={(selectedOption) => setSort(selectedOption.value)}/>             
                     </div>
                   </div>
 
@@ -175,7 +186,7 @@ const Sendcv = () => {
           </div>
 
       <div className="cvSending">
-      {loading && <p>Loading...</p>}
+      {loading && <img src="loading.gif"alt="InternConnect Logo" />}
         {showTable && (
           <div className="companies">
             <main className="table">
@@ -224,7 +235,18 @@ const Sendcv = () => {
                 <div className="table-button">
                 <button onClick={handleAddButtonClick}>Add</button>             
                 </div>
+                
                 </div>
+                    <div className="form-group">
+                          <div className="mail-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                            <textarea 
+                              cols="30" rows="10"
+                              value={mailContent}
+                              onChange={handleContentChange}
+                              placeholder="Type your mail content here..."
+                            ></textarea>
+                          </div>
+                        </div>
                 <div className="form-button">
                 <button onClick={handleSendButtonClick}>Send</button>      
                 </div>

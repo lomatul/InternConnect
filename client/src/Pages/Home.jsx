@@ -10,12 +10,6 @@ import Stats from '../components/stat/stat'
 
 const Home = () => {
 
-  // useEffect(() => {
-  //   ScrollOut({
-  //     targets: 'Section,Testimonials',
-  //   });
-  // }, []);
-
   return (
     <div className='home'>
         <Navbar/>
@@ -23,7 +17,6 @@ const Home = () => {
         <Stats/>
         <Section/>
         <Testimonials/>
-        <Footer/>
     </div>
   )
 }

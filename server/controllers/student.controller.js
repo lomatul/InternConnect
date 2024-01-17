@@ -220,12 +220,15 @@ export const postlogin = (req, res, next) => {
       if(err){
         console.error(err)
         return res.status(500).json({ error: "Session is not set" });
+      }else{
+        console.log("if session is set", req.user)
+        res.status(200).json({ message: "Logged In", User: user });
       }
     }
     )
-    // console.log("if session is set", req.user)
+
     // Authentication succeeded
-    res.status(200).json({ message: "Logged In", User: user });
+
   })(req, res, next);
 };
 
@@ -504,7 +507,7 @@ export const getOneStudentbyId = async (req, res) =>{
 export const addProject = async (req, res) => {
   try {
     const { student_id } = req.params;
-    const { name, year, description, technologies } = req.body;
+    const { name, year, description, technologies, link } = req.body;
 
     const student = await Student.findOne({ student_id });
 
@@ -512,7 +515,7 @@ export const addProject = async (req, res) => {
       return res.status(404).json({ message: "Student not found" });
     }
 
-    student.projects.push({ name, year, description, technologies });
+    student.projects.push({ name, year, description, technologies, link });
 
     await student.save();
 
@@ -728,3 +731,31 @@ export const getStudentReportById = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+
+export const ViewGrade = async(req, res) => {
+  try{
+    const id=req.user.id;
+
+    const student = await Student.findById(id);
+  
+    const returnStudentGrade = {
+      evaluatedMentorMarks:student.evaluatedMentorMarks,
+      presentationMarks:student.presentationMarks,
+      internshipReportMarks:student.internshipReportMarks,
+      finalGrade:student.finalGrade,
+      Name:student.name,
+      Id:student.student_id
+    }
+
+    console.log(returnStudentGrade)
+
+    res.status(200).json({returnStudentGrade:returnStudentGrade});
+  }catch (error) {
+    console.error(error);
+    res.status(400).json({ error: error.message });
+  }
+  
+
+
+}

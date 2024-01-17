@@ -3,7 +3,8 @@ import './login.css';
 import axios from "axios";
 import { useState , useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import {useLocation} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { BASE_URL } from '../../services/helper';
 
 
 const Updatepassword = () => {
@@ -38,7 +39,7 @@ const clearPasswordStrengthMessage = () => {
     if(newPassword===checkpassword){
       try {
         if(from===0){
-          await axios.post('http://localhost:4000/InterConnect/student/updatePassword/'+Id, {currentPassword, newPassword}
+          await axios.post(`${BASE_URL}/InterConnect/student/updatePassword/`+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
               navigate('/login');
@@ -56,7 +57,7 @@ const clearPasswordStrengthMessage = () => {
               }
           });
         }else if (from===1){
-          await axios.post('http://localhost:4000/InterConnect/student/resetPassword/'+Id, {currentPassword, newPassword}
+          await axios.post(`${BASE_URL}/InterConnect/student/resetPassword/`+Id, {currentPassword, newPassword}
           ).then((response)=>{
               console.log(response)
               navigate('/login');
@@ -83,14 +84,14 @@ const clearPasswordStrengthMessage = () => {
     }
   return (
     <div className="logincontainer">
-      <form onSubmit={handleSubmit}>
+      <form className="updatepassword "onSubmit={handleSubmit}>
         <p>Update Password</p>
         <input type="password" placeholder="Enter your new Password" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} /> {' '} <br />
         {passwordStrengthMessage && <div>{passwordStrengthMessage}</div>}
         <input type="password" placeholder="Confirm your password" required value={checkpassword} onChange={(e) =>setCheckPassword(e.target.value)}/> <br />
         {confirmpassword && <div>{confirmpassword}</div>}
-        <input type="password" placeholder="Enter your old Password" required value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)}/> <br />
-        <input type="submit" value="Sign in" /><br />
+        <input type="password" placeholder="Enter your OTP" required value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)}/> <br />
+        <input type="submit" value="Update" /><br />
       </form> 
 
       <div className="drops">

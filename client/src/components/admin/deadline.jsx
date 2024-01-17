@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import '../test.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -6,7 +6,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-
+import { BASE_URL } from '../../services/helper';
 
 
 const Adddeadline = () => {
@@ -15,6 +15,8 @@ const Adddeadline = () => {
   const [selectedReportDate, setSelectedReportDate] = useState(null);
   const [cvSubmitWarningShown, setCvSubmitWarningShown] = useState(false);
   const [reportSubmitWarningShown, setReportSubmitWarningShown] = useState(false);
+  const [existingCvDeadline, setExistingCvDeadline] = useState(null);
+  const [existingReportDeadline, setExistingReportDeadline] = useState(null);
 
   const handleSubmitcv = async(e) => {
     e.preventDefault()
@@ -44,7 +46,7 @@ const Adddeadline = () => {
         return;
       }
 
-      const reportDeadlineResponse = await axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline');
+      const reportDeadlineResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getReportdeadline`);
       const existingReportDeadline = reportDeadlineResponse.data.Deadline;
 
       // Check if existing Report deadline is earlier than selectedCvDate
@@ -59,7 +61,7 @@ const Adddeadline = () => {
         return;
       }
 
-      await axios.post('http://localhost:4000/InterConnect/admin/postCvdeadline', {time:selectedCvDate}
+      await axios.post(`${BASE_URL}/InterConnect/admin/postCvdeadline`, {time:selectedCvDate}
           ).then((response)=>{
               console.log(response);
               toast.success("New deadline is posted", { position: "top-right" })
@@ -125,7 +127,7 @@ const Adddeadline = () => {
         return;
       }
 
-    const cvDeadlineResponse = await axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline');
+    const cvDeadlineResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline`);
     const existingCvDeadline = cvDeadlineResponse.data.Deadline;
 
     // Check if existing CV deadline is later than selectedReportDate
@@ -140,7 +142,7 @@ const Adddeadline = () => {
       return;
     }
 
-      await axios.post('http://localhost:4000/InterConnect/admin/postReportdeadline', {time:selectedReportDate}
+      await axios.post(`${BASE_URL}/InterConnect/admin/postReportdeadline`, {time:selectedReportDate}
           ).then((response)=>{
               console.log(response);
               toast.success("New deadline is posted", { position: "top-right" });
@@ -165,6 +167,21 @@ const Adddeadline = () => {
     setReportSubmitWarningShown(false);
   }
  
+  useEffect(() => {
+    const fetchExistingDeadlines = async () => {
+      try {
+        const cvDeadlineResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getCvdeadline`);
+        const reportDeadlineResponse = await axios.get(`${BASE_URL}/InterConnect/admin/getReportdeadline`);
+
+        setExistingCvDeadline(cvDeadlineResponse.data.Deadline ? cvDeadlineResponse.data.Deadline.time : "No Deadline Set");
+        setExistingReportDeadline(reportDeadlineResponse.data.Deadline ? reportDeadlineResponse.data.Deadline.time : "No Deadline Set");
+
+      } catch (error) {
+        console.error('Error fetching existing deadlines:', error.message);
+      }
+    };
+    fetchExistingDeadlines();
+  }, []);
 
   return (
     <div>
@@ -179,6 +196,12 @@ const Adddeadline = () => {
         <div className="studentguideline">
           <ul>
           <li>You Need to set the deadlines for students. </li>
+              {existingCvDeadline && (
+                <li> <strong>Existing CV Deadline: {new Date(existingCvDeadline).toLocaleDateString()} </strong></li>
+              )}
+              {existingReportDeadline && (
+                <li> <strong> Existing Report Deadline: {new Date(existingReportDeadline).toLocaleDateString()} </strong></li>
+              )}
           </ul>
         </div>
       

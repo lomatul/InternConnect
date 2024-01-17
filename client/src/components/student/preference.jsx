@@ -4,6 +4,7 @@ import axios from "axios";
 import Select from 'react-select';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
 
 
 const Prefernces = () => {
@@ -11,12 +12,14 @@ const Prefernces = () => {
   const [id, setId] = useState('')
   const [loading, setLoading] = useState(true);
   const [companies, setCompanies] = useState([]);
+  const [showdomain, setShowdomain] = useState([]);
   const [firstchoicecompany, setFirstchoicecompany]=useState('')
   const [secondchoicecompany, setSecondchoicecompany]=useState('')
   const [thirdchoicecompany, setThirdchoicecompany]=useState('')
   const [firstchoicedomain, setFirstchoicedomain]=useState('')
   const [secondchoicedomain, setSecondchoicedomain]=useState('')
   const [thirdchoicedomain, setThirdchoicedomain]=useState('')
+  const [deadline, setDeadline]=useState('')
   // const [filteredCompanies, setFilteredCompanies] = useState([]);
 
 
@@ -29,10 +32,6 @@ const Prefernces = () => {
     {value:"Project Manager", label:"Project Manager"},
   ]
 
- 
-
-
-
 
   useEffect(() => {
     if (userstudent) {
@@ -42,8 +41,9 @@ const Prefernces = () => {
 
   }, [userstudent]);
 
+
   useEffect(() => {
-    axios.get('http://localhost:4000/InterConnect/company/companies')
+    axios.get(`${BASE_URL}/InterConnect/company/companies`)
       .then((response) => {
         const allCompanies = response.data;
 
@@ -54,21 +54,61 @@ const Prefernces = () => {
         const hiringCompanies = allCompanies.filter((company) => company.status === 'Hiring');
         setCompanies(hiringCompanies);
         console.log(companies)
+
+        // const domains = allCompanies.map((company)=> company.requiredDomain.forEach(element => {
+        //   return element.domain;
+        // }))
+        // setShowdomain(domains);
+
+        // console.log(domains)
+        var showdomain=[];
+        hiringCompanies.map((element) => {
+          element.requiredDomain.map(innerElement => showdomain.push(innerElement.domain));
+        });
+
+        console.log(showdomain);
+        setShowdomain(showdomain)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
       })
       .catch((error) => {
         console.error('An error occurred while fetching companies:', error.message);
       });
   }, []);
+
+  useEffect(()=>{
+    const date= new Date();
+    console.log("Current Date", date);
+    try {
+        console.log("came here at deadline")
+        axios.get('http://localhost:4000/InterConnect/admin/getCvdeadline/').then((response)=>{
+          console.log(response)
+          
+          setDeadline(new Date(response.data.Deadline.time));
+      }).catch((error)=>{
+          if (error.response) {
+              console.log(error.response);
+              console.log("server responded");
+            } else if (error.request) {
+              console.log("network error");
+            } else {
+              console.log(error);
+            }
+      });
+      } catch (error) {
+        console.error('An error occurred:', error);
+      }
+    }, []
+  )
   
   console.log(firstchoicecompany, secondchoicecompany, thirdchoicecompany);
   console.log(firstchoicedomain, secondchoicedomain, thirdchoicedomain)
+
 
   const handleSubmit = async(event) => {
     event.preventDefault()
 
     try {
-      await axios.post('http://localhost:4000/InterConnect/student/setprefer/'+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
+      await axios.post(`${BASE_URL}/InterConnect/student/setprefer/`+id,{firstchoicecompany, secondchoicecompany, thirdchoicecompany, firstchoicedomain, secondchoicedomain, thirdchoicedomain 
     }).then((response)=>{
         console.log(response)
         toast.success('Your Preferences have been submitted!')
@@ -112,7 +152,7 @@ const Prefernces = () => {
            </div>
        </div>
 
-          <div className="studentpreference">
+       {new Date()<deadline&&<div className="studentpreference">
 
                <form onSubmit={handleSubmit}>
 
@@ -122,8 +162,6 @@ const Prefernces = () => {
                           <input type="text" placeholder="Give name" />
                       </div>
 
-
-                   
 
                     <div className="form-group">
                         <label htmlFor="">Contact Number<span>*</span></label>
@@ -160,15 +198,24 @@ const Prefernces = () => {
                       <h2>Give Domain Preferences</h2>
                     <label htmlFor="">Choice 1<span>*</span> </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect'  options={domains}  onChange={(selectedOption) => setFirstchoicedomain(selectedOption.value)} />        
+                            <Select className='adselect'  options={showdomain.filter(el => el!==undefined).map((el)=>({
+                                  value:el,
+                                  label:el
+                            }))}  onChange={(selectedOption) => setFirstchoicedomain(selectedOption.value)} />        
                         </div>
                     <label htmlFor="">Choice 2 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect'  options={domains} onChange={(selectedOption) => setSecondchoicedomain(selectedOption.value)}/>
+                            <Select className='adselect'   options={showdomain.filter(el => el!==undefined).map((el)=>({
+                                  value:el,
+                                  label:el
+                            }))} onChange={(selectedOption) => setSecondchoicedomain(selectedOption.value)}/>
                         </div>                      
                     <label htmlFor="">Choice 3 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                              <Select className='adselect'  options={domains}onChange={(selectedOption) => setThirdchoicedomain(selectedOption.value)}/>              
+                              <Select className='adselect'   options={showdomain.filter(el => el!==undefined).map((el)=>({
+                                  value:el,
+                                  label:el
+                            }))} onChange={(selectedOption) => setThirdchoicedomain(selectedOption.value)}/>              
                         </div>                        
                   </div>
 
@@ -181,8 +228,8 @@ const Prefernces = () => {
               <button onClick={handleSubmit}>Send</button>
               
               </form>
-              </div>
-              
+              </div>}
+
           </div>
         
     );

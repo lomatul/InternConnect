@@ -21,7 +21,7 @@ export const MatchStudentByCGPA = async(company, number)=>{
        availability[company._id]=company.minInterns;
        match[company._id]=[];
     })
-    availability[company._id]=availability[company]+number;
+    availability[company]=availability[company]+number;
     
     students.map((student)=>{
         var matchedfirstcompany=student.companyPreferences.find(prefer=>prefer.key==1);

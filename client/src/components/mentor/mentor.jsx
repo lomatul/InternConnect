@@ -8,6 +8,7 @@ import Select from 'react-select';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Button } from '@mui/material';
+import { BASE_URL } from '../../services/helper';
 
 
 const Mentor = () => {
@@ -23,11 +24,12 @@ const Mentor = () => {
     const [selectedStudentId, setSelectedStudentId] = useState('');
     const [otp, setOtp]=useState('');
     const [trigger, setTrigger]=useState(true)
+    const [notAssessedstudentforcompany, setNotAssessedstudentforcompany] = useState(null)
 
 
 
     useEffect(() => {
-      axios.get('http://localhost:4000/InterConnect/company/getCompanybyid/'+id)
+      axios.get(`${BASE_URL}/InterConnect/company/getCompanybyid/`+id)
         .then((response) => {
           setCompany(response.data);
           console.log(response)
@@ -37,43 +39,58 @@ const Mentor = () => {
           console.error('An error occurred while fetching companies:', error);
         });
     }, []);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try{
+          axios.get(`${BASE_URL}/InterConnect/company/getmentoredAssignedStudents`)
+          .then((response) => {
+            setNotAssessedstudentforcompany(response.data.notassignedstudent);
+            console.log(response.data.notassignedstudent);
+            
+          })
+          .catch((error) => {
+            console.error('An error occurred while fetching companies:', error);
+          });
+        } catch (error) {
+          console.error('An error occurred while updating company status:', error);
+        }
+        
+      };
+    
+      fetchData();
+    }, []);
+    
   
     useEffect(() => {
       const fetchData = async () => {
         try {
           // Fetch students
-          const responseStudents = await axios.get('http://localhost:4000/InterConnect/student/students');
+          const responseStudents = await axios.get(`${BASE_URL}/InterConnect/student/students`);
           const fetchedStudents = responseStudents.data;
     
           const filteredStudents = fetchedStudents.filter((student) =>
-            company.selectedInterns.includes(student.student_id)
+            notAssessedstudentforcompany[id].includes(student.student_id)
           );
     
           console.log("Filtered students:", filteredStudents);
           
     
           // Fetch mentors after students are fetched
-          const responseMentors = await axios.get('http://localhost:4000/InterConnect/mentor/mentors');
-          const fetchedMentors = responseMentors.data;
-    
-          // Use fetchedMentors as needed
-          console.log("Mentors:", fetchedMentors);
-    
+         
           // Perform additional logic with fetchedMentors here
     
           // For example, filter students based on assignedStudents array in mentors
-          const finalFilteredStudents = filteredStudents.filter((student) =>
-            fetchedMentors.every((mentor) => !mentor.assignedStudents.includes(student.student_id))
-          );
-          setStudents(finalFilteredStudents);
-          console.log('Final filtered students:', finalFilteredStudents);
+        
+          setStudents(filteredStudents);
+          console.log('Final  students:', students);
         } catch (error) {
           console.error('An error occurred:', error.message);
         }
       };
     
       fetchData();
-    }, [trigger, company.selectedInterns]);
+    }, [trigger, notAssessedstudentforcompany]);
     
     
 
@@ -96,7 +113,7 @@ const Mentor = () => {
     const handleSubmit = async(e) => {
       e.preventDefault();
       try{
-         axios.post('http://localhost:4000/InterConnect/company/assignMenotors', {id, Studentid:selectedStudentId, otp:otp, newmentors: mentors })
+         axios.post(`${BASE_URL}/InterConnect/company/assignMenotors`, {id, Studentid:selectedStudentId, otp:otp, newmentors: mentors })
         .then((response) => {
           console.log(response)
           toast.success('Mentors are created!')
@@ -125,11 +142,11 @@ const Mentor = () => {
       // Remove the mentor at the specified index from the array
       setMentors((prevMentors) => prevMentors.filter((_, i) => i !== index));
     };
-    if(students.length==0){
-      return(
-        <div><p>Thanks, You have added mentors for all students.</p></div>
-      )
-    }
+    // if(students.length==0){
+    //   return(
+    //     <div><p>Thanks, You have added mentors for all students.</p></div>
+    //   )
+    // }
     return (     
     <div >
     <div className='admincontainer'>
@@ -161,10 +178,6 @@ const Mentor = () => {
                     <li>Thank you very much for supporting our students in their internships.</li>
                     <p>If you need support regarding this form, please  -<a href="/contact">contact us</a>.</p>
 
-                   {/* <span style={{ color: 'red' }}>  We will ensure that the information you provide remains confidential and will not be
-                    disclosed publicly. However, an aggregated result may be presented publicly. For example,
-                    we will NOT publish that you have marked an intern's performance as outstanding, however,
-                    we may publish that x% of the interns were marked as outstanding.</span>  */}
                 </ul>
 
                 <div className="sending-cvs">
@@ -203,7 +216,7 @@ const Mentor = () => {
             </div>
 
             <div className="mentorbutton">
-            <Button onClick={() => handleRemoveMentor(index)}>Remove Mentor</Button>
+            <Button style={{background:"#f09792"  , marginTop:"44px"}} onClick={() => handleRemoveMentor(index)}>Remove Mentor</Button>
             </div>
 
           
