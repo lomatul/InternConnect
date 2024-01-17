@@ -5,11 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import Checkbox from 'rc-checkbox';
 import 'rc-checkbox/assets/index.css';
 import { BASE_URL } from "../../services/helper.js";
+import { useNavigate } from 'react-router-dom';
 
 const Add = () => {
   const [selectedFile, setSelectedFile] = useState([]);
   const [emailError, setEmailError] = useState('');
   const [contactNumberError, setContactNumberError] = useState('');
+  const navigate = useNavigate();
 
 
   const handleFileSelect = (event) => {
@@ -58,9 +60,11 @@ const Add = () => {
         }).then((response)=>{
             console.log(response)
             toast.success('Company created successfully', { position: "top-right" });
-            setTimeout(() => {
-              window.location.reload();
-            }, 2000);
+            navigate('/CompanyList');
+            // setTimeout(() => {
+            //   window.location.reload();
+            // }, 2000);
+
 
         }).catch((error)=>{
             if (error.response) {
