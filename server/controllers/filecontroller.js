@@ -96,7 +96,7 @@ const ulpoadCompanydata = async (req, res)=>{
             {
               year: element.Year,
               address: element.Address,
-              requiredDomain: element.RequiredDomain.map((domain) => ({
+              requiredDomain: element.RequiredDomain.split(',').map((domain) => ({
                 domain,
                 internsNeeded: 0,
               })),
@@ -107,7 +107,9 @@ const ulpoadCompanydata = async (req, res)=>{
           minInterns: element.MinInterns,
           maxInterns: element.MaxInterns,
           status: element.Status,
-          
+          requiredDomain: element.RequiredDomain.split(',').map((domain) => ({
+            domain,
+          })),
         });
     
         await company.save();
