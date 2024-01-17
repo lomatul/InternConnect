@@ -59,7 +59,7 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
               <p>Some companies are popular with alternative names. Often a short form or simply another name. Please list all of them below, each name in their own line</p>
               <textarea
                 rows="3"  // Set the number of rows based on your preference
-                value={""} // You can set the initial value if needed
+                value={feedbackvalue.comp_alt_name ||''}  onChange={(e) => {feedback("comp_alt_name", e.target.value)}} // You can set the initial value if needed
               ></textarea>
             </div>
             <div className="form-group">           
@@ -67,22 +67,21 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
               Containers, CI/CD tools, source control systems, issue trackers - anything you think are
               important<span>*</span></label> <textarea
                 rows="3"  // Set the number of rows based on your preference
-                value={""} // You can set the initial value if needed
+                value={feedbackvalue.comp_list_tool ||''}  onChange={(e) => {feedback("comp_list_tool", e.target.value)}} // You can set the initial value if needed
               ></textarea>
             </div>
 
         
-           
         </form>
         
    
         
             <button
               onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'});  setPage(page - 1); setX(-1000);  }}>
-              Previous </button>
+             <img src="prev.png" alt="Image" style={{width: '30px', height: '30px' , marginBottom:"-10px" , marginRight:"10px" }}  /> Previous </button>
 
               <button onClick={submit}>
-              Submit </button>
+              Submit <img src="submit.png" alt="Image" style={{width: '30px', height: '30px' , marginBottom:"-10px" , marginLeft:"10px" }}  /> </button>
     </div>
 
     </motion.div>

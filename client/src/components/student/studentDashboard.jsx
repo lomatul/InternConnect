@@ -4,7 +4,7 @@ import { BASE_URL } from '../../services/helper';
 
 
 function StudentDashboard() {
-    const [showTimer, setshowTimer] = useState(true);
+    const [showTimer, setshowTimer] = useState(false);
     const [cvDeadline, setCvDeadline] = useState(null);
     const [reportDeadline, setReportDeadline] = useState(null);
 
@@ -21,10 +21,12 @@ function StudentDashboard() {
 
             if (isCvDeadlineValid) {
               setCvDeadline(cvData);
+              setshowTimer(true);
             }
         
             if (isReportDeadlineValid) {
               setReportDeadline(reportData);
+              setshowTimer(true);
             }
         
             if (!isCvDeadlineValid && !isReportDeadlineValid) {
