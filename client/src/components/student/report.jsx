@@ -51,7 +51,7 @@ const UploadReport = () => {
     console.log("Current Date", date);
     try {
         console.log("came here at deadline")
-        axios.get('http://localhost:4000/InterConnect/admin/getReportdeadline/').then((response)=>{
+        axios.get(`${BASE_URL}/InterConnect/admin/getReportdeadline/`).then((response)=>{
           console.log(response.data.Deadline)
           
           setDeadline(new Date(response.data.Deadline.time));

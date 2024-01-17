@@ -4,6 +4,7 @@ import Student from '../models/student.model.js';
 import otpgenerator from 'otp-generator';
 import Mailfunction from "./mailsenders/custom.mailsender.js";
 
+
 // Create a company
 export const createCompany = async (req, res, next) => {
   try {
@@ -386,7 +387,7 @@ export const sendFormtomentors = async(req, res)=>{
       var text=`<p>Dear ${element.name},</p><p>Please click the following link to assesment the intern, doing internship. While submitting, please use the given OTP. Your OTP is '${otp}'</p>`;
 
       element.assignedStudents.forEach((student)=>{
-        var link=`<p>For Student Id:${student.student_id} the assesment form link is:- <a href="http://localhost:3000/AddAssesment/${element._id}/${student.student_id}">Assesment this student</a></p>`;
+        var link=`<p>For Student Id:${student.student_id} the assesment form link is:- <a href="https://internconnect.netlify.app/AddAssesment/${element._id}/${student.student_id}">Assesment this student</a></p>`;
         text=text+link;
       })
       await Mailfunction(sub, element.email, text);
@@ -426,8 +427,8 @@ export const sendHiredNotifyingMail= async(req, res) =>{
 
     const sub = 'Hired Notification';
     const text = `<p>Dear HR of ${company.name},</p><p>Please click the following link to confirm that the student: ${studentName}, ID: ${studentId} is now hired as an intern by your company.
-    </p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusByIdToHired/${studentId}">Confirm</a> 
-    <p>If not, click the following link:</p>  <p><a href="http://localhost:4000/InterConnect/student/updateCurrentStatusByIdToRejected/${studentId}">Reject</a></p>`;
+    </p><a href="https://internconnect.onrender.com/InterConnect/student/updateCurrentStatusByIdToHired/${studentId}">Confirm</a> 
+    <p>If not, click the following link:</p>  <p><a href="https://internconnect.onrender.com/InterConnect/student/updateCurrentStatusByIdToRejected/${studentId}">Reject</a></p>`;
     await Mailfunction(sub, companyEmail, text);
 
     res.status(200).json({ message: 'Email works' });

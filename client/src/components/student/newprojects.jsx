@@ -5,6 +5,8 @@ import { useAuthContext } from "../../context/useAuthcontext";
 import axios from "axios";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { BASE_URL } from '../../services/helper';
+
 
 const NewProject = ({ page, setPage, x, setX }) => {
   const initialProject = {
@@ -24,7 +26,7 @@ const NewProject = ({ page, setPage, x, setX }) => {
     // Fetch projects from the backend when the component mounts
     const fetchProjects = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/InterConnect/student/getProjects/${userstudent.student_id}`);
+        const response = await axios.get(`${BASE_URL}/InterConnect/student/getProjects/${userstudent.student_id}`);
         setProjects(response.data.projects); // Updated this line
         console.log(response.data);
       } catch (error) {
@@ -42,7 +44,7 @@ const NewProject = ({ page, setPage, x, setX }) => {
 
   const handleAddProject = async () => {
     try {
-      const response = await axios.post(`http://localhost:4000/InterConnect/student/addProjects/${userstudent.student_id}`, newProject);
+      const response = await axios.post(`${BASE_URL}/InterConnect/student/addProjects/${userstudent.student_id}`, newProject);
       setProjects((prevProjects) => [...prevProjects, response.data.student.projects]);
       setNewProject(initialProject);
       setShowAddForm(false);
@@ -55,7 +57,7 @@ const NewProject = ({ page, setPage, x, setX }) => {
 
   const handleDeleteProject = async (index, project_id) => {
     try {
-      await axios.delete(`http://localhost:4000/InterConnect/student/deleteProjects/${userstudent.student_id}/${project_id}`);
+      await axios.delete(`${BASE_URL}/InterConnect/student/deleteProjects/${userstudent.student_id}/${project_id}`);
       setProjects((prevProjects) => prevProjects.filter((_, i) => i !== index));
       toast.success("Project deleted successfully");
     } catch (error) {

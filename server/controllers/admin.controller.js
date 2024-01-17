@@ -231,7 +231,7 @@ export const sendMentorsForm = async(req, res)=>{
       console.log(element);
       element.OTP=otp;
       const sub = "Mentor Addition Form"
-      const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="http://localhost:3000/AddMentor/${element._id}">AddMentorForm</a>`;
+      const text=`<p>Dear HR of ${element.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="https://internconnect.netlify.app/AddMentor/${element._id}">AddMentorForm</a>`;
       await Mailfunction(sub, element.email, text);
       await element.save();
     })
@@ -252,7 +252,7 @@ export const sendMentorsFormToOneCompany = async(req, res)=>{
       console.log(company);
       company.OTP=otp;
       const sub = "Mentor Addition Form"
-      const text=`<p>Dear HR of ${company.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="http://localhost:3000/AddMentor/${company._id}">AddMentorForm</a>`;
+      const text=`<p>Dear HR of ${company.name},</p><p>Please click the following link to insert 'Mentors' for student sent for intern in your company. While submitting, please use the given OTP. Your OTP is '${otp}'</p><a href="https://internconnect.netlify.app/AddMentor/${company._id}">AddMentorForm</a>`;
       await Mailfunction(sub, company.email, text);
       await company.save();
     

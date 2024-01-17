@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ReportPdf from './ReportViewer'
+import { BASE_URL } from '../../services/helper';
+
 
 function Studentmark() {
   const [response, setResponse]=useState(null)
@@ -9,7 +11,7 @@ function Studentmark() {
   useEffect(()=>{
     try {
         console.log("came here at deadline")
-        axios.get('http://localhost:4000/InterConnect/Student/ViewGrade', {
+        axios.get(`${BASE_URL}/InterConnect/Student/ViewGrade`, {
           withCredentials: true
         }).then((response)=>{
           console.log(response.data.returnStudentGrade.presentationMarks)
