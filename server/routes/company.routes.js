@@ -4,7 +4,8 @@ import {
   createHistoricalDataByEmail,
   getAllCompanies,
   getCompanyByEmailAndYear,
-  updateCompanyByEmailAndYear ,
+  updateCompanyByEmailAndYear,
+  updateCompanyByEmail,
   updateCompanyStatusByEmail,
   deleteCompanyByEmailAndYear,
   getCompanyByID, 
@@ -30,6 +31,8 @@ router.get('/getCompanybyid/:id', getCompanyByID);
 router.get('/getHistoricalData/:year', getCompanyHistoryByYear);
 
 router.put('/updateCompany/:email/:year', updateCompanyByEmailAndYear );
+
+router.put('/updateCompany/:email', updateCompanyByEmail );
 
 router.put('/updateCompanyStatus/:email', updateCompanyStatusByEmail); 
 
