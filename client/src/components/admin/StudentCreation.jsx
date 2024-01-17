@@ -6,10 +6,12 @@ import "../test.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from '../../services/helper';
+import { useNavigate } from 'react-router-dom';
 
 
 const Addstudent = () => {
   const [selectedFile, setSelectedFile] = useState([]);
+  const navigate = useNavigate();
 
   const handleFileSelect = (event) => {
     setSelectedFile(event.target.files[0])
@@ -30,9 +32,10 @@ const handleSubmit = async(event) => {
       }).then((response)=>{
           console.log(response)
           toast.success('Students have been created successfully', { position: "top-right" });
-          setTimeout(() => {
-            window.location.reload();
-          }, 2000);
+          // setTimeout(() => {
+          //   window.location.reload();
+          // }, 2000);
+          navigate('/SeeStudents')
       }).catch((error)=>{
           if (error.response) {
             toast.error('Error while creating students', { position: "top-right" });
