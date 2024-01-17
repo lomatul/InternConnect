@@ -82,7 +82,7 @@ const Companylist = () => {
       });
 
       if (response.status === 200) {
-        console.error('Updated Status');
+        console.log('Updated Status');
       }
     } catch (error) {
       console.error('An error occurred while updating company status:', error);
@@ -294,8 +294,7 @@ const Companylist = () => {
                   {buttonrow === index ? (
                       <p>{'Form Sent'}</p>
                     ) : (
-                      notAssessedstudentforcompany && notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)    
-       
+                      notAssessedstudentforcompany && notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)           
                     )}
                   </td>
               </tr>

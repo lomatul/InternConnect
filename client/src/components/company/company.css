@@ -45,6 +45,18 @@
     box-shadow: 5px 5px 4px rgb(21, 15, 99);
 }
 
+
+.companies  .rejected button {
+    margin-top: 20px;
+    height: 30px;
+    width: 100px;
+      border: none;
+    background-color: rgb(212, 144, 117);
+    color: rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 5px 5px 4px rgb(21, 15, 99);
+}
+
 .companies  button {
     height: 30px;
     border: none;
