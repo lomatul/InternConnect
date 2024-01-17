@@ -122,12 +122,7 @@ const Assesment = () => {
   // };
   if(isdone){
     return(
-    <div>You already have assessed this student.
-      <div>Your unassessed students: 
-        {notassessedstudents.map((element)=>
-        (<div><a href={`/AddAssesment/${mentorid}/${element}`}></a></div>)
-        )}
-      </div>
+    <div>You already have assessed this student. Check Your Email for Any UnAccessed Student.
     </div>
     )
   }
@@ -189,9 +184,6 @@ const Assesment = () => {
   return (
     
     <div className="mentorform">
-     <div className="progress-bar">
-      <div style={{width: page === 0? "12%": page === 1? "24%": page === 3? "35%": page === 4? "49%":page === 5? "60%":page === 6? "75%":page === 7? "84%" : "100%"}}></div>
-    </div> 
 
      
       <div>{componentList[page]}</div>

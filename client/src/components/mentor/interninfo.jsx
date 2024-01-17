@@ -92,7 +92,7 @@ const InternInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
         </form>
         
          <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page + 1); setX(1000);}}>
-            Next
+            Next  <img src="next.png" alt="Image" style={{width: '30px', height: '30px' , marginBottom:"-10px" , marginLeft:"10px" }}  />
           </button>
 
       </div>

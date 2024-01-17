@@ -143,15 +143,19 @@ const Gradesheet = () => {
                 <td>
                   {editMode && editIndex === index ? (
                     <input
-                      type="number"
-                      min="0"
-                      value={student.internshipReportMarks}
-                      onChange={(e) => {
+                    type="number"
+                    min="0"
+                    max="100"
+                    value={student.internshipReportMarks}
+                    onChange={(e) => {
+                      const inputValue = e.target.value.replace(/^0+(\d)/, '$1'); // Remove leading zeros
+                      if (!isNaN(inputValue) && inputValue >= 0 && inputValue <= 100) {
                         const updatedStudents = [...filteredStudents];
-                        updatedStudents[index].internshipReportMarks = e.target.value;
+                        updatedStudents[index].internshipReportMarks = inputValue;
                         setFilteredStudents(updatedStudents);
-                      }}
-                    />
+                      }
+                    }}
+                  />
                   ) : (
                     student.internshipReportMarks
                   )}
@@ -159,16 +163,20 @@ const Gradesheet = () => {
                 {/* Add Presentation Marks column if needed */}
                 <td>
                   {editMode && editIndex === index ? (
-                    <input
-                      type="number"
-                      min="0"
-                      value={student.presentationMarks}
-                      onChange={(e) => {
-                        const updatedStudents = [...filteredStudents];
-                        updatedStudents[index].presentationMarks = e.target.value;
-                        setFilteredStudents(updatedStudents);
-                      }}
-                    />
+                                      <input
+                                      type="number"
+                                      min="0"
+                                      max="100"
+                                      value={student.presentationMarks}
+                                      onChange={(e) => {
+                                        const inputValue = e.target.value.replace(/^0+(\d)/, '$1'); // Remove leading zeros
+                                        if (!isNaN(inputValue) && inputValue >= 0 && inputValue <= 100) {
+                                          const updatedStudents = [...filteredStudents];
+                                          updatedStudents[index].presentationMarks = e.target.value;
+                                          setFilteredStudents(updatedStudents);
+                                        }
+                                      }}
+                                    />            
                   ) : (
                     student.presentationMarks
                   )}

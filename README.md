@@ -94,7 +94,7 @@ and authorities.
      * Exportable Excel file with student grades.
  ```
 
-![image](https://github.com/lomatul/InternConnect/assets/90206489/6757142d-dd44-424c-bb36-9f45ee4dec6a)
+![image](https://github.com/lomatul/InternConnect/assets/90206489/fec5ef39-010a-49f8-a38f-55afd87da50c)
 
 
 

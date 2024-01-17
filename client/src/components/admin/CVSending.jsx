@@ -29,11 +29,19 @@ const Sendcv = () => {
   const handleOkayButtonClick = async(e) => {
     e.preventDefault();
     setShowTable(true);
+    console.log("company Id", selectedCompany)
     try{
       await axios.post(`${BASE_URL}/InterConnect/admin/getMatchedStudents`, {company:selectedCompany, number, type:sort})
       .then((response)=>{
         console.log("upcoming list", response.data.returnStudentId);
         setCvList(response.data.returnStudentId);
+        if(response.data.returnStudentId?.length==0){
+          toast.warning('No optimal student matches found', { position: "top-right" });
+        }else{
+          toast.success('Student matches', { position: "top-right" });
+        }
+        
+
     }).catch((error)=>{
         if (error.response) {
             toast.error('Error while getting matched student', { position: "top-right" });

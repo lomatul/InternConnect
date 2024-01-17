@@ -163,6 +163,8 @@ export const sendCvsToCompany = async (req, res) => {
     // Find the company based on the provided name
     const company = await Company.findById(companyID)
 
+    console.log(company)
+
     if (!company) {
       return res.status(404).json({ error: 'Company not found.' });
     }
@@ -370,6 +372,47 @@ export const getCvdeadline = async( req, res) => {
 }
 
 
+const GradeGenerate = async(mentorpart, reportpart, presentationpart, next) =>{
+  const students = await Student.find();
+try{const promise = students.map(async(student)=>{
+  const totalmark=((student.evaluatedMentorMarks||0)/60)*mentorpart+((student.internshipReportMarks || 0)/100)*reportpart+((student.presentationMarks || 0)/100)*presentationpart
+  var grade;
+  console.log("total Mark",totalmark)
+  if (totalmark >= 80) {
+    grade = 'A+';
+  } else if (totalmark >= 75) {
+    grade = 'A';
+  } else if (totalmark >= 70) {
+    grade = 'A-';
+  } else if (totalmark >= 65) {
+    grade = 'B+';
+  } else if (totalmark >= 60) {
+    grade = 'B';
+  } else if (totalmark >= 55) {
+    grade = 'B-';
+  } else if (totalmark >= 50) {
+    grade = 'C+';
+  } else if (totalmark >= 45) {
+    grade = 'C';
+  } else if (totalmark >= 40) {
+    grade = 'D';
+  } else {
+    grade = 'F';
+  }
+
+  student.finalGrade=grade;
+  await student.save();
+})
+
+await Promise.all(promise);
+}catch (error){
+  console.log("Error: ", error);
+  next(error)
+}
+  
+}
+
+
 export const getGradeExcel = async(req, res) => {
   try {
     const {mentorpart, reportpart, presentationpart} = req.body;
@@ -405,6 +448,7 @@ export const getGradeExcel = async(req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
 
 export const postReportdeadline = async( req, res) => {
   try{
@@ -473,7 +517,7 @@ export const getReportdeadline = async( req, res) => {
     }
 
 
-    return res.status(200).json({Deadline:deadline.time});
+    return res.status(200).json({Deadline:deadline});
 
 
   }catch (error){
