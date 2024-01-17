@@ -146,7 +146,6 @@ const LoginFormComponent = () => {
             <input
               type="text"
               placeholder="Enter your Username"
-              required
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />{' '}
@@ -187,7 +186,7 @@ const LoginFormComponent = () => {
               onChange={handleStudentIdChange}
             />{' '}
             <br />
-            <span>{idError}</span>
+            <span style={{ color: 'red' }}>{idError}</span>
             <input
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
@@ -196,7 +195,7 @@ const LoginFormComponent = () => {
               value={password}
             />{' '}
             <br />
-            <span>{passwordError}</span>
+            <span style={{ color: 'red' }} >{passwordError}</span>
             <label >
             <Checkbox
             style={{marginRight:"10px"}}
