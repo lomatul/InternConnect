@@ -189,9 +189,6 @@ const Assesment = () => {
   return (
     
     <div className="mentorform">
-     <div className="progress-bar">
-      <div style={{width: page === 0? "12%": page === 1? "24%": page === 3? "35%": page === 4? "49%":page === 5? "60%":page === 6? "75%":page === 7? "84%" : "100%"}}></div>
-    </div> 
 
      
       <div>{componentList[page]}</div>
