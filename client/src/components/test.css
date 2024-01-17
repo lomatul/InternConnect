@@ -11,7 +11,58 @@
   .newAdmin{
       width: 90%;
   }
+  .studentguideline {
+    padding: 0%;
+    width: 600px;
+    font-size: 14px;
+  }
+   .studentguideline .xcellupload {
+    margin-left: 0px;
+    width: 320px;
+  }
+  
 }
+
+@media (max-width:380px){
+
+  .newAdmin .adminnavbar {
+    background-color: transparent;
+
+  }
+  .admincard  .cards .card{
+      margin-left: 100px;
+      height: 250px;
+      width: 200px;
+      display: grid;
+      grid-template-columns: 1fr;
+  }
+   .admincontainer .admincard {
+    margin-left: 100px;
+    height: 1550px;
+    width: 200px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.studentguideline {
+  padding: 0%;
+  width: 200px;
+  font-size: 14px;
+}
+ .studentguideline .xcellupload {
+  margin-left: 0px;
+  width: 120px;
+}
+
+
+.studentpreference  button {
+width: 200px;
+color: red;
+margin-left: -900px;
+margin-right: 900px;
+}
+
+}
+
 
 
 .admincontainer{
@@ -23,7 +74,10 @@
 }
 
 
-
+.mail-text{
+  margin-left: 110px;
+  margin-bottom: 50px;
+}
 
 .admincontainer text {
     display: flex;
@@ -33,13 +87,18 @@
 
 }
 
+.addmentor{
+  margin-right: -200px;
+  margin-left: -350px;
+}
+
 .admincard{
   background-color: rgb(198, 220, 230);
     margin-top: 50px;
     margin-left: 110px;
     margin-right: 110px;
     padding: 50px;
-    height: 600px;
+    height: 1000px;
     border-radius: 10px;
     outline: 2px solid brown;
 }
@@ -188,7 +247,7 @@
   margin-left: 10px;
   margin-right: 10px;
   padding: 50px;
-  height: 1800px;
+  height: 2800px;
   border-radius: 10px;
   outline: 2px solid brown;
 }
@@ -218,7 +277,7 @@
   margin-left: 10px;
   margin-right: 10px;
   padding: 50px;
-  height: 1800px;
+  height: 2800px;
   border-radius: 10px;
   outline: 2px solid brown;
 }
@@ -257,6 +316,7 @@ font-size: 18px;
     border-radius: 10px;
     margin-top: 20px;
   }
+
   
  .studentguideline h2 {
     font-size: 24px;
@@ -658,11 +718,18 @@ width: 300px;
   cursor: pointer;
 }
 
-
-.mentorbutton{
-  margin-top: -10px;
+.cvSending img {
+  margin-top: 50px;
+  margin-left: 600px;
+  height: 160px;
+  width: 160px;
+}
+.mentorbutton button{
   margin-bottom: 60px;
-  margin-left: -500px;
+  width: 150px;
+  background-color: #000000;
+  color: #ffffff;
+  margin-right: -100px;
   cursor: pointer;
 }
 

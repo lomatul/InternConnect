@@ -41,10 +41,19 @@ function Dashboard() {
                     <a href="/SendNotifi">Send Notification &rarr;</a>
                 </div>
 
+
                 <div className='card'>
+                    <img src="status.png" alt=""  />
+                    <a href="/Hired"> Status &rarr;</a>
+                </div> 
+
+                
+            </div>
+            <div className='cards'>
+            <div className='card'>
                     <img src="grade.png" alt=""  />
                     <a href="/GradeStatus"> Evaluate &rarr;</a>
-                </div> 
+                </div>
             </div>
         </div>
 

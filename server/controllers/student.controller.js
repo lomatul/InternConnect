@@ -739,7 +739,9 @@ export const ViewGrade = async(req, res) => {
       evaluatedMentorMarks:student.evaluatedMentorMarks,
       presentationMarks:student.presentationMarks,
       internshipReportMarks:student.internshipReportMarks,
-      finalGrade:student.finalGrade
+      finalGrade:student.finalGrade,
+      Name:student.name,
+      Id:student.student_id
     }
 
     console.log(returnStudentGrade)

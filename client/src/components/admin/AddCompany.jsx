@@ -257,16 +257,20 @@ const Add = () => {
                   <label> <Checkbox id="QA Engineer" name="requiredDomain" value="QA Engineer" onChange={handleChange} />  &nbsp; QA Engineer </label> 
                   <label> <Checkbox id="Project Manager" name="requiredDomain" value="Project Manager" onChange={handleChange} />  &nbsp; Project Manager </label> 
                   <label> <Checkbox id="DevOps" name="requiredDomain" value="DevOps" onChange={handleChange} />  &nbsp; DevOps </label> 
-                  <label> <Checkbox id="System Architect" name="requiredDomain" value="System Architect" onChange={handleChange} />  &nbsp; System Architect </label> 
-                      </div>
-                    </div>
+                  <label> <Checkbox id="System Architect" name="requiredDomain" value="System Architect" onChange={handleChange} />  &nbsp; System Architect </label>
+                  <div className="form-group">
+                      <label htmlFor="other">Others</label> 
+                      <input type="text" name="name" placeholder="Give other Domain if any " value={formData.name} onChange={handleChange}/>
+                  </div>                
+                 </div>
+                  </div>
                   </div>
               </div>
 
               <div className="form-group">
               <label htmlFor="requiredDomain">Number of Interns Per Domain</label>
               <div className="number-interns">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((index) => (
+                {[1, 2, 3, 4, 5, 6, 7, 8 ,9].map((index) => (
                     <input
                         key={index}
                         type="number"

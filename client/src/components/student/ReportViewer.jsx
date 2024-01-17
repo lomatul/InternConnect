@@ -54,9 +54,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReportPdf = ({user,Marks}) => {
+const ReportPdf = ({Marks}) => {
   return (
-    <PDFViewer style={{ width: '100%', height: '100vh' }}>
+    <PDFViewer style={{ width: '100%', height: '75vh' }}>
       <Document>
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
@@ -66,8 +66,8 @@ const ReportPdf = ({user,Marks}) => {
           </View>
           <View style={styles.studentInfo}>
             <View style={{ marginRight: 20 }}>
-              <Text>Student Name: {user.name}</Text>
-              <Text>Student ID: {user.Id}</Text>
+              <Text>Student Name: {Marks.name}</Text>
+              <Text>Student ID: {Marks.Id}</Text>
             </View>
           </View>
           <View style={styles.table}>

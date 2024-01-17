@@ -93,12 +93,12 @@ const Status = () => {
                   </div>
                   }
                   {student.currentStatus==="In Progress"&&
-                  <div className="somthing">
+                  <div className="pending">
                   <td>{student.currentStatus}</td>
                   </div>
                   }
                   {student.currentStatus==="Hired"&&
-                  <div className="something">
+                  <div className="hire">
                   <td>{student.currentStatus}</td>
                   </div>
                   }

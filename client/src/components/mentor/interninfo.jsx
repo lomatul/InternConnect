@@ -91,7 +91,7 @@ const InternInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX  } )  => {
             </div>
         </form>
         
-        <button onClick={() => {setPage(page + 1); setX(1000);}}>
+         <button onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'}); setPage(page + 1); setX(1000);}}>
             Next
           </button>
 

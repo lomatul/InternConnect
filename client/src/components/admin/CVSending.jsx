@@ -19,6 +19,13 @@ const Sendcv = () => {
 
   const [selectedStudent, setSelectedStudent] = useState(null);
 
+  const [mailContent, setMailContent] = useState('Hello,\n\nThis Mail is From InterConnect. Please find the CVs attached for this years internship.\n\n Please Reply us Within 1 Week');
+
+  const handleContentChange = (e) => {
+    setMailContent(e.target.value);
+  };
+
+
   const handleOkayButtonClick = async(e) => {
     e.preventDefault();
     setShowTable(true);
@@ -99,9 +106,10 @@ const Sendcv = () => {
   const handleSendButtonClick= async() =>{
     setLoading(true);
     try{
-      await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList})
+      await axios.post(`${BASE_URL}/InterConnect/admin/sendcvtocompany`, {companyID:selectedCompany, students:cvList, text: mailContent,})
       .then((response)=>{
         console.log(response);
+        console.log("student", cvList);
         toast.success('Cvs has been sent to the companies!')
         setTimeout(() => {
           window.location.reload();
@@ -170,7 +178,7 @@ const Sendcv = () => {
           </div>
 
       <div className="cvSending">
-      {loading && <img src="loading.gif"alt="InternConnect Logo"   style={{width: '60px', height: '60px' , marginBottom:"-10px" , marginRight:"10px" }}   />}
+      {loading && <img src="loading.gif"alt="InternConnect Logo" />}
         {showTable && (
           <div className="companies">
             <main className="table">
@@ -219,7 +227,18 @@ const Sendcv = () => {
                 <div className="table-button">
                 <button onClick={handleAddButtonClick}>Add</button>             
                 </div>
+                
                 </div>
+                    <div className="form-group">
+                          <div className="mail-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+                            <textarea 
+                              cols="30" rows="10"
+                              value={mailContent}
+                              onChange={handleContentChange}
+                              placeholder="Type your mail content here..."
+                            ></textarea>
+                          </div>
+                        </div>
                 <div className="form-button">
                 <button onClick={handleSendButtonClick}>Send</button>      
                 </div>
