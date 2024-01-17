@@ -384,8 +384,9 @@ export const sendFormtomentors = async(req, res)=>{
       element.OTP=otp;
       const sub = "Student Assesment"
       var text=`<p>Dear ${element.name},</p><p>Please click the following link to assesment the intern, doing internship. While submitting, please use the given OTP. Your OTP is '${otp}'</p>`;
+
       element.assignedStudents.forEach((student)=>{
-        var link=`<p>For Student ${student} the assesment form link is:- <a href="http://localhost:3000/AddAssesment/${element._id}/${student}">Assesment this student</a></p>`;
+        var link=`<p>For Student Id:${student.student_id} the assesment form link is:- <a href="http://localhost:3000/AddAssesment/${element._id}/${student.student_id}">Assesment this student</a></p>`;
         text=text+link;
       })
       await Mailfunction(sub, element.email, text);

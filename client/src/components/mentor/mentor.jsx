@@ -40,13 +40,16 @@ const Mentor = () => {
         });
     }, []);
 
+
     useEffect(() => {
       const fetchData = async () => {
         try{
           axios.get(`${BASE_URL}/InterConnect/company/getmentoredAssignedStudents`)
           .then((response) => {
             setNotAssessedstudentforcompany(response.data.notassignedstudent);
+
             console.log(response.data.notassignedstudent);
+            console.log("Get Unassigned student",response.data.notassignedstudent);
             
           })
           .catch((error) => {
@@ -61,7 +64,7 @@ const Mentor = () => {
       fetchData();
     }, []);
     
-  
+
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -116,8 +119,12 @@ const Mentor = () => {
          axios.post(`${BASE_URL}/InterConnect/company/assignMenotors`, {id, Studentid:selectedStudentId, otp:otp, newmentors: mentors })
         .then((response) => {
           console.log(response)
-          toast.success('Mentors are created!')
+          toast.success('Mentors are created!', { position: "top-right" });
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
           setMentors([]);
+
           setSelectedStudentId('')
           setTrigger(!trigger);
 
@@ -177,6 +184,15 @@ const Mentor = () => {
                     </li>
                     <li>Thank you very much for supporting our students in their internships.</li>
                     <p>If you need support regarding this form, please  -<a href="/contact">contact us</a>.</p>
+
+
+                   {/* <span style={{ color: 'red' }}>  We will ensure that the information you provide remains confidential and will not be
+                    disclosed publicly. However, an aggregated result may be presented publicly. For example,
+                    we will NOT publish that you have marked an intern's performance as outstanding, however,
+                    we may publish that x% of the interns were marked as outstanding.</span>  */}
+   
+                    <li style={{ color: 'blue' }}>If you want to assign students to an already verified mentor - you can just provide the mail</li>
+
 
                 </ul>
 

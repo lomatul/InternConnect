@@ -79,10 +79,10 @@ const ComInfo =  ( {feedback, feedbackvalue, page, setPage,x,setX, submit  } )  
         
             <button
               onClick={() => {window.scrollTo({top: 0, behavior: 'smooth'});  setPage(page - 1); setX(-1000);  }}>
-              Previous </button>
+             <img src="prev.png" alt="Image" style={{width: '30px', height: '30px' , marginBottom:"-10px" , marginRight:"10px" }}  /> Previous </button>
 
               <button onClick={submit}>
-              Submit </button>
+              Submit <img src="submit.png" alt="Image" style={{width: '30px', height: '30px' , marginBottom:"-10px" , marginLeft:"10px" }}  /> </button>
     </div>
 
     </motion.div>
