@@ -482,13 +482,13 @@ export const postReportdeadline = async( req, res) => {
         const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
         await Mailfunction(sub, element.email, text);
         await delay(100)
-        console.log("index",index);
+
         console.log("Sleeping")
       }else{
         const sub="New Deadline is Published for Report"
         const text=`<p>Dear ${element.name}, New Deadline is posted submitting Report. New Deadline is: ${showtime}</p>`;
         await Mailfunction(sub, element.email, text);
-        console.log("index",index);
+
       }
 
     })
