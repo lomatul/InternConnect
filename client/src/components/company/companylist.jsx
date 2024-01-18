@@ -210,20 +210,8 @@ const Companylist = () => {
                     company.address
                   )}</td>
 
-                <td>
-                {editRow === index ? (
-                    <input
-                      type="email"
-                      value={company.email}
-                      onChange={(e) => {
-                        const updatedCompanies = [...companies];
-                        updatedCompanies[index].email = e.target.value;
-                        setCompanies(updatedCompanies);
-                      }}
-                    />
-                  ) : (
-                    company.email
-                  )}
+                <td>              
+                    {company.email}
                   </td>
 
 
@@ -294,7 +282,10 @@ const Companylist = () => {
                   {buttonrow === index ? (
                       <p>{'Form Sent'}</p>
                     ) : (
-                      notAssessedstudentforcompany && notAssessedstudentforcompany[company._id]?.length > 0? (<button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>) : (<p>N/A</p>)           
+                      notAssessedstudentforcompany && notAssessedstudentforcompany[company._id]?.length > 0? (
+                        <div className="save">
+                      <button onClick={() => handleAddMentor(index,company)}>Add Mentor</button>
+                      </div>) : (<p>N/A</p>)           
                     )}
                   </td>
               </tr>

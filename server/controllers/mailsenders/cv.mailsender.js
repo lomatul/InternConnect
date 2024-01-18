@@ -8,7 +8,7 @@ const sendCVsEmail = async (cvFileNames, recipientEmail, text) => {
     const transporter = nodemailer.createTransport({
       service: 'Gmail',
       auth: {
-        user: "internconnect.swe@gmail.com",
+        user: "zayed.hasan.14@gmail.com",
         pass: process.env.mail_pass  
       },
     });
@@ -32,7 +32,7 @@ const sendCVsEmail = async (cvFileNames, recipientEmail, text) => {
     zip.writeZip(zipFile);
 
     await transporter.sendMail({
-      from: 'internconnect.swe@gmail.com',
+      from: 'zayed.hasan.14@gmail.com',
       to: recipientEmail,
       subject: 'CVs for internship',
       // text: "Please find the CVs attached for this year's internship.",

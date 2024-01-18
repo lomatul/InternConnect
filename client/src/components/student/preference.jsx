@@ -61,13 +61,13 @@ const Prefernces = () => {
         // setShowdomain(domains);
 
         // console.log(domains)
-        var showdomain=[];
+        var showdomains=[];
         hiringCompanies.map((element) => {
-          element.requiredDomain.map(innerElement => showdomain.push(innerElement.domain));
+          element.requiredDomain.map(innerElement => showdomains.push(innerElement.domain));
         });
 
-        console.log(showdomain);
-        setShowdomain(showdomain)
+        console.log(showdomains);
+        setShowdomain(showdomains)
         // setFilteredCompanies(hiringCompanies); // Initially, both arrays are the same
       })
       .catch((error) => {
@@ -198,24 +198,35 @@ const Prefernces = () => {
                       <h2>Give Domain Preferences</h2>
                     <label htmlFor="">Choice 1<span>*</span> </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect'  options={showdomain.filter(el => el!==undefined).map((el)=>({
-                                  value:el,
-                                  label:el
-                            }))}  onChange={(selectedOption) => setFirstchoicedomain(selectedOption.value)} />        
+                            <Select className='adselect' 
+                            //  options={showdomain.filter(el => el!==undefined).map((el)=>({
+                            //       value:el,
+                            //       label:el
+                            // }))}  
+                            options={domains}
+                            onChange={(selectedOption) => setFirstchoicedomain(selectedOption.value)} />        
                         </div>
                     <label htmlFor="">Choice 2 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                            <Select className='adselect'   options={showdomain.filter(el => el!==undefined).map((el)=>({
-                                  value:el,
-                                  label:el
-                            }))} onChange={(selectedOption) => setSecondchoicedomain(selectedOption.value)}/>
+                            <Select className='adselect'   
+                            // options={showdomain.filter(el => el!==undefined).map((el)=>({
+                            //       value:el,
+                            //       label:el
+                            // }))}
+                            options={domains}
+                             onChange={(selectedOption) => setSecondchoicedomain(selectedOption.value)}/>
                         </div>                      
                     <label htmlFor="">Choice 3 </label>
                         <div  style={{width:'400px' , padding:'-10',height:'90px'}}>
-                              <Select className='adselect'   options={showdomain.filter(el => el!==undefined).map((el)=>({
-                                  value:el,
-                                  label:el
-                            }))} onChange={(selectedOption) => setThirdchoicedomain(selectedOption.value)}/>              
+                              <Select className='adselect' 
+                            //     options={showdomain.filter(el => el!==undefined).map((el)=>({
+                            //       value:el,
+                            //       label:el
+                            // }))} 
+
+                            options={domains}
+                            
+                            onChange={(selectedOption) => setThirdchoicedomain(selectedOption.value)}/>              
                         </div>                        
                   </div>
 

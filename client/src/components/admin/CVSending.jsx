@@ -200,7 +200,7 @@ const Sendcv = () => {
                       <th>Name</th>
                       <th>Student ID</th>
                       <th>CV</th>
-                      <th>Edit</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -210,9 +210,12 @@ const Sendcv = () => {
                         <td>{cv.student_id}</td>
                         <td>{cv.CV}</td>
                         <td>
+                          <div className="rejected">
                           <button onClick={() => handleRemoveRow(index)}>
-                            Remove
+                          Remove
                           </button>
+                          </div>
+                          
                         </td>
                       </tr>
                     ))}
@@ -233,7 +236,10 @@ const Sendcv = () => {
                 />
                 </div>
                 <div className="table-button">
-                <button onClick={handleAddButtonClick}>Add</button>             
+                  <div className="hired">
+                  <button onClick={handleAddButtonClick}>Add</button> 
+                  </div>
+                            
                 </div>
                 
                 </div>

@@ -28,16 +28,16 @@
 .companies  .save button {
     height: 30px;
     width: 100px;
-      border: none;
-    background-color: rgb(170, 185, 184);
+    border: none;
+    background-color: rgb(134, 207, 148);
     color: rgb(0, 0, 0);
     border-radius: 5px;
     box-shadow: 5px 5px 4px rgb(21, 15, 99);
 }
 
 .companies  .hired button {
-    height: 30px;
-    width: 100px;
+    height: 40px;
+    width: 120px;
       border: none;
     background-color: rgb(134, 207, 148);
     color: rgb(0, 0, 0);
@@ -48,8 +48,8 @@
 
 .companies  .rejected button {
     margin-top: 20px;
-    height: 30px;
-    width: 100px;
+    height: 40px;
+    width: 120px;
       border: none;
     background-color: rgb(212, 144, 117);
     color: rgb(0, 0, 0);
