@@ -115,8 +115,8 @@ const Addgrade = () => {
             </div>
 
             <div className="form-group">
-              <label>Percentage on Presentation Evaluation<span>*</span> </label>
-              <input
+              <label style={{marginTop:"-20px"}}>Percentage on Presentation <span>*</span>     Evaluation </label>
+              <input style={{marginTop:"-20px"}}
                     type="number"
                     min="0"
                     max="100"
