@@ -9,14 +9,14 @@ const Mailfunction = async (sub, email, text) => {
       service: 'gmail',
       host: 'smtp.gmail.com',
       auth: {
-        user: 'zayed.hasan.14@gmail.com',
+        user: 'internconnect.swe@gmail.com',
         pass: process.env.mail_pass,
       },
     });
 
     try {
       await transporter.sendMail({
-        from: 'zayed.hasan.14@gmail.com',
+        from: 'internconnect.swe@gmail.com',
         to: email,
         subject: `${sub}`,
         text: `${text}`,
