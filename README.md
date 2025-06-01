@@ -8,7 +8,7 @@
 
 ## Current Phase :
 ```
-In Progress  :hourglass_flowing_sand:
+Complete
 ```
 
 ## Group Members :
